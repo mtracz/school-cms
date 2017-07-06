@@ -12,5 +12,3 @@
 */
 
 Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
-
-// test test
