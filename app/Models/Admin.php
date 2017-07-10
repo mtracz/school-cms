@@ -2,9 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Model
-{
-    protected $table = "admins";
+class Admin extends Authenticatable {
+	use Notifiable;
+
+	protected $table = "admins";
+
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'login', 'password',
+	];
+
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'password',
+	];
 }

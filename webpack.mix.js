@@ -13,3 +13,10 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+//semantic
+mix.copy("semantic/dist/semantic.min.js", "public/js/semantic.min.js")
+	.copy("semantic/dist/semantic.min.css", "public/css");
+
+// jquery
+mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js");
