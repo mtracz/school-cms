@@ -21,6 +21,7 @@ class CreateThemesTable extends Migration
             $table->string('color_2', 45)->nullable();
             $table->string('color_3', 45)->nullable();
             $table->string('color_4', 45)->nullable();
+            $table->string('color_5', 45)->nullable();
 
             $table->unique(["id"], 'id_UNIQUE');
         });

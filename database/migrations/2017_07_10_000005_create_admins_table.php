@@ -18,6 +18,7 @@ class CreateAdminsTable extends Migration
 			$table->increments('id');
 			$table->string('login', 45);
 			$table->string('password');
+			$table->string('name');
 			$table->tinyInteger('is_super_admin')->default('0');
 			$table->tinyInteger('is_active')->default('1');
 			$table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Models\Admin;
+use App\Models\Settings;
 
 class ViewController extends Controller {
     public function index() {
@@ -23,5 +24,10 @@ class ViewController extends Controller {
     		return view("admin_create");
        	}
     	
+    }
+
+    public function getMaintenancePage() {
+
+        return view("maintenance");
     }
 }
