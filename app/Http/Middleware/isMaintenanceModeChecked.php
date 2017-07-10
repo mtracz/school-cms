@@ -3,6 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+
+use App\Helpers\MaintenanceModeHelper;
 
 class isMaintenanceModeChecked
 {
@@ -16,8 +19,15 @@ class isMaintenanceModeChecked
 	public function handle($request, Closure $next)
 	{
 
+		$maintenanceModeHelper = new MaintenanceModeHelper();
+
+		if($maintenanceModeHelper->isMaintenance() && ! $request->user()){
+
+			return redirect("maintenance");
+		} else {
+
+			return $next($request);
+		}
 		
-		
-		return $next($request);
 	}
 }

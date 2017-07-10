@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SiteSectorsSeeder::class);
         $this->call(StatisticsSeeder::class);
         $this->call(ThemesSeeder::class);
+        $this->call(AdminsSeeder::class);
     }
 }
