@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Models\Admin;
-use App\Models\Settings;
 
 class ViewController extends Controller {
     public function index() {
+
     	return view("welcome");
     }
 
@@ -23,7 +23,6 @@ class ViewController extends Controller {
     		// super admin not created - first login
     		return view("admin_create");
        	}
-    	
     }
 
     public function getMaintenancePage() {
