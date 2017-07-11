@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Models\Admin;
+use App\Models\Settings;
 
 class ViewController extends Controller {
     public function index() {
