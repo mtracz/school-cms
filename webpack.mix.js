@@ -15,8 +15,12 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
 //semantic
-mix.copy("semantic/dist/semantic.min.js", "public/js/semantic.min.js")
-	.copy("semantic/dist/semantic.min.css", "public/css");
+mix.copy("node_modules/semantic-ui/dist/semantic.min.js", "public/js")
+	.copy("node_modules/semantic-ui/dist/semantic.min.css", "public/css");
 
 // jquery
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js");
+
+//admin create
+mix.scripts("resources/assets/js/admin_create.js", "public/js/admin_create.js")
+	.styles("resources/assets/css/admin_create.css", "public/css/admin_create.css");

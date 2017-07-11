@@ -3,5 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/js/semantic.min.js": "/js/semantic.min.js",
     "/css/semantic.min.css": "/css/semantic.min.css",
-    "/js/jquery.min.js": "/js/jquery.min.js"
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/admin_create.js": "/js/admin_create.js",
+    "/css/admin_create.css": "/css/admin_create.css"
 }
