@@ -29,7 +29,7 @@ class RegisterService {
 
 	protected function getValidateRules() : array {	
 		$rules = [
-			"login"	=> "required|min:6|unique:users",
+			"login"	=> "required|min:6|unique:admins",
 			"email"	=> "required|email|max:50",
 			"password" => "required|min:6|required|confirmed",
 			];		
@@ -42,7 +42,7 @@ class RegisterService {
 			"email.max" => "Email może mieć max. 50 znaków",
 			"email.email" => "Podaj porawny email",
 			"email.unique" => "Podaj inny email",
-			"password.min" => "Chasło musi mieć min. 6 znaków",
+			"password.min" => "Hasło musi mieć min. 6 znaków",
 			"password.confirmed" => "Hasła się nie zgadzają",
 			"password.required" => "Pole hasło jest wymagane",
 		];
@@ -52,7 +52,7 @@ class RegisterService {
 	public function validate() {
 		if($this->isDataSet) {
 			$validator = Validator::make($this->registerData, $this->getValidateRules(), $this->errorMessages);
-			if ($validator->passes()) {
+			if($validator->passes()) {
 				$this->isValidated = true;	
 			} else {
 				$this->validateErrors = $validator->errors();
@@ -71,10 +71,12 @@ class RegisterService {
 			$admin->name = "SuperAdmin";
 			$admin->login = $this->registerData["login"];
 			$admin->password = bcrypt($this->registerData["password"]);
+			$admin->is_super_admin = 1;
+			$admin->is_active = 1;
 			$admin->save();
 
-			$settings = new Settings();
-			$settings-> = $this->registerData["email"];
+			$settings = Settings::where("name", "admin_email")->first();
+			$settings->value = $this->registerData["email"];
 			$settings->save();
 			
 			$this->isRegistered = true;
