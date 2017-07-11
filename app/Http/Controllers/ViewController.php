@@ -14,7 +14,6 @@ class ViewController extends Controller {
     }
 
     public function getLoginView() {
-
     	$super_admin = Admin::where("is_super_admin", 1)->first();
 
     	if($super_admin) {
@@ -23,7 +22,7 @@ class ViewController extends Controller {
     	} else {
     		// super admin not created - first login
     		return view("admin_create");
-       	}
+       	}    	
     }
 
     public function getMaintenancePage() {

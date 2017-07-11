@@ -18,7 +18,7 @@ class SettingsSeeder extends Seeder
 			["id" => 3, "name" => "font_size_biggest", "value" => 4],
 			["id" => 4, "name" => "admin_email", "value" => ""],
 			["id" => 5, "name" => "news_per_page", "value" => 10],
-			["id" => 6, "name" => "coockie_text", "value" => "Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki."],
+			["id" => 6, "name" => "cookie_text", "value" => "Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki."],
 			["id" => 7, "name" => "is_maintenance_mode", "value" => 0],
 			["id" => 8, "name" => "maintenance_mode_text", "value" => "Fuck off, get lost!"],
 			["id" => 9, "name" => "title", "value" => "Set title"],

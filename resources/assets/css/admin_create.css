@@ -1,3 +1,38 @@
-{
-	
+/* Admin create blade */
+
+body {
+	background-color: #2574A9;
+}
+
+
+label { 
+	color: white !important;
+}
+
+.ui.header {
+	/*color: #EBF680;*/
+}
+
+.email.info, .required.info {	
+	color: white;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.information {
+	text-align: center;
+	font-size: 19px;
+	color: white;
+}
+
+.container {
+	margin-top: 20px;
+}
+
+.errors {
+	color: red;
+}
+
+.column {
+	/*border-style: solid;*/
 }
