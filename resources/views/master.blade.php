@@ -16,6 +16,8 @@
 	{!! Html::style("css/semantic.min.css") !!}
 	{!! Html::style("css/master.css") !!}
 
+	@yield("styles")
+
 </head>
 <body>
 

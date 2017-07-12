@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	{{-- styles --}}
-	{!! Html::style("css/semantic.min.css") !!}
+@extends("master")
+
+@section("styles")
+
 	{!! Html::style("css/admin_create.css") !!}
-</head>
-<body>
-	
+
+@endsection
+
+
+@section("content")
+
 	<div class="ui container">
 		<div class="ui icon centered aligned header">
 			<i class="user icon"></i>
@@ -93,10 +95,11 @@
  		</form>	
 	</div>
 
-</body>
-</html>
+@endsection
 
-{{-- scripts --}}
-{!! Html::script("js/semantic.min.js") !!}
-{!! Html::script("js/jquery.min.js") !!}
-{!! Html::script("js/admin_create.js") !!}
+
+@section("scripts")
+
+	{!! Html::script("js/admin_create.js") !!}
+
+@endsection

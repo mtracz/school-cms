@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+@extends("master")
+	
+@section("styles")
 
-	{{-- styles --}}
-	{!! Html::style("css/semantic.min.css") !!}
 	{!! Html::style("css/admin_login.css") !!}
 
-</head>
-<body>
+@endsection
+
+
+@section("content")
 
 	<div class="ui middle aligned center aligned grid">
 	  <div class="column">
@@ -41,15 +40,15 @@
 	      </div>
 
 	    </form>
-
 	  </div>
 	</div>
 
-</body>
-</html>
+@endsection
 
-	{{-- scripts --}}
 
-	{!! Html::script("js/semantic.min.js") !!}
-	{!! Html::script("js/jquery.min.js") !!}
+@section("scripts")
+
 	{!! Html::script("js/admin_login.js") !!}
+
+@endsection
+
