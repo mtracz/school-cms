@@ -24,3 +24,7 @@ mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js");
 //admin create
 mix.scripts("resources/assets/js/admin_create.js", "public/js/admin_create.js")
 	.styles("resources/assets/css/admin_create.css", "public/css/admin_create.css");
+
+//admin login
+mix.scripts("resources/assets/js/admin_login.js", "public/js/admin_login.js")
+	.styles("resources/assets/css/admin_login.css", "public/css/admin_login.css");

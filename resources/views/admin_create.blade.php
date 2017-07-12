@@ -26,7 +26,7 @@
 		<div class="ui divider">
 		<br><br>
 
-		<form action="{{route("login.post")}}" method="post" id="create_super_admin_form" class="ui form">
+		<form action="{{route("register.post")}}" method="post" id="create_super_admin_form" class="ui form">
 			{{ csrf_field() }}
 
 			<div class="ui six column grid container">

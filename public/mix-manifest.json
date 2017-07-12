@@ -5,5 +5,7 @@
     "/css/semantic.min.css": "/css/semantic.min.css",
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/admin_create.js": "/js/admin_create.js",
-    "/css/admin_create.css": "/css/admin_create.css"
+    "/css/admin_create.css": "/css/admin_create.css",
+    "/js/admin_login.js": "/js/admin_login.js",
+    "/css/admin_login.css": "/css/admin_login.css"
 }

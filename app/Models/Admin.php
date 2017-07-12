@@ -27,4 +27,12 @@ class Admin extends Authenticatable {
 	protected $hidden = [
 		'password',
 	];
+
+	public function is_active() {
+		return $this->is_active;
+	}
+
+	public function is_super_admin() {
+		return $this->is_super_admin;
+	}
 }

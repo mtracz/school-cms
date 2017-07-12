@@ -5,13 +5,6 @@ var input_super_admin_password;
 var input_super_admin_password_confirmation;
 var input_super_admin_email;
 
-$(document).ready(function() {
-	$input_super_admin_login = $("#super_admin_login_input").val();
-	$input_super_admin_password = $("#super_admin_password_input").val();
-	$input_super_admin_password_confirmation = $("#super_admin_password_confirmation_input").val();
-	$input_super_admin_email = $("#super_admin_email_input").val();	
-});
-
 // LOGIN INPUT VALIDATE
 $("#super_admin_login").on("change keyup paste click", function(){
 	$input_super_admin_login = $("#super_admin_login_input").val();

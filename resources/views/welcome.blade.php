@@ -81,6 +81,23 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
+                {{Auth::user()}}
+                <br>
+                {{-- LOGOUT --}}
+                @if(Auth::user())
+                <a class="item logout" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">              
+                    <i class="sign out icon"></i>
+                    WYLOGUJ
+                    <form id="logout-form"
+                        action="{{ route("logout.post") }}" 
+                        method="post"
+                        style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </a>
+                @endif
+                {{-- //////////////// --}}
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
