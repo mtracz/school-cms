@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Admin;
+use App\Models\StaticPage;
+use App\Models\Event;
+
 class Admin extends Authenticatable {
 	use Notifiable;
 
@@ -28,11 +32,24 @@ class Admin extends Authenticatable {
 		'password',
 	];
 
+
 	public function is_active() {
 		return $this->is_active;
 	}
 
 	public function is_super_admin() {
 		return $this->is_super_admin;
+	}
+
+	public function news() {
+		return $this->hasMany(Admin::class);
+	}
+
+	public function static_page() {		
+		return $this->hasMany(StaticPages::class);
+	}
+
+	public function event() {		
+		return $this->hasMany(Event::class);
 	}
 }

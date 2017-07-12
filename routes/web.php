@@ -10,12 +10,17 @@ Route::group(["middleware" => ["guest"]], function() {
 	Route::post("/login_create", ["as" => "register.post", "uses" => "Auth\RegisterController@register"]);
 
 	// LOGIN ADMIN
-	Route::post("/login", ["as" => "login.post", "uses" => "Auth\LoginController@login"]);
-
-	
+	Route::post("/login", ["as" => "login.post", "uses" => "Auth\LoginController@login"]);	
 
 	// MAINTENANCE PAGE
 	Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
+
+	// SITE SETTINGS
+	Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
+
+	// SITE THEMES
+	Route::get('/theme', ["as" => "theme.get", "uses" => "ThemeController@getTheme"]);
+
 
 });
 

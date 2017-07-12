@@ -778,8 +778,12 @@ module.exports = __webpack_require__(40);
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -802,6 +806,10 @@ Vue.component('example', __webpack_require__(36));
 var app = new Vue({
   el: '#app'
 });
+
+// ***************************** \\
+
+
 
 /***/ }),
 /* 10 */

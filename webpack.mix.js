@@ -28,3 +28,8 @@ mix.scripts("resources/assets/js/admin_create.js", "public/js/admin_create.js")
 //admin login
 mix.scripts("resources/assets/js/admin_login.js", "public/js/admin_login.js")
 	.styles("resources/assets/css/admin_login.css", "public/css/admin_login.css");
+
+//master
+mix.scripts("resources/assets/js/master.js", "public/js/master.js");
+mix.styles("resources/assets/css/master.css", "public/css/master.css");
+
