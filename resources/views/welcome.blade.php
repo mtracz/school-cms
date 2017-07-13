@@ -78,9 +78,9 @@
             <div class="content">
                <p>
                 LOG: <br>
-                {!! $log->action !!}
+                {{-- {!! $log->action !!} --}}
                 <br>
-                {{$log->created_at}}
+                {{-- {{$log->created_at}} --}}
                 </p>
                 <br><br>
                 <div class="title m-b-md">

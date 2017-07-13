@@ -9,7 +9,7 @@ use Redirect;
 use Auth;
 
 use App\Services\Auth\LoginService;
-use App\Services\LogService;
+use LogService;
 
 class LoginController extends Controller {
 
@@ -18,20 +18,20 @@ class LoginController extends Controller {
 
 		$login_service->setData($request->all())->validate()->login();
 		if($login_service->isLogged()) {
+			LogService::LoginSuccess("");
 			return response(["login_status" => "success",
 				"login_route" => Route("index.get")
 				]);
 		} else {
 			Session::flash("errors", $login_service->getErrors());
+			LogService::LoginFail("");
 			return json_encode($login_service->getErrors());
 		}
 	}
 
 	public function logout() {
 		Session::flash("messages", ["Zostałeś/łaś wylogowany" => "success" ]);
-
-		LogService::createLog("asd content");
-
+		LogService::Logout("");
 		Auth::logout();
 		return Redirect::route("index.get");
 	}
