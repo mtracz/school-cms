@@ -2,7 +2,7 @@
 	
 @section("styles")
 
-	{!! Html::style("css/admin_login.css") !!}
+	{!! Html::style("css/adminLogin.css") !!}
 
 @endsection
 
@@ -48,7 +48,7 @@
 
 @section("scripts")
 
-	{!! Html::script("js/admin_login.js") !!}
+	{!! Html::script("js/adminLogin.js") !!}
 
 @endsection
 

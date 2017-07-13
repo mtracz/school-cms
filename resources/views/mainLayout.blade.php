@@ -2,7 +2,7 @@
 
 @section("styles")
 
-{!! Html::style("css/siteStructure.css") !!}
+{!! Html::style("css/mainLayout.css") !!}
 
 @endsection
 
@@ -10,80 +10,51 @@
 
 <div class="ui container">
 
-	<div class="ui button attach_fixed attach_left">left attach</div>
-	<div class="ui button attach_fixed attach_right">right attach</div>
+	<div class="ui button attach_fixed attach_left view_marker view_tablet view_mobile">left attach</div>
+	<div class="ui button attach_fixed attach_right view_marker view_tablet view_mobile">right attach</div>
 	<div style="clear: both;"></div>
 
 	<div class="ui grid">
 
-		<div id="top_1" class="sixteen wide column sector">
-
-			<div class="ui segment">top_1 ipsu</div>
-			
+		<div id="top_1_sector" class="sixteen wide column sector">
+			{{-- @foreach --}}
+			{{-- @include(elementelementelement) --}}
 		</div>
 
-		<div id="top_2" class="sixteen wide column sector">
-			
-			<div class="ui segment">top_2 ipsu</div>
-
+		<div id="top_2_sector" class="sixteen wide column sector">
+			{{-- @foreach --}}
 		</div>
 
-		<div id="top_3" class="sixteen wide column sector">
-			
-			<div class="ui segment">top_3 ipsu</div>
-
+		<div id="top_3_sector" class="sixteen wide column sector">
+			{{-- @foreach --}}
 		</div>
 
-		<div id="left" class="three wide column sector view_computer">
+		<div class="ui row_container grid" style="width: 100%; padding: 0px; margin: 0px;">
 
-			<div class="ui segment">
-
-				left ipsu<br/>
-				left ipsu<br/>
-				left ipsu<br/>
-				left ipsu<br/>
-				left ipsu<br/>
-				left ipsu<br/>
-				left ipsu<br/>
-
+			<div id="left_sector" class="three wide column sector view_marker view_computer">
+				{{-- @foreach --}}
 			</div>
 
-		</div>
+			<div id="content_sector" class="ten wide column sector">
 
-		<div id="content" class="ten wide column sector">
+				@include("templates/element")
 
-			<div class="ui segment">
+				@yield("content")
 
 				content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
-				
+
+
 			</div>
 
-		</div>
-
-		<div id="right" class="three wide column sector view_computer">
-
-			<div class="ui segment">
-
-				right ipsu<br/>
-				right ipsu<br/>
-				right ipsu<br/>
-				right ipsu<br/>
-				right ipsu<br/>
-				right ipsu<br/>
-				right ipsu<br/>
-				right ipsu<br/>
-
+			<div id="right_sector" class="three wide column sector view_marker view_computer">
+				{{-- @foreach --}}
 			</div>
 
 		</div>
 
 
-		<div id="bottom" class="sixteen wide column sector">
-			
-			<div class="ui segment">bottom ipsu</div>
-
-			
-			
+		<div id="bottom_sector" class="sixteen wide column sector">
+			{{-- @foreach --}}
 		</div>
 
 
@@ -93,7 +64,8 @@
 @endsection
 
 @section("scripts")
-	
-	{!! HTML::script("js/siteStructure.js") !!}
+
+{!! HTML::script("js/LayoutBuilder.js") !!}
+{!! HTML::script("js/mainLayout.js") !!}
 
 @endsection

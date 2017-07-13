@@ -11,8 +11,11 @@ use App\Models\Log;
 class ViewController extends Controller {
     public function index() {
         $log = Log::find(1);
-        
-    	return view("siteStructure");
+
+        $settings = Settings::all();
+
+    	return view("mainLayout")
+            ->with("settings", $settings);
 
     	// return view("welcome")->with("log", $log);
 
@@ -23,16 +26,14 @@ class ViewController extends Controller {
 
     	if($super_admin) {
     		// super admin created in past
-    		return view("admin_login");
+    		return view("adminLogin");
     	} else {
     		// super admin not created - first login
-    		return view("admin_create");
+    		return view("adminCreate");
        	}    	
     }
 
     public function getMaintenancePage() {
-
-
 
         return view("maintenance");
     }

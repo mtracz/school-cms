@@ -36,7 +36,8 @@ mix.styles("resources/assets/css/master.css", "public/css/master.css");
 //maintenance
 mix.styles("resources/assets/css/maintenance.css", "public/css/maintenance.css");
 
-//siteStructure
-mix.styles("resources/assets/css/siteStructure.css", "public/css/siteStructure.css");
-mix.scripts("resources/assets/js/siteStructure.js", "public/js/siteStructure.js");
+//mainLayout
+mix.styles("resources/assets/css/mainLayout.css", "public/css/mainLayout.css");
+mix.scripts("resources/assets/js/mainLayout.js", "public/js/mainLayout.js");
+mix.scripts("resources/assets/js/LayoutBuilder.js", "public/js/LayoutBuilder.js");
 
