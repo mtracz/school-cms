@@ -12,7 +12,7 @@ class Event extends Model
 
     public function created_by() {
     	
-    	$this->belongsTo(Admin::class);
+    	return $this->belongsTo(Admin::class);
     }
 }
 

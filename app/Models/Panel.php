@@ -11,13 +11,11 @@ class Panel extends Model
 {
     protected $table = "panels";
 
-    public function element()
-    {
-    	$this->hasMany(Element::class);
+    public function element() {
+    	return $this->hasMany(Element::class);
     }
 
-    public function panel_type()
-    {
-    	$this->belongsTo(PanelType::class);
+    public function panel_type() {
+    	return $this->belongsTo(PanelType::class);
     }
 }

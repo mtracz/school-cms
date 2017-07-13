@@ -12,6 +12,6 @@ class SiteSector extends Model
 
     public function element() {
 
-    	$this->hasMany(Element::class);
+    	return $this->hasMany(Element::class);
     }
 }

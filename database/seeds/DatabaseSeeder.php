@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesSeeder::class);
         $this->call(AdminsSeeder::class);
         $this->call(PanelTypesSeeder::class);
+        $this->call(ActionTypesSeeder::class);
+        
     }
 }

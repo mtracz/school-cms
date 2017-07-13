@@ -14,16 +14,16 @@ class Element extends Model
 
     public function panel() {
     	
-    	$this->belongsTo(Panel::class);
+    	return $this->belongsTo(Panel::class);
     }
 
     public function menu() {
     	
-    	$this->belongsTo(Menu::class);
+    	return $this->belongsTo(Menu::class);
     }
 
     public function site_sector() {
     	
-    	$this->belongsTo(SiteSector::class);
+    	return $this->belongsTo(SiteSector::class);
     }
 }

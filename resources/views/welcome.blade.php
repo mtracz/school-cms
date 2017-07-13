@@ -76,6 +76,13 @@
             @endif
 
             <div class="content">
+               <p>
+                LOG: <br>
+                {!! $log->action !!}
+                <br>
+                {{$log->created_at}}
+                </p>
+                <br><br>
                 <div class="title m-b-md">
                     Laravel
                 </div>

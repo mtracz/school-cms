@@ -12,7 +12,7 @@ class NewsCategory extends Model
 
     public function news() {
     	
-    	$this->hasMany(News::class);
+    	return $this->hasMany(News::class);
     }
 
 }

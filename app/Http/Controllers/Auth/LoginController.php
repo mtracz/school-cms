@@ -8,7 +8,8 @@ use Session;
 use Redirect;
 use Auth;
 
-use App\Services\LoginService;
+use App\Services\Auth\LoginService;
+use App\Services\LogService;
 
 class LoginController extends Controller {
 
@@ -28,6 +29,9 @@ class LoginController extends Controller {
 
 	public function logout() {
 		Session::flash("messages", ["Zostałeś/łaś wylogowany" => "success" ]);
+
+		LogService::createLog("asd content");
+
 		Auth::logout();
 		return Redirect::route("index.get");
 	}

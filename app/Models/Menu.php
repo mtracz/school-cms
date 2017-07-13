@@ -13,11 +13,11 @@ class Menu extends Model
 
     public function element() {
     	
-    	$this->hasMany(Element::class);
+    	return $this->hasMany(Element::class);
     }
 
     public function menu_item() {
     	
-    	$this->hasMany(MenuItem::class);
+    	return $this->hasMany(MenuItem::class);
     }
 }
