@@ -9,12 +9,30 @@ class LogService {
 
 	protected $actor_id;
 	protected $actor_name;
-	protected $action;
+	protected $action_type_id;
+	protected $content ="";
+	protected $action_types = [];
 
-	public static function createLog(string $input_text) {
+	public function __construct() {
+		// MAPPING action types
+		// ["input_acton_in_string" => "id_action_in_database"]
+		$this->action_types[
+			"1" => "login_success",
+			"2" => "login_fail",
+			"3" => "logout",
+			"4" => "add",
+			"5" => "edit",
+			"6" => "delete",
+			"7" => "maintenance_on",
+			"8" => "maintenance_off",
+			];
+	}
+
+	public static function createLog(string $action, string $content_text) {
+		$this->content = $content_text;
 		$LogServiceObject = (new LogService())
 			->checkActor()
-			->prepareActionText($input_text)
+			->checkActionType($action)
 			->writeLogInDatabase();
 	}
 
@@ -29,19 +47,21 @@ class LogService {
 		return $this;
 	}
 
-	protected function prepareActionText($input_text) {
-		$find = ";";
-		$replace = "<br>";
-		$this->action = $this->actor_name . $replace;
-		$formated_text = str_replace($find, $replace, $input_text);
-		$this->action .= $formated_text;
+	protected function writeLogInDatabase() {
+		$log_object = new Log();
+		$log_object->actor_id = $this->actor_id;
+
+		dd(Log::where("action_type_id", $this->action_type_id)->first()->actionType->name);
+
+		$log_object->action = Log::where("action_type_id", $this->action_type_id)->first()->actionType->name;
+
+		$log_object->content = $this->content;
+		$log_object->save();
+	}
+
+	protected function checkActionType($action) {
+		$this->action_type_id = array_search($action, $this->action_types); 
 		return $this;
 	}
 
-	protected function writeLogInDatabase() {
-		$log_object = new Log();
-		$log_object->action = $this->action;
-		$log_object->actor_id = $this->actor_id;
-		$log_object->save();
-	}
 }
