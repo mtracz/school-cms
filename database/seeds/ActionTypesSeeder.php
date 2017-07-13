@@ -1,6 +1,7 @@
 <?php 
 
 use Illuminate\Database\Seeder;
+use App\Models\Log;
 
 class ActionTypesSeeder extends Seeder
 {
@@ -12,14 +13,15 @@ class ActionTypesSeeder extends Seeder
     public function run() {
         $action_types = [
 
-        	["id" => 1, "name" => "Zalogowano", "color" => "white"],
-    		["id" => 2, "name" => "Nie udane logowanie", "color" => "#EEE657"],
-    		["id" => 3, "name" => "Wylogowano", "color" => "#83D6DE"],
-    		["id" => 4, "name" => "Dodano", "color" => "green"],
-    		["id" => 5, "name" => "Edytowano", "color" => "orange"],
-    		["id" => 6, "name" => "Usunięto", "color" => "red"],
-    		["id" => 7, "name" => "Włączono tryb serwisowy", "color" => "#888888"],  		    		
-    		["id" => 8, "name" => "Wyłączono tryb serwisowy", "color" => "#D4D4D4"],		
+        	["id" => Log::LOGIN_SUCCESS, "name" => "Zalogowano", "color" => "white"],
+    		["id" => Log::LOGIN_FAIL, "name" => "Nie udane logowanie", "color" => "#EEE657"],
+    		["id" => Log::LOGOUT, "name" => "Wylogowano", "color" => "#83D6DE"],
+    		["id" => Log::ADD, "name" => "Dodano", "color" => "green"],
+    		["id" => Log::EDIT, "name" => "Edytowano", "color" => "orange"],
+    		["id" => Log::DELETE, "name" => "Usunięto", "color" => "red"],
+    		["id" => Log::MAINTENANCE_ON, "name" => "Włączono tryb serwisowy", "color" => "#888888"],  		    		
+            ["id" => Log::MAINTENANCE_OFF, "name" => "Wyłączono tryb serwisowy", "color" => "#D4D4D4"],        
+    		["id" => Log::OTHER, "name" => "Inne", "color" => "#1BA39C"],		
     	];
 
     	Schema::disableForeignKeyConstraints();

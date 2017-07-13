@@ -7,8 +7,7 @@ use Auth;
 
 use App\Helpers\MaintenanceModeHelper;
 
-class isMaintenanceModeChecked
-{
+class isMaintenanceModeChecked {
 	/**
 	 * Handle an incoming request.
 	 *
@@ -21,8 +20,7 @@ class isMaintenanceModeChecked
 
 		$maintenanceModeHelper = new MaintenanceModeHelper();
 
-		if($maintenanceModeHelper->isMaintenance() && ! $request->user()){
-
+		if($maintenanceModeHelper->isMaintenance() && ! $request->user()) {
 			return redirect("maintenance");
 		} else {
 

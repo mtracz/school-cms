@@ -10,7 +10,17 @@ class Log extends Model {
     protected $table = "logs";
     const UPDATED_AT = null;
 
-    public function actionType() {
+	const LOGIN_SUCCESS = 1;
+	const LOGIN_FAIL = 2;
+	const LOGOUT = 3;
+	const ADD = 4;
+	const EDIT = 5;
+	const DELETE = 6;
+	const MAINTENANCE_ON = 7;
+	const MAINTENANCE_OFF = 8;
+	const OTHER = 9;
+
+    public function action() {
     	return $this->belongsTo(ActionType::class);
     }
 }
