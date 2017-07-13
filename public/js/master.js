@@ -77,4 +77,4 @@ getTheme({
 
 console.log(theme.name);
 
-$(".ui.maintenance_content").css('background-color', theme.color_1);
+$(".ui.maintenance_content").css('background-color', "#222");

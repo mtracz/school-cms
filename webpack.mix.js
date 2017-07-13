@@ -33,3 +33,10 @@ mix.scripts("resources/assets/js/admin_login.js", "public/js/admin_login.js")
 mix.scripts("resources/assets/js/master.js", "public/js/master.js");
 mix.styles("resources/assets/css/master.css", "public/css/master.css");
 
+//maintenance
+mix.styles("resources/assets/css/maintenance.css", "public/css/maintenance.css");
+
+//siteStructure
+mix.styles("resources/assets/css/siteStructure.css", "public/css/siteStructure.css");
+mix.scripts("resources/assets/js/siteStructure.js", "public/js/siteStructure.js");
+
