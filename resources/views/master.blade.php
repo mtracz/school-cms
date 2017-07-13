@@ -12,18 +12,18 @@
 
 	<title></title>
 
-	<!-- Fonts -->
+	{{-- Styles --}}
 	{!! Html::style("css/semantic.min.css") !!}
 	{!! Html::style("css/master.css") !!}
+
+	@yield("styles")
 
 </head>
 <body>
 
-	@yield("maintenance")
-
 	@yield("content")
 
-	<!-- Scripts  -->
+	{{-- Scripts --}}
 	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/jquery.min.js") !!}
 	{!! Html::script("js/master.js") !!}

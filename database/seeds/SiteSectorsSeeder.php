@@ -13,12 +13,12 @@ class SiteSectorsSeeder extends Seeder
     {
         $site_sectors = [
 
-			["id" => 1, "name" => "top_1", "panels_allowed_ids" => "", "is_menu_allowed" => 1],
-			["id" => 2, "name" => "top_2", "panels_allowed_ids" => "", "is_menu_allowed" => 1],
-			["id" => 3, "name" => "top_3", "panels_allowed_ids" => "", "is_menu_allowed" => 1],
-			["id" => 4, "name" => "left", "panels_allowed_ids" => "", "is_menu_allowed" => 1],
-			["id" => 5, "name" => "right", "panels_allowed_ids" => "", "is_menu_allowed" => 1],
-			["id" => 6, "name" => "bottom", "panels_allowed_ids" => "", "is_menu_allowed" => 0],
+			["id" => 1, "name" => "top_1", "panels_types_allowed_ids" => "", "is_menu_allowed" => 1],
+			["id" => 2, "name" => "top_2", "panels_types_allowed_ids" => "", "is_menu_allowed" => 1],
+			["id" => 3, "name" => "top_3", "panels_types_allowed_ids" => "", "is_menu_allowed" => 1],
+			["id" => 4, "name" => "left", "panels_types_allowed_ids" => "", "is_menu_allowed" => 1],
+			["id" => 5, "name" => "right", "panels_types_allowed_ids" => "", "is_menu_allowed" => 1],
+			["id" => 6, "name" => "bottom", "panels_types_allowed_ids" => "", "is_menu_allowed" => 0],
 		];
 
 		Schema::disableForeignKeyConstraints();

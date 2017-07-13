@@ -17,7 +17,7 @@ class CreateSiteSectorsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('panels_allowed_ids')->nullable();
+            $table->string('panels_types_allowed_ids')->nullable();
             $table->tinyInteger('is_menu_allowed')->nullable();
 
             $table->unique(["id"], 'id_UNIQUE');

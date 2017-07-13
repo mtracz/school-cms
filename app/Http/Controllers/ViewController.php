@@ -10,7 +10,7 @@ use App\Models\Settings;
 class ViewController extends Controller {
     public function index() {
 
-    	return view("welcome");
+    	return view("siteStructure");
     }
 
     public function getLoginView() {

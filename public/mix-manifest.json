@@ -7,5 +7,8 @@
     "/js/admin_create.js": "/js/admin_create.js",
     "/css/admin_create.css": "/css/admin_create.css",
     "/js/master.js": "/js/master.js",
-    "/css/master.css": "/css/master.css"
+    "/css/master.css": "/css/master.css",
+    "/css/maintenance.css": "/css/maintenance.css",
+    "/css/siteStructure.css": "/css/siteStructure.css",
+    "/js/siteStructure.js": "/js/siteStructure.js"
 }

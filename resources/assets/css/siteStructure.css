@@ -1,0 +1,110 @@
+.ui.container {
+	height: 100%;
+	width: 80vw !important;
+
+	padding-top: 10px;
+
+	margin: auto 0;
+}
+
+.column {
+	background-color: yellow;
+}
+
+.sector {
+	background-color: red;
+
+	color: green;
+}
+
+.disabled {
+	display: none !important;
+}
+
+.attach_fixed {
+	position: fixed;
+	top: 200px;
+
+	z-index: 100;
+}
+
+.attach_left {
+	left: 0px;
+}
+
+.attach_right {
+	right: 0px;
+}
+
+.view_computer {
+
+
+}
+
+.view_tablet {
+
+
+}
+
+.view_mobile {
+
+
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+	.view_tablet {
+		display: none !important;
+	}
+
+	.view_computer {
+		display: none !important;
+	}
+
+	.view_mobile {
+		display: "" !important;
+	}
+
+	#content {
+
+		width: 100% !important;
+	}
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+
+	.view_computer {
+		display: none !important;
+	}
+
+	.view_mobile {
+		display: none !important;
+	}
+
+	.view_tablet {
+		display: "" !important;
+	}
+
+	#content {
+
+		width: 100% !important;
+	}
+}
+
+/* Computer */
+@media (min-width: 991px) {
+
+	.view_mobile {
+		display: none !important;
+	}
+
+	.view_tablet {
+		display: none !important;
+	}
+
+	.view_computer {
+		display: "" !important;
+	}
+}
