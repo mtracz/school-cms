@@ -34,7 +34,6 @@
 
 		</div>
 
-
 		<div id="left" class="three wide column sector view_computer">
 
 			<div class="ui segment">

@@ -10,5 +10,8 @@
     "/css/master.css": "/css/master.css",
     "/css/maintenance.css": "/css/maintenance.css",
     "/css/siteStructure.css": "/css/siteStructure.css",
-    "/js/siteStructure.js": "/js/siteStructure.js"
+    "/js/siteStructure.js": "/js/siteStructure.js",
+    "/js/admin_login.js": "/js/admin_login.js",
+    "/css/admin_login.css": "/css/admin_login.css"
+
 }

@@ -1,0 +1,10 @@
+/* admin login blade */
+
+body {
+	/*background-color: #222;*/
+	background-color: #DADADA;
+}
+
+#errors_list {
+	color: red;
+}

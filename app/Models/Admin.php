@@ -33,18 +33,23 @@ class Admin extends Authenticatable {
 	];
 
 
+	public function is_active() {
+		return $this->is_active;
+	}
+
+	public function is_super_admin() {
+		return $this->is_super_admin;
+	}
+
 	public function news() {
-
-		$this->hasMany(Admin::class);
+		return $this->hasMany(Admin::class);
 	}
 
-	public function static_page() {
-		
-		$this->hasMany(StaticPages::class);
+	public function static_page() {		
+		return $this->hasMany(StaticPages::class);
 	}
 
-	public function event() {
-		
-		$this->hasMany(Event::class);
+	public function event() {		
+		return $this->hasMany(Event::class);
 	}
 }

@@ -12,6 +12,6 @@ class Link extends Model
 
     public function menu_item() {
     	
-    	$this->belongsTo(MenuItem::class);
+    	return $this->belongsTo(MenuItem::class);
     }
 }

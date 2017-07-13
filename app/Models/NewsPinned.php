@@ -12,7 +12,7 @@ class NewsPinned extends Model
 
     public function news() {
 
-    	$this->belongsTo(News::class);
+    	return $this->belongsTo(News::class);
     	
     }
 

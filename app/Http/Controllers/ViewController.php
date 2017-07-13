@@ -6,11 +6,16 @@ use Request;
 
 use App\Models\Admin;
 use App\Models\Settings;
+use App\Models\Log;
 
 class ViewController extends Controller {
     public function index() {
-
+        $log = Log::find(1);
+        
     	return view("siteStructure");
+
+    	// return view("welcome")->with("log", $log);
+
     }
 
     public function getLoginView() {
@@ -26,6 +31,8 @@ class ViewController extends Controller {
     }
 
     public function getMaintenancePage() {
+
+
 
         return view("maintenance");
     }

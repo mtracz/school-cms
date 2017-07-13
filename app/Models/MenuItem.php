@@ -13,11 +13,11 @@ class MenuItem extends Model
 
     public function menu() {
     	
-    	$this->belongsTo(Menu::class);
+    	return $this->belongsTo(Menu::class);
     }
 
     public function link() {
     	
-    	$this->hasMany(Link::class);
+    	return $this->hasMany(Link::class);
     }
 }

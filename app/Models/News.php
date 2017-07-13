@@ -14,17 +14,17 @@ class News extends Model
 
 	public function news_category() {
 		
-		$this->belongsTo(NewsCategory::class);
+		return $this->belongsTo(NewsCategory::class);
 	}
 
 	public function created_by() {
 
-		$this->belongsTo(Admin::class);
+		return $this->belongsTo(Admin::class);
 	}
 
 	public function news_pinned() {
 
-		$this->hasOne(NewsPinned::class);
+		return $this->hasOne(NewsPinned::class);
 	}
 
 }
