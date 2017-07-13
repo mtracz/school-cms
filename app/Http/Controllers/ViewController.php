@@ -9,8 +9,7 @@ use App\Models\Admin;
 class ViewController extends Controller {
     public function index() {
 
-    	return view("mainLayout")
-            ->with("settings", $settings);
+    	return view("mainLayout");
 
     	// return view("welcome");
     }
