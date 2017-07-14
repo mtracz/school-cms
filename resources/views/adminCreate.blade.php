@@ -2,7 +2,7 @@
 
 @section("styles")
 
-	{!! Html::style("css/admin_create.css") !!}
+	{!! Html::style("css/adminCreate.css") !!}
 
 @endsection
 
@@ -100,6 +100,6 @@
 
 @section("scripts")
 
-	{!! Html::script("js/admin_create.js") !!}
+	{!! Html::script("js/adminCreate.js") !!}
 
 @endsection

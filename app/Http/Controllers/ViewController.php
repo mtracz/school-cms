@@ -8,10 +8,10 @@ use App\Models\Admin;
 
 class ViewController extends Controller {
     public function index() {
-        
-    	// return view("siteStructure");
 
-    	return view("welcome");
+    	return view("mainLayout");
+
+    	// return view("welcome");
     }
 
     public function getLoginView() {
@@ -19,16 +19,14 @@ class ViewController extends Controller {
 
     	if($super_admin) {
     		// super admin created in past
-    		return view("admin_login");
+    		return view("adminLogin");
     	} else {
     		// super admin not created - first login
-    		return view("admin_create");
+    		return view("adminCreate");
        	}    	
     }
 
     public function getMaintenancePage() {
-
-
 
         return view("maintenance");
     }

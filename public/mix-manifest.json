@@ -6,12 +6,12 @@
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/admin_create.js": "/js/admin_create.js",
     "/css/admin_create.css": "/css/admin_create.css",
+    "/js/admin_login.js": "/js/admin_login.js",
+    "/css/admin_login.css": "/css/admin_login.css",
     "/js/master.js": "/js/master.js",
     "/css/master.css": "/css/master.css",
     "/css/maintenance.css": "/css/maintenance.css",
-    "/css/siteStructure.css": "/css/siteStructure.css",
-    "/js/siteStructure.js": "/js/siteStructure.js",
-    "/js/admin_login.js": "/js/admin_login.js",
-    "/css/admin_login.css": "/css/admin_login.css"
-
+    "/css/mainLayout.css": "/css/mainLayout.css",
+    "/js/mainLayout.js": "/js/mainLayout.js",
+    "/js/LayoutBuilder.js": "/js/LayoutBuilder.js"
 }
