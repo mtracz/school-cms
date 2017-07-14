@@ -10,27 +10,13 @@ Route::group(["middleware" => ["guest"]], function() {
 	Route::post("/login_create", ["as" => "register.post", "uses" => "Auth\RegisterController@register"]);
 
 	// LOGIN ADMIN
-	Route::post("/login", ["as" => "login.post", "uses" => "Auth\LoginController@login"]);	
-
-	// MAINTENANCE PAGE
-	Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
-
-	// SITE SETTINGS
-	Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
+	Route::post("/login", ["as" => "login.post", "uses" => "Auth\LoginController@login"]);
 
 	// SITE THEMES
 	Route::get('/theme', ["as" => "theme.get", "uses" => "ThemeController@getTheme"]);
 
-
 });
 
-// MAINTENANCE MIDDLEWARE
-	Route::group(["middleware" => ["app"]], function() {
-
-		// MAIN PAGE
-		Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
-		
-	});
 
 // LOGGED USERS
 Route::group(["middleware" => ["auth"]], function() {
@@ -39,3 +25,14 @@ Route::group(["middleware" => ["auth"]], function() {
 	Route::post("/logout", ["as" => "logout.post", "uses" => "Auth\LoginController@logout"]);
 
 });
+
+//ALL USERS
+
+// MAIN PAGE
+Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
+
+// MAINTENANCE PAGE
+Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
+
+// SITE SETTINGS
+	Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);

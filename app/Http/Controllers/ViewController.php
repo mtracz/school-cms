@@ -9,9 +9,9 @@ use App\Models\Admin;
 class ViewController extends Controller {
     public function index() {
 
-    	return view("mainLayout");
+    	// return view("mainLayout");
 
-    	// return view("welcome");
+    	return view("welcome");
     }
 
     public function getLoginView() {

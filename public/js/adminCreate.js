@@ -97,7 +97,6 @@ function sendFormData() {
 		data: form,
 		success: function(data) {
 			if(data.register_status == "success") {
-				alert("success");
 				location.reload(false);
 			} else {
 				$data = JSON.parse(data);
