@@ -18,6 +18,8 @@ class Kernel extends HttpKernel
     \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
     \App\Http\Middleware\TrimStrings::class,
     \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+    \App\Http\Middleware\VisitMiddleware::class,
+    \App\Http\Middleware\isMaintenanceModeChecked::class,
     ];
 
     /**
@@ -41,10 +43,7 @@ class Kernel extends HttpKernel
     'throttle:60,1',
     'bindings',
     ],
-
-    'app' => [
-    \App\Http\Middleware\isMaintenanceModeChecked::class,
-    ],
+    
     ];
 
     /**

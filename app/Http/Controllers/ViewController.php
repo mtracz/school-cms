@@ -10,11 +10,14 @@ use App\Models\Settings;
 class ViewController extends Controller {
     public function index() {
 
+
         $settings_data = Settings::all();
 
     	return view("mainLayout")->with("element", $settings_data);
 
-    	// return view("welcome");
+    	// return view("mainLayout");
+
+    	//return view("welcome");
     }
 
     public function test() {

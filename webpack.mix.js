@@ -22,12 +22,12 @@ mix.copy("node_modules/semantic-ui/dist/semantic.min.js", "public/js")
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js");
 
 //admin create
-mix.scripts("resources/assets/js/admin_create.js", "public/js/admin_create.js")
-	.styles("resources/assets/css/admin_create.css", "public/css/admin_create.css");
+mix.scripts("resources/assets/js/adminCreate.js", "public/js/adminCreate.js")
+	.styles("resources/assets/css/adminCreate.css", "public/css/adminCreate.css");
 
 //admin login
-mix.scripts("resources/assets/js/admin_login.js", "public/js/admin_login.js")
-	.styles("resources/assets/css/admin_login.css", "public/css/admin_login.css");
+mix.scripts("resources/assets/js/adminLogin.js", "public/js/adminLogin.js")
+	.styles("resources/assets/css/adminLogin.css", "public/css/adminLogin.css");
 
 //master
 mix.scripts("resources/assets/js/master.js", "public/js/master.js");
