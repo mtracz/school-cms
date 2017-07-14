@@ -21,14 +21,14 @@ Route::group(["middleware" => ["guest"]], function() {
 	// SITE THEMES
 	Route::get('/theme', ["as" => "theme.get", "uses" => "ThemeController@getTheme"]);
 
-
 });
 
 // MAINTENANCE MIDDLEWARE
 	Route::group(["middleware" => ["app"]], function() {
 
 		// MAIN PAGE
-		Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
+		Route::get("/", ["as" => "index.get", "uses" => "ViewController@index"]);
+		Route::get('/test', ["as" => "test.get", "uses" => "ViewController@test"]);
 		
 	});
 
@@ -39,3 +39,5 @@ Route::group(["middleware" => ["auth"]], function() {
 	Route::post("/logout", ["as" => "logout.post", "uses" => "Auth\LoginController@logout"]);
 
 });
+
+Route::get("/global", ["as" => "global.get", "uses" => "GlobalController@serve"]);

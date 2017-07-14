@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Models\Admin;
+use App\Models\Settings;
 
 class ViewController extends Controller {
     public function index() {
 
-    	return view("mainLayout");
+        $settings_data = Settings::all();
+
+    	return view("mainLayout")->with("element", $settings_data);
 
     	// return view("welcome");
+    }
+
+    public function test() {
+
+        return view("test");
     }
 
     public function getLoginView() {

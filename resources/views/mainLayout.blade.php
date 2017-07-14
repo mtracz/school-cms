@@ -17,8 +17,10 @@
 	<div class="ui grid">
 
 		<div id="top_1_sector" class="sixteen wide column sector">
-			{{-- @foreach --}}
-			{{-- @include(elementelementelement) --}}
+			@foreach($element as $elem)
+
+				@include("templates/element")
+			@endforeach
 		</div>
 
 		<div id="top_2_sector" class="sixteen wide column sector">
@@ -37,7 +39,7 @@
 
 			<div id="content_sector" class="ten wide column sector">
 
-				@include("templates/element")
+				
 
 				@yield("content")
 
