@@ -1,3 +1,20 @@
+// center login form
+
+function render() {
+	var main_element = ".ui.grid > .column";
+
+	var column_height = $(main_element).height();
+	var space_top = $(window).height() / 2 - column_height / 2;
+
+	$(main_element).css("margin-top", space_top);
+};
+
+render();
+
+$(window).resize(function() {
+	render();
+});
+
 // admin login blade
 
 var input_login;
@@ -35,12 +52,12 @@ $("#login_button").on("click", function(event) {
 	if($("#login_field").hasClass("error")
 		|| $("#password_field").hasClass("error")) {
 		var error = "Wyszstkie pola są wymagane";
-		$("#errors_list").css("display", '');
-		
-		$("#errors_list").append("<p><i class='warning icon'></i>" + error + "</p>");
-		return false;
-	}
-	sendFormData();
+	$("#errors_list").css("display", '');
+	
+	$("#errors_list").append("<p><i class='warning icon'></i>" + error + "</p>");
+	return false;
+}
+sendFormData();
 });
 
 function sendFormData() {
@@ -68,7 +85,7 @@ function sendFormData() {
 				});
 				return false;
 			}
-		
+			
 		},
 		error: function() {
 			alert('login admin ajax error');

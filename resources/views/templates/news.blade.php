@@ -1,6 +1,5 @@
-<div class="name">	
+<div class="news">	
 
-	@foreach($news as $n)
-		{{ $n->name }}<br/>
-	@endforeach
+	{{ $element->title }}
+
 </div>

@@ -1,7 +1,7 @@
 <p>chuj wam w dupe: 
-{{$elem}}
+{{$element}}
 
-	@if($elem->name == "title")
-		Title
+	@if($element->type == "search")
+		@include("templates/search")
 	@endif
 </p>

@@ -28,10 +28,17 @@ Route::group(["middleware" => ["auth"]], function() {
 
 Route::get("/global", ["as" => "global.get", "uses" => "GlobalController@serve"]);
 
+Route::get("/test", function(){
+	return view("test");
+});
+
 //ALL USERS
 
 // MAIN PAGE
 Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
+
+// PAGES NEWS
+Route::get('/page/{slug}', ["as" => "page.get", "uses" => "StaticPageController@getStaticPage"]);
 
 // MAINTENANCE PAGE
 Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);

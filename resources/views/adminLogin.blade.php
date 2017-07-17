@@ -6,11 +6,10 @@
 
 @endsection
 
-
 @section("content")
 
 	<div class="ui middle aligned center aligned grid">
-	  <div class="column">
+	  <div class="main column">
 	    <h2 class="ui teal image header">
 	      <img src="assets/images/logo.png" class="image">
 	      <div class="content">
@@ -36,7 +35,7 @@
 	        <div class="ui fluid large teal submit button" id="login_button">Zaloguj</div>
 	      </div>
 
-	      <div class="errors" id="errors_list">	      	
+	      <div class="errors" id="errors_list">
 	      </div>
 
 	    </form>

@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Models\Admin;
-use App\Models\Settings;
+use App\Models\News;
 
 class ViewController extends Controller {
     public function index() {
 
+        $news_data = News::all();
 
-        $settings_data = Settings::all();
-
-    	return view("mainLayout")->with("element", $settings_data);
+    	return view("mainLayout")->with("content_elements", $news_data);
 
     	// return view("mainLayout");
 
@@ -41,4 +40,5 @@ class ViewController extends Controller {
 
         return view("maintenance");
     }
+
 }
