@@ -12,7 +12,7 @@ function LayoutBuilder() {
 
 		this.toggleSectors();
 
-		var enabledSectors = $(".row_container > :not(.disabled)").length;
+		var enabledSectors = $(".row_container > :not(.hideElement)").length;
 
 		console.log("Enabled sectors: " + enabledSectors);
 
@@ -35,9 +35,9 @@ function LayoutBuilder() {
 
 		$(".sector").each(function(){
 			if($(this).children().length == 0){
-				$(this).addClass("disabled");
+				$(this).addClass("hideElement");
 			} else {
-				$(this).removeClass("disabled");
+				$(this).removeClass("hideElement");
 			}
 		});
 	};
@@ -53,10 +53,10 @@ function LayoutBuilder() {
 
 			if( $(this).hasClass(viewportGroupName)) {
 
-				$(this).removeClass("disabled");
+				$(this).removeClass("hideElement");
 			} else {
 
-				$(this).addClass("disabled");
+				$(this).addClass("hideElement");
 			}
 			
 		});

@@ -5,13 +5,23 @@ namespace App\Http\Controllers;
 use Request;
 
 use App\Models\Admin;
+use App\Models\News;
 
 class ViewController extends Controller {
     public function index() {
 
+
     	return view("mainLayout");
 
     	// return view("welcome");
+        $news_data = News::all();
+
+    	// return view("mainLayout")->with("content_elements", $news_data);
+    }
+
+    public function test() {
+
+        return view("test");
     }
 
     public function getLoginView() {
@@ -31,7 +41,9 @@ class ViewController extends Controller {
         return view("maintenance");
     }
 
+
     public function getNewsForm() {
         return view("addNews");
     }
+
 }

@@ -19,7 +19,7 @@
 	color: #111;
 }
 
-.disabled {
+.hideElement {
 	display: none !important;
 }
 
