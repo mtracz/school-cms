@@ -19,15 +19,20 @@
 	<div class="ui grid">
 
 		<div id="top_1_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_1() }}
+			@php
+				$element_model = $SectorHydratorService->hydrateTop_1();
+			@endphp
+
+			@include("templates/element")
+
 		</div>
 
 		<div id="top_2_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_2() }}
+			{{ $SectorHydratorService->hydrateTop_2() }}<br/>
 		</div>
 
 		<div id="top_3_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_3() }}
+			{{ $SectorHydratorService->hydrateTop_3() }}<br/>
 		</div>
 
 		<div class="ui row_container grid" style="width: 100%; padding: 0px; margin: 0px;">
@@ -36,13 +41,21 @@
 				{{ $SectorHydratorService->hydrateLeft() }}
 			</div>
 
-			<div id="content_sector" class="ten wide column sector">
+			<div id="content_sector" class="ten wide column sector" style="background-color: #ccc;">
 
-				{{ $SectorHydratorService->hydrateContent() }}
+				@if(isset($news))
 
+					@foreach($news as $singleNews)
+
+						@include("templates/news")
+
+					@endforeach
+
+				@endif
+				
 				@yield("content")
 
-				content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
+				content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
 
 
 			</div>

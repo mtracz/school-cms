@@ -24,8 +24,8 @@
 	@yield("content")
 
 	{{-- Scripts --}}
-	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/jquery.min.js") !!}
+	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/master.js") !!}
 
 	@yield("scripts")
