@@ -39,9 +39,9 @@
 
 				@include("templates/element")
 
-				@yield("content")
+				@yield("content_layout")
 
-				content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
+				 mainLayout CONTENT
 
 
 			</div>

@@ -35,4 +35,8 @@ Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
 Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
 
 // SITE SETTINGS
-	Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
+Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
+
+// form news preview
+Route::get('/news/add', ["as" => "news.add.get", "uses" => "ViewController@getNewsForm"]);
+

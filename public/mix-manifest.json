@@ -13,5 +13,7 @@
     "/css/maintenance.css": "/css/maintenance.css",
     "/css/mainLayout.css": "/css/mainLayout.css",
     "/js/mainLayout.js": "/js/mainLayout.js",
-    "/js/LayoutBuilder.js": "/js/LayoutBuilder.js"
+    "/js/LayoutBuilder.js": "/js/LayoutBuilder.js",
+    "/js/addNews.js": "/js/addNews.js",
+    "/css/addNews.css": "/css/addNews.css"
 }

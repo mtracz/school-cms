@@ -41,3 +41,6 @@ mix.styles("resources/assets/css/mainLayout.css", "public/css/mainLayout.css");
 mix.scripts("resources/assets/js/mainLayout.js", "public/js/mainLayout.js");
 mix.scripts("resources/assets/js/LayoutBuilder.js", "public/js/LayoutBuilder.js");
 
+//news add
+mix.scripts("resources/assets/js/addNews.js", "public/js/addNews.js");
+mix.styles("resources/assets/css/addNews.css", "public/css/addNews.css");
