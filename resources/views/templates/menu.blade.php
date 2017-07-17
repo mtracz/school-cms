@@ -17,7 +17,6 @@
 				</div>
 			</div>
 
-
 		@else
 			@foreach($item->link as $link)
 			<div class="item">

@@ -4,14 +4,10 @@
 	@if($item->panel_id)
 
 		{{-- panel template --}}
-		testing panel output: 
-		{{ $item->panel }}
+		@include("templates/panel")
 	@else
 
 		{{-- menu template --}}
-		testing menu output: 
-		{{ $item->menu }}
-
 		@include("templates/menu")
 	@endif
 	<br>
