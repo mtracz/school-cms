@@ -12,66 +12,102 @@
 
 <div class="ui container">
 
-	<div class="ui button attach_fixed attach_left view_marker view_tablet view_mobile">left attach</div>
-	<div class="ui button attach_fixed attach_right view_marker view_tablet view_mobile">right attach</div>
-	<div style="clear: both;"></div>
-
 	<div class="ui grid">
+		<div class="row">
 
-		<div id="top_1_sector" class="sixteen wide column sector">
-			@php
+			<div id="top_1_sector" class="sixteen wide column sector">
+				top1
+
+				@php
 				$element_model = $SectorHydratorService->hydrateTop_1();
-			@endphp
+				@endphp
 
-			@include("templates/element")
+				@include("templates/element")
 
-		</div>
-
-		<div id="top_2_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_2() }}<br/>
-		</div>
-
-		<div id="top_3_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_3() }}<br/>
-		</div>
-
-		<div class="ui row_container grid" style="width: 100%; padding: 0px; margin: 0px;">
-
-			<div id="left_sector" class="three wide column sector view_marker view_computer">
-				{{ $SectorHydratorService->hydrateLeft() }}
 			</div>
 
-			<div id="content_sector" class="ten wide column sector" style="background-color: #ccc;">
+			<div id="top_2_sector" class="sixteen wide column sector">
+				top2
 
-				@if(isset($news))
+				@php
+				$element_model = $SectorHydratorService->hydrateTop_2();
+				@endphp
 
-					@foreach($news as $singleNews)
+				@include("templates/element")
 
-						@include("templates/news")
+			</div>
 
-					@endforeach
+			<div id="top_3_sector" class="sixteen wide column sector">
+				top3
 
-				@endif
+				@php
+				$element_model = $SectorHydratorService->hydrateTop_3();
+				@endphp
+
+				@include("templates/element")
+
+			</div>
+
+			<div class="ui inside grid row_container">
 				
-				@yield("content")
 
-				content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
+					<div id="left_sector" class="three wide column sector view_marker view_computer">
+						left
+
+						@php
+						$element_model = $SectorHydratorService->hydrateLeft();
+						@endphp
+
+						@include("templates/element")
+
+					</div>
+
+					<div id="content_sector" class="ten wide column sector">
+
+						@if(isset($news))
+
+							@foreach($news as $singleNews)
+
+								@include("templates/news")
+
+							@endforeach
+
+						@endif
+
+						@yield("content")
+
+						content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
 
 
+					</div>
+
+					<div id="right_sector" class="three wide column sector view_marker view_computer">
+						right
+
+						@php
+						$element_model = $SectorHydratorService->hydrateRight();
+						@endphp
+
+						@include("templates/element")
+
+					</div>
+
+				
 			</div>
 
-			<div id="right_sector" class="three wide column sector view_marker view_computer">
-				{{ $SectorHydratorService->hydrateRight() }}
+			<div id="bottom_sector" class="sixteen wide column sector">
+				bottom
+				<div class="ui inside grid">
+
+					@php
+					$element_model = $SectorHydratorService->hydrateBottom();
+					@endphp
+
+					@include("templates/element")
+				</div>
 			</div>
 
 		</div>
-
-
-		<div id="bottom_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateBottom() }}
-		</div>
-
-
 	</div>
 
 </div>

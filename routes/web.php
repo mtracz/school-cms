@@ -45,4 +45,3 @@ Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@get
 
 // SITE SETTINGS
 	Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
-

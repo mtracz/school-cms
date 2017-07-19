@@ -45,5 +45,3 @@ $(window).resize(function () {
 
 var layoutBuilder = new LayoutBuilder();
 layoutBuilder.build();
-
-$('.ui.dropdown').dropdown();

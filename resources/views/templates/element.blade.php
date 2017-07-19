@@ -1,14 +1,35 @@
 
 @foreach($element_model as $item)
 
-	@if($item->panel_id)
+	@if($item->site_sector->orientation->name === "horizontal")
+		
+		@if($item->panel_id)
 
-		{{-- panel template --}}
-		@include("templates/panel")
-	@else
+			{{-- panel template --}}
+			@include("templates/panel")
+		@else
 
-		{{-- menu template --}}
-		@include("templates/menu")
+			{{-- menuHorizontal template --}}
+			@include("templates/menuHorizontal")
+		@endif
+
 	@endif
-	<br>
+
+	@if($item->site_sector->orientation->name === "vertical")
+
+		<div class="row">
+
+			@if($item->panel_id)
+
+				{{-- panel template --}}
+				@include("templates/panel")
+			@else
+
+				{{-- menuHorizontal template --}}
+				@include("templates/menuVertical")
+			@endif
+
+		</div>
+
+	@endif
 @endforeach

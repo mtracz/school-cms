@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Element;
+use App\Models\Orientation;
 
 class SiteSector extends Model
 {
@@ -17,6 +18,11 @@ class SiteSector extends Model
 	const BOTTOM = 6;
 
     protected $table = "site_sectors";
+
+    public function orientation()
+    {
+    	return $this->belongsTo(Orientation::class);
+    }
 
     public function element() {
 

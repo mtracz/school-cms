@@ -34,10 +34,22 @@ function LayoutBuilder() {
 	this.toggleSectors = () => {
 
 		$(".sector").each(function(){
-			if($(this).children().length == 0){
-				$(this).addClass("hideElement");
+
+			if($(this).attr("id") == "bottom_sector"){
+
+				if( $( $(this).attr("class") + "> .ui.grid").children().length == 0 ){
+					$(this).addClass("hideElement");
+				} else {
+					$(this).removeClass("hideElement");
+				}
+
 			} else {
-				$(this).removeClass("hideElement");
+
+				if($(this).children().length == 0){
+					$(this).addClass("hideElement");
+				} else {
+					$(this).removeClass("hideElement");
+				}
 			}
 		});
 	};
