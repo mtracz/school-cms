@@ -11,45 +11,60 @@
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
 
 <div class="ui container">
+	<div class="ui active page dimmer">
+		<div class="ui active text massive loader">
+			Ładowanie strony...
+		</div>
+	</div>
 
-	<div class="ui grid">
-		<div class="row">
+	<div class="ui main segment" style="display: none;">
 
-			<div id="top_1_sector" class="sixteen wide column sector">
-				top1
+		<div class="ui grid">
+			<div class="row">
 
-				@php
-				$element_model = $SectorHydratorService->hydrateTop_1();
-				@endphp
+				<div id="top_1_sector" class="sixteen wide column sector">
+					top1
 
-				@include("templates/element")
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_1();
+					@endphp
 
-			</div>
+					@include("templates/element")
 
-			<div id="top_2_sector" class="sixteen wide column sector">
-				top2
+				</div>
 
-				@php
-				$element_model = $SectorHydratorService->hydrateTop_2();
-				@endphp
+				<div id="top_2_sector" class="sixteen wide column sector">
+					top2
 
-				@include("templates/element")
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_2();
+					@endphp
 
-			</div>
+					@include("templates/element")
 
-			<div id="top_3_sector" class="sixteen wide column sector">
-				top3
+				</div>
 
-				@php
-				$element_model = $SectorHydratorService->hydrateTop_3();
-				@endphp
+				<div id="top_3_sector" class="sixteen wide column sector">
+					top3
 
-				@include("templates/element")
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_3();
+					@endphp
 
-			</div>
+					@include("templates/element")
 
-			<div class="ui inside grid row_container">
-				
+				</div>
+
+				{{-- LOGOUT --}}
+				@if(Auth::user())
+
+				@include("templates/menuAdmin")
+
+				@endif
+				{{-- //////////////// --}}
+
+				<div class="ui inside grid row_container">
+
 
 					<div id="left_sector" class="three wide column sector view_marker view_computer">
 						left
@@ -66,15 +81,15 @@
 
 						@if(isset($news))
 
-							@foreach($news as $singleNews)
+						@foreach($news as $singleNews)
 
-								@include("templates/news")
+						@include("templates/news")
 
-							@endforeach
+						@endforeach
 
 						@endif
 
-						@yield("content")
+						@yield("mainLayout_content")
 
 						content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
 
@@ -92,24 +107,25 @@
 
 					</div>
 
-				
-			</div>
 
-			<div id="bottom_sector" class="sixteen wide column sector">
-				bottom
-				<div class="ui inside grid">
-
-					@php
-					$element_model = $SectorHydratorService->hydrateBottom();
-					@endphp
-
-					@include("templates/element")
 				</div>
+
+				<div id="bottom_sector" class="sixteen wide column sector">
+					bottom
+					<div class="ui inside grid">
+
+						@php
+						$element_model = $SectorHydratorService->hydrateBottom();
+						@endphp
+
+						@include("templates/element")
+					</div>
+				</div>
+
 			</div>
-
 		</div>
-	</div>
 
+	</div>
 </div>
 @endsection
 

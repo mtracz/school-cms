@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\SiteSector;
 
-class Orientation extends Model
+class Orientations extends Model
 {
 
-	CONST HORIZONTAL = 1;
+	CONST HORIZONTAL = 0;
 	CONST VERTICAL = 1;
 
     protected $table = "orientations";

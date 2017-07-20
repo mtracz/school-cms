@@ -26,18 +26,6 @@ var viewportGroups = [
 	},
 ];
 
-var contentWidths = [
-	{
-		"name": "sixteen",
-	},
-	{
-		"name": "thriteen",
-	},
-	{
-		"name": "ten",
-	},
-];
-
 $(window).resize(function () {
 
 	layoutBuilder.build();
@@ -45,3 +33,11 @@ $(window).resize(function () {
 
 var layoutBuilder = new LayoutBuilder();
 layoutBuilder.build();
+
+$(window).ready( function() {
+
+	$(".ui.main.segment").removeAttr("style");
+
+	$(".ui.container").dimmer("show");
+	$(".ui.container").dimmer("hide");
+});

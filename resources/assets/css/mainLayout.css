@@ -7,17 +7,15 @@
 	width: 80vw !important;
 
 	padding-top: 20px;
+}
 
-	/*margin: auto 0;*/
+.ui.main.segment {
+	background: none;
 }
 
 .ui.inside.grid {
 	width: 100%;
 	margin: 0px !important;
-}
-
-.sector {
-	color: #111;
 }
 
 .row {
@@ -69,8 +67,7 @@
 	cursor: pointer;
 }
 
-.ui.menu .item *{
-
+.ui.vertical.menu .item *{
 	color: white !important;
 }
 
@@ -78,8 +75,4 @@
 	color: black !important;
 }
 
-.ui.dropdown > .text > .icon {
-	padding: 0px;
-	margin-right: 0px !important;
-}
 

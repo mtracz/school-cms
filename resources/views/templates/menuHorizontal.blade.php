@@ -7,7 +7,7 @@
 
 		@if($singleItem->is_dropdown === 1)
 
-		<div class="ui dropdown item">
+		<div class="ui simple dropdown item">
 			<div class="default text">{{ $singleItem->name }} <i class="angle down icon"></i></div>
 			<div class="menu">
 
@@ -45,7 +45,7 @@
 
 		@if($singleItem->is_dropdown === 1)
 
-		<div class="ui dropdown item">
+		<div class="ui simple dropdown item">
 			<div class="default text">{{ $singleItem->name }} <i class="angle right icon"></i></div>
 			<div class="menu">
 

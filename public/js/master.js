@@ -75,6 +75,14 @@ getTheme({
 
 });
 
-console.log(theme.name);
+console.log("Current theme name: " + theme.name);
 
-$(".ui.maintenance_content").css('background-color', "#222");
+$(".accept_coockies").on("click", function() {
+	
+	window.localStorage.setItem("cookie","set");
+	$(".cookie_info").slideToggle().css("display","none");
+});
+
+if(window.localStorage.cookie == "set"){
+	$(".cookie_info").css("display","none");
+}

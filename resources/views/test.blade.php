@@ -90,6 +90,7 @@
 
 	</div>
 </div>
+
 @endsection
 
 <style type="text/css">
@@ -136,3 +137,8 @@
 
 
 </style>
+
+<script type="text/javascript">
+	
+
+</script>

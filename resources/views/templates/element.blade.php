@@ -1,6 +1,8 @@
 
 @foreach($element_model as $item)
 
+@if($item->is_enabled === 1)
+
 	@if($item->site_sector->orientation->name === "horizontal")
 		
 		@if($item->panel_id)
@@ -32,4 +34,6 @@
 		</div>
 
 	@endif
+
+@endif
 @endforeach

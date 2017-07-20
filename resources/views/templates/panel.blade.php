@@ -1,7 +1,7 @@
 
 <div class="four wide column">
 
-	jeste panel
+	jestę panelę
 </div>
 
 

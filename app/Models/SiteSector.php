@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Element;
-use App\Models\Orientation;
+use App\Models\Orientations;
 
 class SiteSector extends Model
 {
@@ -21,7 +21,7 @@ class SiteSector extends Model
 
     public function orientation()
     {
-    	return $this->belongsTo(Orientation::class);
+    	return $this->belongsTo(Orientations::class);
     }
 
     public function element() {
