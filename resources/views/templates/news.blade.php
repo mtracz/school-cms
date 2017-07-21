@@ -1,12 +1,18 @@
 <div class="news panel">	
 	
 	<div class="title">
-		{{ $singleNews->title }}
+		{!! $singleNews->title !!}
 	</div>
 
 	<div class="content">
-		{{ $singleNews->content }}
+		{!! $singleNews->content !!}
 	</div>
+
+	@if(Auth::user())
+
+	@include("templates/editTab")
+
+	@endif
 	
 </div>
 

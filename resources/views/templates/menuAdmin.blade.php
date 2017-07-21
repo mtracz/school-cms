@@ -8,8 +8,8 @@
 			<i class="browser note icon"></i>
 			News
 			<div class="ui menu">
-				<div class="ui item"><i class="list layout icon"></i>Zarządzaj</div>
-				<div class="ui item"><i class="plus icon"></i>Dodaj</div>
+				<a class="ui item"><i class="list layout icon"></i>Zarządzaj</a>
+				<a class="ui item" href="{{ route("news.add.get") }}" ><i class="plus icon"></i>Dodaj</a>
 			</div>
 		</div>
 
