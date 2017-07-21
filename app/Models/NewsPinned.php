@@ -9,6 +9,7 @@ use App\Models\News;
 class NewsPinned extends Model
 {
     protected $table = "news_pinned";
+    public $timestamps = false;
 
     public function news() {
 

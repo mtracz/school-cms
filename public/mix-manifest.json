@@ -3,6 +3,8 @@
     "/css/app.css": "/css/app.css",
     "/js/semantic.min.js": "/js/semantic.min.js",
     "/css/semantic.min.css": "/css/semantic.min.css",
+    "/js/calendar.min.js": "/js/calendar.min.js",
+    "/css/calendar.min.css": "/css/calendar.min.css",
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/adminCreate.js": "/js/adminCreate.js",
     "/css/adminCreate.css": "/css/adminCreate.css",
@@ -13,5 +15,9 @@
     "/css/maintenance.css": "/css/maintenance.css",
     "/css/mainLayout.css": "/css/mainLayout.css",
     "/js/mainLayout.js": "/js/mainLayout.js",
-    "/js/LayoutBuilder.js": "/js/LayoutBuilder.js"
+    "/js/LayoutBuilder.js": "/js/LayoutBuilder.js",
+    "/js/addNews.js": "/js/addNews.js",
+    "/css/addNews.css": "/css/addNews.css",
+    "/js/content-tools.min.js": "/js/content-tools.min.js",
+    "/css/content-tools.min.css": "/css/content-tools.min.css"
 }

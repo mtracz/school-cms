@@ -6,6 +6,7 @@ use Request;
 
 use App\Models\Admin;
 use App\Models\News;
+use App\Models\NewsPinned;
 
 class ViewController extends Controller {
     public function index() {
@@ -14,9 +15,8 @@ class ViewController extends Controller {
 
     	return view("mainLayout")->with("news", $news_data);
 
-    	// return view("mainLayout");
-
-    	//return view("welcome");
+    	// return view("welcome");        
+    	// return view("mainLayout")->with("content_elements", $news_data);
     }
 
     public function test() {
@@ -39,6 +39,12 @@ class ViewController extends Controller {
     public function getMaintenancePage() {
 
         return view("maintenance");
+    }
+
+
+    public function getNewsForm() {
+        $newsPinnedObject = NewsPinned::first();
+        return view("addNews")->with("newsPinned", $newsPinnedObject);
     }
 
 }

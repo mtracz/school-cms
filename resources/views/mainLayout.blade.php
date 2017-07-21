@@ -48,6 +48,11 @@
 
 					@include("templates/element")
 
+
+				@yield("content_layout")
+
+				 mainLayout CONTENT
+
 				</div>
 
 				<div id="top_3_sector" class="sixteen wide column sector">

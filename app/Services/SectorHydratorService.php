@@ -19,7 +19,6 @@ class SectorHydratorService {
 	public function hydrateTop_1() {
 
 		return Element::where("site_sector_id", SiteSector::TOP_1)->orderBy("site_sector_id", "asc")->orderBy("order", "asc")->get();
-
 	}
 
 	public function hydrateTop_2() {
