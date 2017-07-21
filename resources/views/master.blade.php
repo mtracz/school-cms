@@ -25,14 +25,12 @@
 		<p class="text">
 			{{ $cookie_text }}
 		</p>
-		<button class="ui primary button accept_coockies">
+		<button class="ui button accept_coockies">
 			Rozumiem
 		</button>
 	</div>
 
 	@yield("content")
-
-
 
 	{{-- Scripts --}}
 	{!! Html::script("js/jquery.min.js") !!}

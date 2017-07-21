@@ -6,7 +6,7 @@
 	@if($item->site_sector->orientation->name === "horizontal")
 		
 		@if($item->panel_id)
-
+			
 			{{-- panel template --}}
 			@include("templates/panel")
 		@else

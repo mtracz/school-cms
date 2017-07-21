@@ -26,9 +26,34 @@ var viewportGroups = [
 	},
 ];
 
+
+
 $(window).resize(function () {
 
 	layoutBuilder.build();
+
+	var currentViewportGroupName = localStorage.getItem("viewportGroupName");
+
+	switch(currentViewportGroupName) {
+
+		case "view_computer":
+			$(".banner .content").css("height", 600);
+			$(".banner .content").css("border-width", 20);
+			console.log(600);
+			break;
+
+		case "view_tablet":
+			$(".banner .content").css("height", 300);
+			$(".banner .content").css("border-width", 10);
+			console.log(300);
+			break;
+
+		case "view_mobile":
+			$(".banner .content").css("height", 100);
+			$(".banner .content").css("border-width", 5);
+			console.log(100);
+			break;
+	};
 });
 
 var layoutBuilder = new LayoutBuilder();
@@ -41,3 +66,5 @@ $(window).ready( function() {
 	$(".ui.container").dimmer("show");
 	$(".ui.container").dimmer("hide");
 });
+
+

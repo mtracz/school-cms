@@ -55,6 +55,9 @@ function LayoutBuilder() {
 	this.toggleElementsBasedOnViewportGroup = () => {
 
 		var viewportGroupName = this.specifyCurrentViewportGroupName();
+
+		this.saveToLocalStorage(viewportGroupName);
+
 		console.log("ViewportGroupName : " + viewportGroupName);
 
 		$(".view_marker").each(function (index) {
@@ -87,6 +90,11 @@ function LayoutBuilder() {
 		});
 
 		return name;
+	};
+
+	this.saveToLocalStorage = (viewportGroupName) => {
+
+		window.localStorage.setItem("viewportGroupName", viewportGroupName);
 	};
 
 	this.getViewportWidth = () => {
