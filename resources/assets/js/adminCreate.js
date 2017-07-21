@@ -86,15 +86,15 @@ $("#create_super_admin_form").on("submit", function(event) {
 });
 
 function sendFormData() {
-	var form = $("#create_super_admin_form").serialize();
+	var form = $("#create_super_admin_form");
 
 	$.ajax({
 		headers: {
 			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
 		},
 		type: "post",
-		url: $("#create_super_admin_form").attr("action"),
-		data: form,
+		url: form.attr("action"),
+		data: form.serialize(),
 		success: function(data) {
 			if(data.register_status == "success") {
 				location.reload(false);

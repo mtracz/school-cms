@@ -15,7 +15,7 @@ class SectorHydratorService {
 
 		$elements = $this->getElementsData();
 
-		dd($elements);
+		// dd($elements);
 	}
 
 	public function hydrateTop_2() {

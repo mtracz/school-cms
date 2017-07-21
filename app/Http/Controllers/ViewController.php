@@ -6,6 +6,7 @@ use Request;
 
 use App\Models\Admin;
 use App\Models\News;
+use App\Models\NewsPinned;
 
 class ViewController extends Controller {
     public function index() {
@@ -43,7 +44,8 @@ class ViewController extends Controller {
 
 
     public function getNewsForm() {
-        return view("addNews");
+        $newsPinnedObject = NewsPinned::first();
+        return view("addNews")->with("newsPinned", $newsPinnedObject);
     }
 
 }

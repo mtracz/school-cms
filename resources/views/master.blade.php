@@ -14,6 +14,7 @@
 
 	{{-- Styles --}}
 	{!! Html::style("css/semantic.min.css") !!}
+	{!! Html::style("css/calendar.min.css") !!}
 	{!! Html::style("css/master.css") !!}
 
 	@yield("styles")
@@ -24,8 +25,9 @@
 	@yield("content")
 
 	{{-- Scripts --}}
-	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/jquery.min.js") !!}
+	{!! Html::script("js/semantic.min.js") !!}
+	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}
 
 	@yield("scripts")

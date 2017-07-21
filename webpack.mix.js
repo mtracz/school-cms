@@ -18,6 +18,10 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.copy("node_modules/semantic-ui/dist/semantic.min.js", "public/js")
 	.copy("node_modules/semantic-ui/dist/semantic.min.css", "public/css");
 
+//semantic calendar
+mix.copy("node_modules/semantic-ui-calendar/dist/calendar.min.js", "public/js")
+	.copy("node_modules/semantic-ui-calendar/dist/calendar.min.css", "public/css");
+
 // jquery
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js");
 
@@ -44,3 +48,7 @@ mix.scripts("resources/assets/js/LayoutBuilder.js", "public/js/LayoutBuilder.js"
 //news add
 mix.scripts("resources/assets/js/addNews.js", "public/js/addNews.js");
 mix.styles("resources/assets/css/addNews.css", "public/css/addNews.css");
+
+//ContentTools
+mix.copy("node_modules/ContentTools/build/content-tools.min.js", "public/js")
+	.copy("node_modules/ContentTools/build/content-tools.min.css", "public/css");

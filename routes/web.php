@@ -44,7 +44,6 @@ Route::get('/page/{slug}', ["as" => "page.get", "uses" => "StaticPageController@
 Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
 
 // SITE SETTINGS
-
 Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
 
 // form news preview
@@ -52,4 +51,8 @@ Route::get('/news/add', ["as" => "news.add.get", "uses" => "ViewController@getNe
 
 Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@getSettings"]);
 
+Route::post('/news/add', ["as" => "news.add.post", "uses" => "NewsController@addNews"]);
+
+
+Route::post('/content_tools/upload_image', ["as" => "content_tools.translations.pl.get", "uses" => "ContentToolsController@uploadImage"]);
 

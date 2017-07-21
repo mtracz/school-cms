@@ -235,6 +235,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'LogService' => App\Services\LogService::class,
+        'SlugHelper' => App\Helpers\slugHelper::class,
 
     ],
 
