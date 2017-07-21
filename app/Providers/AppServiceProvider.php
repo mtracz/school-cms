@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
         //utf8mb4
         Schema::defaultStringLength(191);
 
+
         $cookie_text = Settings::where("name","cookie_text")->get()->toArray()[0]["value"];
+
 
         View::share("cookie_text", $cookie_text);
     }

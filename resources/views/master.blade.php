@@ -25,7 +25,7 @@
 
 	<div class="cookie_info">
 		<p class="text">
-			{{ $cookie_text }}
+		{{ $cookie_text }} 
 		</p>
 		<button class="ui primary button accept_coockies">
 			Rozumiem
