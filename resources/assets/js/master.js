@@ -72,7 +72,6 @@ getTheme({
 }).then( function(data){
 
 	setTheme(data);
-
 });
 
 console.log("Current theme name: " + theme.name);
@@ -80,7 +79,7 @@ console.log("Current theme name: " + theme.name);
 $(".accept_coockies").on("click", function() {
 	
 	window.localStorage.setItem("cookie","set");
-	$(".cookie_info").slideToggle().css("display","none");
+	$(".cookie_info").slideToggle();
 });
 
 if(window.localStorage.cookie == "set"){

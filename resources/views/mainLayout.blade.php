@@ -10,6 +10,14 @@
 
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
 
+{{-- Menu for Admin when Logged In --}}
+@if(Auth::user())
+
+@include("templates/menuAdmin")
+
+@endif
+{{-- //////////////// --}}
+
 <div class="ui container">
 	<div class="ui active page dimmer">
 		<div class="ui active text massive loader">
@@ -23,7 +31,6 @@
 			<div class="row">
 
 				<div id="top_1_sector" class="sixteen wide column sector">
-					top1
 
 					@php
 					$element_model = $SectorHydratorService->hydrateTop_1();
@@ -34,7 +41,6 @@
 				</div>
 
 				<div id="top_2_sector" class="sixteen wide column sector">
-					top2
 
 					@php
 					$element_model = $SectorHydratorService->hydrateTop_2();
@@ -42,15 +48,9 @@
 
 					@include("templates/element")
 
-
-				@yield("content_layout")
-
-				 mainLayout CONTENT
-
 				</div>
 
 				<div id="top_3_sector" class="sixteen wide column sector">
-					top3
 
 					@php
 					$element_model = $SectorHydratorService->hydrateTop_3();
@@ -60,19 +60,10 @@
 
 				</div>
 
-				{{-- LOGOUT --}}
-				@if(Auth::user())
-
-				@include("templates/menuAdmin")
-
-				@endif
-				{{-- //////////////// --}}
-
 				<div class="ui inside grid row_container">
 
 
 					<div id="left_sector" class="three wide column sector view_marker view_computer">
-						left
 
 						@php
 						$element_model = $SectorHydratorService->hydrateLeft();
@@ -94,15 +85,13 @@
 
 						@endif
 
-						@yield("mainLayout_content")
+						@yield("content_layout")
 
 						content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
-
 
 					</div>
 
 					<div id="right_sector" class="three wide column sector view_marker view_computer">
-						right
 
 						@php
 						$element_model = $SectorHydratorService->hydrateRight();
@@ -116,8 +105,7 @@
 				</div>
 
 				<div id="bottom_sector" class="sixteen wide column sector">
-					bottom
-					<div class="ui inside grid">
+					<div class="ui centered inside grid">
 
 						@php
 						$element_model = $SectorHydratorService->hydrateBottom();

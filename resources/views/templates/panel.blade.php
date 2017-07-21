@@ -1,12 +1,22 @@
 
-<div class="four wide column">
+@if($item->panel->panel_type->name === "banner")
 
-	jestę panelę
-</div>
+	@include("templates/banner")
 
+@endif
 
-<script type="text/javascript">
-	
+@if($item->panel->panel_type->name === "info")
+	<div class="four wide column">
 
+		@include("templates/info")
+	</div>
+@endif
 
-</script>
+@if($item->panel->panel_type->name === "list")
+
+	<div class="four wide column">
+
+		@include("templates/list")
+	</div>
+
+@endif

@@ -6,7 +6,7 @@
 	height: 100%;
 	width: 80vw !important;
 
-	padding-top: 20px;
+	padding-top: 25px;
 }
 
 .ui.main.segment {
@@ -23,16 +23,11 @@
 }
 
 .column {
-	border: 1px solid white;
-
 	padding: 0px !important;
 }
 
 .panel {
-	background-color: #222;
-	color: white;
-
-	border: 1px dashed white;
+	margin: 2px;
 }
 
 .hideElement {
