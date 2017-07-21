@@ -2,13 +2,12 @@ function LayoutBuilder() {
 
 	this.build = () => {
 
-		
 		this.toggleElementsBasedOnViewportGroup();
 
-		this.fitContentSector();
+		this.sizeContentSector();
 	};
 
-	this.fitContentSector = () => {
+	this.sizeContentSector = () => {
 
 		this.toggleSectors();
 
@@ -16,7 +15,7 @@ function LayoutBuilder() {
 
 		console.log("Enabled sectors: " + enabledSectors);
 
-		switch(enabledSectors){
+		switch(enabledSectors) {
 			case 1:
 			$("#content_sector").removeClass().addClass("sixteen wide column sector");
 			break;
@@ -33,13 +32,24 @@ function LayoutBuilder() {
 
 	this.toggleSectors = () => {
 
-		$(".sector").each(function(){
-			if($(this).children().length == 0){
-				$(this).addClass("hideElement");
+		$(".sector").each(function() {
+			if($(this).attr("id") == "bottom_sector") {
+
+				if( $(this).find(".ui.grid").children().length == 0 ) {
+					$(this).addClass("hideElement");
+				} else {
+					$(this).removeClass("hideElement");
+				}
+
 			} else {
-				$(this).removeClass("hideElement");
+				if($(this).children().length == 0) {
+					$(this).addClass("hideElement");
+				} else {
+					$(this).removeClass("hideElement");
+				}
 			}
 		});
+
 	};
 
 	this.toggleElementsBasedOnViewportGroup = () => {

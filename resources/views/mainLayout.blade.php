@@ -11,56 +11,126 @@
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
 
 <div class="ui container">
-
-	<div class="ui button attach_fixed attach_left view_marker view_tablet view_mobile">left attach</div>
-	<div class="ui button attach_fixed attach_right view_marker view_tablet view_mobile">right attach</div>
-	<div style="clear: both;"></div>
-
-	<div class="ui grid">
-
-		<div id="top_1_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_1() }}
+	<div class="ui active page dimmer">
+		<div class="ui active text massive loader">
+			Ładowanie strony...
 		</div>
+	</div>
 
-		<div id="top_2_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_2() }}
-		</div>
+	<div class="ui main segment" style="display: none;">
 
-		<div id="top_3_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateTop_3() }}
-		</div>
+		<div class="ui grid">
+			<div class="row">
 
-		<div class="ui row_container grid" style="width: 100%; padding: 0px; margin: 0px;">
+				<div id="top_1_sector" class="sixteen wide column sector">
+					top1
 
-			<div id="left_sector" class="three wide column sector view_marker view_computer">
-				{{ $SectorHydratorService->hydrateLeft() }}
-			</div>
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_1();
+					@endphp
 
-			<div id="content_sector" class="ten wide column sector">
+					@include("templates/element")
 
-				{{ $SectorHydratorService->hydrateContent() }}
+				</div>
+
+				<div id="top_2_sector" class="sixteen wide column sector">
+					top2
+
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_2();
+					@endphp
+
+					@include("templates/element")
+
 
 				@yield("content_layout")
 
 				 mainLayout CONTENT
 
+				</div>
+
+				<div id="top_3_sector" class="sixteen wide column sector">
+					top3
+
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_3();
+					@endphp
+
+					@include("templates/element")
+
+				</div>
+
+				{{-- LOGOUT --}}
+				@if(Auth::user())
+
+				@include("templates/menuAdmin")
+
+				@endif
+				{{-- //////////////// --}}
+
+				<div class="ui inside grid row_container">
+
+
+					<div id="left_sector" class="three wide column sector view_marker view_computer">
+						left
+
+						@php
+						$element_model = $SectorHydratorService->hydrateLeft();
+						@endphp
+
+						@include("templates/element")
+
+					</div>
+
+					<div id="content_sector" class="ten wide column sector">
+
+						@if(isset($news))
+
+						@foreach($news as $singleNews)
+
+						@include("templates/news")
+
+						@endforeach
+
+						@endif
+
+						@yield("mainLayout_content")
+
+						content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>content ipsu<br/>
+
+
+					</div>
+
+					<div id="right_sector" class="three wide column sector view_marker view_computer">
+						right
+
+						@php
+						$element_model = $SectorHydratorService->hydrateRight();
+						@endphp
+
+						@include("templates/element")
+
+					</div>
+
+
+				</div>
+
+				<div id="bottom_sector" class="sixteen wide column sector">
+					bottom
+					<div class="ui inside grid">
+
+						@php
+						$element_model = $SectorHydratorService->hydrateBottom();
+						@endphp
+
+						@include("templates/element")
+					</div>
+				</div>
 
 			</div>
-
-			<div id="right_sector" class="three wide column sector view_marker view_computer">
-				{{ $SectorHydratorService->hydrateRight() }}
-			</div>
-
 		</div>
-
-
-		<div id="bottom_sector" class="sixteen wide column sector">
-			{{ $SectorHydratorService->hydrateBottom() }}
-		</div>
-
 
 	</div>
-
 </div>
 @endsection
 

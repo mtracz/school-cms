@@ -1,85 +1,144 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends("master")
 
-	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<meta name="description" content="...">
-	<meta name="keywords" content="none">
+@section("content")
+<div class="ui container">
 
-	<title></title>
+	<div class="ui grid">
+		<div class="row">
 
-	{{-- Styles --}}
-	{!! Html::style("css/semantic.min.css") !!}
-	{!! Html::style("css/master.css") !!}
+			<div class="sixteen wide column">
+				1
+			</div>
+			<div class="sixteen wide column">
+				2
+			</div>
+			<div class="sixteen wide column">
+				3
+			</div>
 
-	@yield("styles")
+			<div class="ui inside grid">
+				<div class="row">
+					<div class="three wide column">
 
-</head>
-<body>
-
-	<div class="ui middle aligned center aligned grid">
-		<div class="column" style="max-width: 400px;">
-			<h2 class="ui teal image header">
-				<img src="assets/images/logo.png" class="image">
-				<div class="content">
-					Logowanie do systemu
-				</div>
-			</h2>
-
-			<form class="ui large form" action="{{route("login.post")}}" id="login_form" type="post">
-				{{ csrf_field() }}
-				<div class="ui stacked segment" >
-					<div class="field error" id="login_field">
-						<div class="ui left icon input">
-							<i class="user icon"></i>
-							<input type="text" name="login" placeholder="Login" id="login_input">
+						<div class="row">
+							<div class="panel" style="height: 200px;">
+								panel content
+							</div>
+						</div>
+						<div class="row">
+							<div class="panel" style="height: 100px;">
+								panel content
+							</div>
+						</div>
+						<div class="row">
+							<div class="panel" style="height: 300px;">
+								panel content
+							</div>
 						</div>
 					</div>
-					<div class="field error" id="password_field">
-						<div class="ui left icon input" >
-							<i class="lock icon"></i>
-							<input type="password" name="password" placeholder="Hasło" id="password_input">
+
+					<div class="ten wide column">
+
+						content
+
+					</div>
+					<div class="three wide column">
+
+						<div class="row">
+							<div class="panel" style="height: 100px;">
+								panel content
+							</div>
+						</div>
+						<div class="row">
+							<div class="panel" style="height: 300px;">
+								panel content
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			<div id="bottom_sector" class="sixteen wide column">
+				<div class="ui inside grid">
+					<div class="row">
+						<div class="four wide column">
+							<div class="panel">
+								panel content
+							</div>
+						</div>
+						<div class="four wide column">
+							<div class="panel">
+								panel content
+							</div>
+						</div>
+						<div class="four wide column">
+							<div class="panel">
+								panel content
+							</div>
+						</div>
+						<div class="four wide column">
+							<div class="panel">
+								panel content
+							</div>
 						</div>
 					</div>
-					<div class="ui fluid large teal submit button" id="login_button">Zaloguj</div>
 				</div>
-
-				<div class="errors" id="errors_list">
-				</div>
-
-			</form>
+			</div>
 		</div>
+
 	</div>
+</div>
 
-	{{-- Scripts --}}
-	{!! Html::script("js/semantic.min.js") !!}
-	{!! Html::script("js/jquery.min.js") !!}
-	{!! Html::script("js/master.js") !!}
+@endsection
 
-	<script type="text/javascript">
+<style type="text/css">
 
-		function render() {
-			var main_element = ".ui.grid > .column";
+	.ui.container {
+		height: 100%;
+		width: 80vw !important;
 
-			var column_height = $(main_element).height();
-			var space_top = $(window).height() / 2 - column_height / 2;
+		padding-top: 20px;
+	}
 
-			$(main_element).css("margin-top", space_top);
-		};
+	.ui.inside.grid {
+		width: 100%;
+		margin: 0px !important;
+	}
 
-		render();
+	.row {
+		border: 1px solid red;
 
-		$(window).resize(function() {
-			render();
-		});
+		padding: 0px !important;
+	}
 
-	</script>
+	.column {
+		border: 1px solid white;
 
-	@yield("scripts")
+		padding: 0px !important;
+	}
 
-</body>
-</html>
+	.panel {
+		background-color: #222;
+		color: white;
+
+		border: 1px dashed white;
+	}
+
+	#bottom_sector .panel{
+		height: 200px;
+	}
+
+	#bottom_sector *{
+
+		max-height: 200px !important;
+	}
+
+
+</style>
+
+<script type="text/javascript">
+	
+
+</script>

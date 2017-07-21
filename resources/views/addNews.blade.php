@@ -3,7 +3,7 @@
 @section("styles")
 @parent
 {!!Html::style("css/addNews.css")!!}
-{!!Html::style("css/content-tools.min.css")!!}
+
 @endsection
 
 
@@ -127,6 +127,5 @@ Dodaj newsa
 
 @section("scripts")
 @parent
-{!!Html::script("js/content-tools.min.js")!!}
 {!!Html::script("js/addNews.js")!!}
 @endsection

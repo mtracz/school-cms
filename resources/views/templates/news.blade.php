@@ -1,5 +1,5 @@
 <div class="news">	
-
-	{{ $element->title }}
+NEWS title:  
+	{{ $singleNews->title }}
 
 </div>

@@ -1,9 +1,14 @@
+<div class="info panel">
 
-<div class="four wide column">
+	
 
-	jestę panelę
 </div>
 
+
+<style>
+
+
+</style>
 
 <script type="text/javascript">
 	

@@ -11,12 +11,11 @@ use App\Models\NewsPinned;
 class ViewController extends Controller {
     public function index() {
 
-
-    	return view("mainLayout");
-
-    	// return view("welcome");
         $news_data = News::all();
 
+    	return view("mainLayout")->with("news", $news_data);
+
+    	// return view("welcome");        
     	// return view("mainLayout")->with("content_elements", $news_data);
     }
 

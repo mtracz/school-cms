@@ -1,22 +1,38 @@
+#content_sector{
+	color: #ddd;
+}
+
 .ui.container {
 	height: 100%;
 	width: 80vw !important;
 
-	padding-top: 10px;
+	padding-top: 20px;
+}
 
-	margin: auto 0;
+.ui.main.segment {
+	background: none;
+}
+
+.ui.inside.grid {
+	width: 100%;
+	margin: 0px !important;
+}
+
+.row {
+	padding: 0px !important;
 }
 
 .column {
-	background-color: yellow;
+	border: 1px solid white;
+
+	padding: 0px !important;
 }
 
-.sector {
-	background-color: white;
+.panel {
+	background-color: #222;
+	color: white;
 
-	border: 1px solid #111;
-
-	color: #111;
+	border: 1px dashed white;
 }
 
 .hideElement {
@@ -38,17 +54,25 @@
 	right: 0px;
 }
 
-.view_computer {
-
-
+.ui.menu {
+	margin: 0px !important;
 }
 
-.view_tablet {
-
-
+.ui.menu.vertical {
+	width: 100% !important;
+	height: auto;
 }
 
-.view_mobile {
-
-
+.ui.menu .item:hover {
+	cursor: pointer;
 }
+
+.ui.vertical.menu .item *{
+	color: white !important;
+}
+
+.ui.dropdown .link *{
+	color: black !important;
+}
+
+
