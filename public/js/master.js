@@ -85,3 +85,6 @@ $(".accept_coockies").on("click", function() {
 if(window.localStorage.cookie == "set"){
 	$(".cookie_info").css("display","none");
 }
+
+$('.ui.accordion')
+  .accordion();

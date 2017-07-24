@@ -45,11 +45,11 @@ class Admin extends Authenticatable {
 		return $this->hasMany(Admin::class);
 	}
 
-	public function static_page() {		
+	public function static_page() {
 		return $this->hasMany(StaticPages::class);
 	}
 
-	public function event() {		
+	public function event() {
 		return $this->hasMany(Event::class);
 	}
 }

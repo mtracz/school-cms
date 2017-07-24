@@ -21,7 +21,7 @@
 	@yield("styles")
 
 </head>
-<body>
+<body class="background-color">
 
 	<div class="cookie_info">
 		<p class="text">

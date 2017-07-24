@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
 	function enableEdit(x) {
-		$(x).parent().attr("data-editable","");
+		$(x).closest(".panel").attr("data-editable","");
 	};
 </script>
 

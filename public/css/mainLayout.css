@@ -1,5 +1,13 @@
-#content_sector{
-	color: #ddd;
+#left_sector {
+	padding-right: 5px !important;
+}
+
+#right_sector {
+	padding-left: 5px !important;
+}
+
+#bottom_sector {
+	margin-top: 30px !important;
 }
 
 .ui.container {
@@ -27,7 +35,7 @@
 }
 
 .panel {
-	margin: 2px;
+	
 }
 
 .hideElement {
@@ -50,12 +58,18 @@
 }
 
 .ui.menu {
-	margin: 0px !important;
+	margin: 0px 0px 1px 0px !important;
+
+	border-radius: 0px !important;
 }
 
 .ui.menu.vertical {
 	width: 100% !important;
 	height: auto;
+}
+
+.ui.menu .item, .ui.menu .item .default.text {
+	color: white !important;
 }
 
 .ui.menu .item:hover {
@@ -70,4 +84,16 @@
 	color: black !important;
 }
 
+.editTab {
+	position: relative;
+}
 
+.ui.menu .dropdown.item .menu {
+	background: #102242;
+
+	border-radius: 0px;
+}
+
+.ui.menu .ui.dropdown .menu>.item{ 
+	color: white !important;
+}

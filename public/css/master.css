@@ -9,8 +9,39 @@
 .secondary-text-color  { color: #757575 !important; }
 .divider-color         { border-color: #BDBDBD !important; }
 
+/*Stormy*/
+.stormy-color { backgsyoround:#494e6b !important; } 
+/*Cloud*/
+.cloud-color { background:#98878f !important; }
+/*Sunset*/
+.sunset-color { background:#985e6d !important; }
+/*Evening*/
+.evening-color { background:#192231 !important; }
+
+
+.coral-color { background:#e14658 !important; color: white !important;} 
+
+.navy-color { background:#22252c !important; color: white !important;}
+
+.mountain-color { background:#3f3250 !important; }
+
+.scrub-color { background:#c0b3a0 !important; }
+
+.first-color { background-color: #BAC9D8 !important; }
+.second-color { background-color: #EDAB61 !important; color: white !important; }
+.third-color { background-color: #FFEEDB !important;  }
+.fourth-color { background-color: #346C9E !important; color: white !important; }
+.fifth-color { background-color: #102242 !important; color: white !important; }
+
+.background-color {background-color: white !important; }
+
 body {
-	background-color: #303F9F;
+	/*background-color: white;*/
+}
+
+.ui.segment {
+	box-shadow: none;
+	border: none;
 }
 
 .sticky_menu {
@@ -43,4 +74,31 @@ body {
 
 	background-color: red !important;
 	color: white;
+}
+
+/* Left align */
+.align-left {
+    clear: initial;
+    float: left;
+    margin-right: 0.5em;
+}
+
+/* Right align */
+align-right {
+    clear: initial;
+    float: right;
+    margin-left: 0.5em;
+}
+
+/* Alignment styles for text in editable regions */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
 }
