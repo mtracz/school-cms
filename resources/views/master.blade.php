@@ -40,6 +40,7 @@
 	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}
 	{!! Html::script("js/content-tools.min.js") !!}
+	{!! Html::script("js/contentToolsInit.js") !!}
 
 	@yield("scripts")
 

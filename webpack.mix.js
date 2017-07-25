@@ -52,3 +52,6 @@ mix.styles("resources/assets/css/addNews.css", "public/css/addNews.css");
 //ContentTools
 mix.copy("node_modules/ContentTools/build/content-tools.min.js", "public/js")
 	.copy("node_modules/ContentTools/build/content-tools.min.css", "public/css");
+
+//ContentTools init & settings
+mix.scripts("resources/assets/js/contentToolsInit.js", "public/js/contentToolsInit.js");

@@ -55,6 +55,10 @@ Route::get('/settings', ["as" => "settings.get", "uses" => "SettingsController@g
 Route::post('/news/add', ["as" => "news.add.post", "uses" => "NewsController@addNews"]);
 
 
-Route::post('/content_tools/upload_image', ["as" => "content_tools.translations.pl.get", "uses" => "ContentToolsController@uploadImage"]);
+Route::post('/content_tools/upload_image', ["as" => "content_tools.image.upload.post", "uses" => "ContentToolsController@uploadImage"]);
+
+Route::post('/content_tools/rotate_image', ["as" => "content_tools.image.rotate.post", "uses" => "ContentToolsController@rotateImage"]);
+
+Route::post('/content_tools/save_image', ["as" => "content_tools.image.save.post", "uses" => "ContentToolsController@saveImage"]);
 
 

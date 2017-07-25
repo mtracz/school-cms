@@ -19,5 +19,6 @@
     "/js/addNews.js": "/js/addNews.js",
     "/css/addNews.css": "/css/addNews.css",
     "/js/content-tools.min.js": "/js/content-tools.min.js",
-    "/css/content-tools.min.css": "/css/content-tools.min.css"
+    "/css/content-tools.min.css": "/css/content-tools.min.css",
+    "/js/contentToolsInit.js": "/js/contentToolsInit.js"
 }
