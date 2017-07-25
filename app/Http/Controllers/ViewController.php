@@ -11,9 +11,12 @@ use App\Models\NewsPinned;
 class ViewController extends Controller {
     public function index() {
 
-        $news_data = News::orderBy("published_at", "desc")->get();
+        $news_data = News::orderBy("published_at", "desc")->where("is_public","1")->get();
 
-    	return view("mainLayout")->with("news", $news_data);
+        $news_pinned = NewsPinned::first();
+
+
+        return view("mainLayout")->with("news", $news_data)->with("news_pinned", $news_pinned);
     }
 
     public function test() {
@@ -30,7 +33,7 @@ class ViewController extends Controller {
     	} else {
     		// super admin not created - first login
     		return view("adminCreate");
-       	}    	
+        }    	
     }
 
     public function getMaintenancePage() {

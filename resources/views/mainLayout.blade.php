@@ -69,11 +69,21 @@
 
 						@if(isset($news))
 
-						@foreach($news as $singleNews)
+							@if(isset($news_pinned))
 
-						@include("templates/news")
+								@include("templates/newsPinned")
 
-						@endforeach
+							@endif
+
+							@foreach($news as $singleNews)
+
+								@if($singleNews->id != $news_pinned->news_id)
+
+								@include("templates/news")
+
+								@endif
+
+							@endforeach
 
 						@endif
 

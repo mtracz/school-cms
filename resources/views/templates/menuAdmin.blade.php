@@ -41,16 +41,12 @@
 			url: "/logout",
 			type: "POST",
 			success: function() {
-				alert("logout win");
-
+				$(".ui.container").dimmer("show");
 				location.reload();
-			}
+			},
 			
 		});
 	});
-	
-	
-
 
 
 </script>

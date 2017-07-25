@@ -40,8 +40,8 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		background-color: pink;
-		background-blend-mode: hard-light;
+		background-color: #eee;
+		background-blend-mode: darken;
 
 		height: 600px;
 	}

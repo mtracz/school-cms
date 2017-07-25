@@ -8,7 +8,6 @@
 .primary-text-color    { color: #212121 !important; }
 .secondary-text-color  { color: #757575 !important; }
 .divider-color         { border-color: #BDBDBD !important; }
-
 /*Stormy*/
 .stormy-color { background:#494e6b !important; } 
 /*Cloud*/
@@ -17,27 +16,22 @@
 .sunset-color { background:#985e6d !important; }
 /*Evening*/
 .evening-color { background:#192231 !important; }
-
-
-.coral-color { background:#e14658 !important; color: white !important;} 
 .navy-color { background:#22252c !important; color: white !important;}
 .mountain-color { background:#3f3250 !important; }
 .scrub-color { background:#c0b3a0 !important; }
 
+
+/* DO NOT DELETE THIS DO NOT DELETE THIS DO NOT DELETE THIS */
 .first-color { background-color: #BAC9D8 !important; }
 .second-color { background-color: #EDAB61 !important; color: white !important; }
 .third-color { background-color: #FFEEDB !important;  }
 .fourth-color { background-color: #346C9E !important; color: white !important; }
 .fifth-color { background-color: #406DE4 !important; color: white !important; }
-
-.c1 { background: #496594 !important; }
-.c2 { background: #2A3B46 !important; }
-.c3 { background: #4E7C74 !important; }
-.c4 { background: #73AA88 !important; }
-.c5 { background: #B6D5A5 !important; }
-.c6 { background: #DFDECD !important; }
+.coral-color { background:#e14658 !important; color: white !important;} 
 
 .background-color {background-color: white !important; }
+/* DO NOT DELETE THIS DO NOT DELETE THIS DO NOT DELETE THIS */
+
 
 body {
 	background-image: linear-gradient(180deg, 
@@ -48,6 +42,20 @@ body {
 	background-repeat: no-repeat;
 
 	word-wrap: break-word;
+}
+
+a {
+	color: #e14658 !important;
+	line-height: 5px;
+
+	cursor: pointer;
+
+	font-weight: bold;
+}
+
+/*Content tools top left corener widget*/
+.ct-app, .ct-app * {
+	margin-top: 25px !important;
 }
 
 .ui.segment {
