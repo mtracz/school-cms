@@ -21,7 +21,7 @@
 <style type="text/css">
 
 	.banner.panel {
-		margin: 1px 0px 1px 0px !important;
+		margin: 1px 0px 3px 0px !important;
 	}
 
 	.banner .header {

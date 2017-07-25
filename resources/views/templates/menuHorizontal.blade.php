@@ -8,7 +8,7 @@
 		@if($singleItem->is_dropdown === 1)
 
 		<div class="ui simple dropdown item">
-			<div class="default text">{{ $singleItem->name }} <i class="dropdown icon"></i></div>
+			{{ $singleItem->name }} <i class="dropdown icon"></i>
 			<div class="menu">
 
 				{{-- @include("templates/link") --}}

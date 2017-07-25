@@ -33,38 +33,3 @@
 		</div>
 	</div>
 </div>
-
-<style type="text/css">
-
-	.news.panel .ui.bottom.right.attached.label i {
-		padding-left: 10px !important; 
-	}
-
-	.news.panel {
-
-		min-height: 100px;
-
-		position: relative;
-
-		margin-bottom: 10px !important;
-	}
-	
-	.news.panel .title {
-		padding: 10px;
-
-		font-size: 20px;
-		font-weight: bold;
-
-		-webkit-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
-		-moz-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
-		box-shadow: 2px 2px 20px -2px rgba(0,0,0,0.6);
-	}
-
-	.news.panel .content {
-		padding: 20px;
-		padding-bottom: 40px;
-
-		box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
-	}
-
-</style>

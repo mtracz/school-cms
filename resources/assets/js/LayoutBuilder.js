@@ -18,14 +18,17 @@ function LayoutBuilder() {
 		switch(enabledSectors) {
 			case 1:
 			$("#content_sector").removeClass().addClass("sixteen wide column sector");
+			window.localStorage.setItem("newsWidth","sixteen");
 			break;
 
 			case 2:
 			$("#content_sector").removeClass().addClass("thirteen wide column sector");
+			window.localStorage.setItem("newsWidth","thirteen");
 			break;
 
 			case 3:
 			$("#content_sector").removeClass().addClass("ten wide column sector");
+			window.localStorage.setItem("newsWidth","ten");
 			break;
 		}
 	};

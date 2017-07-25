@@ -1,10 +1,10 @@
 @if($item->site_sector->orientation->name === "horizontal")
 
-<div class="info panel">
+<div class="info panel" style="padding: 0px 2px 0px 2px;">
 
 	@if($item->panel->has_header)
 
-	<div class="header fourth-color">
+	<div class="header fifth-color">
 		{!! $item->panel->header !!}
 	</div>
 
@@ -55,24 +55,31 @@
 	.info.panel {
 		position: relative;
 
-		padding: 0px 2px 0px 2px;
+		margin: 0px 0px 2px 0px !important;
 	}
 
-	.info .header {
+	.info.panel .header {
 
 		padding: 10px;
 
 	}
 
-	.info .content {
+	.info.panel .content {
 
 		padding: 10px;
 
 		text-align: justify;
 
-		border-left: 2px solid #346C9E;
-		border-right: 2px solid #346C9E;
-		border-bottom: 2px solid #346C9E;
+		border: 1px solid #102242;
+
+		max-width: 100%;
+
+		word-wrap: break-word;
+	}
+
+	.info.panel .content img{
+		max-width: 100%; 
+		border: 1px solid #BAC9D8;
 	}
 
 </style>

@@ -1,3 +1,9 @@
+#add_news_column {
+    width: 80vw;
+
+    padding-top: 60px !important;
+}
+
 .field {
 	/*border-style: solid !important;*/
 }

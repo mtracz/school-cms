@@ -23,6 +23,16 @@
 </head>
 <body class="background-color">
 
+	{!! Html::script("js/jquery.min.js") !!}
+
+	{{-- Menu for Admin when Logged In --}}
+	@if(Auth::user())
+
+	@include("templates/menuAdmin")
+
+	@endif
+	{{-- //////////////// --}}
+
 	<div class="cookie_info">
 		<p class="text">
 			{{ $cookie_text }}
@@ -35,7 +45,7 @@
 	@yield("content")
 
 	{{-- Scripts --}}
-	{!! Html::script("js/jquery.min.js") !!}
+	
 	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}

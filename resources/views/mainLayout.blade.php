@@ -10,14 +10,6 @@
 
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
 
-{{-- Menu for Admin when Logged In --}}
-@if(Auth::user())
-
-@include("templates/menuAdmin")
-
-@endif
-{{-- //////////////// --}}
-
 <div class="ui container">
 	<div class="ui active page dimmer">
 		<div class="ui active text massive loader">
