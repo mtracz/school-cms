@@ -17,9 +17,9 @@ class News extends Model
 		return $this->belongsTo(NewsCategory::class);
 	}
 
-	public function created_by() {
+	public function admin() {
 
-		return $this->belongsTo(Admin::class);
+		return $this->belongsTo(Admin::class, "created_by");
 	}
 
 	public function news_pinned() {

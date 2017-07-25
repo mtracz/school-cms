@@ -15,6 +15,14 @@ $(window).resize(function() {
 	render();
 });
 
+// enter
+
+$(document).keypress(function(e) {
+	if(e.which == 13) {
+		$("#login_button").trigger("click");
+	}
+});
+
 // admin login blade
 
 var input_login;

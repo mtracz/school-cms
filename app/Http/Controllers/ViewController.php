@@ -11,7 +11,7 @@ use App\Models\NewsPinned;
 class ViewController extends Controller {
     public function index() {
 
-        $news_data = News::all();
+        $news_data = News::orderBy("published_at", "desc")->get();
 
     	return view("mainLayout")->with("news", $news_data);
     }

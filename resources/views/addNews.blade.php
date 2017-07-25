@@ -6,13 +6,12 @@
 
 @endsection
 
-
-@section("content_layout")
+@section("content")
 
 @component("templates.form")
 
 @slot("news_route")
-{{route("news.add.post")}}
+{{ route("news.add.post") }}
 @endslot
 
 @slot("news_header")

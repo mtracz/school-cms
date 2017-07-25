@@ -1,5 +1,21 @@
-#content_sector{
-	color: #ddd;
+#left_sector {
+	padding-right: 5px !important;
+}
+
+#right_sector {
+	padding-left: 5px !important;
+}
+
+#bottom_sector {
+	margin-top: 30px !important;
+}
+
+.editTab {
+	position: relative;
+}
+
+.editButton *{
+	cursor: pointer !important;
 }
 
 .ui.container {
@@ -27,7 +43,8 @@
 }
 
 .panel {
-	margin: 2px;
+	position: relative;
+	background-color: white;
 }
 
 .hideElement {
@@ -49,13 +66,30 @@
 	right: 0px;
 }
 
+.menuAdmin .item:hover {
+	background-color: #555 !important;
+
+	color: black !important;
+}
+
+.menuAdmin .dropdown.item .item {
+	background: black !important;
+}
+
 .ui.menu {
-	margin: 0px !important;
+	margin: 0px 0px 1px 0px !important;
+
+	border-radius: 0px !important;
 }
 
 .ui.menu.vertical {
 	width: 100% !important;
 	height: auto;
+}
+
+.ui.menu .item,
+.ui.menu .item .default.text {
+	color: white !important;
 }
 
 .ui.menu .item:hover {
@@ -66,8 +100,72 @@
 	color: white !important;
 }
 
-.ui.dropdown .link *{
-	color: black !important;
+.ui.vertical.menu > .ui.accordion .item:hover{
+	background-color: #496594 !important;
 }
 
+.ui.vertical.menu > .ui.accordion .title:hover{
+	background-color: #496594 !important;
+}
 
+.ui.menu .dropdown.item .menu {
+	background: #102242;
+
+	color: white;
+
+	border-radius: 0px;
+}
+
+.ui.menu .ui.dropdown .menu>.item {
+	color: white !important;
+}
+
+.ui.menu .ui.dropdown .menu >.item:hover {
+	color: white !important;
+	background-color: #496594 !important;
+}
+
+.ui.menu .item:hover {
+	background-color: #496594;
+}
+
+.ui.accordion .title {
+	padding: .92857143em .72857143em !important;
+}
+
+.ui.accordion .content .item {
+	padding-left: 30px !important;
+}
+
+.news.panel .ui.bottom.right.attached.label i {
+	padding-left: 10px !important; 
+}
+
+.news.panel {
+
+	min-height: 100px;
+
+	position: relative;
+
+	margin-bottom: 10px !important;
+
+	background-color: white !important;
+}
+
+.news.panel .title {
+	padding: 10px;
+
+	font-size: 20px;
+	font-weight: bold;
+
+	-webkit-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
+	box-shadow: 0px 5px 20px -2px rgba(0,0,0,0.6);
+}
+
+.news.panel .content {
+	padding: 20px;
+	padding-bottom: 40px;
+
+	box-shadow: 0px 5px 10px -2px rgba(0,0,0,0.6);
+}

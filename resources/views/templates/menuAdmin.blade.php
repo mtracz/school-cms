@@ -29,3 +29,28 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	$(".sign_out").on('click',function() {
+
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+			},
+			url: "/logout",
+			type: "POST",
+			success: function() {
+				alert("logout win");
+
+				location.reload();
+			}
+			
+		});
+	});
+	
+	
+
+
+
+</script>

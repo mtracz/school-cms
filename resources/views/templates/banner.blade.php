@@ -20,6 +20,10 @@
 
 <style type="text/css">
 
+	.banner.panel {
+		margin: 1px 0px 3px 0px !important;
+	}
+
 	.banner .header {
 
 		font-size: 16px;
@@ -40,11 +44,6 @@
 		background-blend-mode: hard-light;
 
 		height: 600px;
-
-		/*border-left: 10px solid #3F51B5;*/
-		/*border-right: 10px solid #3F51B5;*/
-
-		border: 20px solid #3F51B5;
 	}
 
 </style>
