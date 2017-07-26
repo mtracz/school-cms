@@ -29,7 +29,7 @@
 				{!! $singleNews->admin->name !!}
 				<i class="calendar icon"></i>
 				{!! $singleNews->published_at !!}
-
+				
 			</div>
 			
 		</div>

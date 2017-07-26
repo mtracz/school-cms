@@ -22,8 +22,8 @@
 			</div>
 		</div>
 
-		<a class="ui item site_sectors"><i class="group object icon"></i>Zarządzaj sektorami</a>
-		<a class="ui item settings"><i class="settings icon"></i>Ustawienia</a>
+		<a class="ui item site_sectors"><i class="group object icon"></i>Zarządzaj wyglądem</a>
+		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="settings icon"></i>Ustawienia</a>
 		<div class="right menu">
 			<a class="ui item sign_out"><i class="sign out icon"></i>Wyloguj</a>
 		</div>
@@ -50,3 +50,11 @@
 
 
 </script>
+
+<style type="text/css">
+	
+ .menuAdmin a {
+ 	color: white !important;
+ }
+
+</style>

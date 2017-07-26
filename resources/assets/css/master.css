@@ -53,6 +53,10 @@ a {
 	font-weight: bold;
 }
 
+a:hover {
+	color: #406DE4 !important;
+}
+
 /*Content tools top left corener widget*/
 .ct-app, .ct-app * {
 	margin-top: 25px !important;

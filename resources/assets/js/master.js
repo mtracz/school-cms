@@ -12,7 +12,7 @@ var themeName;
 
 var theme = new Theme();
 
-var getSettingsUrl = window.location.origin + "/settings";
+var getSettingsUrl = window.location.origin + "/settings/show";
 var getCurrentThemeUrl = window.location.origin + "/theme";
 
 function getSettings(options){
