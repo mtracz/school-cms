@@ -12,15 +12,12 @@
 
 			</div>
 
-			<div class="title fifth-color">
-				<p>
-					{!! $singleNews->title !!}
-				</p>
+			<div class="title fifth-color" data-id={{ $singleNews->id }}>
+				{!! $singleNews->title !!}
 			</div>
 
-			<div class="content">
-				{!! $singleNews->content !!}
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non pellentesque tortor, vel imperdiet metus. Cras volutpat cursus metus, in consectetur est. Vestibulum ac sapien vitae lectus vestibulum tempor vitae sed quam. Ut finibus lectus dapibus maximus volutpat. Nunc et diam a purus sodales ornare id id urna. Nam at mollis leo. Etiam nec dapibus sem. Phasellus placerat, risus sit amet congue laoreet, ligula justo suscipit purus, at aliquet ligula velit cursus ipsum. In eget lacus lacinia, tincidunt eros vitae, tempor est. Class aptent taciti sociosqu ad litora torquent per</p> 
+			<div class="content editMe" data-id={{ $singleNews->id }}>
+				{!! $singleNews->content !!}	
 			</div>
 
 			<div class="ui bottom right attached label fifth-color">

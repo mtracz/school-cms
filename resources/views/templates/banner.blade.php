@@ -7,6 +7,7 @@
 	</div>
 
 	@endif
+
 	<div class="editMe">
 		<div class="content primary-text-color">
 			<img src="{!! $item->panel->content !!}">

@@ -28,6 +28,8 @@
 }
 
 .ui.segment.content {
+	display:block;
+	overflow:auto;
 	padding: 10px;
 }
 
@@ -37,4 +39,9 @@
 
 #clear_publish {
 	margin-top: 25px;
+}
+
+#content_preview {
+	display:block;
+	overflow:auto;
 }

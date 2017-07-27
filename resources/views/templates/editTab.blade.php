@@ -7,8 +7,14 @@
 <script type="text/javascript">
 
 	function enableEdit(x) {
-		$(x).closest(".panel").attr("data-editable","");
+
+		var parent = $(x).closest(".panel");
+
+		$(parent).find(".editMe").attr("data-editable","");
+
+		runContentTools();
 	};
+
 </script>
 
 @endsection

@@ -21,6 +21,7 @@
   "dependencies": {
     "ContentTools": "^1.3.4",
     "semantic-ui": "^2.2.10",
-    "semantic-ui-calendar": "0.0.8"
+    "semantic-ui-calendar": "0.0.8",
+    "toastr": "^2.1.2"
   }
 }

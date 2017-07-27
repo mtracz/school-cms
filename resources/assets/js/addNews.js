@@ -1,5 +1,6 @@
 //global variable for content tools
 var form_content;
+
 var form_publish_date_object = {
 		parsed_date: "",	
 	};
@@ -14,8 +15,8 @@ var calendar_time_settings = {
 	ampm: false,
   	type: 'time',
 };
-
-
+//global for images src in content preview before publish
+var json_images_src;
 
 // SEMANTIC CALENDAR
 
@@ -181,6 +182,8 @@ function getCurrentDate() {
 	var mm = today.getMonth()+1; //January is 0!
 	var yyyy = today.getFullYear();
 
+
+
 	if(dd<10) {
 		dd = '0'+dd
 	} 
@@ -188,14 +191,14 @@ function getCurrentDate() {
 	if(mm<10) {
 		mm = '0'+mm
 	} 
-	return  mm + '/' + dd + '/' + yyyy;
+	return  yyyy + '-' + mm + '-' + dd;
 }
 
 
 
 //hide buttons
 $(document).ready(function() {
-	$form_content = "";
+	form_content = "";
 	hideButtons();
 });
 
@@ -241,6 +244,8 @@ $("#preview_button").on("click", function() {
 	var title = document.getElementById('add_news_article_form').title.value;
 	$("#preview_header").html(title);
 
+	setDateInPreviewContent();
+	hideContentToolsIcon();
 	showButtons();
 	$("#add_news_article_form").hide();
 	$("#preview_news").show();
@@ -250,6 +255,7 @@ $("#preview_button").on("click", function() {
 
 // reedit button
 $("#reedit_button").on("click", function() {
+	showContentToolsIcon();
 	hideButtons();
 	$("#add_news_article_form").show();
 	$("#preview_news").hide();
@@ -259,6 +265,7 @@ $("#reedit_button").on("click", function() {
 
 // public button
 $("#public_button").on("click", function() {
+	getImagesSrc();
 	$("#errors_list").html("").addClass("hidden");
 	sendFormData();
 });
@@ -270,7 +277,7 @@ function sendFormData() {
 
 	//ADD TO FORM
 	//global content variable
-	payload_form.append("content", $form_content);
+	payload_form.append("content", form_content);
 	//form inputs, checkboxes
 	payload_form.append("title", form.title.value);
 	payload_form.append("is_public", form.is_public.checked);
@@ -281,6 +288,7 @@ function sendFormData() {
 	payload_form.append("expire_at_time", form.expire_at_time.value);
 	payload_form.append("publish_at_now", form.publish_at_now.checked);
 	payload_form.append("expire_at_never", form.expire_at_never.checked);
+	payload_form.append("json_images_src", json_images_src);
 	
 	$.ajax({
 		headers: {
@@ -293,7 +301,8 @@ function sendFormData() {
 		contentType: false,
 		success: function(data) {
 			if(data.news_add_status === "success") {
-				alert("success");
+				// showContentToolsIcon();
+				window.location.href = data.route;
 			} else {				
 				$("#errors_list").removeClass("hidden");
 				errors = JSON.parse(data);
@@ -319,9 +328,44 @@ function isTitle() {
 }
 
 function isContent() {
-	if(! $form_content) {
+	if(! form_content) {
 		return false;
 	} else {
 		return true;
 	}
+}
+
+function getImagesSrc() {	
+	var images_src = [];
+	$("#preview_content").children("img").each(function() {		
+		images_src.push($(this).attr('src')); 
+
+	});
+	json_images_src = JSON.stringify(images_src);
+}
+
+function setDateInPreviewContent() {
+	var date;
+	var time;
+	var form = document.getElementById('add_news_article_form');
+	
+	if(form_publish_date_object.parsed_date) {
+		time = form.publish_at_time.value;
+		date = form_publish_date_object.parsed_date + " " + time + ":00";		
+	} else {		
+		time = new Date().toLocaleTimeString('pl-PL', { hour12: false, 
+                                             hour: "numeric", 
+                                             minute: "numeric",
+                                         	 second: "numeric"});
+		date = getCurrentDate() + " " + time;
+	}
+	$(".date").html(date)
+}
+
+function hideContentToolsIcon() {
+	$(".ct-widget.ct-ignition").hide();
+}
+
+function showContentToolsIcon() {
+	$(".ct-widget.ct-ignition").show();
 }

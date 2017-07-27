@@ -11,7 +11,7 @@
 	<div class="ui middle aligned center aligned grid">
 	  <div class="main column">
 	    <h2 class="ui teal image header">
-	      <img src="assets/images/logo.png" class="image">
+	      <i class="key icon"></i>
 	      <div class="content">
 	        Logowanie do systemu
 	      </div>

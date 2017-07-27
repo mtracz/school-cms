@@ -25,7 +25,7 @@
 		<a class="ui item site_sectors"><i class="group object icon"></i>Zarządzaj wyglądem</a>
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>
 		<div class="right menu">
-			<a class="ui item sign_out"><i class="sign out icon"></i>Wyloguj</a>
+			<a class="ui item sign_out" data-route={{route("logout.post")}}><i class="sign out icon"></i>Wyloguj</a>
 		</div>
 	</div>
 </div>
@@ -33,21 +33,20 @@
 <script type="text/javascript">
 
 	$(".sign_out").on('click',function() {
-
+		var route = $(this).data("route");
 		$.ajax({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
 			},
-			url: "/logout",
+			url: route,
 			type: "POST",
-			success: function() {
+
+			success: function(response) {
 				$(".ui.container").dimmer("show");
-				location.reload();
-			},
-			
+				window.location.href = response.route;
+			}			
 		});
 	});
-
 
 </script>
 
