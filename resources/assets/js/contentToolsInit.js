@@ -1,12 +1,121 @@
 
+$(document).ready( function() {
+    
+    alert("onload");
+    runContentTools();
+ }); 
+
+DEFAULT_TOOLS= [
+    [
+        'bold',
+        'italic',
+        'link',
+        'align-left',
+        'align-center',
+        'align-right'
+    ], [
+        'heading',
+        'subheading',
+        'paragraph',
+        'unordered-list',
+        'ordered-list',
+        'table',
+        'indent',
+        'unindent',
+        'line-break'
+    ], [
+        'image',
+        'video',
+        'preformatted'
+    ],
+      [
+        'undo',
+        'redo',
+        'remove'
+      ]
+];
+
+TITLE_TOOLS = [
+    [
+        'bold',
+        'italic',
+    ], [   
+        'align-left',
+        'align-center',
+        'align-right'
+    ], 
+      [
+        'undo',
+        'redo',
+        'remove'
+      ]
+];
+
+IMAGE_TOOLS = [
+     [
+        'link',
+     ],[        
+        'image',
+    ], [
+        'undo',
+        'redo',
+        'remove'
+      ]
+];
+
+LINKS_TOOLS = [
+    [
+        'bold',
+        'italic',
+        'link',
+        'align-left',
+        'align-center',
+        'align-right'
+    ], [
+        'unordered-list',
+        'ordered-list',
+        'line-break'
+    ],
+    [
+        'undo',
+        'redo',
+        'remove'
+      ]
+];
+
+function runContentTools() {
+
+alert("run");
+
 // CONTENT TOOLS init
-window.addEventListener('load', function() {
+// window.addEventListener('load', function() {
 	var editor;
 	editor = ContentTools.EditorApp.get();
 	editor.init('*[data-editable]', 'data-name');
 
 	// init IMAGE UPLOADER
-	ContentTools.IMAGE_UPLOADER = imageUploader;
+    ContentTools.IMAGE_UPLOADER = imageUploader;
+
+
+// monitor for focus events
+ContentEdit.Root.get().bind('focus', function (element) {
+    editor.toolbox().tools(DEFAULT_TOOLS);
+  // # If the element with focus has the CSS class `text-only` set the
+  // # tools in the toolbox to `x_TOOLS`...
+  if (element.domElement().classList.contains('title-only')) {
+      editor.toolbox().tools(TITLE_TOOLS);
+  }
+  if (element.domElement().classList.contains('image-only') ||
+    element.domElement().classList.contains('ce-element--type-image')) {
+      editor.toolbox().tools(IMAGE_TOOLS);
+  }
+  if (element.domElement().classList.contains('links-only')) {
+      editor.toolbox().tools(LINKS_TOOLS);
+  }
+
+});
+
+ 
 
 	// CONTENT TOOLS language change
 	// Define our request for the Polish translation file
@@ -58,8 +167,8 @@ window.addEventListener('load', function() {
 				payload.append(name, regions[name]);
 				//store content in global variable
 				if(name == "content") {
-					$form_content = regions[name];
-					$("#preview_content").html($form_content);	    			
+					form_content = regions[name];
+					$("#preview_content").html(form_content);	    			
 					new ContentTools.FlashUI('ok');
 					editor.busy(false);
 				}	    		
@@ -67,7 +176,9 @@ window.addEventListener('load', function() {
 		}
 	});
 
-});
+// });
+
+} //END runContentTools  function
 
 
 // CONTENT TOOLS image uploader
@@ -198,8 +309,8 @@ function imageUploader(dialog) {
 
                 // Store the image details (use fake param to force refresh)
                 image = {
-                    size: response.size,
-                    url: response.url + '?_ignore=' + Date.now()                    
+                    size: response.size,                    
+                    url: response.url + '?_ignore=' + Date.now()
                     };
 
                 // Populate the dialog
@@ -256,7 +367,7 @@ function imageUploader(dialog) {
                 // Trigger the save event against the dialog with details of the
                 // image to be inserted.
                 dialog.save(
-                    response.url,
+                    response.url + '?_ignore=' + Date.now(),
                     response.size,
                     {
                         'alt': response.alt,
@@ -275,8 +386,7 @@ function imageUploader(dialog) {
         // Build the form data to post to the server
         formData = new FormData();
         formData.append('url', image.url);
-        formData.append('direct_url', image.direct_url);
-
+   
         // Set the width of the image when it's inserted, this is a default
         // the user will be able to resize the image afterwards.
         formData.append('width', 600);
@@ -299,4 +409,4 @@ function imageUploader(dialog) {
 } //END ImageUploader
 
     
-    
+  

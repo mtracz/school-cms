@@ -20,8 +20,8 @@ class RegisterController extends Controller {
 			return json_encode($register_service->getErrors());
 		}
 			LogService::Add("Stworzenie konta super admina");
-			return response(["register_status" => "success",
-				"register_message" => "Tworzenie konta super administratora przebiegło pomyslnie. Zostaniesz przekierowany na stronę logowania.\n Jeżeli tak się nie stanie to odśwież tą stronę.",
+			Session::flash("messages", ["Tworzenie konta super administratora przebiegło pomyslnie. Zostaniesz przekierowany na stronę logowania.\n Jeżeli tak się nie stanie to odśwież tą stronę" => "success" ]);
+			return response(["register_status" => "success",		
 				]);
 
 	    }

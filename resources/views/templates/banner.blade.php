@@ -7,8 +7,7 @@
 	</div>
 
 	@endif
-	<div class="content primary-text-color" style="background-image: url({!! $item->panel->content !!});">
-
+	<div class="content primary-text-color editMe" style="background-image: url({!! $item->panel->content !!});">
 	</div>
 
 	@if(Auth::user())

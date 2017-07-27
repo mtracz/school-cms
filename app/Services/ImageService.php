@@ -34,6 +34,7 @@ class ImageService {
 		$this->size = [$this->width, $this->height];
 
 		$this->file_name = $this->file->getClientOriginalName();
+
 		$this->storeImageInTempDir();
 		$this->setResponse($this->size, $this->file_complete_path);
 	}
@@ -43,7 +44,6 @@ class ImageService {
 	}
 
 	protected function setResponse($image_size, $image_url) {
-		// dd($image_url);
 		$this->response = [
 			"size" => $image_size,
 			"url" => url('/') . "/" . $image_url,
@@ -98,11 +98,24 @@ class ImageService {
 	}
 
 	protected function saveImageInTemp($image) {
-		$this->checkExtension($this->extension, $image, $this->temp_dir);
+		$this->checkExtension($this->extension, $image, $this->temp_dir);		
+	}
+
+	public function moveImagesFromTemp($images_array, $destination_dir) {
+		File::makeDirectory("./" . $destination_dir,0755, true, true);
+
+		foreach ($images_array as $image) {
+			$image_temp_url = $this->getDirectImagePath($image);
+
+			$name = explode($this->temp_dir, $image_temp_url);
+			$name = $name[1];
+
+			File::copy($image_temp_url, $destination_dir . $name);
+		}
+		File::cleanDirectory($this->temp_dir);
 	}
 
 	public function addImage($request) {
-		// dd($request->all());
 		$this->image_url = $this->getDirectImagePath($request["url"]);
 		$this->readImageDataFromServer($this->image_url);
 		$this->setImageSize($this->source_image);
@@ -124,35 +137,17 @@ class ImageService {
 		$crop_x = round($crop[1], 2) * $this->width;
 		$crop_height = round($crop[2], 2) * $this->height;
 		$crop_width = round($crop[3], 2) * $this->width;
-		// dd($crop, 
-		// 	$crop_x,
-		// 	$crop_y,
-		// 	$crop_width,
-		// 	$crop_height
-		// 	);
+
 		$this->width = $crop_width - $crop_x;
 		$this->height = $crop_height - $crop_y;
 		
 		$raw_image = imagecreatetruecolor($this->width, $this->height);
 
-		// dd($this->source_image,
-		// 	$raw_image,
-		// 	"x ".$crop_x,			 
-		// 	"c_w ".$crop_width,
-		// 	$this->width,
-		// 	"y ".$crop_y,
-		// 	"c_h ".$crop_height,		
-		// 	$this->height
-		// 	);
-
 		$image_croped = imagecrop($this->source_image, ['x' => $crop_x, 'y' => $crop_y, 'width' => $crop_width, 'height' => $crop_height]);
-
-		
 
 		imagecopyresized($raw_image, $image_croped, 0, 0, 0, 0, $crop_width, $crop_height, $crop_width, $crop_height);
 		$this->setImageSize($raw_image);
 		$this->source_image = $raw_image;
-
 	}
 
 	protected function checkExtension($extension, $image, $path) {
@@ -177,3 +172,8 @@ class ImageService {
 		imagepng($image, $path . $this->file_name, $this->png_compression);
 	}
 }
+
+// 		$this->createAvatar();
+// 		$this->crop($this->x, $this->y, $this->width, $this->height);
+// 			resizecropedimage
+// 		$this->rotate($this->rotation);

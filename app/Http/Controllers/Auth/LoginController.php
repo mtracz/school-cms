@@ -19,21 +19,22 @@ class LoginController extends Controller {
 		$login_service->setData($request->all())->validate()->login();
 		if($login_service->isLogged()) {
 			LogService::LoginSuccess("");
+			Session::flash("messages", ["Zalogowano" => "success" ]);
 			return response(["login_status" => "success",
 				"login_route" => Route("index.get")
 				]);
 		} else {
-			Session::flash("errors", $login_service->getErrors());
+			// Session::flash("errors", $login_service->getErrors());
 			LogService::LoginFail("");
 			return json_encode($login_service->getErrors());
 		}
 	}
 
 	public function logout() {
-		Session::flash("messages", ["Zostałeś/łaś wylogowany" => "success" ]);
+		Session::flash("messages", ["Wylogowano" => "info" ]);
 		LogService::Logout("");
 		Auth::logout();
-		return Redirect::route("index.get");
+		return response(["route" => route("index.get")]);
 	}
 
 }

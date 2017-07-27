@@ -13,7 +13,7 @@ class ContentToolsController extends Controller {
 	public function uploadImage(Request $image_request) {
 		$imageService = new ImageService();
 		$imageService->setImageData($image_request);
-
+		
 		return $imageService->getResponse();
 	}
 

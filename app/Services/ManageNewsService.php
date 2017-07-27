@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\NewsPinned;
 use LogService;
 use SlugHelper;
+use App\Services\ImageService;
 
 class ManageNewsService {
 
@@ -23,6 +24,11 @@ class ManageNewsService {
 		"publish_at_now" => "",
 		"expire_at_never" => "",
 	];
+
+	protected $images_src = [];
+	protected $news_dir = "images/news/";
+	protected $year;
+	protected $month;
 
 	protected $publish_date;
 	protected $expire_date;
@@ -49,6 +55,9 @@ class ManageNewsService {
 		$this->newsData["expire_at_time"] = $request["expire_at_time"];
 		$this->newsData["publish_at_now"] = $request["publish_at_now"];
 		$this->newsData["expire_at_never"] = $request["expire_at_never"];
+
+		$this->images_src = json_decode($request['json_images_src']);
+		// dd($this->images_src);
 
 		$this->created_by = Auth::user()->id;
 		
@@ -127,6 +136,13 @@ class ManageNewsService {
 			return false;
 		}
 
+		if($this->images_src) {
+			$this->prepareNewsDir();
+			$this->changeImagesSrcInContent();
+			$imageService = new ImageService();
+			$imageService->moveImagesFromTemp($this->images_src, $this->news_dir);
+		}
+
 		$newsObject = new News();
 		$newsObject->title = $this->newsData["title"];
 		$newsObject->content = $this->newsData["content"];
@@ -135,7 +151,9 @@ class ManageNewsService {
 		$newsObject->published_at = $this->publish_date;
 		$newsObject->expire_at = $this->expire_date;	
 		$newsObject->is_public = $this->is_public;
-		$newsObject->save();	
+		$newsObject->save();
+
+		LogService::add("news: " . $this->newsData["title"]);
 
 		$this->created_news_id = $newsObject->id;
 		if($this->is_pinned) {
@@ -161,6 +179,17 @@ class ManageNewsService {
 
 	public function getErrors() {
 		return $this->errors;
+	}
+
+	protected function prepareNewsDir() {
+		$string = explode("-", $this->publish_date);
+		$this->year = $string[0];
+		$this->month = $string[1];
+		$this->news_dir .= $this->year . "/" . $this->month . "/" . $this->slug;
+	}
+
+	protected function changeImagesSrcInContent() {
+		$this->newsData["content"] = str_replace("images/temp/", $this->news_dir, $this->newsData["content"]);
 	}
 
 }

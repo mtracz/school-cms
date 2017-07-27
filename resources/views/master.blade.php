@@ -17,6 +17,7 @@
 	{!! Html::style("css/calendar.min.css") !!}
 	{!! Html::style("css/master.css") !!}
 	{!! Html::style("css/content-tools.min.css") !!}
+	{!! Html::style("css/toastr.min.css") !!}
 
 	@yield("styles")
 
@@ -42,6 +43,15 @@
 		</button>
 	</div>
 
+	{{-- TOASTR MESSAGES --}}
+	<div id="InfromationMessages" style="display: none;">
+		@if(Session::get("messages"))
+			@foreach(Session::get("messages") as $message => $type)
+			<span type="{{$type}}" data-message="{{$message}}"></span>
+			@endforeach
+		@endif
+	</div>
+
 	@yield("content")
 
 	{{-- Scripts --}}
@@ -51,6 +61,9 @@
 	{!! Html::script("js/master.js") !!}
 	{!! Html::script("js/content-tools.min.js") !!}
 	{!! Html::script("js/contentToolsInit.js") !!}
+	{!! Html::script("js/toastr.min.js") !!}
+	{!! Html::script("js/toastrOptions.js") !!}
+
 
 	@yield("scripts")
 

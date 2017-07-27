@@ -49,7 +49,7 @@
 
 							<i class="user icon"></i>
 							{{ Auth::user()->name }}
-							<i class="calendar icon"></i>
+							<i class="calendar icon"></i><span class="date"></span>
 
 						</div>
 
@@ -70,9 +70,13 @@
 			</div>
 
 			<h3>Treść</h3>
-			<div class="ui segment content" data-editable data-name="content">
-				<p></p>
+			<div class="ui segment content " data-editable data-name="content">
+				<p class="title-only">title</p>
+				<p class="image-only">image</p>
+				<p class="links-only">links</p>
+				<p> all</p>
 			</div>
+
 			<div class="ui pointing red basic label hidden" id="content_warning">
 				To pole musi być wypełnione		
 			</div>
@@ -114,7 +118,7 @@
 		<div class="ui blue right floated circular button" id="preview_button" >
 			Podgląd
 			<i class="right chevron icon"></i>
-		</div>			
+		</div>		
 
 	</div>
 
