@@ -8,3 +8,7 @@ When you download, type in:
 
 ## To install a calendar
 `npm install --save semantic-ui-calendar`
+
+## Install toastr
+
+`npm install --save toastr

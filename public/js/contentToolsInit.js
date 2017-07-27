@@ -1,14 +1,14 @@
 
 $(document).ready( function() {
     
-    alert("onload");
+    // alert("onload");
     runContentTools();
  }); 
 
 
 function runContentTools() {
 
-alert("run");
+// alert("run");
 
 // CONTENT TOOLS init
 // window.addEventListener('load', function() {
@@ -280,10 +280,6 @@ function imageUploader(dialog) {
         // Build the form data to post to the server
         formData = new FormData();
         formData.append('url', image.url);
-   
-        // Set the width of the image when it's inserted, this is a default
-        // the user will be able to resize the image afterwards.
-        formData.append('width', 600);
 
         // Check if a crop region has been defined by the user
         if (dialog.cropRegion()) {

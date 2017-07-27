@@ -18,8 +18,7 @@
 			</div>
 
 			<div class="content">
-				{!! $news_pinned->news->content !!}
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non pellentesque tortor, vel imperdiet metus. Cras volutpat cursus metus, in consectetur est. Vestibulum ac sapien vitae lectus vestibulum tempor vitae sed quam. Ut finibus lectus dapibus maximus volutpat. Nunc et diam a purus sodales ornare id id urna. Nam at mollis leo. Etiam nec dapibus sem. Phasellus placerat, risus sit amet congue laoreet, ligula justo <a>YOLO</a> purus, at aliquet ligula velit cursus ipsum. In eget lacus lacinia, tincidunt eros vitae, tempor est. Class aptent taciti sociosqu ad litora torquent per</p>
+				{!! $news_pinned->news->content !!}				
 			</div>
 
 			<div class="ui bottom right attached label coral-color">

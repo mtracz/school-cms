@@ -27,7 +27,7 @@
 	color: red !important;
 }
 
-.ui.segment.content {
+.ui.segment.content {	
 	display:block;
 	overflow:auto;
 	padding: 10px;
@@ -41,7 +41,7 @@
 	margin-top: 25px;
 }
 
-#content_preview {
+#preview_content {
 	display:block;
 	overflow:auto;
 }
