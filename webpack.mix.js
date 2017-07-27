@@ -55,6 +55,8 @@ mix.copy("node_modules/ContentTools/build/content-tools.min.js", "public/js")
 
 //ContentTools init & settings
 mix.scripts("resources/assets/js/contentToolsInit.js", "public/js/contentToolsInit.js");
+mix.scripts("resources/assets/js/contentToolsSetToolbox.js", "public/js/contentToolsSetToolbox.js");
+mix.scripts("resources/assets/js/contentToolsSetLanguage.js", "public/js/contentToolsSetLanguage.js");
 
 //toastr
 mix.copy("node_modules/toastr/build/toastr.min.js", "public/js")

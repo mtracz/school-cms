@@ -60,11 +60,13 @@
 	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}
 	{!! Html::script("js/content-tools.min.js") !!}
+	{!! Html::script("js/contentToolsSetToolbox.js") !!}
+	{!! Html::script("js/contentToolsSetLanguage.js") !!}
 	{!! Html::script("js/contentToolsInit.js") !!}
 	{!! Html::script("js/toastr.min.js") !!}
 	{!! Html::script("js/toastrOptions.js") !!}
-
-
+	{!! Html::script("js/toastrOptions.js") !!}
+	
 	@yield("scripts")
 
 </body>

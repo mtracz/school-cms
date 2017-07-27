@@ -5,83 +5,6 @@ $(document).ready( function() {
     runContentTools();
  }); 
 
-DEFAULT_TOOLS= [
-    [
-        'bold',
-        'italic',
-        'link',
-        'align-left',
-        'align-center',
-        'align-right'
-    ], [
-        'heading',
-        'subheading',
-        'paragraph',
-        'unordered-list',
-        'ordered-list',
-        'table',
-        'indent',
-        'unindent',
-        'line-break'
-    ], [
-        'image',
-        'video',
-        'preformatted'
-    ],
-      [
-        'undo',
-        'redo',
-        'remove'
-      ]
-];
-
-TITLE_TOOLS = [
-    [
-        'bold',
-        'italic',
-    ], [   
-        'align-left',
-        'align-center',
-        'align-right'
-    ], 
-      [
-        'undo',
-        'redo',
-        'remove'
-      ]
-];
-
-IMAGE_TOOLS = [
-     [
-        'link',
-     ],[        
-        'image',
-    ], [
-        'undo',
-        'redo',
-        'remove'
-      ]
-];
-
-LINKS_TOOLS = [
-    [
-        'bold',
-        'italic',
-        'link',
-        'align-left',
-        'align-center',
-        'align-right'
-    ], [
-        'unordered-list',
-        'ordered-list',
-        'line-break'
-    ],
-    [
-        'undo',
-        'redo',
-        'remove'
-      ]
-];
 
 function runContentTools() {
 
@@ -116,35 +39,6 @@ ContentEdit.Root.get().bind('focus', function (element) {
 });
 
  
-
-	// CONTENT TOOLS language change
-	// Define our request for the Polish translation file
-	var xhr;
-	var translation_route = '/content_tools_translation/pl.json';
-	xhr = new XMLHttpRequest();
-	xhr.open('GET', translation_route, true);
-
-	function onStateChange (ev) {
-		var translations;
-		if (ev.target.readyState == 4) {
-			// Convert the JSON data to a native Object	      
-			translations = JSON.parse(ev.target.responseText);
-
-			// Add the translations for the French language
-			ContentEdit.addTranslations('pl', translations);
-
-			// Set French as the editors current language
-			ContentEdit.LANGUAGE = 'pl';
-		}
-	}
-
-	xhr.addEventListener('readystatechange', onStateChange);
-
-	// Load the language
-	xhr.send(null);
-
-
-
 
 
 	// CONTENT TOOLS save changes
