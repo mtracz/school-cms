@@ -64,3 +64,6 @@ mix.copy("node_modules/toastr/build/toastr.min.js", "public/js")
 	
 //toastr opions
 mix.scripts("resources/assets/js/toastrOptions.js", "public/js/toastrOptions.js");
+
+//settings
+mix.scripts("resources/assets/js/settings.js", "public/js/settings.js");

@@ -25,5 +25,6 @@
     "/js/contentToolsSetLanguage.js": "/js/contentToolsSetLanguage.js",
     "/js/toastr.min.js": "/js/toastr.min.js",
     "/css/toastr.min.css": "/css/toastr.min.css",
-    "/js/toastrOptions.js": "/js/toastrOptions.js"
+    "/js/toastrOptions.js": "/js/toastrOptions.js",
+    "/js/settings.js": "/js/settings.js"
 }

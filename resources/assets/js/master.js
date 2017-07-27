@@ -91,3 +91,6 @@ $('.ui.accordion')
 
 $('select.dropdown')
 .dropdown();
+
+$('.ui.checkbox')
+.checkbox();
