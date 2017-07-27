@@ -63,8 +63,8 @@ $(window).ready( function() {
 
 	$(".ui.main.segment").removeAttr("style");
 
-	$(".ui.container").dimmer("show");
-	$(".ui.container").dimmer("hide");
+	$(".ui.dimmer").dimmer("show");
+	$(".ui.dimmer").dimmer("hide");
 });
 
 

@@ -272,7 +272,7 @@ $("#public_button").on("click", function() {
 
 function sendFormData() {
 
-	var payload_form = new FormData();	
+	var payload_form = new FormData();
 	var form = document.getElementById('add_news_article_form');
 
 	//ADD TO FORM
