@@ -7,6 +7,9 @@ use Request;
 use App\Models\Admin;
 use App\Models\News;
 use App\Models\NewsPinned;
+use App\Models\Theme;
+
+use App\Http\Controllers\SettingsController;
 
 use Carbon\Carbon;
 
@@ -79,7 +82,12 @@ class ViewController extends Controller {
 
     public function getSettings() {
         
-        return view("settings");
+        $settingsController = new SettingsController();
+
+        $settings = $settingsController->getSettings();
+        $themes = Theme::all();
+
+        return view("settings")->with("settings", $settings)->with("themes", $themes);
     }
 
 }

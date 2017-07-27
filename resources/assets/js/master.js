@@ -87,4 +87,7 @@ if(window.localStorage.cookie == "set"){
 }
 
 $('.ui.accordion')
-  .accordion();
+.accordion();
+
+$('select.dropdown')
+.dropdown();

@@ -8,12 +8,17 @@ use App\Services\SettingsService;
 
 class SettingsController extends Controller
 {
-    public function getSettings(Request $request) {
+    public function getSettings() {
         
         $settingsService = new SettingsService();
 
         $settingsData = $settingsService->getSettingsData();
 
         return $settingsData;
+    }
+
+    public function setSettings(Request $request) {
+    	
+    	
     }
 }
