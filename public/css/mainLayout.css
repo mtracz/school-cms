@@ -94,6 +94,7 @@
 
 .ui.menu .item:hover {
 	cursor: pointer;
+	background: rgba(255,255,255,.08) !important;
 }
 
 .ui.vertical.menu .item *{
@@ -101,11 +102,11 @@
 }
 
 .ui.vertical.menu > .ui.accordion .item:hover{
-	background-color: #496594 !important;
+	background: rgba(255,255,255,.08) !important;
 }
 
 .ui.vertical.menu > .ui.accordion .title:hover{
-	background-color: #496594 !important;
+	background: rgba(255,255,255,.08) !important;
 }
 
 .ui.menu .dropdown.item .menu {
@@ -122,11 +123,11 @@
 
 .ui.menu .ui.dropdown .menu >.item:hover {
 	color: white !important;
-	background-color: #496594 !important;
+	background: rgba(255,255,255,.08) !important;
 }
 
 .ui.menu .item:hover {
-	background-color: #496594;
+	background: rgba(255,255,255,.08);
 }
 
 .ui.accordion .title {

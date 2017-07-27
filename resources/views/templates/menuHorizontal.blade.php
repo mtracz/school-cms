@@ -9,12 +9,12 @@
 
 		<div class="ui simple dropdown item">
 			{{ $singleItem->name }} <i class="dropdown icon"></i>
-			<div class="menu">
+			<div class="menu fifth-color">
 
 				{{-- @include("templates/link") --}}
 				@foreach($singleItem->link as $link)
 
-				<a href="{{ $link->url }}" class="item">  {{ $link->name }} </a>
+				<a href="{{ $link->url }}" class="item fifth-color">  {{ $link->name }} </a>
 
 				@endforeach
 			</div>
@@ -23,7 +23,7 @@
 		@else
 			@foreach($singleItem->link as $link)
 
-			<a href="{{ $link->url }}" class="item">
+			<a href="{{ $link->url }}" class="item fifth-color">
 				{{-- @include("templates/link") --}}
 				{{ $link->name }}
 			</a>

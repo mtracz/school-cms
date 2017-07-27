@@ -7,12 +7,16 @@
 	</div>
 
 	@endif
-	<div class="content primary-text-color editMe" style="background-image: url({!! $item->panel->content !!});">
+
+	<div class="editMe">
+		<div class="content primary-text-color">
+			<img src="{!! $item->panel->content !!}">
+		</div>
 	</div>
 
 	@if(Auth::user())
 
-		@include("templates/editTab")
+	@include("templates/editTab")
 
 	@endif
 </div>
@@ -34,15 +38,24 @@
 
 	.banner .content {
 
-		padding: 0px !important;
-		
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: cover;
-		background-color: pink;
-		background-blend-mode: hard-light;
-
+		width: 80vw;
 		height: 600px;
+		overflow: hidden;
+
+		position: relative;
 	}
+
+	.banner .content img {
+		position: absolute;
+		margin: auto; 
+		min-height: 100%;
+		min-width: 100%;
+
+    	/* For the following settings we set 100%, but it can be higher if needed*/
+    	left: -100%;
+    	right: -100%;
+    	top: -100%;
+    	bottom: -100%;
+    }
 
 </style>

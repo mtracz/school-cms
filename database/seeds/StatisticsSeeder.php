@@ -17,7 +17,7 @@ class StatisticsSeeder extends Seeder
 			["id" => 2, "name" => "news_count", "value" => 0],
 			["id" => 3, "name" => "static_pages_count", "value" => 0],
 			["id" => 4, "name" => "published_news", "value" => 0],
-			["id" => 5, "name" => "unpiblished_news", "value" => 0],
+			["id" => 5, "name" => "unpublished_news", "value" => 0],
 		];
 
 		Schema::disableForeignKeyConstraints();
