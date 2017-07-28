@@ -1,12 +1,18 @@
 @extends("master")
 
+@section("styles")
+
+{!! Html::style("/css/settings.css") !!}
+
+@endsection
+
 @section("content")
 
 <div class="ui settings container">
 
 	<div class="ui horizontal divider">
 		<div class="ui buttons">
-			<button class="ui positive button submit">Zapisz</button>
+			<button class="ui positive button settings submit">Zapisz</button>
 			<button class="ui negative button">Anuluj</button>
 		</div>
 	</div>
@@ -23,6 +29,39 @@
 					<div class="ui label"> Email głównego administratora </div>
 					<input name="admin_email" type="email" placeholder="Adres email" value="{{ $settings['admin_email'] }}">
 				</div>
+			</div>
+
+			<div class="ui button show_change_password_toggle">
+				Zmiana hasła
+			</div>
+
+			<div class="change_password_toggle" style="display: none;">
+
+				<input name="admin_id" type="number" value="{{ Auth::user()->id }}" hidden>
+
+				<div class="field">
+					<div class="ui labeled input">
+						<div class="ui label"> Stare hasło </div>
+						<input class="clearable" name="old_password" type="password" placeholder="Hasło" value="">
+					</div>
+				</div>
+
+				<div class="field">
+					<div class="ui labeled input">
+						<div class="ui label"> Nowe hasło </div>
+						<input class="clearable" name="new_password" type="password" placeholder="Hasło" value="">
+					</div>
+				</div>
+
+				<div class="field">
+					<div class="ui labeled input">
+						<div class="ui label"> Powtórz hasło </div>
+						<input class="clearable" name="new_password_confirm" type="password" placeholder="Hasło" value="">
+					</div>
+				</div>
+
+				<button class="ui button password submit">Zmień</button>
+
 			</div>
 
 			<div class="ui horizontal divider">
@@ -56,7 +95,7 @@
 			<div class="field">
 				<div class="ui labeled input">
 					<div class="ui label"> Motyw </div>
-					<select name="theme_name">
+					<select name="theme">
 						<option value=""> {{ $settings["theme"] }} </option>
 
 						@foreach($themes as $theme)
@@ -143,7 +182,7 @@
 
 	<div class="ui horizontal divider">
 		<div class="ui buttons">
-			<button class="ui positive button submit">Zapisz</button>
+			<button class="ui positive button settings submit">Zapisz</button>
 			<button class="ui negative button">Anuluj</button>
 		</div>
 	</div>

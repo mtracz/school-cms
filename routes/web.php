@@ -46,6 +46,9 @@ Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@get
 // SITE SETTINGS
 
 Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsController@getSettings"]);
+Route::post('/settings/set', ["as" => "settings.set.post", "uses" => "SettingsController@setSettings"]);
+
+Route::post('/password/change', ["as" => "password.change.post", "uses" => "SettingsController@changePassword"]);
 
 // form news preview
 Route::get('/news/add', ["as" => "news.add.get", "uses" => "ViewController@getNewsForm"]);
