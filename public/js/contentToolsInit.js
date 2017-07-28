@@ -61,8 +61,7 @@ ContentEdit.Root.get().bind('focus', function (element) {
 				payload.append(name, regions[name]);
 				//store content in global variable
 				if(name == "content") {
-					form_content = regions[name];
-					$("#preview_content").html(form_content);	    			
+					form_content = regions[name];						    			
 					new ContentTools.FlashUI('ok');
 					editor.busy(false);
 				}	    		

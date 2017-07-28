@@ -182,8 +182,6 @@ function getCurrentDate() {
 	var mm = today.getMonth()+1; //January is 0!
 	var yyyy = today.getFullYear();
 
-
-
 	if(dd<10) {
 		dd = '0'+dd
 	} 
@@ -243,6 +241,8 @@ $("#preview_button").on("click", function() {
 	//copy title
 	var title = document.getElementById('add_news_article_form').title.value;
 	$("#preview_header").html(title);
+	//copy content
+	$("#preview_content").html(form_content);
 
 	setDateInPreviewContent();
 	hideContentToolsIcon();
@@ -327,12 +327,34 @@ function isTitle() {
 	}
 }
 
+$(document).ready(function() {
+	//paste content to form_content onload edit form
+	form_content = $(".ui.segment.content").html();
+	//get dates onload edit form
+	var original_publish_date = $("#original_publish_date").data("original_date");
+	var original_expire_date = $("#original_expire_date").data("original_date");
+	if(original_publish_date) {
+		form_publish_date_object.parsed_date = original_publish_date;
+	} else {
+		form_publish_date_object.parsed_date = "";
+	}
+	if(original_expire_date) {
+		form_expire_date_object.parsed_date = original_expire_date;
+	} else {
+		form_expire_date_object.parsed_date = "";
+	}
+		
+});
+
 function isContent() {
-	if(! form_content) {
+	if($(".ui.segment.content").data("editing_mode") === "true") {
+		form_content = $(".ui.segment.content").html();
+	}
+	if(form_content < 1) {
 		return false;
 	} else {
 		return true;
-	}
+	}	
 }
 
 function getImagesSrc() {	

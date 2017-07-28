@@ -63,18 +63,19 @@
 			{{ csrf_field() }}
 			<h3>Tytuł</h3>
 			<div class="field">
-				<input name="title" placeholder="Tu wpisz tytuł">
+				<input name="title" placeholder="Tu wpisz tytuł" value="{{$editing_news->title or ""}}">
 				<div class="ui pointing red basic label hidden" id="title_warning">
 					To pole musi być wypełnione
 				</div>
 			</div>
 
 			<h3>Treść</h3>
-			<div class="ui segment content " data-editable data-name="content">
-				<p class="title-only">title</p>
+			<div class="ui segment content " data-editable data-name="content" @if(isset($editing_news)) data-editing_mode='true'@endif>
+				{!!$editing_news->content or ""!!}
+				{{-- <p class="title-only">title</p>
 				<p class="image-only">image</p>
 				<p class="links-only">links</p>
-				<p> all</p>
+				<p> all</p> --}}
 			</div>
 
 			<div class="ui pointing red basic label hidden" id="content_warning">
@@ -83,7 +84,11 @@
 			<br>
 			<div class="field">
 				<div class="ui checkbox">
-					<input type="checkbox" name="is_public" checked>
+					@if(isset($editing_news) && $editing_news->is_public == false)
+						<input type="checkbox" name="is_public">
+					@else
+						<input type="checkbox" name="is_public" checked>
+					@endif
 					<label>Publiczny</label>
 				</div>
 				<i class="world icon"></i>
@@ -91,7 +96,7 @@
 
 			<div class="news_settings">		
 				@if(isset($news_settings))
-				{{$news_settings}}
+					{{$news_settings}}
 				@endif
 			</div>
 

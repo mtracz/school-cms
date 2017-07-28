@@ -75,9 +75,16 @@ class ViewController extends Controller {
     }
 
 
-    public function getNewsForm() {
+    public function getNewsFormAdd() {
         $newsPinnedObject = NewsPinned::first();
         return view("addNews")->with("newsPinned", $newsPinnedObject);
+    }
+
+    public function getNewsFormEdit($id) {
+        $editing_news = News::find($id);
+        $newsPinnedObject = NewsPinned::first();
+        return view("addNews")->with("editing_news", $editing_news)
+                            ->with("newsPinned", $newsPinnedObject);
     }
 
     public function getSettings() {

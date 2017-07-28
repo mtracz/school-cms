@@ -47,13 +47,19 @@ Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@get
 
 Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsController@getSettings"]);
 
-// form news preview
-Route::get('/news/add', ["as" => "news.add.get", "uses" => "ViewController@getNewsForm"]);
+// news add view
+Route::get('/news/add', ["as" => "news.add.get", "uses" => "ViewController@getNewsFormAdd"]);
+// news add
 Route::post('/news/add', ["as" => "news.add.post", "uses" => "NewsController@addNews"]);
+
+//news edit view
+Route::get('/news/edit/{id}', ["as" => "news.edit.get", "uses" => "ViewController@getNewsFormEdit"]);
+//news edit 
+Route::post('/news/edit/{id}', ["as" => "news.edit.post", "uses" => "NewsController@editNews"]);
 
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 
-
+// content tools
 Route::post('/content_tools/upload_image', ["as" => "content_tools.image.upload.post", "uses" => "ContentToolsController@uploadImage"]);
 
 Route::post('/content_tools/rotate_image', ["as" => "content_tools.image.rotate.post", "uses" => "ContentToolsController@rotateImage"]);

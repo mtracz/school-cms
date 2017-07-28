@@ -80,7 +80,7 @@ class ManageNewsService {
 				$this->expire_date = null;
 		} else {
 			$this->expire_date = $this->newsData["expire_at_date"] ." ". $this->newsData["expire_at_time"];
-		}	
+		}
 	}
 
 	protected function checkDates() {
@@ -159,6 +159,48 @@ class ManageNewsService {
 		if($this->is_pinned) {
 			$this->savePinnedNews();
 		}
+	}
+
+	public function updateNews($id) {
+
+		// FIX SLUG CHECK WHILE EDIT
+		// FIX VALIDATE DATES
+		
+		if(!$this->is_slug_unique) {
+			array_push($this->errors, "Isnieje już news o takim tytule. Podaj inny tytuł");
+			return false;
+		}
+		// if(!$this->is_date_correct) {
+		// 	return false;
+		// }		
+		// if($this->images_src) {
+		// 	$this->prepareNewsDir();
+		// 	$this->changeImagesSrcInContent();
+		// 	$imageService = new ImageService();
+		// 	$imageService->moveImagesFromTemp($this->images_src, $this->news_dir);
+		// }
+		
+		$newsObject = News::find($id);
+		if($newsObject) {
+			$newsObject->title = $this->newsData["title"];
+			$newsObject->content = $this->newsData["content"];
+			$newsObject->slug = $this->slug;
+			$newsObject->created_by = $this->created_by;
+			$newsObject->published_at = $this->publish_date;
+			$newsObject->expire_at = $this->expire_date;	
+			$newsObject->is_public = $this->is_public;
+			$newsObject->save();
+
+			LogService::edit("news: " . $this->newsData["title"]);
+
+			$this->created_news_id = $id;
+			if($this->is_pinned) {
+				$this->savePinnedNews();
+			}
+		} else {
+			array_push($this->errors, "Nie znaleziono newsa o podanym id");
+		}
+		
 	}
 
 	protected function savePinnedNews() {

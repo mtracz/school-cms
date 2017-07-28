@@ -27,4 +27,17 @@ class NewsController extends Controller {
 				"route" => route("index.get")]);
 		}
 	}
+
+	public function editNews($id, Request $request) {
+		// dd($request->all());
+		$this->NewsService->setNewsData($request->all())->updateNews($id);
+
+		if($this->NewsService->getErrors()) {
+			return json_encode($this->NewsService->getErrors());
+		} else {
+			Session::flash("messages", ["Edytowano newsa" => "success" ]);
+			// return response(["news_edit_status" => "success",
+				// "route" => route("index.get")]);
+		}
+	}
 }
