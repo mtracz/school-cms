@@ -123,18 +123,18 @@ body {
 	}
 
 
-/* Center (default) */
-iframe,
-image,
-[data-ce-tag=img],
-img,
-video {
-    clear: both;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;    
-}
+	/* Center (default) */
+	iframe,
+	image,
+	[data-ce-tag=img],
+	img,
+	video {
+		clear: both;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 100%;    
+	}
 
 	/* Right align */
 	.align-right {
@@ -156,53 +156,3 @@ video {
 		text-align: right;
 	}
 
-	.ui.settings.container {
-		background-color: #A9C7D7;
-		margin-top: 50px;
-		width: 80vw;
-		padding: 10px;
-	}
-
-	.ui.settings.container .wrapper {
-		padding: 30px;
-	}
-
-	.ui.labeled.input .ui.label {
-
-		background-color: #282A2E; 
-		color: white;
-
-		text-align: center;
-	}
-
-	.ui.labeled.input .ui.label:not(.additional) {
-		width: 170px;
-	}
-
-	.ui.horizontal.divider {
-		color: #282A2E;
-	}
-
-	.ui.horizontal.divider .icon {
-		font-size: 40px; margin: 0px 10px 0px 10px;
-	}
-
-	.ui.positive.button {
-		background-color: #BFE9EB;
-		color: black;
-	}
-
-	.ui.positive.button:hover {
-		background-color: #6CAA78;
-		color: white;
-	}
-
-	.ui.negative.button {
-		background-color: #282A2E;
-
-	}
-
-	.ui.negative.button:hover {
-		background-color: #C93928;
-
-	}

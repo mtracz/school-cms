@@ -76,6 +76,11 @@ getTheme({
 
 console.log("Current theme name: " + theme.name);
 
+$(window).ready(function () {
+	$(".ui.dimmer").dimmer("show");
+	$(".ui.dimmer").dimmer("hide");
+});
+
 $(".accept_coockies").on("click", function() {
 	
 	window.localStorage.setItem("cookie","set");

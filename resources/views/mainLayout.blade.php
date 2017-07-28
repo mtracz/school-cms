@@ -11,11 +11,7 @@
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
 
 <div class="ui container">
-	<div class="ui active page dimmer">
-		<div class="ui active text massive loader">
-			Ładowanie strony...
-		</div>
-	</div>
+	
 
 	<div class="ui main segment" style="display: none;">
 

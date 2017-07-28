@@ -24,6 +24,12 @@
 </head>
 <body class="background-color">
 
+	<div class="ui active page dimmer">
+		<div class="ui active text massive loader">
+			Ładowanie strony...
+		</div>
+	</div>
+
 	{!! Html::script("js/jquery.min.js") !!}
 
 	{{-- Menu for Admin when Logged In --}}
@@ -36,7 +42,7 @@
 
 	<div class="cookie_info">
 		<p class="text">
-		{{ $cookie_text }} 
+			{{ $cookie_text }} 
 		</p>
 		<button class="ui button accept_coockies">
 			Rozumiem
@@ -46,9 +52,9 @@
 	{{-- TOASTR MESSAGES --}}
 	<div id="InfromationMessages" style="display: none;">
 		@if(Session::get("messages"))
-			@foreach(Session::get("messages") as $message => $type)
-			<span type="{{$type}}" data-message="{{$message}}"></span>
-			@endforeach
+		@foreach(Session::get("messages") as $message => $type)
+		<span type="{{$type}}" data-message="{{$message}}"></span>
+		@endforeach
 		@endif
 	</div>
 
