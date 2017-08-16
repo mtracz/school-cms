@@ -8,93 +8,98 @@ use App\Models\Admin;
 use App\Models\News;
 use App\Models\NewsPinned;
 use App\Models\Theme;
+use App\Models\Settings;
 
 use App\Http\Controllers\SettingsController;
 
 use Carbon\Carbon;
 
 class ViewController extends Controller {
-    public function index() {
+	public function index() {
 
-        $news_pinned = NewsPinned::first();
+		$news_pinned = NewsPinned::first();
 
-        $news;
+		$news;
 
-        if($news_pinned) {
+		$news_per_page_value = Settings::where("name","news_per_page")->first()->value;
 
-            $news = News::orderBy("published_at", "desc")
-                ->where("published_at", "<=", Carbon::now()->toDateTimeString())
-                ->whereNull("expire_at")
-                ->where("is_public","1")
-                ->where("id", "<>", $news_pinned->news_id)
-                ->orWhere(function ($query) {
-                    $query->where("published_at", "<=", Carbon::now()->toDateTimeString())
-                        ->where("expire_at", ">", Carbon::now()->toDateTimeString())
-                        ->where("is_public","1");
-                })
-                ->get();
-        } else {
+		if($news_pinned) {
 
-            $news = News::orderBy("published_at", "desc")
-                ->where("published_at", "<=", Carbon::now()->toDateTimeString())
-                ->whereNull("expire_at")
-                ->where("is_public","1")
-                ->orWhere(function ($query) {
-                    $query->where("published_at", "<=", Carbon::now()->toDateTimeString())
-                        ->whereNull("expire_at", ">", Carbon::now()->toDateTimeString())
-                        ->where("is_public","1");
-                })
-                ->get();
-        }
+			$news = News::orderBy("published_at", "desc")
+				->where("published_at", "<=", Carbon::now()->toDateTimeString())
+				->whereNull("expire_at")
+				->where("is_public","1")
+				->where("id", "<>", $news_pinned->news_id)
+				->orWhere(function ($query) {
+					$query->where("published_at", "<=", Carbon::now()->toDateTimeString())
+						->where("expire_at", ">", Carbon::now()->toDateTimeString())
+						->where("is_public","1");
+				})
+				// ->paginate($news_per_page_value);
+				->get();
+		} else {
 
-        return view("mainLayout")
-            ->with("news", $news)
-            ->with("news_pinned", $news_pinned);
-    }
+			$news = News::orderBy("published_at", "desc")
+				->where("published_at", "<=", Carbon::now()->toDateTimeString())
+				->whereNull("expire_at")
+				->where("is_public","1")
+				->orWhere(function ($query) {
+					$query->where("published_at", "<=", Carbon::now()->toDateTimeString())
+						->whereNull("expire_at", ">", Carbon::now()->toDateTimeString())
+						->where("is_public","1");
+				})
+				// ->paginate($news_per_page_value);
+				->get();
+		}
 
-    public function test() {
+		return view("mainLayout")
+			->with("news", $news)
+			->with("news_pinned", $news_pinned);
+	}
 
-        return view("test");
-    }
+	public function test() {
 
-    public function getLoginView() {
-    	$super_admin = Admin::where("is_super_admin", 1)->first();
+		return view("test");
+	}
 
-    	if($super_admin) {
-    		// super admin created in past
-    		return view("adminLogin");
-    	} else {
-    		// super admin not created - first login
-    		return view("adminCreate");
-        }    	
-    }
+	public function getLoginView() {
+		$super_admin = Admin::where("is_super_admin", 1)->first();
 
-    public function getMaintenancePage() {
+		if($super_admin) {
+			// super admin created in past
+			return view("adminLogin");
+		} else {
+			// super admin not created - first login
+			return view("adminCreate");
+		}    	
+	}
 
-        return view("maintenance");
-    }
+	public function getMaintenancePage() {
+
+		return view("maintenance");
+	}
 
 
-    public function getNewsFormAdd() {
-        $newsPinnedObject = NewsPinned::first();
-        return view("addNews")->with("newsPinned", $newsPinnedObject);
-    }
+	public function getNewsFormAdd() {
+		$newsPinnedObject = NewsPinned::first();
+		return view("addNews")->with("newsPinned", $newsPinnedObject);
+	}
 
-    public function getNewsFormEdit($id) {
-        $editing_news = News::find($id);
-        $newsPinnedObject = NewsPinned::first();
-        return view("addNews")->with("editing_news", $editing_news)
-                            ->with("newsPinned", $newsPinnedObject);
-    }
+	public function getNewsFormEdit($id) {
+		$editing_news = News::find($id);
+		$newsPinnedObject = NewsPinned::first();
+		return view("addNews")->with("editing_news", $editing_news)
+							->with("newsPinned", $newsPinnedObject);
+	}
 
-    public function getSettings() {
-        
-        $settingsController = new SettingsController();
+	public function getSettings() {
+		
+		$settingsController = new SettingsController();
 
-        $settings = $settingsController->getSettings();
-        $themes = Theme::all();
+		$settings = $settingsController->getSettings();
+		$themes = Theme::all();
 
-        return view("settings")->with("settings", $settings)->with("themes", $themes);
-    }
+		return view("settings")->with("settings", $settings)->with("themes", $themes);
+	}
 
 }

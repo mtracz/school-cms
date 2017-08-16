@@ -78,16 +78,18 @@ $(".ui.button.password.submit").on("click", function (event) {
 	.then(function (data) {
 		$(".ui.dimmer").dimmer("hide");
 
+		console.log(data["old_password_error"]);
+
 		if( data["password_change"] == "error" ) {
 
-			clearInputs();
+			clearChangePasswordInputs();
 
 			toastr.error("<h2> Dane zmiany hasła niepoprawne </h2>");
 			console.log("SettingsForm: Submit fail. ERROR: Data incorrect");
 
 		} else {
 
-			clearInputs();
+			clearChangePasswordInputs();
 
 			toastr.success("<h2> Hasło zostało pomyślnie zmienione! </h2>");
 			console.log("SettingsForm: Submit success");
@@ -100,7 +102,7 @@ $(".ui.button.password.submit").on("click", function (event) {
 	});
 });
 
-function clearInputs() {
+function clearChangePasswordInputs() {
 	$("input[type='password']").val("");
 }
 
@@ -109,3 +111,4 @@ function postChangePassword(options) {
 		$.ajax(options).done(resolve).fail(reject);
 	});
 }
+

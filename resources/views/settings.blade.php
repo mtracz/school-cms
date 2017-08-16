@@ -58,7 +58,9 @@
 						<div class="ui label"> Powtórz hasło </div>
 						<input class="clearable" name="new_password_confirm" type="password" placeholder="Hasło" value="">
 					</div>
+					<span class="password_change_hint"> <i class="warning icon"></i> Nowe i stare hasła powinny się różnić!</span><br>
 				</div>
+
 
 				<button class="ui button password submit">Zmień</button>
 
@@ -119,8 +121,8 @@
 				@if($settings["is_maintenance_mode"] === 1)
 
 				<div class="inline field">
-					<div class="ui toggle checkbox">
-						<input type="checkbox" name="is_maintenance_mode" checked>
+					<div class="ui toggle checkbox checked">
+						<input type="checkbox" name="is_maintenance_mode">
 						<label>Włącz tryb serwisowy</label>
 					</div>
 				</div>
