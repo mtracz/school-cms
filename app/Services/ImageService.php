@@ -66,7 +66,6 @@ class ImageService {
 		return $string[0];
 	}
 
-
 	public function rotate($request) {		
 		$this->image_url = $this->getDirectImagePath($request["url"]);
 		// dd($this->image_url);
@@ -102,7 +101,6 @@ class ImageService {
 	}
 
 	public function moveImagesFromTemp($images_array, $destination_dir) {
-		File::makeDirectory("./" . $destination_dir,0755, true, true);
 
 		foreach ($images_array as $image) {
 			$image_temp_url = $this->getDirectImagePath($image);
@@ -114,6 +112,20 @@ class ImageService {
 		}
 		File::cleanDirectory($this->temp_dir);
 	}
+
+	public function moveUploadedImages($images_array, $destination_dir) {
+
+		foreach ($images_array as $image) {
+
+			$image_direct_path = $this->getDirectImagePath($image);
+			
+			$source_path = pathinfo($image_direct_path);
+			$name = $source_path["basename"];
+			
+			File::move($image_direct_path, $destination_dir . "/" . $name);	
+		}
+	}
+		
 
 	public function addImage($request) {
 		$this->image_url = $this->getDirectImagePath($request["url"]);
@@ -172,8 +184,3 @@ class ImageService {
 		imagepng($image, $path . $this->file_name, $this->png_compression);
 	}
 }
-
-// 		$this->createAvatar();
-// 		$this->crop($this->x, $this->y, $this->width, $this->height);
-// 			resizecropedimage
-// 		$this->rotate($this->rotation);

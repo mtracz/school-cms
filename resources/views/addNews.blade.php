@@ -41,20 +41,25 @@
 <div class="field">
 
 	<div class="ui slider checkbox">
-		@if($is_news_editing && $editing_news->id === $newsPinned->news_id)
-			<input type="checkbox" name="is_pinned" checked>
+		@if($newsPinned)
+			@if($is_news_editing && $editing_news->id === $newsPinned->news_id)
+				<input type="checkbox" name="is_pinned" checked>
+			@endif
 		@else
-			<input type="checkbox" name="is_pinned">
+			<input type="checkbox" name="is_pinned">			
 		@endif
+		
 		<label>Przypnij</label>
 	</div>
 	<i class="pin icon"></i>
-	@if($is_news_editing && $editing_news->id === $newsPinned->news_id)
-	@else
-		<div class="is_pinned_info">
-			<i class="circle warning icon"></i>
-			Istnieje już przypięty news. Przypięcie tego newsa spowoduje odpięcie istniejącego.
-		</div>
+	@if($newsPinned)
+		@if($is_news_editing && $editing_news->id === $newsPinned->news_id)
+		@else
+			<div class="is_pinned_info">
+				<i class="circle warning icon"></i>
+				Istnieje już przypięty news. Przypięcie tego newsa spowoduje odpięcie istniejącego.
+			</div>
+		@endif
 	@endif
 </div>
 

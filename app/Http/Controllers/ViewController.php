@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Request;
+use Session;
 
 use App\Models\Admin;
 use App\Models\News;
@@ -82,6 +83,10 @@ class ViewController extends Controller {
 
     public function getNewsFormEdit($id) {
         $editing_news = News::find($id);
+        if(!$editing_news) {
+            Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
+            return redirect()->route("index.get");
+        }
         $newsPinnedObject = NewsPinned::first();
         return view("addNews")->with("editing_news", $editing_news)
                             ->with("newsPinned", $newsPinnedObject);
