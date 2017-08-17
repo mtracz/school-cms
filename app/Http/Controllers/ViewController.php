@@ -61,16 +61,18 @@ class ViewController extends Controller {
 
 		$on_each_side = 2;
 
-		$paginatorService = new PaginationService();
-
 		$news_count = $news->count();
 		$max_page = (int) ceil($news_count/$news_per_page_value);
+
+		$paginationService = new PaginationService();
+
+		$paginationService->getPaginationArray($news, $news_per_page_value, $page_number);
 
 		if($page_number > $max_page) {
 			$page_number = $max_page;
 		}
 
-		$news = $news->forPage($page_number, $news_per_page_value);
+		$news = $news->forPage($page_number, $news_per_page_value, $page_number);
 
 		$paginator_array = [];
 		for($i = $page_number - $on_each_side; $i < $page_number + $on_each_side + 1; $i++) {
@@ -82,7 +84,7 @@ class ViewController extends Controller {
 		
 		$prev_page = $page_number - 1;
 		$next_page = $page_number + 1;
-	
+		
 		return view("mainLayout")
 			->with("news", $news)
 			->with("news_pinned", $news_pinned)

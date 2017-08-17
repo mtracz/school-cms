@@ -30,7 +30,7 @@
 	@if($current_page == $last_page)
 
 	<div class="disabled item"><i class="caret right icon"></i></div>
-	<a class="disabled item" href="?page={{ $last_page }}"><i class="chevron right icon"></i></a>
+	<a class="disabled item"><i class="chevron right icon"></i></a>
 
 	@else
 
