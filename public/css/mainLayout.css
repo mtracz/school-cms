@@ -176,3 +176,34 @@
 	display:block;
 	overflow:auto;
 }
+
+.ui.pagination .item {
+
+	color: white !important;
+
+	background-color: #406DE4;
+}
+
+.ui.pagination .item:hover {
+
+	background-color: #e14658 !important;
+}
+
+.ui.pagination .active.item {
+
+	color: white !important;
+
+	background-color: #e14658 !important;
+}
+
+.ui.pagination .disabled.item {
+
+	color: white !important;
+
+	background-color: #BAC9D8 !important;
+}
+
+.ui.pagination .disabled.item:hover {
+
+	background-color: #BAC9D8 !important;
+}

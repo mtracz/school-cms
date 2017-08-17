@@ -9,10 +9,10 @@
 @section("content")
 
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
+@inject("PaginationService", "App\Services\PaginationService")
 
 <div class="ui container">
 	
-
 	<div class="ui main segment" style="display: none;">
 
 		<div class="ui grid">
@@ -26,93 +26,103 @@
 
 					@include("templates/element")
 
-    			</div>
+				</div>
 
-    			<div id="top_2_sector" class="sixteen wide column sector">
+				<div id="top_2_sector" class="sixteen wide column sector">
 
-    				@php
-    				$element_model = $SectorHydratorService->hydrateTop_2();
-    				@endphp
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_2();
+					@endphp
 
-    				@include("templates/element")
+					@include("templates/element")
 
-    			</div>
+				</div>
 
-    			<div id="top_3_sector" class="sixteen wide column sector">
+				<div id="top_3_sector" class="sixteen wide column sector">
 
-    				@php
-    				$element_model = $SectorHydratorService->hydrateTop_3();
-    				@endphp
+					@php
+					$element_model = $SectorHydratorService->hydrateTop_3();
+					@endphp
 
-    				@include("templates/element")
+					@include("templates/element")
 
-    			</div>
+				</div>
 
-    			<div class="ui inside grid row_container">
-
-
-    				<div id="left_sector" class="three wide column sector view_marker view_computer">
-
-    					@php
-    					$element_model = $SectorHydratorService->hydrateLeft();
-    					@endphp
-
-    					@include("templates/element")
-
-    				</div>
-
-    				<div id="content_sector" class="ten wide column sector">
-
-    					@if(isset($news))
-
-	    					@if(isset($news_pinned))
-
-	    						@include("templates/newsPinned")
-
-	    					@endif
-
-	    					@foreach($news as $singleNews)
-
-	    						@include("templates/news")
-
-	    					@endforeach
-
-                            {{-- {{ $news->links() }} --}}
-
-	    				@endif
-
-    					@yield("content_layout")
-
-    				</div>
-
-    				<div id="right_sector" class="three wide column sector view_marker view_computer">
-
-    					@php
-    					$element_model = $SectorHydratorService->hydrateRight();
-    					@endphp
-
-    					@include("templates/element")
-
-    				</div>
+				<div class="ui inside grid row_container">
 
 
-    			</div>
+					<div id="left_sector" class="three wide column sector view_marker view_computer">
 
-    			<div id="bottom_sector" class="sixteen wide column sector">
-    				<div class="ui centered inside grid">
+						@php
+						$element_model = $SectorHydratorService->hydrateLeft();
+						@endphp
 
-    					@php
-    					$element_model = $SectorHydratorService->hydrateBottom();
-    					@endphp
+						@include("templates/element")
 
-    					@include("templates/element")
-    				</div>
-    			</div>
+					</div>
 
-    		</div>
-    	</div>
+					<div id="content_sector" class="ten wide column sector">
 
-    </div>
+						@if(isset($news))
+
+						@if(isset($news_pinned))
+
+						@include("templates/newsPinned")
+
+						@endif
+
+						@foreach($news as $singleNews)
+
+						@include("templates/news")
+
+						@endforeach
+
+						@php
+							
+							$PaginationService->createPagination($news);
+							
+						@endphp
+
+						<div class="pagination">
+
+						{{-- {{ $news->links() }} --}}
+
+						</div>
+
+						@endif
+
+						@yield("content_layout")
+
+					</div>
+
+					<div id="right_sector" class="three wide column sector view_marker view_computer">
+
+						@php
+						$element_model = $SectorHydratorService->hydrateRight();
+						@endphp
+
+						@include("templates/element")
+
+					</div>
+
+
+				</div>
+
+				<div id="bottom_sector" class="sixteen wide column sector">
+					<div class="ui centered inside grid">
+
+						@php
+						$element_model = $SectorHydratorService->hydrateBottom();
+						@endphp
+
+						@include("templates/element")
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
 </div>
 @endsection
 

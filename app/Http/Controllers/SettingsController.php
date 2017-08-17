@@ -11,40 +11,42 @@ use Session;
 
 class SettingsController extends Controller
 {
-    public function getSettings() {
-        
-        $settingsService = new SettingsService();
+	public function getSettings() {
+		
+		$settingsService = new SettingsService();
 
-        $settingsData = $settingsService->getSettingsData();
+		$settingsData = $settingsService->getSettingsData();
 
-        return $settingsData;
-    }
+		return $settingsData;
+	}
 
-    public function setSettings(Request $request) {
-    	
-    	$settingsService = new SettingsService();
+	public function setSettings(Request $request) {
+		
+		$settingsService = new SettingsService();
 
-    	$settingsService->saveSettingsDataToDB($request->all());
-    }
+		$settingsService->saveSettingsDataToDB($request->all());
+	}
 
-    public function changePassword(Request $request) {
+	public function changePassword(Request $request) {
 
-    	$passwordService = new PasswordService();
+		$passwordService = new PasswordService();
 
-    	$requestData = $request->all();
+		$requestData = $request->all();
 
-    	$admin_id = $request["admin_id"];
-    	$admin_old_password = $request["old_password"];
-    	$admin_new_password = $request["new_password"];
-    	$admin_new_password_confirm = $request["new_password_confirm"];
+		$admin_id = $request["admin_id"];
+		$admin_old_password = $request["old_password"];
+		$admin_new_password = $request["new_password"];
+		$admin_new_password_confirm = $request["new_password_confirm"];
 
-    	if( $passwordService->checkOldPassword($admin_id, $admin_old_password) 
-    		&& $passwordService->checkConfirmPassword($admin_new_password, $admin_new_password_confirm)) {
+		$errors = [];
 
-    		$passwordService->setPassword($admin_id, $admin_new_password);
-    	} else {
+		if( $passwordService->checkOldPassword($admin_id, $admin_old_password) 
+			&& $passwordService->checkConfirmPassword($admin_new_password, $admin_new_password_confirm)) {
 
-    		return response(["password_change" => "error"]);
-    	}
-    }
+			$passwordService->setPassword($admin_id, $admin_new_password);
+		} else {
+
+			return response(["password_change" => "error"]);
+		}
+	}
 }
