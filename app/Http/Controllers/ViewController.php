@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 use App\Models\Admin;
 use App\Models\News;
@@ -60,7 +61,7 @@ class ViewController extends Controller {
 
 		$on_each_side = 2;
 
-		$paginatorService = new PaginatorService();
+		$paginatorService = new PaginationService();
 
 		$news_count = $news->count();
 		$max_page = (int) ceil($news_count/$news_per_page_value);
@@ -130,7 +131,6 @@ class ViewController extends Controller {
 	}
 
 	public function getSettings() {
-		
 		$settingsController = new SettingsController();
 
 		$settings = $settingsController->getSettings();

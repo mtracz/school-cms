@@ -47,6 +47,7 @@ TITLE_TOOLS = [
 IMAGE_TOOLS = [
     [
         'link',
+        'paragraph',
     ],[        
         'image',
     ],[

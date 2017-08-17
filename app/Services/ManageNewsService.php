@@ -3,6 +3,7 @@
 namespace App\Services;
 use Carbon\Carbon;
 use Auth;
+use File;
 
 use App\Models\News;
 use App\Models\NewsPinned;
@@ -57,15 +58,12 @@ class ManageNewsService {
 		$this->newsData["expire_at_never"] = $request["expire_at_never"];
 
 		$this->images_src = json_decode($request['json_images_src']);
-		// dd($this->images_src);
 
 		$this->created_by = Auth::user()->id;
 		
 		$this->checkCheckboxes();
-		$this->parseDates();
-		$this->checkDates();
+		$this->parseDates();		
 		$this->slug = SlugHelper::createSlug($request["title"]);
-		$this->isSlugCorrect($this->slug);
 
 		return $this;
 	}
@@ -109,6 +107,38 @@ class ManageNewsService {
 		$this->is_date_correct = true;
 	}
 
+	protected function checkDatesEditMode($id) {
+		$editingNews = News::find($id);
+		//unchecked publish now
+		if(!$this->is_publish_now) {
+
+			if(!$this->publish_date === $editingNews->published_at) {
+				if($this->publish_date < Carbon::now()) {
+				array_push($this->errors, "Data publikacji nie może być mniejsza od daty bieżącej");
+				return false;
+				}
+			}			
+		}
+		//unchecked expire publication
+		if(!$this->is_expire_never) {
+			if(!$this->expire_date === $editingNews->expire_at) {
+				if($this->expire_date < Carbon::now()) {
+				array_push($this->errors, "Data zakończenia publikacji nie może być mniejsza od daty bieżącej");
+				return false;
+				}
+			}
+		}
+		//unchecked publish now & expire publication
+		if(!$this->is_publish_now && !$this->is_expire_never) {
+			if($this->publish_date > $this->expire_date) {
+				array_push($this->errors, "Data publikacji nie może być większa od daty zakończenia publikacji");
+				return false;
+			}
+		}
+
+		$this->is_date_correct = true;
+	}
+
 	protected function checkCheckboxes() {
 		if($this->newsData["is_public"] === "true") {
 			$this->is_public = true;
@@ -128,6 +158,10 @@ class ManageNewsService {
 	}
 
 	public function saveNews() {
+
+		$this->checkDates();
+		$this->isSlugCorrect($this->slug);
+
 		if(!$this->is_slug_unique) {
 			array_push($this->errors, "Isnieje już news o takim tytule. Podaj inny tytuł");
 			return false;
@@ -137,7 +171,8 @@ class ManageNewsService {
 		}
 
 		if($this->images_src) {
-			$this->prepareNewsDir();
+			$this->prepareNewsDir();			
+			$this->createNewsDir($this->news_dir);
 			$this->changeImagesSrcInContent();
 			$imageService = new ImageService();
 			$imageService->moveImagesFromTemp($this->images_src, $this->news_dir);
@@ -163,25 +198,60 @@ class ManageNewsService {
 
 	public function updateNews($id) {
 
-		// FIX SLUG CHECK WHILE EDIT
-		// FIX VALIDATE DATES
-		
-		if(!$this->is_slug_unique) {
-			array_push($this->errors, "Isnieje już news o takim tytule. Podaj inny tytuł");
-			return false;
-		}
-		// if(!$this->is_date_correct) {
-		// 	return false;
-		// }		
-		// if($this->images_src) {
-		// 	$this->prepareNewsDir();
-		// 	$this->changeImagesSrcInContent();
-		// 	$imageService = new ImageService();
-		// 	$imageService->moveImagesFromTemp($this->images_src, $this->news_dir);
-		// }
-		
 		$newsObject = News::find($id);
 		if($newsObject) {
+			$this->checkDatesEditMode($id);
+			$this->isSlugCorrectEditMode($this->slug, $id);
+
+			if(!$this->is_slug_unique) {
+				array_push($this->errors, "Isnieje już news o takim tytule. Podaj inny tytuł");
+				return false;
+			}
+			if(!$this->is_date_correct) {
+				return false;
+			}
+
+			$this->prepareNewsDir();
+
+			if($newsObject->slug != $this->slug) {
+				$this->createNewsDir($this->news_dir);
+			}
+
+			if($this->images_src) {
+			//images src from content in add/edit news
+				$this->createNewsDir($this->news_dir);
+				$this->changeImagesSrcInContent();
+
+				$uploaded_images = [];
+				$temp_images = [];
+				foreach ($this->images_src as $image) {
+					if(strpos($image, 'temp') !== false) {
+						array_push($temp_images, $image);
+					} else {
+						array_push($uploaded_images, $image);
+					}			
+				}
+
+				$imageService = new ImageService();
+				if($temp_images) {
+					$imageService->moveImagesFromTemp($temp_images, $this->news_dir);	
+				}
+				if($uploaded_images) {
+					$imageService->moveUploadedImages($uploaded_images, $this->news_dir);
+				}						
+			} else {
+				$this->deleteOldNewsDir($newsObject->slug, $this->slug, $this->news_dir);
+			}
+
+			if($newsObject->slug != $this->slug) {
+				$this->deleteOldNewsDir($newsObject->slug, $this->slug, $this->news_dir);				
+			} else {
+				//delete(from server) deleted images from news content
+				$this->deleteDeletedImages($this->news_dir, $this->images_src);
+			}
+
+			$this->changeImagesPathInContent($newsObject->slug);
+
 			$newsObject->title = $this->newsData["title"];
 			$newsObject->content = $this->newsData["content"];
 			$newsObject->slug = $this->slug;
@@ -193,14 +263,50 @@ class ManageNewsService {
 
 			LogService::edit("news: " . $this->newsData["title"]);
 
-			$this->created_news_id = $id;
 			if($this->is_pinned) {
 				$this->savePinnedNews();
+			} else {
+				if(isset($newsObject->news_pinned) && $newsObject->news_pinned->news_id == $id) {
+					$newsObject->news_pinned->delete();
+				}
 			}
 		} else {
 			array_push($this->errors, "Nie znaleziono newsa o podanym id");
+		}	
+	}
+
+	protected function deleteDeletedImages($dir, $images_src) {
+		if($images_src) {
+			$files = File::files($dir);
+			$images = [];
+			foreach ($files as $path) {
+				$path_info = pathinfo($path);
+				array_push($images, $path_info["basename"]);
+			}
+
+			$alive_images = [];
+			foreach ($images_src as $image) {
+				$path_info = pathinfo($image);
+				$file = explode("?", $path_info["basename"]);
+				$filename = $file[0];
+				array_push($alive_images, $filename);
+			}
+
+			foreach ($images as $image) {
+				if(!in_array($image, $alive_images)) {
+					File::delete($dir . "/" . $image);
+				}
+			}
 		}
-		
+	}
+
+	protected function createNewsDir($dir) {
+		File::makeDirectory("./" . $dir,0755, true, true);
+	}
+
+	protected function deleteOldNewsDir($old_name, $new_name, $dir) {
+		$old_dir = str_replace($new_name, $old_name, $dir);
+		File::deleteDirectory($old_dir);
 	}
 
 	protected function savePinnedNews() {
@@ -214,6 +320,13 @@ class ManageNewsService {
 	
 	protected function isSlugCorrect($slug) {
 		$news = News::where("slug", $slug)->first();	
+		if(!$news) {
+			$this->is_slug_unique = true;
+		}
+	}
+
+	protected function isSlugCorrectEditMode($slug, $id) {		
+		$news = News::where("slug", $slug)->where("id", "!=", $id)->first();
 		if(!$news) {
 			$this->is_slug_unique = true;
 		}
@@ -234,4 +347,7 @@ class ManageNewsService {
 		$this->newsData["content"] = str_replace("images/temp/", $this->news_dir, $this->newsData["content"]);
 	}
 
+	protected function changeImagesPathInContent($old_slug) {
+		$this->newsData["content"] = str_replace("/" . $old_slug . "/", "/" . $this->slug . "/", $this->newsData["content"]);
+	}
 }

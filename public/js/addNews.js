@@ -2,23 +2,29 @@
 var form_content;
 
 var form_publish_date_object = {
-		parsed_date: "",	
+		parsed_date: "",
+		time: "",
 	};
 
 var form_expire_date_object = {
 		parsed_date: "",
 		start_date: false,
+		time: "",
 	};
 
 
-var calendar_time_settings = {
-	ampm: false,
-  	type: 'time',
-};
 //global for images src in content preview before publish
 var json_images_src;
 
 // SEMANTIC CALENDAR
+
+//function for dates format
+function addZero(i) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	return i;
+}
 
 $('#publish_at_date').calendar({
 	type: 'date',
@@ -33,15 +39,11 @@ $('#publish_at_date').calendar({
     },
 	onChange: function(date) {
 		if(date) {
+			
 			var year = date.getFullYear();
-			var month = date.getMonth() + 1;
-			var day = date.getDate();
-			if (month < 10) {
-				month = '0' + month;
-			}
-			if (day < 10) {
-				day = '0' + day;
-			}
+			var month = addZero(date.getMonth() + 1);
+			var day = addZero(date.getDate());
+
 			//set start date for expire calendar
 			form_expire_date_object.start_date = date;
 			$('#expire_at_date').calendar("set startDate", date);
@@ -54,7 +56,19 @@ $('#publish_at_date').calendar({
 });
 
 
-$('#publish_at_time').calendar(calendar_time_settings);
+$('#publish_at_time').calendar({
+	ampm: false,
+  	type: 'time',
+  	onChange: function(date) {
+  		if(date) {
+  			time = date.toLocaleTimeString('pl-PL', { hour12: false, 
+                                             hour: "numeric", 
+                                             minute: "numeric",
+                                         	 second: "numeric"});
+  			form_publish_date_object.time = time;
+  		}  		
+  	},
+});
 
 $('#expire_at_date').calendar({
 	type: 'date',
@@ -72,14 +86,8 @@ $('#expire_at_date').calendar({
 	onChange: function(date) {
 		if(date) {
 			var year = date.getFullYear();
-			var month = date.getMonth() + 1;
-			var day = date.getDate();
-			if (month < 10) {
-				month = '0' + month;
-			}
-			if (day < 10) {
-				day = '0' + day;
-			}
+			var month = addZero(date.getMonth() + 1);
+			var day = addZero(date.getDate());
 			
 			form_expire_date_object.parsed_date = (year + '-' + month + '-' + day);
 		} else {
@@ -88,7 +96,19 @@ $('#expire_at_date').calendar({
 	},
 });
 
-$('#expire_at_time').calendar(calendar_time_settings);
+$('#expire_at_time').calendar({
+	ampm: false,
+  	type: 'time',
+  	onChange: function(date) {
+  		if(date) {
+  			time = date.toLocaleTimeString('pl-PL', { hour12: false, 
+                                             hour: "numeric", 
+                                             minute: "numeric",
+                                         	 second: "numeric"});
+  			form_expire_date_object.time = time;
+  		}  		
+  	},
+});
 
 // disable / enable date fields
 $('#publish_at_now').change(function() {
@@ -178,20 +198,12 @@ function checkDateFields() {
 
 function getCurrentDate() {
 	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
+	var dd = addZero(today.getDate());
+	var mm = addZero(today.getMonth()+1); //January is 0!
 	var yyyy = today.getFullYear();
 
-	if(dd<10) {
-		dd = '0'+dd
-	} 
-
-	if(mm<10) {
-		mm = '0'+mm
-	} 
 	return  yyyy + '-' + mm + '-' + dd;
 }
-
 
 
 //hide buttons
@@ -274,7 +286,7 @@ function sendFormData() {
 
 	var payload_form = new FormData();
 	var form = document.getElementById('add_news_article_form');
-
+	
 	//ADD TO FORM
 	//global content variable
 	payload_form.append("content", form_content);
@@ -283,9 +295,9 @@ function sendFormData() {
 	payload_form.append("is_public", form.is_public.checked);
 	payload_form.append("is_pinned", form.is_pinned.checked);
 	payload_form.append("publish_at_date", form_publish_date_object.parsed_date);
-	payload_form.append("publish_at_time", form.publish_at_time.value);
+	payload_form.append("publish_at_time", form_publish_date_object.time);
 	payload_form.append("expire_at_date", form_expire_date_object.parsed_date);
-	payload_form.append("expire_at_time", form.expire_at_time.value);
+	payload_form.append("expire_at_time", form_expire_date_object.time);
 	payload_form.append("publish_at_now", form.publish_at_now.checked);
 	payload_form.append("expire_at_never", form.expire_at_never.checked);
 	payload_form.append("json_images_src", json_images_src);
@@ -300,8 +312,8 @@ function sendFormData() {
 		processData: false,
 		contentType: false,
 		success: function(data) {
-			if(data.news_add_status === "success") {
-				// showContentToolsIcon();
+			if(data.news_add_status === "success" ||
+				data.news_edit_status === "success") {
 				window.location.href = data.route;
 			} else {				
 				$("#errors_list").removeClass("hidden");
@@ -333,17 +345,20 @@ $(document).ready(function() {
 	//get dates onload edit form
 	var original_publish_date = $("#original_publish_date").data("original_date");
 	var original_expire_date = $("#original_expire_date").data("original_date");
+
 	if(original_publish_date) {
 		form_publish_date_object.parsed_date = original_publish_date;
+		form_publish_date_object.time = $("#publish_at_time").find('input').attr("value");
 	} else {
 		form_publish_date_object.parsed_date = "";
 	}
 	if(original_expire_date) {
 		form_expire_date_object.parsed_date = original_expire_date;
+		form_expire_date_object.time = $("#expire_at_time").find('input').attr("value");
 	} else {
 		form_expire_date_object.parsed_date = "";
 	}
-		
+
 });
 
 function isContent() {
@@ -354,7 +369,7 @@ function isContent() {
 		return false;
 	} else {
 		return true;
-	}	
+	}
 }
 
 function getImagesSrc() {	
@@ -372,8 +387,8 @@ function setDateInPreviewContent() {
 	var form = document.getElementById('add_news_article_form');
 	
 	if(form_publish_date_object.parsed_date) {
-		time = form.publish_at_time.value;
-		date = form_publish_date_object.parsed_date + " " + time + ":00";		
+		time = form_publish_date_object.time;
+		date = form_publish_date_object.parsed_date + " " + time;		
 	} else {		
 		time = new Date().toLocaleTimeString('pl-PL', { hour12: false, 
                                              hour: "numeric", 
@@ -381,7 +396,7 @@ function setDateInPreviewContent() {
                                          	 second: "numeric"});
 		date = getCurrentDate() + " " + time;
 	}
-	$(".date").html(date)
+	$(".date").html(date);
 }
 
 function hideContentToolsIcon() {
