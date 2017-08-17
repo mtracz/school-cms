@@ -2,32 +2,42 @@
 
 namespace App\Services;
 
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+class PaginationService {
 
-use App\Models\Settings;
-use App\Models\News;
+	protected $on_each_side = 2;
+	protected $max_page;
+	protected $paginator_array = [];
 
-class PaginationService 
-{
+	public function preparePaginatorArray($news, $news_per_page_value, $page_number) {
 
-	protected $paginator;
+		$news_count = $news->count();
+		$max_page = $this->setMaxPage($news_count, $news_per_page_value);
 
-	public function __construct() {
+		if($page_number > $this->max_page) {
+			$page_number = $this->max_page;
+		}
 
+		$news = $news->forPage($page_number, $news_per_page_value);
+
+		$paginator_array = [];
+		for($i = $page_number - $this->on_each_side; $i < $page_number + $this->on_each_side + 1; $i++) {
+
+			if($i >= 1 && $i <= $this->max_page) {
+				array_push($paginator_array, $i);
+			}
+		}
+
+		return $paginator_array;
 	}
 
-	public function createPagination($items) {
+	protected function setMaxPage($items_count, $items_per_page) {
 		
-		$paginator = $this->makePaginator($items);
-
-		return $paginator;
+		$this->max_page = (int) ceil($items_count/$items_per_page);
 	}
 
-	public function makePaginator($items) {
-
-		$total = count($items);
-		$per_page = Settings::where("name","news_per_page")->first()->value;
+	public function getMaxPage() {
 		
-		return new Paginator($items, $total, $per_page);
+		return $this->max_page;
 	}
+	
 }

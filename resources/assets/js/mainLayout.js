@@ -27,7 +27,6 @@ var viewportGroups = [
 ];
 
 
-
 $(window).resize(function () {
 
 	layoutBuilder.build();

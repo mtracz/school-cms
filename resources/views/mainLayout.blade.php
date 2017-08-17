@@ -9,11 +9,16 @@
 @section("content")
 
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
-@inject("PaginationService", "App\Services\PaginationService")
 
 <div class="ui container">
 	
 	<div class="ui main segment" style="display: none;">
+
+	@if(Auth::user())
+
+	<div class="air_bag"></div>
+
+	@endif
 
 		<div class="ui grid">
 			<div class="row">
@@ -65,29 +70,37 @@
 
 						@if(isset($news))
 
-						@if(isset($news_pinned))
+							@if(isset($news_pinned))
 
-						@include("templates/newsPinned")
+								@include("templates/newsPinned")
 
-						@endif
+							@endif
 
-						@foreach($news as $singleNews)
+							<div class="ui segment">
+								<div class="ui center grid">
+									<div class="pagination_container">
 
-						@include("templates/news")
+									@include("templates/pagination")
 
-						@endforeach
+									</div>
+								</div>
+							</div>
 
-						@php
+							@foreach($news as $singleNews)
+
+								@include("templates/news")
+
+							@endforeach
 							
-							$PaginationService->createPagination($news);
-							
-						@endphp
+							<div class="ui segment">
+								<div class="ui center grid">
+									<div class="pagination_container">
 
-						<div class="pagination">
+									@include("templates/pagination")
 
-						{{-- {{ $news->links() }} --}}
-
-						</div>
+									</div>
+								</div>
+							</div>
 
 						@endif
 
@@ -104,7 +117,6 @@
 						@include("templates/element")
 
 					</div>
-
 
 				</div>
 
