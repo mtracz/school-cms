@@ -1,6 +1,6 @@
-<a class="ui right corner red label editButton" onClick="enableEdit(this)">
+{{-- <a class="ui right corner red label editButton" onClick="enableEdit(this)">
 	<i class="edit icon"></i>
-</a>
+</a> --}}
 
 @section("scripts")
 @parent

@@ -3,7 +3,7 @@
 
 	@if($current_page == $first_page)
 
-	<a class="disabled item" href="?page={{ $first_page }}"><i class="chevron left icon"></i></a>
+	<a class="disabled item"><i class="chevron left icon"></i></a>
 	<div class="disabled item"><i class="caret left icon"></i></div>
 
 	@else
@@ -13,7 +13,7 @@
 	
 	@endif
 
-	@foreach($paginator_array as $page)
+	@foreach($pagination_array as $page)
 
 		@if($page == $current_page)
 
@@ -30,7 +30,7 @@
 	@if($current_page == $last_page)
 
 	<div class="disabled item"><i class="caret right icon"></i></div>
-	<a class="disabled item" href="?page={{ $last_page }}"><i class="chevron right icon"></i></a>
+	<a class="disabled item"><i class="chevron right icon"></i></a>
 
 	@else
 

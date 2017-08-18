@@ -50,44 +50,23 @@ class ViewController extends Controller {
 				->where("is_public","1");
 			})
 			->get();
-		}
+		}		
 
-		$parameters = $request->all();
-		$page_number = 1;
+		$paginationService = new PaginationService($request, $news, $news_per_page_value);
 
-		if(isset($parameters["page"])) {
-			$page_number = (int) $parameters["page"];
-		}
+		$pagination_array = $paginationService->getPaginationArray();
+		$next_page = $paginationService->getNextPage();
+		$prev_page = $paginationService->getPrevPage();
+		$max_page = $paginationService->getMaxPage();
+		$page_number = $paginationService->getPageNumber();
 
-		$on_each_side = 2;
-
-		$paginatorService = new PaginationService();
-
-		$news_count = $news->count();
-		$max_page = (int) ceil($news_count/$news_per_page_value);
-
-		if($page_number > $max_page) {
-			$page_number = $max_page;
-		}
-
-		$news = $news->forPage($page_number, $news_per_page_value);
-
-		$paginator_array = [];
-		for($i = $page_number - $on_each_side; $i < $page_number + $on_each_side + 1; $i++) {
-
-			if($i >= 1 && $i <= $max_page) {
-				array_push($paginator_array, $i);
-			}
-		}
+		$news_set = $news->forPage($page_number, $news_per_page_value);
 		
-		$prev_page = $page_number - 1;
-		$next_page = $page_number + 1;
-	
 		return view("mainLayout")
-			->with("news", $news)
+			->with("news", $news_set)
 			->with("news_pinned", $news_pinned)
 			->with("news_per_page", $news_per_page_value)
-			->with("paginator_array", $paginator_array)
+			->with("pagination_array", $pagination_array)
 			->with("first_page", 1)
 			->with("last_page", $max_page)
 			->with("prev_page", $prev_page)
