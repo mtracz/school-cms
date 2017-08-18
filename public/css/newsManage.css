@@ -1,0 +1,17 @@
+tr {
+	background-color: #A9C7D7;
+}
+
+tr:hover {
+	background-color: #bad3e0;
+}
+
+.preview_toggle_button {
+	background-color: #282A2E !important;
+	color: white !important;
+}
+
+.preview_toggle_button:hover {
+	background-color: white !important;
+	color: #282A2E !important;
+}

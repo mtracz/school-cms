@@ -45,9 +45,9 @@
 			@if($is_news_editing && $editing_news->id === $newsPinned->news_id)
 				<input type="checkbox" name="is_pinned" checked>
 			@endif
-		@else
-			<input type="checkbox" name="is_pinned">			
 		@endif
+		
+		<input type="checkbox" name="is_pinned">			
 		
 		<label>Przypnij</label>
 	</div>

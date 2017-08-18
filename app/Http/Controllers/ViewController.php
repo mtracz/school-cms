@@ -13,17 +13,50 @@ use App\Models\Settings;
 
 use App\Http\Controllers\SettingsController;
 use App\Services\PaginationService;
+use App\Services\NewsManageService;
 
 use Carbon\Carbon;
 
 class ViewController extends Controller {
+
 	public function index(Request $request) {
 
-		$news_pinned = NewsPinned::first();
+		$this->request = $request;
+
+		$news_pinned = $this->getNewsPinned();
+
+		$page_number = 1;
+
+		$news = $this->getNewsFromModel();
+		$news_per_page_value = Settings::where("name","news_per_page")->first()->value;
+		
+		$paginationService = new PaginationService($request, $news, $news_per_page_value);
+
+		$pagination_array = $paginationService->getPaginationArray();
+		$next_page = $paginationService->getNextPage();
+		$prev_page = $paginationService->getPrevPage();
+		$max_page = $paginationService->getMaxPage();
+		$page_number = $paginationService->getPageNumber();
+
+		$news_set = $news->forPage($page_number, $news_per_page_value);
+
+		return view("mainLayout")
+			->with("news", $news_set)
+			->with("news_pinned", $news_pinned)
+			->with("news_per_page", $news_per_page_value)
+			->with("pagination_array", $pagination_array)
+			->with("first_page", 1)
+			->with("last_page", $max_page)
+			->with("prev_page", $prev_page)
+			->with("next_page", $next_page)
+			->with("current_page", $page_number);
+	}
+
+	public function getNewsFromModel() {
 
 		$news;
 
-		$news_per_page_value = Settings::where("name","news_per_page")->first()->value;
+		$news_pinned = $this->getNewsPinned();
 
 		if($news_pinned) {
 
@@ -38,6 +71,7 @@ class ViewController extends Controller {
 				->where("is_public","1");
 			})
 			->get();
+
 		} else {
 
 			$news = News::orderBy("published_at", "desc")
@@ -50,28 +84,14 @@ class ViewController extends Controller {
 				->where("is_public","1");
 			})
 			->get();
-		}		
+		}
 
-		$paginationService = new PaginationService($request, $news, $news_per_page_value);
-
-		$pagination_array = $paginationService->getPaginationArray();
-		$next_page = $paginationService->getNextPage();
-		$prev_page = $paginationService->getPrevPage();
-		$max_page = $paginationService->getMaxPage();
-		$page_number = $paginationService->getPageNumber();
-
-		$news_set = $news->forPage($page_number, $news_per_page_value);
+		return $news;
 		
-		return view("mainLayout")
-			->with("news", $news_set)
-			->with("news_pinned", $news_pinned)
-			->with("news_per_page", $news_per_page_value)
-			->with("pagination_array", $pagination_array)
-			->with("first_page", 1)
-			->with("last_page", $max_page)
-			->with("prev_page", $prev_page)
-			->with("next_page", $next_page)
-			->with("current_page", $page_number);
+	}
+
+	public function getNewsPinned() {
+		return NewsPinned::first();
 	}
 
 	public function test() {
@@ -118,8 +138,14 @@ class ViewController extends Controller {
 		return view("settings")->with("settings", $settings)->with("themes", $themes);
 	}
 
-    public function getNewsManagePage() {
-        return view("newsManage");
-    }
+	public function getNewsManagePage() {
+
+		$news = $this->getNewsFromModel();
+		$news_attributes_count = count($news[0]->getAttributes());
+
+		return view("newsManage")
+			->with("items", $news)
+			->with("columns_count", $news_attributes_count);
+	}
 
 }

@@ -8,7 +8,7 @@
 			<i class="newspaper icon"></i>
 			News
 			<div class="ui menu">
-				<a class="ui item"><i class="list layout icon"></i>Zarządzaj</a>
+				<a class="ui item" href="{{ route("news.manage.get") }}"><i class="list layout icon"></i>Zarządzaj</a>
 				<a class="ui item" href="{{ route("news.add.get") }}" ><i class="plus icon"></i>Dodaj</a>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 		</div>
 
 		<a class="ui item site_sectors"><i class="group object icon"></i>Rozmieszczenie elementów</a>
-		<a class="ui item settings" ><i class="signal icon"></i>Statystyki</a>
+		<a class="ui item settings"><i class="signal icon"></i>Statystyki</a>
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>
 		<div class="right menu">
 			<a class="ui item sign_out" data-route={{route("logout.post")}}><i class="sign out icon"></i>Wyloguj</a>
