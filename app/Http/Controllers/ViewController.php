@@ -139,4 +139,8 @@ class ViewController extends Controller {
 		return view("settings")->with("settings", $settings)->with("themes", $themes);
 	}
 
+    public function getNewsManagePage() {
+        return view("newsManage");
+    }
+
 }

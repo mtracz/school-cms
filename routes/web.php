@@ -61,7 +61,11 @@ Route::get('/news/edit/{id}', ["as" => "news.edit.get", "uses" => "ViewControlle
 Route::post('/news/edit/{id}', ["as" => "news.edit.post", "uses" => "NewsController@editNews"]);
 
 // news delete
-Route::post('/news/delete/{id}', ["as" => "news.delete.post", "uses" => "NewsController@deleteNews"]);
+// //change to post
+Route::get('/news/delete/{id}', ["as" => "news.delete.get", "uses" => "NewsController@deleteNews"]);
+
+// news manage
+Route::get("/news/manage", ["as" => "news.manage.get", "uses" => "ViewController@getNewsManagePage"]);
 
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 
