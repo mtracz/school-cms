@@ -60,6 +60,9 @@ Route::get('/news/edit/{id}', ["as" => "news.edit.get", "uses" => "ViewControlle
 //news edit 
 Route::post('/news/edit/{id}', ["as" => "news.edit.post", "uses" => "NewsController@editNews"]);
 
+// news delete
+Route::post('/news/delete/{id}', ["as" => "news.delete.post", "uses" => "NewsController@deleteNews"]);
+
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 
 // content tools

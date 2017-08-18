@@ -44,6 +44,8 @@ class ManageNewsService {
 	protected $errors = [];
 	protected $is_date_correct = false;
 
+	protected $is_news_deleted = false;
+
 
 	public function setNewsData($request) {
 		$this->newsData["content"] = $request["content"];
@@ -263,6 +265,8 @@ class ManageNewsService {
 
 			LogService::edit("news: " . $this->newsData["title"]);
 
+			$this->created_news_id = $newsObject->id;
+
 			if($this->is_pinned) {
 				$this->savePinnedNews();
 			} else {
@@ -350,4 +354,22 @@ class ManageNewsService {
 	protected function changeImagesPathInContent($old_slug) {
 		$this->newsData["content"] = str_replace("/" . $old_slug . "/", "/" . $this->slug . "/", $this->newsData["content"]);
 	}
+
+	public function deleteNewsFromDB($news_id) {
+		$deletedNews = News::find($news_id);
+
+		if($deletedNews) {
+			$pinnedNews = NewsPinned::where("news_id", $news_id)->first();
+			if($pinnedNews) {
+				$pinnedNews->delete();
+			}
+			$deletedNews->delete();
+			$this->is_news_deleted = true;
+		}
+	}
+
+	public function isDeleted() {
+		return $this->is_news_deleted;
+	}
+
 }

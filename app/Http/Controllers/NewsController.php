@@ -43,4 +43,16 @@ class NewsController extends Controller {
 				"route" => route("index.get")]);
 		}
 	}
+
+	public function deleteNews($id) {
+		$this->NewsService->deleteNewsFromDB($id);
+
+		if(! $this->NewsService->isDeleted()) {
+			Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
+			return redirect()->route("index.get");
+		}
+
+		Session::flash("messages", ["Usunięto newsa" => "success" ]);
+		return redirect()->route("index.get");
+	}
 }
