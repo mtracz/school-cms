@@ -2,7 +2,8 @@
 
 @section("styles")
 	@parent
-	{!!Html::style("css/addNews.css")!!}
+	{!!Html::style("css/formNewsPage.css")!!}
+	{!!Html::style("css/addEditNews.css")!!}
 @endsection
 
 @section("content")
@@ -44,11 +45,9 @@
 		@if($newsPinned)
 			@if($is_news_editing && $editing_news->id === $newsPinned->news_id)
 				<input type="checkbox" name="is_pinned" checked>
-			@endif
-		@else
-			<input type="checkbox" name="is_pinned">			
+			@endif					
 		@endif
-		
+			<input type="checkbox" name="is_pinned">
 		<label>Przypnij</label>
 	</div>
 	<i class="pin icon"></i>
@@ -187,5 +186,6 @@
 
 @section("scripts")
 	@parent
-	{!!Html::script("js/addNews.js")!!}
+	{!!Html::script("js/formNewsPage.js")!!}
+	{!!Html::script("js/addEditNews.js")!!}
 @endsection

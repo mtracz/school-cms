@@ -1,5 +1,4 @@
-//global variable for content tools
-var form_content;
+// add edit news js
 
 var form_publish_date_object = {
 		parsed_date: "",
@@ -12,9 +11,10 @@ var form_expire_date_object = {
 		time: "",
 	};
 
-
-//global for images src in content preview before publish
-var json_images_src;
+$(document).ready(function() {
+	//get dates onload edit form
+	getDateOnLoadForm();
+});
 
 // SEMANTIC CALENDAR
 
@@ -206,83 +206,23 @@ function getCurrentDate() {
 }
 
 
-//hide buttons
-$(document).ready(function() {
-	form_content = "";
-	hideButtons();
-});
-
-function hideButtons() {
-	$("#reedit_button").hide();
-	$("#public_button").hide();
-	$("#cancel_button").show();
-	$("#preview_button").show();
-}
-
-function showButtons() {
-	$("#reedit_button").show();
-	$("#public_button").show();
-	$("#cancel_button").hide();
-	$("#preview_button").hide();
-}
-
-// cancel button
-$("#cancel_button").on("click", function() {
-	window.location.href = "/";
-});
-
 // preview button
 $("#preview_button").on("click", function() {
-	if(! isTitle()) {
-		$("#title_warning").removeClass("hidden");
-		return false;
-	} else {
-		$("#title_warning").addClass("hidden");
-	}
-	if(! isContent()) {
-		$("#content_warning").removeClass("hidden");
-		return false;
-	} else {
-		$("#content_warning").addClass("hidden");
-	}
-	
+	validateTitle();
+	validateContent();	
 	if(!checkDateFields()) {
 		return false;
 	}
-
-	//copy title
-	var title = document.getElementById('add_news_article_form').title.value;
-	$("#preview_header").html(title);
-	//copy content
-	$("#preview_content").html(form_content);
-
 	setDateInPreviewContent();
-	hideContentToolsIcon();
-	showButtons();
-	$("#add_news_article_form").hide();
-	$("#preview_news").show();
-	$("#edit_step").addClass("completed").removeClass("active");
-	$("#preview_step").addClass("active").removeClass("disabled");
-});
-
-// reedit button
-$("#reedit_button").on("click", function() {
-	showContentToolsIcon();
-	hideButtons();
-	$("#add_news_article_form").show();
-	$("#preview_news").hide();
-	$("#edit_step").addClass("active").removeClass("completed");
-	$("#preview_step").addClass("disabled").removeClass("active");
+	setContent();
 });
 
 // public button
 $("#public_button").on("click", function() {
-	getImagesSrc();
-	$("#errors_list").html("").addClass("hidden");
-	sendFormData();
+	sendNewsData();
 });
 
-function sendFormData() {
+function sendNewsData() {
 
 	var payload_form = new FormData();
 	var form = document.getElementById('add_news_article_form');
@@ -302,47 +242,10 @@ function sendFormData() {
 	payload_form.append("expire_at_never", form.expire_at_never.checked);
 	payload_form.append("json_images_src", json_images_src);
 	
-	$.ajax({
-		headers: {
-			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-		},
-		type: "post",
-		url: $("#add_news_article_form").attr("action"),
-		data: payload_form,
-		processData: false,
-		contentType: false,
-		success: function(data) {
-			if(data.news_add_status === "success" ||
-				data.news_edit_status === "success") {
-				window.location.href = data.route;
-			} else {				
-				$("#errors_list").removeClass("hidden");
-				errors = JSON.parse(data);
-				$.each(errors, function(key, value) {
-					$("#errors_list").append("<p><i class='warning icon'></i>" + value + "</p>");
-				});
-			}
-		},
-		error: function() {
-			alert('add news ajax error');
-		}
-	})
-	
+	sendAjaxFormData(payload_form);
 };
 
-function isTitle() {
-	var title = document.getElementById('add_news_article_form').title.value;
-	if(! title) {
-		return false;
-	} else {
-		return true;
-	}
-}
-
-$(document).ready(function() {
-	//paste content to form_content onload edit form
-	form_content = $(".ui.segment.content").html();
-	//get dates onload edit form
+function getDateOnLoadForm() {
 	var original_publish_date = $("#original_publish_date").data("original_date");
 	var original_expire_date = $("#original_expire_date").data("original_date");
 
@@ -358,27 +261,6 @@ $(document).ready(function() {
 	} else {
 		form_expire_date_object.parsed_date = "";
 	}
-
-});
-
-function isContent() {
-	if($(".ui.segment.content").data("editing_mode") === "true") {
-		form_content = $(".ui.segment.content").html();
-	}
-	if(form_content < 1) {
-		return false;
-	} else {
-		return true;
-	}
-}
-
-function getImagesSrc() {	
-	var images_src = [];
-	$("#preview_content").children("img").each(function() {		
-		images_src.push($(this).attr('src')); 
-
-	});
-	json_images_src = JSON.stringify(images_src);
 }
 
 function setDateInPreviewContent() {
@@ -397,12 +279,4 @@ function setDateInPreviewContent() {
 		date = getCurrentDate() + " " + time;
 	}
 	$(".date").html(date);
-}
-
-function hideContentToolsIcon() {
-	$(".ct-widget.ct-ignition").hide();
-}
-
-function showContentToolsIcon() {
-	$(".ct-widget.ct-ignition").show();
 }

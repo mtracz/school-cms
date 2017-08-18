@@ -3,12 +3,12 @@
 <div class="ui centered aligned grid">
 
 
-	<div class="ui column" id="add_news_column">
+	<div class="ui column" id="main_column">
 
 		<div class="ui icon header centered aligned">
 			<i class="write icon"></i>		
 			{{ $news_header or ""}}
-			{{ $article_header or ""}}
+			{{ $page_header or ""}}
 		</div>
 		
 		<div class="ui header right aligned">
@@ -45,7 +45,7 @@
 
 						</div>
 
-						<div class="ui bottom right attached label fifth-color">
+						<div class="ui bottom right attached label fifth-color" id="info_preview">
 
 							<i class="user icon"></i>
 							{{ Auth::user()->name }}
@@ -59,19 +59,20 @@
 			</div>
 		</div>
 
-		<form class="ui form" action="{{$news_route or ""}}{{$article_route or ""}}" method="post" id="add_news_article_form">
+		<form class="ui form" action="{{$news_route or ""}}{{$page_route or ""}}" method="post" id="add_news_article_form">
 			{{ csrf_field() }}
 			<h3>Tytuł</h3>
 			<div class="field">
-				<input name="title" placeholder="Tu wpisz tytuł" value="{{$editing_news->title or ""}}">
+				<input name="title" placeholder="Tu wpisz tytuł" value="{{$editing_news->title or ""}}{{$editing_page->title or ""}}">
 				<div class="ui pointing red basic label hidden" id="title_warning">
 					To pole musi być wypełnione
 				</div>
 			</div>
 
 			<h3>Treść</h3>
-			<div class="ui segment content " data-editable data-name="content" @if(isset($editing_news)) data-editing_mode='true'@endif>
+			<div class="ui segment content " data-editable data-name="content" @if(isset($editing_news) || isset($editing_page)) data-editing_mode='true'@endif>
 				{!!$editing_news->content or ""!!}
+				{!!$editing_page->content or ""!!}
 				{{-- <p class="title-only">title</p>
 				<p class="image-only">image</p>
 				<p class="links-only">links</p>
@@ -84,7 +85,7 @@
 			<br>
 			<div class="field">
 				<div class="ui checkbox">
-					@if(isset($editing_news) && $editing_news->is_public == false)
+					@if(isset($editing_news) && $editing_news->is_public == false || isset($editing_page) && $editing_page->is_public == false)
 						<input type="checkbox" name="is_public">
 					@else
 						<input type="checkbox" name="is_public" checked>

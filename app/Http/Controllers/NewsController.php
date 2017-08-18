@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Session;
-
 use File;
 
 use App\Services\ManageNewsService;
@@ -26,7 +25,7 @@ class NewsController extends Controller {
 			return json_encode($this->NewsService->getErrors());
 		} else {
 			Session::flash("messages", ["Dodano newsa" => "success" ]);
-			return response(["news_add_status" => "success",
+			return response(["add_status" => "success",
 				"route" => route("index.get")]);
 		}
 	}
@@ -39,7 +38,7 @@ class NewsController extends Controller {
 			return json_encode($this->NewsService->getErrors());
 		} else {
 			Session::flash("messages", ["Edytowano newsa" => "success" ]);
-			return response(["news_edit_status" => "success",
+			return response(["edit_status" => "success",
 				"route" => route("index.get")]);
 		}
 	}

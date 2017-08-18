@@ -1,0 +1,13 @@
+/*addeditnews css*/
+
+.is_pinned_info {
+	color: red !important;
+}
+
+#clear_expire {
+	margin-top: 25px;
+}
+
+#clear_publish {
+	margin-top: 25px;
+}

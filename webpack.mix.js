@@ -45,9 +45,17 @@ mix.styles("resources/assets/css/mainLayout.css", "public/css/mainLayout.css");
 mix.scripts("resources/assets/js/mainLayout.js", "public/js/mainLayout.js");
 mix.scripts("resources/assets/js/LayoutBuilder.js", "public/js/LayoutBuilder.js");
 
-//news add
-mix.scripts("resources/assets/js/addNews.js", "public/js/addNews.js");
-mix.styles("resources/assets/css/addNews.css", "public/css/addNews.css");
+//form news page
+mix.scripts("resources/assets/js/formNewsPage.js", "public/js/formNewsPage.js");
+mix.styles("resources/assets/css/formNewsPage.css", "public/css/formNewsPage.css");
+
+//news add edit
+mix.scripts("resources/assets/js/addEditNews.js", "public/js/addEditNews.js");
+mix.styles("resources/assets/css/addEditNews.css", "public/css/addEditNews.css");
+
+//page add edit
+mix.scripts("resources/assets/js/addEditPage.js", "public/js/addEditPage.js");
+mix.styles("resources/assets/css/addEditPage.css", "public/css/addEditPage.css");
 
 //ContentTools
 mix.copy("node_modules/ContentTools/build/content-tools.min.js", "public/js")

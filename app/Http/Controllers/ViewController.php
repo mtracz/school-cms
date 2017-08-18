@@ -10,6 +10,7 @@ use App\Models\News;
 use App\Models\NewsPinned;
 use App\Models\Theme;
 use App\Models\Settings;
+use App\Models\StaticPage;
 
 use App\Http\Controllers\SettingsController;
 use App\Services\PaginationService;
@@ -99,13 +100,13 @@ class ViewController extends Controller {
 
 	public function getNewsFormAdd() {
 		$newsPinnedObject = NewsPinned::first();
-		return view("addNews")->with("newsPinned", $newsPinnedObject);
+		return view("addEditNews")->with("newsPinned", $newsPinnedObject);
 	}
 
 	public function getNewsFormEdit($id) {
 		$editing_news = News::find($id);
 		$newsPinnedObject = NewsPinned::first();
-		return view("addNews")->with("editing_news", $editing_news)
+		return view("addEditNews")->with("editing_news", $editing_news)
 		->with("newsPinned", $newsPinnedObject);
 	}
 
@@ -120,6 +121,15 @@ class ViewController extends Controller {
 
     public function getNewsManagePage() {
         return view("newsManage");
+    }
+
+    public function getPageFormAdd() {
+        return view("addEditPage");
+    }
+
+    public function getPageFormEdit($id) {
+        $editing_page = StaticPage::find($id);
+        return view("addEditPage")->with("editing_page", $editing_page);
     }
 
 }

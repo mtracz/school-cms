@@ -38,7 +38,7 @@ Route::get("/test", function(){
 Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
 
 // PAGES NEWS
-Route::get('/page/{slug}', ["as" => "page.get", "uses" => "StaticPageController@getStaticPage"]);
+// Route::get('/page/{slug}', ["as" => "page.get", "uses" => "StaticPageController@getStaticPage"]);
 
 // MAINTENANCE PAGE
 Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
@@ -49,7 +49,7 @@ Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsCo
 Route::post('/settings/set', ["as" => "settings.set.post", "uses" => "SettingsController@setSettings"]);
 
 Route::post('/password/change', ["as" => "password.change.post", "uses" => "SettingsController@changePassword"]);
-
+//NEWS//
 // news add view
 Route::get('/news/add', ["as" => "news.add.get", "uses" => "ViewController@getNewsFormAdd"]);
 // news add
@@ -66,6 +66,22 @@ Route::get('/news/delete/{id}', ["as" => "news.delete.get", "uses" => "NewsContr
 
 // news manage
 Route::get("/news/manage", ["as" => "news.manage.get", "uses" => "ViewController@getNewsManagePage"]);
+
+//STATIC PAGES//
+//static page add view
+Route::get('/page/add', ["as" => "page.add.get", "uses" => "ViewController@getPageFormAdd"]);
+// page add
+Route::post('/page/add', ["as" => "page.add.post", "uses" => "PageController@addPage"]);
+
+//page edit view
+Route::get('/page/edit/{id}', ["as" => "page.edit.get", "uses" => "ViewController@getPageFormEdit"]);
+//page edit 
+Route::post('/page/edit/{id}', ["as" => "page.edit.post", "uses" => "PageController@editPage"]);
+
+// page delete
+// //change to post
+Route::get('/page/delete/{id}', ["as" => "page.delete.get", "uses" => "PageController@deletePage"]);
+
 
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 

@@ -1,0 +1,30 @@
+/*formNewsPage css*/
+
+#main_column {
+	width: 80vw;
+    padding-top: 60px !important;
+
+	margin-top: 20px;
+	padding: 20px !important;
+	background-color: #DADADA;
+	color: black !important;
+}
+
+#errors_list {
+	text-align: center;
+}
+
+.ui.icon.header {
+	margin-top: 20px !important;
+}
+
+.ui.segment.content {	
+	display:block;
+	overflow:auto;
+	padding: 10px;
+}
+
+#preview_content {
+	display:block;
+	overflow:auto;
+}
