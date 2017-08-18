@@ -13,7 +13,7 @@
 	
 	@endif
 
-	@foreach($paginator_array as $page)
+	@foreach($pagination_array as $page)
 
 		@if($page == $current_page)
 
