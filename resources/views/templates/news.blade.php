@@ -1,6 +1,6 @@
 <div class="column">
 	<div class="row">
-		<div class="news panel">
+		<div class="news panel" style="max-width: 100%;">
 
 			<div class="editTab">
 
@@ -12,20 +12,20 @@
 
 			</div>
 
-			<div class="title fifth-color" data-id={{ $singleNews->id }}>
-				{!! $singleNews->title !!}
+			<div class="title fifth-color" data-id={{ $item->id }}>
+				{!! $item->title !!}
 			</div>
 
-			<div class="content editMe" data-id={{ $singleNews->id }}>
-				{!! $singleNews->content !!}	
+			<div class="content editMe" data-id={{ $item->id }}>
+				{!! $item->content !!}	
 			</div>
 
 			<div class="ui bottom right attached label fifth-color">
 
 				<i class="user icon"></i>
-				{!! $singleNews->admin->name !!}
+				{!! $item->admin->name !!}
 				<i class="calendar icon"></i>
-				{!! $singleNews->published_at !!}
+				{!! $item->published_at !!}
 				
 			</div>
 			

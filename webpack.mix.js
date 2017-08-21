@@ -79,3 +79,12 @@ mix.scripts("resources/assets/js/settings.js", "public/js/settings.js");
 
 //file
 mix.scripts("resources/assets/js/addFile.js", "public/js/addFile.js");
+
+//news manage
+mix.styles("resources/assets/css/newsManage.css", "public/css/newsManage.css");
+mix.scripts("resources/assets/js/newsManage.js", "public/js/newsManage.js");
+
+//tablesort
+mix.scripts("resources/assets/js/tablesort.js", "public/js/tablesort.js");
+
+

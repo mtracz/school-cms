@@ -86,7 +86,7 @@
 								</div>
 							</div>
 
-							@foreach($news as $singleNews)
+							@foreach($news as $item)
 
 								@include("templates/news")
 

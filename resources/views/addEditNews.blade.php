@@ -48,6 +48,7 @@
 			@endif					
 		@endif
 			<input type="checkbox" name="is_pinned">
+
 		<label>Przypnij</label>
 	</div>
 	<i class="pin icon"></i>

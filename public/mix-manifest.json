@@ -32,5 +32,8 @@
     "/js/toastrOptions.js": "/js/toastrOptions.js",
     "/css/settings.css": "/css/settings.css",
     "/js/settings.js": "/js/settings.js",
-    "/js/addFile.js": "/js/addFile.js"
+    "/js/addFile.js": "/js/addFile.js",
+    "/css/newsManage.css": "/css/newsManage.css",
+    "/js/newsManage.js": "/js/newsManage.js",
+    "/js/tablesort.js": "/js/tablesort.js"
 }
