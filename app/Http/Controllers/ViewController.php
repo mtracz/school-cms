@@ -27,7 +27,7 @@ class ViewController extends Controller {
 
 		$page_number = 1;
 
-		$news = $this->getNewsFromModel();
+		$news = $this->getNewsSpecific();
 		$news_per_page_value = Settings::where("name","news_per_page")->first()->value;
 		
 		$paginationService = new PaginationService($request, $news, $news_per_page_value);
@@ -41,18 +41,18 @@ class ViewController extends Controller {
 		$news_set = $news->forPage($page_number, $news_per_page_value);
 
 		return view("mainLayout")
-			->with("news", $news_set)
-			->with("news_pinned", $news_pinned)
-			->with("news_per_page", $news_per_page_value)
-			->with("pagination_array", $pagination_array)
-			->with("first_page", 1)
-			->with("last_page", $max_page)
-			->with("prev_page", $prev_page)
-			->with("next_page", $next_page)
-			->with("current_page", $page_number);
+		->with("news", $news_set)
+		->with("news_pinned", $news_pinned)
+		->with("news_per_page", $news_per_page_value)
+		->with("pagination_array", $pagination_array)
+		->with("first_page", 1)
+		->with("last_page", $max_page)
+		->with("prev_page", $prev_page)
+		->with("next_page", $next_page)
+		->with("current_page", $page_number);
 	}
 
-	public function getNewsFromModel() {
+	public function getNewsSpecific() {
 
 		$news;
 
@@ -116,7 +116,6 @@ class ViewController extends Controller {
 		return view("maintenance");
 	}
 
-
 	public function getNewsFormAdd() {
 		$newsPinnedObject = NewsPinned::first();
 		return view("addNews")->with("newsPinned", $newsPinnedObject);
@@ -138,14 +137,46 @@ class ViewController extends Controller {
 		return view("settings")->with("settings", $settings)->with("themes", $themes);
 	}
 
-	public function getNewsManagePage() {
+	public function getNewsManagePage(Request $request) {
 
-		$news = $this->getNewsFromModel();
+		$news = $this->getNewsAll();
+		$news_pinned_id = $this->getNewsPinned();
+
 		$news_attributes_count = count($news[0]->getAttributes());
 
+		$page_number = 1;
+		$news_per_page = 15;
+
+		$paginationService = new PaginationService($request, $news, $news_per_page);
+
+		$pagination_array = $paginationService->getPaginationArray();
+		$next_page = $paginationService->getNextPage();
+		$prev_page = $paginationService->getPrevPage();
+		$max_page = $paginationService->getMaxPage();
+		$page_number = $paginationService->getPageNumber();
+
+		$news_set = $news->forPage($page_number, $news_per_page);
+
+		/*
+		Added + 1 to columns_count for actions header in newsManage
+		*/
 		return view("newsManage")
-			->with("items", $news)
-			->with("columns_count", $news_attributes_count);
+			->with("pagination_array", $pagination_array)
+			->with("first_page", 1)
+			->with("last_page", $max_page)
+			->with("prev_page", $prev_page)
+			->with("next_page", $next_page)
+			->with("current_page", $page_number)
+			->with("news_pinned", $news_pinned_id)
+			->with("items", $news_set)
+			->with("columns_count", $news_attributes_count + 1);
+	}
+
+	public function getNewsAll() {
+		
+		$news = News::orderBy("published_at", "desc")->get();
+
+		return $news;
 	}
 
 }

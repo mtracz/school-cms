@@ -22,6 +22,15 @@
 			</div>
 		</div>
 
+		<div class="ui simple dropdown item static_pages">
+			<i class="file text icon"></i>
+			Pliki
+			<div class="ui menu">
+				<div class="ui item"><i class="list layout icon"></i>Zarządzaj</div>
+				<div class="ui item"><i class="plus icon"></i>Dodaj</div>
+			</div>
+		</div>
+
 		<a class="ui item site_sectors"><i class="group object icon"></i>Rozmieszczenie elementów</a>
 		<a class="ui item settings"><i class="signal icon"></i>Statystyki</a>
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>

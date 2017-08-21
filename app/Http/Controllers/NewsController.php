@@ -40,7 +40,7 @@ class NewsController extends Controller {
 		} else {
 			Session::flash("messages", ["Edytowano newsa" => "success" ]);
 			return response(["news_edit_status" => "success",
-				"route" => route("index.get")]);
+				"route" => route("news.manage.get")]);
 		}
 	}
 
@@ -53,6 +53,6 @@ class NewsController extends Controller {
 		}
 
 		Session::flash("messages", ["Usunięto newsa" => "success" ]);
-		return redirect()->route("index.get");
+		return redirect()->route("news.manage.get");
 	}
 }

@@ -2,8 +2,8 @@
 
 @section("styles")
 @parent
-{!!Html::style("css/newsManage.css")!!}
 {!!Html::style("css/mainLayout.css")!!}
+{!!Html::style("css/newsManage.css")!!}
 @endsection
 
 @section("content")
@@ -11,17 +11,31 @@
 <div class="ui container">
 
 	<div class="air_bag"></div>
-	<div class="news_manage table">
+	<div class="news_manage">
 
-		@component("templates.table")
+		@component("templates.manage")
+
+		@slot("pagination")
+
+		<div class="pagination_container">
+			@include("templates/pagination")
+		</div>
+
+		@endslot
 
 		@slot("headers")
 
-		@foreach($items[0]->getAttributes() as $key => $value)
-
-		<th>{{ $key }}</th>
-
-		@endforeach
+		<th> ID </th>
+		<th> Tytuł </th>
+		<th> Zawartość </th>
+		<th> Slug </th>
+		<th> Autor </th>
+		<th> Data publikacji </th>
+		<th> Data wygaśnięcia </th>
+		<th> Publiczny </th>
+		<th> Data utworzenia </th>
+		<th> Data ostatniej edycji </th>
+		<th> Akcje </th>
 
 		@endslot
 
@@ -29,11 +43,14 @@
 
 		@foreach($items as $item)
 
-		<tr>
+		<tr @if($item->id == $news_pinned->news_id) class="pinned" @endif >
 			<td>
 				{{ $item->id }}
 			</td>
 			<td>
+			@if($item->id == $news_pinned->news_id)
+				<i class="pin icon"></i>
+			@endif
 				{{ $item->title }}
 			</td>
 			<td>
@@ -45,25 +62,42 @@
 			<td>
 				{{ $item->admin->name }}
 			</td>
-			<td>
+			<td data-publish_at="{{ strtotime($item->published_at) }}">
 				{{ $item->published_at }}
-			<td>
 			</td>
-				{{ $item->expire_at }}
+			<td data-expire_at="{{ strtotime($item->expire_at) }}">
+				@if($item->expire_at)
+					{{ $item->expire_at }}
+				@endif
 			</td>
-			<td>
-				{{ $item->is_public }}
+			<td class="ui center aligned">
+				@if( $item->is_public == 1)
+				<i class="checkmark green icon"></i>
+				@else
+				<i class="remove red icon"></i>
+				@endif
 			</td>
-			<td>
+			<td data-created_at="{{ strtotime($item->created_at) }}">
 				{{ $item->created_at }}
 			</td>
-			<td>
+			<td data-updated_at="{{ strtotime($item->updated_at) }}">
 				{{ $item->updated_at }}
 			</td>
+			<td class="actions">
+
+				<div class="ui edit button" data-url="{{ route('news.edit.get', ['id' => $item->id])}} "> <i class="configure icon"></i> </div>
+				<div class="ui delete button" data-url="{{ route('news.delete.get', ['id' => $item->id])}}"> <i class="trash icon"></i> </div>
+
+			</td>
 		</tr>
-		<tr class="preview_content" data-id={{ $item->id }} style="display: none;">
+		<tr class="preview_content" data-id="{{ $item->id }}" style="display: none;">
 			<td colspan="{{ $columns_count }}">
-					@include("templates/news")
+
+				@if($item->id == $news_pinned->news_id)
+				@include("templates/newsPinned")
+				@else
+				@include("templates/news")
+				@endif
 			</td>
 		</tr>
 
