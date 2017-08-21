@@ -82,7 +82,13 @@ Route::post('/page/edit/{id}', ["as" => "page.edit.post", "uses" => "PageControl
 // //change to post
 Route::get('/page/delete/{id}', ["as" => "page.delete.get", "uses" => "PageController@deletePage"]);
 
+// FILES
+// get view
+Route::get("file", ["as" => "file", "uses" => "FileController@getFileView"]);
+// add
+Route::post("file/add", ["as" => "file.add.post", "uses" => "FileController@addFile"]);
 
+// settings
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 
 // content tools

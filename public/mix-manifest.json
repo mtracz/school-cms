@@ -31,5 +31,6 @@
     "/css/toastr.min.css": "/css/toastr.min.css",
     "/js/toastrOptions.js": "/js/toastrOptions.js",
     "/css/settings.css": "/css/settings.css",
-    "/js/settings.js": "/js/settings.js"
+    "/js/settings.js": "/js/settings.js",
+    "/js/addFile.js": "/js/addFile.js"
 }
