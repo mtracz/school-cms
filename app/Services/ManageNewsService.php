@@ -363,6 +363,7 @@ class ManageNewsService {
 			if($pinnedNews) {
 				$pinnedNews->delete();
 			}
+			LogService::delete("news: " . $deletedNews->title);
 			$deletedNews->delete();
 			$this->is_news_deleted = true;
 		}

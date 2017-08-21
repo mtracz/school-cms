@@ -106,6 +106,11 @@ class ViewController extends Controller {
 	public function getNewsFormEdit($id) {
 		$editing_news = News::find($id);
 		$newsPinnedObject = NewsPinned::first();
+        if(! $editing_news) {
+            Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
+            return redirect()->route("index.get");
+        }
+
 		return view("addEditNews")->with("editing_news", $editing_news)
 		->with("newsPinned", $newsPinnedObject);
 	}
@@ -129,6 +134,10 @@ class ViewController extends Controller {
 
     public function getPageFormEdit($id) {
         $editing_page = StaticPage::find($id);
+        if(! $editing_page) {
+            Session::flash("messages", ["Nie znaleziono strony o podanym ID" => "error" ]);
+            return redirect()->route("index.get");
+        }
         return view("addEditPage")->with("editing_page", $editing_page);
     }
 
