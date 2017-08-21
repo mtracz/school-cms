@@ -2,26 +2,45 @@
 	margin-top: 50px;
 }
 
-.options_container .ui.segment{
+.options_container .ui.segment {
 	width: 100%;
 
 	background-color: #A9C7D7;
 	
-	border: 1px solid #282A2E;
 	border-radius: 0;
 
 	/*font-size: 20px;*/
 }
 
-.options_container .options{
+.options_container {
+	-webkit-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.6);
+	box-shadow: 0px 5px 20px -1px rgba(0,0,0,0.6);
+}
 
+.options_container .options input{
+	width: 100%;
+}
+
+
+.options_container .options .ui.button {
+	background-color: #282A2E;
+	color: white;
+}
+
+.options_container .options .ui.button:hover {
+	background-color: white;
+	color: #282A2E;
 }
 
 .ui.table {
 
 	min-width: 100% !important;
-	border: 1px solid black;
 	border-radius: 0 !important;
+
+	-webkit-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
+	box-shadow: 0px 5px 20px -2px rgba(0,0,0,0.6);
 }
 
 .ui.table tr td {
