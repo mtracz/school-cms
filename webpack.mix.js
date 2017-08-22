@@ -84,7 +84,7 @@ mix.scripts("resources/assets/js/addFile.js", "public/js/addFile.js");
 mix.styles("resources/assets/css/newsManage.css", "public/css/newsManage.css");
 mix.scripts("resources/assets/js/newsManage.js", "public/js/newsManage.js");
 
-//tablesort
-mix.scripts("resources/assets/js/tablesort.js", "public/js/tablesort.js");
+//DateAnalyzer
+mix.scripts("resources/assets/js/DateAnalyzer.js", "public/js/DateAnalyzer.js");
 
 

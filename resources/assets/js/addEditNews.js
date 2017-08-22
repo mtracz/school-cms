@@ -46,7 +46,7 @@ $('#publish_at_date').calendar({
 
 			//set start date for expire calendar
 			form_expire_date_object.start_date = date;
-			$('#expire_at_date').calendar("set startDate", date);
+			$('#expire_at_date').calendar("set endDate", date);
 
 			form_publish_date_object.parsed_date = (year + '-' + month + '-' + day);
 		} else {
