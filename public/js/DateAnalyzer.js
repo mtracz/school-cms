@@ -9,7 +9,14 @@ function DateAnalyzer() {
 
 	];
 
+	this.compareTimestamps = (first, sign, second) => {
 
+		if( first + " " + sign + " " + second ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 // !! JUST A REFERENCE !!

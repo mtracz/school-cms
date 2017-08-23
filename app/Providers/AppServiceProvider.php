@@ -22,10 +22,11 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
 
-        $cookie_text = Settings::where("name","cookie_text")->get()->toArray()[0]["value"];
+        if(Schema::hasTable("settings")) {
+            $cookie_text = Settings::where("name","cookie_text")->get()->toArray()[0]["value"];
 
-
-        View::share("cookie_text", $cookie_text);
+            View::share("cookie_text", $cookie_text);
+        }
     }
 
     /**

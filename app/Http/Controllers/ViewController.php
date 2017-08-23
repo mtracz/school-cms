@@ -125,10 +125,10 @@ class ViewController extends Controller {
 	public function getNewsFormEdit($id) {
 		$editing_news = News::find($id);
 		$newsPinnedObject = NewsPinned::first();
-        if(! $editing_news) {
-            Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
-            return redirect()->route("index.get");
-        }
+		if(! $editing_news) {
+			Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
+			return redirect()->route("index.get");
+		}
 
 		return view("addEditNews")->with("editing_news", $editing_news)
 		->with("newsPinned", $newsPinnedObject);
@@ -145,7 +145,18 @@ class ViewController extends Controller {
 
 	public function getNewsManagePage(Request $request) {
 
+		// dump($request);
+
+		$params = $request->all();
+
 		$news = $this->getNewsAll();
+
+		if(count($params) > 1) {
+
+			$newsManageService = new NewsManageService();
+			$newsManageService->pluckNews($params);
+		}
+
 		$news_pinned_id = $this->getNewsPinned();
 
 		$news_attributes_count = count($news[0]->getAttributes());
@@ -167,15 +178,23 @@ class ViewController extends Controller {
 		Added + 1 to columns_count for actions header in newsManage
 		*/
 		return view("newsManage")
-			->with("pagination_array", $pagination_array)
-			->with("first_page", 1)
-			->with("last_page", $max_page)
-			->with("prev_page", $prev_page)
-			->with("next_page", $next_page)
-			->with("current_page", $page_number)
-			->with("news_pinned", $news_pinned_id)
-			->with("items", $news_set)
-			->with("columns_count", $news_attributes_count + 1);
+		->with("pagination_array", $pagination_array)
+		->with("first_page", 1)
+		->with("last_page", $max_page)
+		->with("prev_page", $prev_page)
+		->with("next_page", $next_page)
+		->with("current_page", $page_number)
+		->with("news_pinned", $news_pinned_id)
+		->with("items", $news_set)
+		->with("columns_count", $news_attributes_count + 1);
+	}
+
+	public function hasPage($params) {
+		if(isset($params["page"])) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getNewsAll() {
@@ -185,17 +204,17 @@ class ViewController extends Controller {
 		return $news;
 	}
 
-    public function getPageFormAdd() {
-        return view("addEditPage");
-    }
+	public function getPageFormAdd() {
+		return view("addEditPage");
+	}
 
-    public function getPageFormEdit($id) {
-        $editing_page = StaticPage::find($id);
-        if(! $editing_page) {
-            Session::flash("messages", ["Nie znaleziono strony o podanym ID" => "error" ]);
-            return redirect()->route("index.get");
-        }
-        return view("addEditPage")->with("editing_page", $editing_page);
-    }
+	public function getPageFormEdit($id) {
+		$editing_page = StaticPage::find($id);
+		if(! $editing_page) {
+			Session::flash("messages", ["Nie znaleziono strony o podanym ID" => "error" ]);
+			return redirect()->route("index.get");
+		}
+		return view("addEditPage")->with("editing_page", $editing_page);
+	}
 
 }

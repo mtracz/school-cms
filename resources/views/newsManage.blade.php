@@ -18,12 +18,12 @@
 		@slot("options")
 
 		<div class="ui segment">
-			<h2><i class="search icon"></i>Opcje zarządzania</h2>
+			<h2><i class="search icon"></i>Filtry</h2>
 
 			<div class="ui divider"></div>
 
 			<div class="ui options segment">
-				<form class="ui form" action="" method="get">
+				<form class="ui form" action="{{ route("news.manage.get") }}" method="get">
 					<div class="three fields">
 						<div class="field">
 							<label>Tytuł</label>
@@ -196,6 +196,7 @@
 
 @section("scripts")
 @parent
+{!!Html::script("js/DateAnalyzer.js")!!}
 {!!Html::script("js/newsManage.js")!!}
 @endsection
 
