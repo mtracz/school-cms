@@ -23,7 +23,7 @@
 	        <div class="field error" id="login_field">
 	          <div class="ui left icon input">
 	            <i class="user icon"></i>
-	            <input type="text" name="login" placeholder="Login" id="login_input">
+	            <input type="text" name="login" placeholder="Login" id="login_input" tabindex="0" autofocus>
 	          </div>
 	        </div>
 	        <div class="field error" id="password_field">
