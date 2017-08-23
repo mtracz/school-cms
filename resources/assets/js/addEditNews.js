@@ -16,6 +16,7 @@ $(document).ready(function() {
 	getDateOnLoadForm();
 });
 
+
 // SEMANTIC CALENDAR
 
 //function for dates format

@@ -20,20 +20,24 @@ class FileController extends Controller {
 	}
 
 	public function addFile(Request $request) {
-		// dd($request->file, $request["file"]);
-		$this->file_service->validateFile($request["file"])->checkSlug()->saveFileOnServer();
-
-		// dd($this->file_service->getErrors());
-
-		if($this->file_service->getErrors()) {
-			return json_encode($this->file_service->getErrors());
+		if ($request->hasFile("file")) {
+			$this->file_service->validateFile($request["file"])->saveFileOnServer();
+			if($this->file_service->isFileSaved()) {
+				return response(["file_status" => "success"]);
+			} else {
+				return json_encode($this->file_service->getErrors());
+			}
 		} else {
-			Session::flash("messages", ["Zapisano plik" => "success" ]);
-			return response(["file_status" => "success"]);
+			return response(["message" => "Nie wybrano pliku."]);
 		}
+
 	}
 
 	public function deleteFile($name) {
 
+	}
+
+	public function getAllFilesFromServer() {
+		return json_encode($this->file_service->getFiles());
 	}
 }

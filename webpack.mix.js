@@ -79,6 +79,7 @@ mix.scripts("resources/assets/js/settings.js", "public/js/settings.js");
 
 //file
 mix.scripts("resources/assets/js/addFile.js", "public/js/addFile.js");
+mix.styles("resources/assets/css/addFile.css", "public/css/addFile.css");
 
 //news manage
 mix.styles("resources/assets/css/newsManage.css", "public/css/newsManage.css");

@@ -1,0 +1,39 @@
+/*add file css*/
+
+.column {
+	border: red solid;
+}
+.field {
+	/*background-color: red !important;*/
+	border: solid;
+}
+
+.ui.file_background_segment {
+	/*padding-left: 100px;*/
+	background-color: white;
+}
+
+.field.choose_file {
+	border: solid !important;
+	margin-right: -10px !important;
+}
+
+.field.file_name {
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+	  
+	/*background-color: #EEE657;*/
+}
+
+.input.alert {
+	color: red;
+}
+#copy_to_clipboard {
+	/*overflow: auto;
+	position: relative;*/
+	/*position: absolute;	*/
+}
+
+.field.dropdown {
+	/*margin-right: -14px !important;*/

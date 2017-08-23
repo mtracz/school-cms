@@ -13,22 +13,21 @@ class FileService {
 									"docx",
 									];
 								
-	protected $isFileValid = false;
-	protected $filePath = "files/";
+	protected $is_file_valid = false;
+	protected $filePathOnServer = "files/";
 	protected $file;
 	protected $file_slug;
 	protected $file_name;
-	protected $is_slug_unique = false;
+	protected $is_slug_unique;
 	protected $errors = [];
 	protected $is_file_saved = false;
 	
 
-	public function validateFile($file) {		
+	public function validateFile($file) {
 		if($file->isValid()) {			
 			if($this->validateFileExtension($file->extension()) && $this->validateFileSize(filesize($file))) {
-				$this->isFileValid = true;
+				$this->is_file_valid = true;
 				$this->file = $file;
-				return $this;
 			}
 		}
 		return $this;
@@ -39,6 +38,7 @@ class FileService {
 		if($file_size <= $allowed_filesize) {
 			return true;
 		}
+		array_push($this->errors, "Za duży plik, max 20 Mb.");
 		return false;
 	}
 
@@ -46,45 +46,66 @@ class FileService {
 		if(in_array($file_extension, $this->allowed_extensions)) {
 			return true;
 		}
+		array_push($this->errors, "Zły plik. Dozwolone: " . join(", ", $this->allowed_extensions));
 		return false;
 	}
 
-	public function checkSlug() {
+	public function saveFileOnServer() {
+		if($this->is_file_valid) {
+			$this->checkSlug();
+			if($this->is_slug_unique) {
+				$this->file->move(public_path($this->filePathOnServer), $this->file_name);
+				$this->is_file_saved = true;
+			} else {
+				array_push($this->errors, "Istnieje już plik o takiej samej nazwie");
+			}
+		}
+		
+	}
+
+	protected function checkSlug() {
 		$filename = pathinfo($this->file->getClientOriginalName(), PATHINFO_FILENAME);
 		$this->file_slug = SlugHelper::createSlug($filename);
 
 		$this->file_name = $this->file_slug . "." . $this->file->extension();
 
-		$images = [];
-		$files = File::files($this->filePath);
+		$files_array = $this->listFilesInDirectory($this->filePathOnServer);
+
+		$is_file_in_array = in_array($this->file_name, $files_array);
+
+		if(!$is_file_in_array) {
+			$this->is_slug_unique = true;
+		} else {
+			$this->is_slug_unique = false;
+		}
+	}
+
+	protected function listFilesInDirectory($dir) : array {
+		$files = File::files($dir);
+		$files_on_server = [];
 
 		foreach ($files as $path) {
 			$basename = pathinfo($path, PATHINFO_BASENAME);
-			array_push($images, $basename);
+			array_push($files_on_server, $basename);
 		}
-
-		$test = in_array($this->file_name, $images);
-		// $klucz = array_search($this->file_name,  $images);
-
-		// dump($test, $klucz);
-		if(!$test) {
-			$this->is_slug_unique = true;
-		}
-		return $this;
-	}
-
-	public function saveFileOnServer() {
-		// $this->checkSlug();
-
-		if($this->is_slug_unique) {
-			$this->file->move(public_path($this->filePath), $this->file_name);
-		} else {
-			array_push($this->errors, "Istnieje już plik o takiej samej nazwie");
-		}
+		return $files_on_server;
 	}
 
 	public function getErrors() {
 		return $this->errors;
 	}
 
+	public function isFileSaved() {
+		return $this->is_file_saved;
+	}
+
+	public function getFiles() : array {
+		$files = $this->listFilesInDirectory($this->filePathOnServer);
+		$files_list = [];		
+		foreach ($files as $value) {
+			$path = route("index.get") . "/files/" . $value;
+			$files_list += [$path => $value];
+		}
+		return $files_list;
+	}
 }

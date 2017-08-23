@@ -105,6 +105,9 @@
 		<div id="errors_list" class="ui error message hidden">			
 		</div>
 		
+		{{-- FILES MANAGE --}}
+		@include("file_test")
+
 		{{-- BUTTONS --}}
 		<div class="ui red left floated circular button" id="cancel_button">
 			<i class="cancel icon"></i>
