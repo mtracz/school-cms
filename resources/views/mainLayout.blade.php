@@ -14,12 +14,6 @@
 	
 	<div class="ui main segment" style="display: none;">
 
-	@if(Auth::user())
-
-	<div class="air_bag"></div>
-
-	@endif
-
 		<div class="ui grid">
 			<div class="row">
 

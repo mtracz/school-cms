@@ -34,9 +34,8 @@
 
 	{{-- Menu for Admin when Logged In --}}
 	@if(Auth::user())
-
-	@include("templates/menuAdmin")
-
+		@include("templates/menuAdmin")
+		<div class="air_bag"></div>
 	@endif
 	{{-- //////////////// --}}
 

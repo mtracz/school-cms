@@ -40,7 +40,7 @@ class ImageService {
 	}
 
 	protected function storeImageInTempDir() {
-		$this->file_complete_path = $this->file->storeAs($this->temp_dir, $this->file_name, "public_images");
+		$this->file_complete_path = $this->file->storeAs($this->temp_dir, $this->file_name, "public");
 	}
 
 	protected function setResponse($image_size, $image_url) {

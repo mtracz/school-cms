@@ -2,7 +2,8 @@
 
 @section("styles")
 	@parent
-	{!!Html::style("css/addNews.css")!!}
+	{!!Html::style("css/formNewsPage.css")!!}
+	{!!Html::style("css/addEditNews.css")!!}
 @endsection
 
 @section("content")
@@ -187,5 +188,6 @@
 
 @section("scripts")
 	@parent
-	{!!Html::script("js/addNews.js")!!}
+	{!!Html::script("js/formNewsPage.js")!!}
+	{!!Html::script("js/addEditNews.js")!!}
 @endsection

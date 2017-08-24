@@ -1,3 +1,6 @@
+
+{!! Html::style("css/menuAdmin.css") !!}
+
 <div class="sixteen wide column menuAdmin ">
 	<div class="ui inverted menu sticky_menu">
 		<div class="left menu">
@@ -22,12 +25,12 @@
 			</div>
 		</div>
 
-		<div class="ui simple dropdown item static_pages">
+		<div class="ui simple dropdown item files">
 			<i class="file text icon"></i>
 			Pliki
 			<div class="ui menu">
 				<div class="ui item"><i class="list layout icon"></i>Zarządzaj</div>
-				<div class="ui item"><i class="plus icon"></i>Dodaj</div>
+				<div class="ui item menuAdmin_add_file"><i class="plus icon"></i>Dodaj</div>
 			</div>
 		</div>
 
@@ -40,30 +43,9 @@
 	</div>
 </div>
 
-<script type="text/javascript">
+{{-- MODAL ADD_FILE --}}
+	@include("addFileModal")
+{{--  --}}
 
-	$(".sign_out").on('click',function() {
-		var route = $(this).data("route");
-		$.ajax({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-			},
-			url: route,
-			type: "POST",
+{!! Html::script("js/menuAdmin.js") !!}	
 
-			success: function(response) {
-				$(".ui.container").dimmer("show");
-				window.location.href = response.route;
-			}			
-		});
-	});
-
-</script>
-
-<style type="text/css">
-	
- .menuAdmin a {
- 	color: white !important;
- }
-
-</style>

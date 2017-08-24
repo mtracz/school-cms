@@ -15,10 +15,6 @@ class FileController extends Controller {
 		$this->file_service = new FileService();
 	}
 
-	public function getFileView() {
-		return view("file_test");
-	}
-
 	public function addFile(Request $request) {
 		if ($request->hasFile("file")) {
 			$this->file_service->validateFile($request["file"])->saveFileOnServer();

@@ -88,4 +88,6 @@ mix.scripts("resources/assets/js/newsManage.js", "public/js/newsManage.js");
 //DateAnalyzer
 mix.scripts("resources/assets/js/DateAnalyzer.js", "public/js/DateAnalyzer.js");
 
-
+//menu admin
+mix.styles("resources/assets/css/menuAdmin.css", "public/css/menuAdmin.css");
+mix.scripts("resources/assets/js/menuAdmin.js", "public/js/menuAdmin.js");

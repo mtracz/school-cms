@@ -61,9 +61,6 @@ layoutBuilder.build();
 $(window).ready( function() {
 
 	$(".ui.main.segment").removeAttr("style");
-
-	$(".ui.dimmer").dimmer("show");
-	$(".ui.dimmer").dimmer("hide");
 });
 
 

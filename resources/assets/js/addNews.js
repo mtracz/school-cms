@@ -16,6 +16,8 @@ var form_expire_date_object = {
 //global for images src in content preview before publish
 var json_images_src;
 
+alert("!@#!@#!#");
+
 // SEMANTIC CALENDAR
 
 //function for dates format
