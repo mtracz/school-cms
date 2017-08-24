@@ -73,7 +73,7 @@
 					<button class="ui submit search left floated button"><i class="search icon"></i>Szukaj</button>
 				</form>
 				<button class="ui add_pages button" data-url="{{ route('page.add.get') }}">
-					<i class="file icon"></i>Dodaj nowy plik
+					<i class="file icon"></i>Dodaj nową stronę
 				</button>
 			</div>
 		</div>

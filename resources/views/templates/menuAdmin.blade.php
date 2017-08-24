@@ -20,7 +20,7 @@
 			<i class="sticky note icon"></i>
 			Strony
 			<div class="ui menu">
-				<div class="ui item"><i class="list layout icon"></i>Zarządzaj</div>
+				<a class="ui item" href="{{ route("pages.manage.get") }}"><i class="list layout icon"></i>Zarządzaj</a>
 				<a class="ui item" href="{{ route("page.add.get") }}"><i class="plus icon"></i>Dodaj</a>
 			</div>
 		</div>
@@ -44,7 +44,9 @@
 </div>
 
 {{-- MODAL ADD_FILE --}}
-	@include("addFileModal")
+
+{{-- PROBLEM TU JEST KURWA MAĆ --}}
+	{{-- @include("addFileModal") --}}
 {{--  --}}
 
 {!! Html::script("js/menuAdmin.js") !!}	
