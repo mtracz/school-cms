@@ -209,8 +209,9 @@ function getCurrentDate() {
 
 // preview button
 $("#preview_button").on("click", function() {
-	validateTitle();
-	validateContent();	
+	if(!validateTitle() || !validateContent()) {
+		return false;
+	}
 	if(!checkDateFields()) {
 		return false;
 	}

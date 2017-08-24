@@ -1,11 +1,7 @@
-{{-- @extends("mainLayout") --}}
 
-@section("styles")
-@parent
-{!! Html::style("css/addFile.css") !!}
-@endsection
 
-<br>
+{!! Html::style("css/addFile.css") !!} 
+
 <div class="ui grid">
 
 	<div class="ui segments file_background_segment">
@@ -18,14 +14,11 @@
 			<div class="two fields">
 				<div class="field">
 
-
 					<div class="ui segment">
 						<h5>Dodaj plik</h5>
 						<div class="ui form">
 							<form action="{{route('file.add.post')}}" method="post" enctype="multipart/form-data" id="upload_file_form">
 								{{csrf_field()}}
-
-
 
 								<div class="fields">
 									<div class="field choose_file">
@@ -84,19 +77,7 @@
 
 
 		</div>
-	</div> 
-
-	<br><br> 
-
-	{{-- </div> --}}
 
 </div>
 
-
-
-@section("scripts")
-@parent
 {!! Html::script("js/addFile.js") !!}
-@endsection
-
-

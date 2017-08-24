@@ -120,6 +120,7 @@ function validateTitle() {
 		return false;
 	} else {
 		$("#title_warning").addClass("hidden");
+		return true;
 	}
 }
 
@@ -129,6 +130,7 @@ function validateContent() {
 		return false;
 	} else {
 		$("#content_warning").addClass("hidden");
+		return true;
 	}
 }
 

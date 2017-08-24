@@ -38,5 +38,8 @@
     "/js/newsManage.js": "/js/newsManage.js",
     "/css/pagesManage.css": "/css/pagesManage.css",
     "/js/pagesManage.js": "/js/pagesManage.js",
-    "/js/DateAnalyzer.js": "/js/DateAnalyzer.js"
+    "/js/DateAnalyzer.js": "/js/DateAnalyzer.js",
+    "/css/menuAdmin.css": "/css/menuAdmin.css",
+    "/js/menuAdmin.js": "/js/menuAdmin.js"
+
 }

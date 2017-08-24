@@ -85,8 +85,6 @@ Route::get('/page/delete/{id}', ["as" => "page.delete.get", "uses" => "PageContr
 Route::get('/pages/manage', ["as" => "pages.manage.get", "uses" => "ViewController@getPagesManagePage"]);
 
 // FILES
-// get view
-Route::get("file", ["as" => "file", "uses" => "FileController@getFileView"]);
 // add
 Route::post("file/add", ["as" => "file.add.post", "uses" => "FileController@addFile"]);
 // get files list
