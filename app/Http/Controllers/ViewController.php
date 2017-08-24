@@ -145,8 +145,6 @@ class ViewController extends Controller {
 
 	public function getNewsManagePage(Request $request) {
 
-		// dump($request);
-
 		$params = $request->all();
 
 		$news = $this->getNewsAll();
@@ -154,7 +152,7 @@ class ViewController extends Controller {
 		if(count($params) > 1) {
 
 			$newsManageService = new NewsManageService();
-			$newsManageService->pluckNews($params);
+			$news = $newsManageService->pluckNews($params);
 		}
 
 		$news_pinned_id = $this->getNewsPinned();
@@ -186,7 +184,14 @@ class ViewController extends Controller {
 		->with("current_page", $page_number)
 		->with("news_pinned", $news_pinned_id)
 		->with("items", $news_set)
-		->with("columns_count", $news_attributes_count + 1);
+		->with("columns_count", $news_attributes_count);
+	}
+
+	public function getPagesManagePage(Request $request) {
+
+		$params = $request->all();
+
+		return view("pagesManage");
 	}
 
 	public function hasPage($params) {

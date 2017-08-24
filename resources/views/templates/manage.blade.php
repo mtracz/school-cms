@@ -3,7 +3,7 @@
 	{{ $options }}
 </div>
 {{ $pagination }}
-<table id="news_table" class="ui fixed collapsing table">
+<table id="manage_table" class="ui fixed collapsing table">
 	<thead>
 		<tr>
 			{{ $headers }}

@@ -11,10 +11,45 @@ $(".preview_toggle_button").on("click", function() {
 });
 
 
-$(".actions .ui.button, .ui.add_news.button").on("click", function() {
+$(".actions .ui.edit.button, .ui.add_news.button").on("click", function() {
 
 	window.location.href = $(this).attr("data-url");
+
 });
+
+$(".ui.delete.button").on("click", function() {
+
+	let data_url = $(this).attr("data-url");
+
+	let parent_row = $(this).parent().parent();
+
+	$(".ui.dimmer").dimmer("show");
+
+	ajaxPostDeleteNewsPromise({
+		headers: {
+			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+		},
+		url: data_url,
+		method: "POST",
+
+	}).then(function() {
+		console.log("ajaxPostDeleteNewsPromise: success");
+
+		$(parent_row).remove();
+		$(".ui.dimmer").dimmer("hide");
+
+	}).catch(function(error) {
+		$(".ui.dimmer").dimmer("hide");
+		console.log("ajaxPostDeleteNewsPromise: failure, error: " + error);
+	});
+});
+
+function ajaxPostDeleteNewsPromise(options){
+	return new Promise(function(resolve, reject) {
+		$.ajax(options).done(resolve).fail(reject);
+	});
+}
+
 
 //function for dates format
 function addZero(i) {
@@ -51,6 +86,45 @@ var form_expire_date_object = {
 	start_date: false,
 	timestamp: "",
 };
+
+$(".ui.search.button").on("click", function(event) {
+
+	$("input[name='publish_at_date_parsed']").val(form_publish_date_object.parsed_date);
+	$("input[name='expire_at_date_parsed']").val(form_expire_date_object.parsed_date);
+	$("input[name='created_at_date_parsed']").val(form_create_date_object.parsed_date);
+	$("input[name='updated_at_date_parsed']").val(form_update_date_object.parsed_date);
+	
+
+	// let data = $(".ui.filters.form").serialize();
+	// let data_url = $(".ui.filters.form").attr("action");
+
+	// console.log(data, data_url);
+
+	// $(".ui.dimmer").dimmer("show");
+
+	// ajaxPostFilterNewsPromise({
+	// 	headers: {
+	// 		"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+	// 	},
+	// 	url: data_url,
+	// 	method: "GET",
+		
+	// }).then(function(data) {
+	// 	$(".ui.dimmer").dimmer("hide");
+	// 	console.log("ajaxPostFilterNewsPromise: success");
+
+	// }).catch(function(error) {
+	// 	$(".ui.dimmer").dimmer("hide");
+	// 	console.log("ajaxPostFilterNewsPromise: failure, error: " + error);
+	// });
+});
+
+function ajaxPostFilterNewsPromise(options){
+	return new Promise(function(resolve, reject) {
+		$.ajax(options).done(resolve).fail(reject);
+	});
+}
+
 
 $("#publish_at_date").calendar({
 	type: 'date',
@@ -140,14 +214,14 @@ $('#created_at_date').calendar({
 		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 	},
 	onShow: function(date) {		
-		if(isInputValueSet("#publish_at_date")) {
-			var end = form_publish_date_object.raw_date;
-			$("#created_at_date").calendar("set endDate", end);
-		}
+		// if(isInputValueSet("#publish_at_date")) {
+		// 	var end = form_publish_date_object.raw_date;
+		// 	$("#created_at_date").calendar("set endDate", end);
+		// }
 	},
 	onChange: function(date) {
 		if(date) {
-			if(date <= form_publish_date_object.raw_date) {
+			// if(date <= form_publish_date_object.raw_date) {
 
 				var year = date.getFullYear();
 				var month = addZero(date.getMonth() + 1);
@@ -155,10 +229,10 @@ $('#created_at_date').calendar({
 
 				form_create_date_object.raw_date = date;
 				form_create_date_object.parsed_date = (year + '-' + month + '-' + day);
-			} else {
-				toastr.error("Data utworzenia musi być mniejsza niż LUB równa dacie publikacji");
-				return false;
-			}
+			// } else {
+			// 	toastr.error("Data utworzenia musi być mniejsza niż LUB równa dacie publikacji");
+			// 	return false;
+			// }
 		} else {
 			form_create_date_object.parsed_date = "";
 		}

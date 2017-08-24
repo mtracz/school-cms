@@ -23,7 +23,7 @@
 			<div class="ui divider"></div>
 
 			<div class="ui options segment">
-				<form class="ui form" action="{{ route("news.manage.get") }}" method="get">
+				<form class="ui filters form" action="{{ route("news.manage.get") }}" method="get">
 					<div class="three fields">
 						<div class="field">
 							<label>Tytuł</label>
@@ -53,6 +53,7 @@
 								<div class="ui input left icon">
 									<i class="calendar icon"></i>
 									<input type="text" placeholder="Data" name="publish_at_date" >
+									<input type="text" name="publish_at_date_parsed"  hidden>
 								</div>						
 							</div>				
 						</div>
@@ -62,6 +63,7 @@
 								<div class="ui input left icon">
 									<i class="calendar icon"></i>
 									<input type="text" placeholder="Data" name="expire_at_date" >
+									<input type="text" name="expire_at_date_parsed"  hidden>
 								</div>						
 							</div>
 						</div>
@@ -71,6 +73,7 @@
 								<div class="ui input left icon">
 									<i class="calendar icon"></i>
 									<input type="text" placeholder="Data" name="created_at_date" >
+									<input type="text" name="created_at_date_parsed"  hidden>
 								</div>						
 							</div>	
 						</div>
@@ -80,12 +83,13 @@
 								<div class="ui input left icon">
 									<i class="calendar icon"></i>
 									<input type="text" placeholder="Data" name="updated_at_date" >
+									<input type="text" name="updated_at_date_parsed"  hidden>
 								</div>						
 							</div>	
 						</div>
 					</div>
 
-					<button class="ui submit left floated button"><i class="search icon"></i>Szukaj</button>
+					<button class="ui submit search left floated button"><i class="search icon"></i>Szukaj</button>
 				</form>
 				<button class="ui add_news button" data-url="{{ route('news.add.get') }}">
 					<i class="newspaper icon"></i>Dodaj nowego newsa
@@ -105,7 +109,6 @@
 
 		@slot("headers")
 
-		<th> ID </th>
 		<th> Tytuł </th>
 		<th> Zawartość </th>
 		<th> Slug </th>
@@ -124,9 +127,6 @@
 		@foreach($items as $item)
 
 		<tr @if($item->id == $news_pinned->news_id) class="pinned" @endif >
-			<td>
-				{{ $item->id }}
-			</td>
 			<td>
 				@if($item->id == $news_pinned->news_id)
 				<i class="pin icon"></i>
@@ -152,7 +152,7 @@
 				<i class="ban icon"></i>
 				@endif
 			</td>
-			<td class="ui center aligned">
+			<td>
 				@if( $item->is_public == 1)
 				<i class="checkmark green icon"></i>
 				@else
@@ -168,6 +168,7 @@
 			<td class="actions">
 
 				<div class="ui edit button" data-url="{{ route('news.edit.get', ['id' => $item->id])}} "> <i class="configure icon"></i> </div>
+
 				<div class="ui delete button" data-url="{{ route('news.delete.get', ['id' => $item->id])}}"> <i class="trash icon"></i> </div>
 
 			</td>

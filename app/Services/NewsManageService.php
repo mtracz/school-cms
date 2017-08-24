@@ -27,7 +27,7 @@ class NewsManageService {
 
 		$news_plucked = News::where($params)->get();
 
-		
+		return $news_plucked;
 	}
 
 	protected function prepareParametersArray($parameters) {
@@ -37,13 +37,15 @@ class NewsManageService {
 		$is_public = $this->isNewsPublic($parameters["status"]);
 		$admin_id = $this->getAdminId($parameters["author"]);
 
+		$query_array = [];
+
 		$query_array = [
-			// ["published_at", "=>", $parameters["publish_at_date"]],
-			// ["expire_at", "<", $parameters["expire_at_date"]],
-			// ["created_at", "=", $parameters["created_at_date"]],
-			// ["updated_at", "=", $parameters["updated_at_date"]],
-			// ["title", "like", $parameters["title"]],
-			// ["created_by", "=", $admin_id],
+			["published_at", ">=", $parameters["publish_at_date_parsed"]],
+			["expire_at", "<", $parameters["expire_at_date_parsed"]],
+			["created_at", "like", $parameters["created_at_date_parsed"] . "%"],
+			["updated_at", "like", $parameters["updated_at_date_parsed"] . "%"],
+			["title", "like", "%" . $parameters["title"] . "%"],
+			["created_by", "=", $admin_id],
 			["is_public", "=", $is_public],
 		];
 
@@ -56,8 +58,6 @@ class NewsManageService {
 				unset($query_array[$i]);
 			}
 		}
-
-		dd($query_array);
 
 		return $query_array;
 	}
@@ -79,7 +79,7 @@ class NewsManageService {
 
 	public function getAdminId($name) {
 
-		$id = Admin::where("name", $name)->get();
+		$id = Admin::where("name", "=", $name)->get();
 
 		if($id->isEmpty()) {
 			return null;

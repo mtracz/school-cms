@@ -62,7 +62,7 @@ Route::post('/news/edit/{id}', ["as" => "news.edit.post", "uses" => "NewsControl
 
 // news delete
 // //change to post
-Route::get('/news/delete/{id}', ["as" => "news.delete.get", "uses" => "NewsController@deleteNews"]);
+Route::post('/news/delete/{id}', ["as" => "news.delete.get", "uses" => "NewsController@deleteNews"]);
 
 // news manage
 Route::get("/news/manage", ["as" => "news.manage.get", "uses" => "ViewController@getNewsManagePage"]);
@@ -81,6 +81,8 @@ Route::post('/page/edit/{id}', ["as" => "page.edit.post", "uses" => "PageControl
 // page delete
 // //change to post
 Route::get('/page/delete/{id}', ["as" => "page.delete.get", "uses" => "PageController@deletePage"]);
+
+Route::get('/pages/manage', ["as" => "pages.manage.get", "uses" => "ViewController@getPagesManagePage"]);
 
 // FILES
 // get view
