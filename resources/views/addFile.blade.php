@@ -78,6 +78,7 @@
 
 		</div>
 
+	</div>
 </div>
 
 {!! Html::script("js/addFile.js") !!}

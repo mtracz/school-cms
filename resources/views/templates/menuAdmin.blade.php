@@ -43,11 +43,10 @@
 	</div>
 </div>
 
-{{-- MODAL ADD_FILE --}}
 
-{{-- PROBLEM TU JEST KURWA MAĆ --}}
-	{{-- @include("addFileModal") --}}
-{{--  --}}
+	{{-- MODAL ADD_FILE --}}
+	@include("addFileModal")
+
 
 {!! Html::script("js/menuAdmin.js") !!}	
 

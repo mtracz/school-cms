@@ -89,6 +89,9 @@ Route::get('/pages/manage', ["as" => "pages.manage.get", "uses" => "ViewControll
 Route::post("file/add", ["as" => "file.add.post", "uses" => "FileController@addFile"]);
 // get files list
 Route::get("file/list", ["as" => "file.list.get", "uses" => "FileController@getAllFilesFromServer"]);
+// delete
+// change to post
+// Route::get("file/delete", ["as" => "file.list.get", "uses" => "FileController@getAllFilesFromServer"]);
 
 
 // settings
