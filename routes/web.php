@@ -37,9 +37,6 @@ Route::get("/test", function(){
 // MAIN PAGE
 Route::get('/', ["as" => "index.get", "uses" => "ViewController@index"]);
 
-// PAGES NEWS
-// Route::get('/page/{slug}', ["as" => "page.get", "uses" => "StaticPageController@getStaticPage"]);
-
 // MAINTENANCE PAGE
 Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@getMaintenancePage"]);
 
@@ -68,6 +65,9 @@ Route::post('/news/delete/{id}', ["as" => "news.delete.get", "uses" => "NewsCont
 Route::get("/news/manage", ["as" => "news.manage.get", "uses" => "ViewController@getNewsManagePage"]);
 
 //STATIC PAGES//
+//show page
+Route::get('/pages/{slug}', ["as" => "pages.show.get", "uses" => "ViewController@getPageView"]);
+
 //static page add view
 Route::get('/page/add', ["as" => "page.add.get", "uses" => "ViewController@getPageFormAdd"]);
 // page add
@@ -82,13 +82,16 @@ Route::post('/page/edit/{id}', ["as" => "page.edit.post", "uses" => "PageControl
 // //change to post
 Route::post('/page/delete/{id}', ["as" => "page.delete.post", "uses" => "PageController@deletePage"]);
 
-Route::get('/pages/manage', ["as" => "pages.manage.get", "uses" => "ViewController@getPagesManagePage"]);
+Route::get('/page/manage', ["as" => "page.manage.get", "uses" => "ViewController@getPagesManagePage"]);
 
 // FILES
 // add
 Route::post("file/add", ["as" => "file.add.post", "uses" => "FileController@addFile"]);
 // get files list
 Route::get("file/list", ["as" => "file.list.get", "uses" => "FileController@getAllFilesFromServer"]);
+// delete
+// change to post
+Route::get("file/delete/{name}", ["as" => "file.delete.get", "uses" => "FileController@deleteFile"]);
 
 
 // settings

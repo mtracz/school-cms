@@ -22,12 +22,12 @@
 
 
 /* DO NOT DELETE THIS DO NOT DELETE THIS DO NOT DELETE THIS */
-.first-color { background-color: #BAC9D8 !important; }
+.first-color { background-color: #BAC9D8 !important; } /* IN USE */
 .second-color { background-color: #EDAB61 !important; color: white !important; }
 .third-color { background-color: #FFEEDB !important;  }
-.fourth-color { background-color: #346C9E !important; color: white !important; }
-.fifth-color { background-color: #406DE4 !important; color: white !important; }
-.coral-color { background:#e14658 !important; color: white !important;} 
+.fourth-color { background-color: #346C9E !important; color: white !important; } 
+.fifth-color { background-color: #406DE4 !important; color: white !important; }  /* IN USE */
+.coral-color { background:#e14658 !important; color: white !important;}  /* IN USE */
 
 .background-color {background-color: white !important; }
 /* DO NOT DELETE THIS DO NOT DELETE THIS DO NOT DELETE THIS */

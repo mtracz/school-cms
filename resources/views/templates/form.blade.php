@@ -1,6 +1,6 @@
 
 
-<div class="ui centered aligned grid">
+<div class="ui centered aligned grid" style='display: none;'>
 
 
 	<div class="ui column" id="main_column">
@@ -104,11 +104,6 @@
 		</form>
 		<div id="errors_list" class="ui error message hidden">			
 		</div>
-
-		<br><br>
-		{{-- FILES MANAGE --}}
-		{{-- @include("addFile") --}}
-		<br><br>
 		
 		{{-- BUTTONS --}}
 		<div class="ui red left floated circular button" id="cancel_button">

@@ -290,4 +290,15 @@ class ViewController extends Controller {
 		return view("addEditPage")->with("editing_page", $editing_page);
 	}
 
+	public function getPageView($slug) {
+		$page = StaticPage::where("slug", $slug)->where("is_public", true)->first();
+
+		if($page) {
+			return view("templates/staticPage")->with("page", $page);
+		} else {
+			Session::flash("messages", ["Nie znaleziono takiej strony" => "error" ]);
+			return redirect()->route("index.get");
+		}
+	}
+
 }
