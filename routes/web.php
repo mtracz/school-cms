@@ -91,7 +91,7 @@ Route::post("file/add", ["as" => "file.add.post", "uses" => "FileController@addF
 Route::get("file/list", ["as" => "file.list.get", "uses" => "FileController@getAllFilesFromServer"]);
 // delete
 // change to post
-// Route::get("file/delete", ["as" => "file.list.get", "uses" => "FileController@getAllFilesFromServer"]);
+Route::get("file/delete/{name}", ["as" => "file.delete.get", "uses" => "FileController@deleteFile"]);
 
 
 // settings

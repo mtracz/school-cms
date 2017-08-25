@@ -30,7 +30,13 @@ class FileController extends Controller {
 	}
 
 	public function deleteFile($name) {
+		$this->file_service->delete($name);
 
+		if($this->file_service->isFileDeleted()) {
+				return response(["message" => "Usunięto plik"]);
+			} else {
+				return response(["message" => "Nie znaleziono pliku."]);
+			}
 	}
 
 	public function getAllFilesFromServer() {

@@ -21,6 +21,7 @@ class FileService {
 	protected $is_slug_unique;
 	protected $errors = [];
 	protected $is_file_saved = false;
+	protected $is_file_deleted = false;
 	
 
 	public function validateFile($file) {
@@ -102,10 +103,23 @@ class FileService {
 	public function getFiles() : array {
 		$files = $this->listFilesInDirectory($this->filePathOnServer);
 		$files_list = [];		
-		foreach ($files as $value) {
-			$path = route("index.get") . "/files/" . $value;
-			$files_list += [$path => $value];
+		foreach ($files as $name) {
+			$path = route("index.get") . "/files/" . $name;
+			$files_list += [$path => $name];
 		}
 		return $files_list;
+	}
+
+	public function delete($name) {
+
+		$path = $this->filePathOnServer . "/" . $name;
+		if(File::exists($path)) {
+			File::delete($path);
+			$this->is_file_deleted = true;
+		}
+	}
+
+	public function isFileDeleted() {
+		return $this->is_file_deleted;
 	}
 }
