@@ -6,7 +6,10 @@ var form_content;
 //global for images src in content preview before publish
 var json_images_src;
 
+
+
 $(window).ready(function() {
+
 	$(".ui.centered.aligned.grid").removeAttr("style");
 });
 
@@ -15,7 +18,11 @@ $(document).ready(function() {
 	hideButtons();
 	//paste content to form_content onload edit form
 	form_content = $(".ui.segment.content").html();
+
+
 });
+
+
 
 // cancel button
 $("#cancel_button").on("click", function() {
@@ -115,7 +122,7 @@ function sendAjaxFormData(payload) {
 		error: function() {
 			alert('add news ajax error');
 		}
-	})
+	});
 }
 
 function validateTitle() {

@@ -77,7 +77,7 @@
 					</div>
 					<button class="ui submit search left floated button"><i class="search icon"></i>Szukaj</button>
 				</form>
-				<button class="ui clear_search button" data-url="{{ route('pages.manage.get') }}">
+				<button class="ui clear_search button" data-url="{{ route('page.manage.get') }}">
 					<i class="close icon"></i>Wyczyść
 				</button>
 				<button class="ui add_pages button" data-url="{{ route('page.add.get') }}">

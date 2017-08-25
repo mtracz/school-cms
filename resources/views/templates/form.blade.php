@@ -2,7 +2,6 @@
 
 <div class="ui centered aligned grid" style='display: none;'>
 
-
 	<div class="ui column" id="main_column">
 
 		<div class="ui icon header centered aligned">
@@ -86,9 +85,9 @@
 			<div class="field">
 				<div class="ui checkbox">
 					@if(isset($editing_news) && $editing_news->is_public == false || isset($editing_page) && $editing_page->is_public == false)
-						<input type="checkbox" name="is_public">
+					<input type="checkbox" name="is_public">
 					@else
-						<input type="checkbox" name="is_public" checked>
+					<input type="checkbox" name="is_public" checked>
 					@endif
 					<label>Publiczny</label>
 				</div>
@@ -97,7 +96,7 @@
 
 			<div class="news_settings">		
 				@if(isset($news_settings))
-					{{$news_settings}}
+				{{$news_settings}}
 				@endif
 			</div>
 
