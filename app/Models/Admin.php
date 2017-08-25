@@ -46,7 +46,7 @@ class Admin extends Authenticatable {
 	}
 
 	public function static_page() {
-		return $this->hasMany(StaticPages::class);
+		return $this->hasMany(StaticPage::class);
 	}
 
 	public function event() {

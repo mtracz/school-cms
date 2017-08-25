@@ -119,7 +119,10 @@
 		<th> Data utworzenia </th>
 		<th> Data ostatniej edycji </th>
 		<th> Akcje </th>
-
+		
+		<div class="counter" style="color: black;">
+			{{ $items_count }} / {{ $items_count_all }}
+		</div>
 		@endslot
 
 		@slot("rows")
