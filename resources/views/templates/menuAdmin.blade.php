@@ -20,7 +20,7 @@
 			<i class="sticky note icon"></i>
 			Strony
 			<div class="ui menu">
-				<a class="ui item" href="{{ route("pages.manage.get") }}"><i class="list layout icon"></i>Zarządzaj</a>
+				<a class="ui item" href="{{ route("page.manage.get") }}"><i class="list layout icon"></i>Zarządzaj</a>
 				<a class="ui item" href="{{ route("page.add.get") }}"><i class="plus icon"></i>Dodaj</a>
 			</div>
 		</div>

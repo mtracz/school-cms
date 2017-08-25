@@ -1,6 +1,6 @@
 
 
-<div class="ui centered aligned grid">
+<div class="ui centered aligned grid" style='display: none;'>
 
 
 	<div class="ui column" id="main_column">

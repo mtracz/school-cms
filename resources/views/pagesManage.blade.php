@@ -23,7 +23,7 @@
 			<div class="ui divider"></div>
 
 			<div class="ui options segment">
-				<form class="ui filters form" action="{{ route("pages.manage.get") }}" method="get">
+				<form class="ui filters form" action="{{ route("page.manage.get") }}" method="get">
 
 					<div class="three fields">
 						<div class="field">
