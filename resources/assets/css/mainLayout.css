@@ -222,3 +222,12 @@
 
 	background-color: #BAC9D8 !important;
 }
+
+.no_search_results {
+
+	text-align: center;
+	font-size: 50px;
+	font-weight: bold;
+
+	padding: 50px;
+}

@@ -52,15 +52,12 @@ function ajaxPostDeleteNewsPromise(options){
 
 
 //function for dates format
-function addZero(i) {
+function addFrontZero(i) {
 	if (i < 10) {
 		i = "0" + i;
 	}
 	return i;
 }
-
-//global variable for content tools
-var form_content;
 
 var form_create_date_object = {
 	raw_date: "",
@@ -93,30 +90,6 @@ $(".ui.search.button").on("click", function(event) {
 	$("input[name='expire_at_date_parsed']").val(form_expire_date_object.parsed_date);
 	$("input[name='created_at_date_parsed']").val(form_create_date_object.parsed_date);
 	$("input[name='updated_at_date_parsed']").val(form_update_date_object.parsed_date);
-	
-
-	// let data = $(".ui.filters.form").serialize();
-	// let data_url = $(".ui.filters.form").attr("action");
-
-	// console.log(data, data_url);
-
-	// $(".ui.dimmer").dimmer("show");
-
-	// ajaxPostFilterNewsPromise({
-	// 	headers: {
-	// 		"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-	// 	},
-	// 	url: data_url,
-	// 	method: "GET",
-		
-	// }).then(function(data) {
-	// 	$(".ui.dimmer").dimmer("hide");
-	// 	console.log("ajaxPostFilterNewsPromise: success");
-
-	// }).catch(function(error) {
-	// 	$(".ui.dimmer").dimmer("hide");
-	// 	console.log("ajaxPostFilterNewsPromise: failure, error: " + error);
-	// });
 });
 
 function ajaxPostFilterNewsPromise(options){
@@ -140,8 +113,8 @@ $("#publish_at_date").calendar({
 		if(date) {
 
 			var year = date.getFullYear();
-			var month = addZero(date.getMonth() + 1);
-			var day = addZero(date.getDate());
+			var month = addFrontZero(date.getMonth() + 1);
+			var day = addFrontZero(date.getDate());
 
 			form_publish_date_object.timestamp = year+month+day;
 
@@ -195,8 +168,8 @@ $('#expire_at_date').calendar({
 	onChange: function(date) {
 		if(date) {
 			var year = date.getFullYear();
-			var month = addZero(date.getMonth() + 1);
-			var day = addZero(date.getDate());
+			var month = addFrontZero(date.getMonth() + 1);
+			var day = addFrontZero(date.getDate());
 			
 			form_expire_date_object.raw_date = date;
 			form_expire_date_object.parsed_date = (year + '-' + month + '-' + day);
@@ -224,8 +197,8 @@ $('#created_at_date').calendar({
 			// if(date <= form_publish_date_object.raw_date) {
 
 				var year = date.getFullYear();
-				var month = addZero(date.getMonth() + 1);
-				var day = addZero(date.getDate());
+				var month = addFrontZero(date.getMonth() + 1);
+				var day = addFrontZero(date.getDate());
 
 				form_create_date_object.raw_date = date;
 				form_create_date_object.parsed_date = (year + '-' + month + '-' + day);
@@ -252,8 +225,8 @@ $('#updated_at_date').calendar({
 	onChange: function(date) {
 		if(date) {
 			var year = date.getFullYear();
-			var month = addZero(date.getMonth() + 1);
-			var day = addZero(date.getDate());
+			var month = addFrontZero(date.getMonth() + 1);
+			var day = addFrontZero(date.getDate());
 			
 			form_update_date_object.raw_date = date;
 			form_update_date_object.parsed_date = (year + '-' + month + '-' + day);

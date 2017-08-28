@@ -1,9 +1,3 @@
-$(window).ready(function() {
-	alert("loaded");
-
-
-});
-
 
 $(".preview_toggle_button").on("click", function() {
 
@@ -16,7 +10,7 @@ $(".preview_toggle_button").on("click", function() {
 });
 
 
-$(".actions .ui.edit.button, .ui.add_page.button").on("click", function() {
+$(".actions .ui.edit.button, .ui.add_page.button, .ui.clear_search.button").on("click", function() {
 
 	window.location.href = $(this).attr("data-url");
 
@@ -68,9 +62,84 @@ var form_update_date_object = {
 };
 
 
+
+$('#created_at_date').calendar({
+	type: 'date',
+	text: {
+		days: ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'],
+		months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+	},
+	onShow: function(date) {		
+		//
+	},
+	onChange: function(date) {
+		if(date) {
+
+			var year = date.getFullYear();
+			var month = addFrontZero(date.getMonth() + 1);
+			var day = addFrontZero(date.getDate());
+
+			form_create_date_object.raw_date = date;
+			form_create_date_object.parsed_date = (year + '-' + month + '-' + day);
+			
+			$("#updated_at_date").calendar("set startDate", form_create_date_object.raw_date);
+
+			if(isInputValueSet("#updated_at_date") && form_create_date_object.raw_date > form_update_date_object.raw_date) {
+				$("#updated_at_date").calendar("focus");
+			}
+
+		} else {
+			form_create_date_object.parsed_date = "";
+		}
+	},
+});
+
+$('#updated_at_date').calendar({
+	type: 'date',
+	text: {
+		days: ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'],
+		months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+	},
+	onShow: function(date) {		
+		//
+	},
+	onChange: function(date) {
+		if(date) {
+			var year = date.getFullYear();
+			var month = addFrontZero(date.getMonth() + 1);
+			var day = addFrontZero(date.getDate());
+			
+			form_update_date_object.raw_date = date;
+			form_update_date_object.parsed_date = (year + '-' + month + '-' + day);
+		} else {
+			form_update_date_object.parsed_date = "";
+		}
+	},
+});
+
+
 $(".ui.search.button").on("click", function(event) {
 	
 	$("input[name='created_at_date_parsed']").val(form_create_date_object.parsed_date);
 	$("input[name='updated_at_date_parsed']").val(form_update_date_object.parsed_date);
 
 });
+
+//function for dates format
+function addFrontZero(i) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	return i;
+}
+
+function isInputValueSet(elem) {
+
+	if($(elem).find("input").val() != "") {
+		return true;
+	} else {
+		return false;
+	}
+}

@@ -15,6 +15,7 @@ use App\Models\StaticPage;
 use App\Http\Controllers\SettingsController;
 use App\Services\PaginationService;
 use App\Services\NewsManageService;
+use App\Services\PagesManageService;
 
 use Carbon\Carbon;
 
@@ -148,6 +149,7 @@ class ViewController extends Controller {
 		$params = $request->all();
 
 		$news = $this->getNewsAll();
+		$items_count_all = count($news);
 
 		if(count($params) > 1) {
 
@@ -172,6 +174,13 @@ class ViewController extends Controller {
 
 		$news_set = $news->forPage($page_number, $news_per_page);
 
+		$items_count = 0;
+
+		for($i = 0; $i < $page_number; $i++) {
+			$items_count += count($news->forPage($i+1, $news_per_page));
+		}
+
+
 		/*
 		Added + 1 to columns_count for actions header in newsManage
 		*/
@@ -184,6 +193,8 @@ class ViewController extends Controller {
 		->with("current_page", $page_number)
 		->with("news_pinned", $news_pinned_id)
 		->with("items", $news_set)
+		->with("items_count", $items_count)
+		->with("items_count_all", $items_count_all)
 		->with("columns_count", $news_attributes_count);
 	}
 
@@ -191,7 +202,57 @@ class ViewController extends Controller {
 
 		$params = $request->all();
 
-		return view("pagesManage");
+		$pages = $this->getPagesAll();
+		$items_count_all = count($pages);
+		$pages_attributes_count = 5;
+
+		if(count($params) > 1) {
+
+			$pagesManageService = new PagesManageService();
+			$pages = $pagesManageService->pluckPages($params);
+		}
+
+		$page_number = 1;
+		$pages_per_page = 15;
+
+		if(count($pages) > 0) {
+			$paginationService = new PaginationService($request, $pages, $pages_per_page);
+
+			$pagination_array = $paginationService->getPaginationArray();
+			$next_page = $paginationService->getNextPage();
+			$prev_page = $paginationService->getPrevPage();
+			$max_page = $paginationService->getMaxPage();
+			$page_number = $paginationService->getPageNumber();
+
+			$pages_set = $pages->forPage($page_number, $pages_per_page);
+
+			$items_count = 0;
+			for($i = 1; $i <= $page_number; $i++) {
+				$items_count += count($pages->forPage($i, $pages_per_page));
+			}
+
+			return view("pagesManage")
+			->with("pagination_array", $pagination_array)
+			->with("first_page", 1)
+			->with("last_page", $max_page)
+			->with("prev_page", $prev_page)
+			->with("next_page", $next_page)
+			->with("current_page", $page_number)
+			->with("items", $pages_set)
+			->with("items_count", $items_count)
+			->with("items_count_all", $items_count_all)
+			->with("columns_count", $pages_attributes_count + 1)
+			->with("params", $params);
+
+		} else {
+
+			$pages_set = $pages;
+
+			return view("pagesManage")
+			->with("items", $pages_set)
+			->with("columns_count", $pages_attributes_count + 1)
+			->with("params", $params);
+		}
 	}
 
 	public function hasPage($params) {
@@ -207,6 +268,13 @@ class ViewController extends Controller {
 		$news = News::orderBy("published_at", "desc")->get();
 
 		return $news;
+	}
+
+	public function getPagesAll() {
+		
+		$pages = StaticPage::orderBy("created_at", "desc")->get();
+
+		return $pages;
 	}
 
 	public function getPageFormAdd() {

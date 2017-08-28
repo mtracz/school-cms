@@ -80,7 +80,7 @@ Route::post('/page/edit/{id}', ["as" => "page.edit.post", "uses" => "PageControl
 
 // page delete
 // //change to post
-Route::get('/page/delete/{id}', ["as" => "page.delete.get", "uses" => "PageController@deletePage"]);
+Route::post('/page/delete/{id}', ["as" => "page.delete.post", "uses" => "PageController@deletePage"]);
 
 Route::get('/page/manage', ["as" => "page.manage.get", "uses" => "ViewController@getPagesManagePage"]);
 
