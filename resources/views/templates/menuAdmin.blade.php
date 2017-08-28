@@ -29,12 +29,12 @@
 			<i class="file text icon"></i>
 			Pliki
 			<div class="ui menu">
-				<div class="ui item"><i class="list layout icon"></i>Zarządzaj</div>
+				<a class="ui item" href="{{ route("file.manage.get") }}"><i class="list layout icon"></i>Zarządzaj</a>
 				<div class="ui item menuAdmin_add_file"><i class="plus icon"></i>Dodaj</div>
 			</div>
 		</div>
 
-		<a class="ui item site_sectors"><i class="group object icon"></i>Rozmieszczenie elementów</a>
+		<a class="ui item site_sectors" href="{{ route("element.manage.get") }}"><i class="group object icon"></i>Zarządzanie elementami</a>
 		<a class="ui item settings"><i class="signal icon"></i>Statystyki</a>
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>
 		<div class="right menu">

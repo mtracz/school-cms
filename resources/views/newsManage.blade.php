@@ -129,9 +129,9 @@
 
 		@foreach($items as $item)
 
-		<tr @if($item->id == $news_pinned->news_id) class="pinned" @endif >
+		<tr @if(isset($news_pinned) && $item->id == $news_pinned->news_id) class="pinned" @endif >
 			<td>
-				@if($item->id == $news_pinned->news_id)
+				@if(isset($news_pinned) && $item->id == $news_pinned->news_id)
 				<i class="pin icon"></i>
 				@endif
 				{{ $item->title }}
@@ -179,7 +179,7 @@
 		<tr class="preview_content" data-id="{{ $item->id }}" style="display: none;">
 			<td colspan="{{ $columns_count }}">
 
-				@if($item->id == $news_pinned->news_id)
+				@if(isset($news_pinned) && $item->id == $news_pinned->news_id)
 				@include("templates/newsPinned")
 				@else
 				@include("templates/news")

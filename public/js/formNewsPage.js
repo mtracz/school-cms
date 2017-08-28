@@ -22,8 +22,6 @@ $(document).ready(function() {
 
 });
 
-
-
 // cancel button
 $("#cancel_button").on("click", function() {
 	window.location.href = "/";

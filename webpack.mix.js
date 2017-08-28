@@ -89,6 +89,15 @@ mix.scripts("resources/assets/js/newsManage.js", "public/js/newsManage.js");
 mix.styles("resources/assets/css/pagesManage.css", "public/css/pagesManage.css");
 mix.scripts("resources/assets/js/pagesManage.js", "public/js/pagesManage.js");
 
+//files manage
+mix.styles("resources/assets/css/filesManage.css", "public/css/filesManage.css");
+mix.scripts("resources/assets/js/filesManage.js", "public/js/filesManage.js");
+
+//elements manage
+mix.styles("resources/assets/css/elementsManage.css", "public/css/elementsManage.css");
+mix.scripts("resources/assets/js/elementsManage.js", "public/js/elementsManage.js");
+
+
 //DateAnalyzer
 mix.scripts("resources/assets/js/DateAnalyzer.js", "public/js/DateAnalyzer.js");
 

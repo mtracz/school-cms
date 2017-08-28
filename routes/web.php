@@ -89,10 +89,14 @@ Route::get('/page/manage', ["as" => "page.manage.get", "uses" => "ViewController
 Route::post("file/add", ["as" => "file.add.post", "uses" => "FileController@addFile"]);
 // get files list
 Route::get("file/list", ["as" => "file.list.get", "uses" => "FileController@getAllFilesFromServer"]);
+// manage
+Route::get("file/manage", ["as" => "file.manage.get", "uses" => "ViewController@getFilesManagePage"]);
 // delete
-// change to post
-Route::get("file/delete/{name}", ["as" => "file.delete.get", "uses" => "FileController@deleteFile"]);
+Route::post("file/delete/{name}", ["as" => "file.delete.post", "uses" => "FileController@deleteFile"]);
 
+// ELEMENTS
+// manage
+Route::get("element/manage", ["as" => "element.manage.get", "uses" => "ViewController@getElementsManagePage"]);
 
 // settings
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
