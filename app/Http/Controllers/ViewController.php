@@ -11,11 +11,16 @@ use App\Models\NewsPinned;
 use App\Models\Theme;
 use App\Models\Settings;
 use App\Models\StaticPage;
+use App\Models\Element;
+use App\Models\SiteSector;
+use App\Models\Menu;
 
 use App\Http\Controllers\SettingsController;
 use App\Services\PaginationService;
 use App\Services\NewsManageService;
 use App\Services\PagesManageService;
+use App\Services\FilesManageService;
+use App\Http\Controllers\FileController;
 
 use Carbon\Carbon;
 
@@ -180,6 +185,7 @@ class ViewController extends Controller {
 			$items_count += count($news->forPage($i+1, $news_per_page));
 		}
 
+		// dd($news_pinned_id);
 
 		/*
 		Added + 1 to columns_count for actions header in newsManage
@@ -203,6 +209,7 @@ class ViewController extends Controller {
 		$params = $request->all();
 
 		$pages = $this->getPagesAll();
+
 		$items_count_all = count($pages);
 		$pages_attributes_count = 5;
 
@@ -255,6 +262,102 @@ class ViewController extends Controller {
 		}
 	}
 
+	public function getFilesManagePage(Request $request) {
+
+		$params = $request->all();
+
+		$fileController = new FileController();
+
+		$files = $fileController->getAllFilesFromServer();
+		$files = json_decode($files);
+
+		$files_array = [];
+		foreach($files as $file) {
+			array_push($files_array, $file);
+		}
+
+		$items_count_all = count($files_array);
+		$files_attributes_count = 1;
+
+		$temp = $params;
+
+		if(isset($temp["page"])) {
+			unset($temp["page"]);
+		}
+
+		if(count($temp) >= 1) {
+
+			$filesManageService = new FilesManageService();
+			$files_array = $filesManageService->pluckFiles($params);
+		}
+
+		$files = collect($files_array);
+
+		$page_number = 1;
+		$files_per_page = 15;
+
+		if(count($files) > 0) {
+			$paginationService = new PaginationService($request, $files, $files_per_page);
+
+			$pagination_array = $paginationService->getPaginationArray();
+			$next_page = $paginationService->getNextPage();
+			$prev_page = $paginationService->getPrevPage();
+			$max_page = $paginationService->getMaxPage();
+			$page_number = $paginationService->getPageNumber();
+
+			$files_set = $files->forPage($page_number, $files_per_page);
+
+			$items_count = 0;
+			for($i = 1; $i <= $page_number; $i++) {
+				$items_count += count($files->forPage($i, $files_per_page));
+			}
+
+			$temp = [];
+
+			foreach($files_set as $file) {
+				array_push($temp, ["name" => $file]);
+			}
+
+			$files_set = $temp;
+
+			return view("filesManage")
+			->with("pagination_array", $pagination_array)
+			->with("first_page", 1)
+			->with("last_page", $max_page)
+			->with("prev_page", $prev_page)
+			->with("next_page", $next_page)
+			->with("current_page", $page_number)
+			->with("items", $files_set)
+			->with("items_count", $items_count)
+			->with("items_count_all", $items_count_all)
+			->with("columns_count", $files_attributes_count + 1)
+			->with("params", $params);
+
+		} else {
+
+			$files_set = $files;
+
+			return view("filesManage")
+			->with("items", $files_set)
+			->with("columns_count", $files_attributes_count + 1)
+			->with("params", $params);
+		}
+	}
+
+	public function getElementsManagePage(Request $request) {
+
+		$site_sectors = $this->getSiteSectorsAll();
+		$elements = $this->getElementsAll();
+
+		dump($elements);
+
+
+
+		return view("elements.elementsManage")
+		->with("site_sectors", $site_sectors)
+		->with("elements", $elements);
+	}
+
 	public function hasPage($params) {
 		if(isset($params["page"])) {
 			return true;
@@ -299,6 +402,20 @@ class ViewController extends Controller {
 			Session::flash("messages", ["Nie znaleziono takiej strony" => "error" ]);
 			return redirect()->route("index.get");
 		}
+	}
+
+	public function getSiteSectorsAll() {
+		
+		$site_sectors = SiteSector::all();
+
+		return $site_sectors;
+	}
+
+	public function getElementsAll() {
+		
+		$elements = Element::orderBy("order", "asc")->get();
+
+		return $elements;
 	}
 
 }
