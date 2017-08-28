@@ -104,4 +104,7 @@ Route::post('/content_tools/rotate_image', ["as" => "content_tools.image.rotate.
 
 Route::post('/content_tools/save_image', ["as" => "content_tools.image.save.post", "uses" => "ContentToolsController@saveImage"]);
 
+// SITE ELEMENTS
+// menu add view
+Route::get("/elements/menu/add", ["as" => "menu.add.get", "uses" => "ViewController@getMenuAddView"]);
 

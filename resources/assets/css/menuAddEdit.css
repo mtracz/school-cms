@@ -1,0 +1,26 @@
+/*menuAddEdit css*/
+
+.fields {
+	/*border: solid;*/
+}
+
+.ui.tabular.menu  {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.ui.tabular.menu a {
+	color: black !important;
+}
+
+.dropdown_name {
+	margin-left: 90px !important;
+}
+
+.circular.ui.icon.button.order {
+	margin-top: +14px;
+}
+
+.ui.icon.buttons.actions {
+	margin-top: +14px;
+}

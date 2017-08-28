@@ -233,4 +233,8 @@ class ViewController extends Controller {
 		}
 	}
 
+	public function getMenuAddView() {
+		return view("elements.addMenu");
+	}
+
 }
