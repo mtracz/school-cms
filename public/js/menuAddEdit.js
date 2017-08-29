@@ -29,8 +29,9 @@ $("#add_tab").on("click", function() {
 
 
 // dyanmic dropdown not work on other tabs
-// $("#is_dropdown_tab_"+ tab).change(function() {
+// $('#is_dropdown_tab_'+ tab).change( function() {
 // 	alert("active tab: " + tab);
+// 	return false;
 // 	if($(this).is(":checked")) {
 // 		$(".add_new_element_tab_"+ tab).show();
 // 		$(".dropdown_name_tab_"+ tab).show();
@@ -39,9 +40,10 @@ $("#add_tab").on("click", function() {
 // 		$(".dropdown_name_tab_"+ tab).hide();
 // 	}
 // });
+// 
 var tab = 1;
 
-$(".ui.toggle.checkbox").on("click", "is_dropdown_tab_"+ tab, function() {
+$(".ui.toggle.checkbox").on("click", "", function() {
 		alert("chuj");
 	});
 

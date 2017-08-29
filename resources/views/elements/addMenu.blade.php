@@ -40,6 +40,7 @@
 				</div>
 			</div>
 			{{-- END TABS --}}
+		
 
 			{{-- TAB CONTENT --}}
 			<div class="tabs_content">		

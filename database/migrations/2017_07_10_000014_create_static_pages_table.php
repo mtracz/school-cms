@@ -22,6 +22,7 @@ class CreateStaticPagesTable extends Migration
             $table->unsignedInteger('created_by');
             $table->tinyInteger('is_public')->default('1');
             $table->timestamps();
+            $table->unsignedInteger('page_reads')->nullable();
 
             $table->index(["created_by"], 'fk_articles_admins1_idx');
 
