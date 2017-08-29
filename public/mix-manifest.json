@@ -44,5 +44,7 @@
     "/js/elementsManage.js": "/js/elementsManage.js",
     "/js/DateAnalyzer.js": "/js/DateAnalyzer.js",
     "/css/menuAdmin.css": "/css/menuAdmin.css",
-    "/js/menuAdmin.js": "/js/menuAdmin.js"
+    "/js/menuAdmin.js": "/js/menuAdmin.js",
+    "/css/menuAddEdit.css": "/css/menuAddEdit.css",
+    "/js/menuAddEdit.js": "/js/menuAddEdit.js"
 }

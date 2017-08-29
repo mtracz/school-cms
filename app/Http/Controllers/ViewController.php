@@ -404,6 +404,11 @@ class ViewController extends Controller {
 		}
 	}
 
+
+	public function getMenuAddView() {
+		return view("elements.addMenu");
+	}
+
 	public function getSiteSectorsAll() {
 		
 		$site_sectors = SiteSector::all();
@@ -416,6 +421,7 @@ class ViewController extends Controller {
 		$elements = Element::orderBy("order", "asc")->get();
 
 		return $elements;
+
 	}
 
 }

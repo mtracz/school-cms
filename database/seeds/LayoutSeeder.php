@@ -60,6 +60,8 @@ class LayoutSeeder extends Seeder
     		["id" => "7", "name" => "info_4", "header" => "info_4", "content" => "<p> asdasdasdadasdasdvSWZS45</p>", "panel_type_id" => 5, "has_header" => 1],
 
     		["id" => "8", "name" => "list_1", "header" => null, "content" => "<a> link </a></br><a> link </a></br><a> link </a></br><a> link </a></br>", "panel_type_id" => 7, "has_header" => 0],
+            ["id" => "9", "name" => "google_map", "header" => null, "content" => '<iframe width="170" height="130" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.pl/maps?hl=pl&amp;lr=&amp;ie=UTF8&amp;q=sp+9+legnica&amp;fb=1&amp;split=1&amp;gl=pl&amp;cid=0,0,7333007650869757657&amp;ei=r_9NSuz9CpLm-Qbl6NCEBA&amp;source=embed&amp;ll=51.203562,16.14134&amp;spn=0.006295,0.006295&amp;output=embed"></iframe>', "panel_type_id" => 6, "has_header" => 0],
+
     	];
 
     	Schema::disableForeignKeyConstraints();

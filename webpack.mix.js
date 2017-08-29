@@ -104,3 +104,7 @@ mix.scripts("resources/assets/js/DateAnalyzer.js", "public/js/DateAnalyzer.js");
 //menu admin
 mix.styles("resources/assets/css/menuAdmin.css", "public/css/menuAdmin.css");
 mix.scripts("resources/assets/js/menuAdmin.js", "public/js/menuAdmin.js");
+
+//elements menu
+mix.styles("resources/assets/css/menuAddEdit.css", "public/css/menuAddEdit.css");
+mix.scripts("resources/assets/js/menuAddEdit.js", "public/js/menuAddEdit.js");

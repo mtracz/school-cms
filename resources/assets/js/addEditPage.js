@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 // preview button
 $("#preview_button").on("click", function() {
-	if(!validateTitle() && !validateContent()) {
+	if(!validateTitle() || !validateContent()) {
 		return false;
 	}
 	setContent();

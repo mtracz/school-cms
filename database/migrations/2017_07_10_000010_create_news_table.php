@@ -25,6 +25,7 @@ class CreateNewsTable extends Migration
             $table->timestamp('expire_at')->nullable();
             $table->tinyInteger('is_public')->default('1');
             $table->timestamps();
+            $table->unsignedInteger('news_reads')->nullable();
 
             $table->index(["created_by"], 'fk_news_admins2_idx');
 
