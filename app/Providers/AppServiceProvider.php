@@ -21,13 +21,17 @@ class AppServiceProvider extends ServiceProvider
         //utf8mb4
         Schema::defaultStringLength(191);
 
-
+        
         if(Schema::hasTable("settings")) {
-            $cookie_text = Settings::where("name","cookie_text")->get()->toArray()[0]["value"];
+            if( Settings::where("name","cookie_text")->first() !== null) {
+               $cookie_text = Settings::where("name","cookie_text")->get()->toArray()[0]["value"];
 
-            View::share("cookie_text", $cookie_text);
-        }
-    }
+               View::share("cookie_text", $cookie_text);
+           }
+       } else {
+            View::share("cookie_text", "Tu są ciastka!");
+       }
+   }
 
     /**
      * Register any application services.

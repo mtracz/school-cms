@@ -16,9 +16,9 @@ class CreateStaticPagesTable extends Migration
         Schema::create('static_pages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('title', 45);
+            $table->string('title');
             $table->text('content');
-            $table->string('slug', 45);
+            $table->string('slug');
             $table->unsignedInteger('created_by');
             $table->tinyInteger('is_public')->default('1');
             $table->timestamps();

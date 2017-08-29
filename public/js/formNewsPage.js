@@ -117,8 +117,8 @@ function sendAjaxFormData(payload) {
 				});
 			}
 		},
-		error: function() {
-			alert('add news ajax error');
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert('add news ajax error: ', errorThrown);
 		}
 	});
 }
