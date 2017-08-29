@@ -9,7 +9,6 @@ var json_images_src;
 
 
 $(window).ready(function() {
-
 	$(".ui.centered.aligned.grid").removeAttr("style");
 });
 
@@ -105,7 +104,7 @@ function sendAjaxFormData(payload) {
 		data: payload,
 		processData: false,
 		contentType: false,
-		success: function(data) {
+		success: function(data) {			
 			if(data.add_status === "success" ||
 				data.edit_status === "success") {
 				window.location.href = data.route;
@@ -117,8 +116,8 @@ function sendAjaxFormData(payload) {
 				});
 			}
 		},
-		error: function() {
-			alert('add news ajax error');
+		error: function(error) {
+			alert('add news ajax error: ' + error);
 		}
 	});
 }

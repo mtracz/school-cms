@@ -37,7 +37,7 @@ class NewsController extends Controller {
 			return json_encode($this->NewsService->getErrors());
 		} else {
 			Session::flash("messages", ["Edytowano newsa" => "success" ]);
-			return response(["news_edit_status" => "success",
+			return response(["edit_status" => "success",
 				"route" => route("news.manage.get")]);
 		}
 	}

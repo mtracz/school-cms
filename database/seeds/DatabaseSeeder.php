@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PanelTypesSeeder::class);
         $this->call(ActionTypesSeeder::class);
         $this->call(LayoutSeeder::class);
-        $this->call(NewsSeeder::class);
+        // $this->call(NewsSeeder::class);
+        $this->call(CopyOldDatabaseSeeder::class);
         
     }
 }

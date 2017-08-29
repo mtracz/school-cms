@@ -119,7 +119,7 @@ class ManagePageService {
 					$imageService->moveUploadedImages($uploaded_images, $this->page_dir);
 				}						
 			} else {
-				$this->deleteOldNewsDir($pageObject->slug, $this->slug, $this->page_dir);
+				$this->deleteOldPageDir($pageObject->slug, $this->slug, $this->page_dir);
 			}
 
 			if($pageObject->slug != $this->slug) {

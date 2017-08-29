@@ -82,6 +82,7 @@ Route::post('/page/edit/{id}', ["as" => "page.edit.post", "uses" => "PageControl
 // //change to post
 Route::post('/page/delete/{id}', ["as" => "page.delete.post", "uses" => "PageController@deletePage"]);
 
+//page manage
 Route::get('/page/manage', ["as" => "page.manage.get", "uses" => "ViewController@getPagesManagePage"]);
 
 // FILES

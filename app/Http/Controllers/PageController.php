@@ -25,7 +25,7 @@ class PageController extends Controller {
 		} else {
 			Session::flash("messages", ["Dodano stronę" => "success" ]);
 			return response(["add_status" => "success",
-				"route" => route("index.get")]);
+				"route" => route("page.manage.get")]);
 		}
 	}
 
@@ -50,6 +50,6 @@ class PageController extends Controller {
 		}
 
 		Session::flash("messages", ["Usunięto stronę" => "success" ]);
-		return redirect()->route("index.get");
+		return redirect()->route("page.manage.get");
 	}
 }
