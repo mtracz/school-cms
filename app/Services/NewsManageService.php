@@ -52,11 +52,23 @@ class NewsManageService {
 		$count = count($query_array);
 
 		for($i = 0; $i < $count; $i++) {
+
+			// if( strpos($query_array[$i][2], "%") ) {
+			$temp_str = str_replace("%", "", $query_array[$i][2]);
+
+			// $temp_str = str_replace("%%", "", $query_array[$i][2]);
+			// }
 			
-			if(! isset($query_array[$i][2])) {
+			if($temp_str == "") {
 
 				unset($query_array[$i]);
 			}
+		}
+
+		$array = [];
+		
+		foreach($query_array as $item) {
+			array_push($array, $item);
 		}
 
 		return $query_array;
