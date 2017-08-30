@@ -61,7 +61,7 @@ class PagesManageService {
 			array_push($array, $item);
 		}
 
-		return $array;
+		return $query_array;
 	}
 
 	public function isStatusPublic($status) {
