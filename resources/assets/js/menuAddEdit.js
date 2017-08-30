@@ -3,19 +3,21 @@
 
 $(".column").removeClass().addClass(window.localStorage.getItem("newsWidth") + " wide column" );
 
-
+var confirm_delete = false;
 
 initTab();
-// $(".dropdown_name").hide();
 
 
 var active_tab = $(".item.active").data("tab");
 
 var all_tabs = 1;
-// var all_elements_in_tab = 1;
 
-// alert(active_tab);
+// track active tab
+$(".tabular.menu").on("click", function() {
+	active_tab = $(".tabular.menu").find(".item.active").data("tab");
+});
 
+// add tab
 $("#add_tab").on("click", function() {
 	all_tabs += 1;
 	var element_id = all_tabs;
@@ -24,39 +26,53 @@ $("#add_tab").on("click", function() {
 	$(".tabs_content").append(prepareTabContent(element_id));
 	
 	initTab();
+	$(".toggle.checkbox").checkbox();
+});
+
+// delete tab
+$(".tabs_content").on("click", ".delete_item_div .button", function() {
+	// alert("delete: " + active_tab);
+	showConfirmDeleteModal();
+
+	// after choose on modal
+	// $('.ui.delete.modal')
+	// .modal({
+	// 	onHidden	: function() {
+	// 		alert(confirm_delete);
+	// 	}
+	// });
 });
 
 
+// DROPDOWN
+$(".tabs_content").on("click", ".toggle.checkbox", function() {
 
-// dyanmic dropdown not work on other tabs
-// $('#is_dropdown_tab_'+ tab).change( function() {
-// 	alert("active tab: " + tab);
-// 	return false;
-// 	if($(this).is(":checked")) {
-// 		$(".add_new_element_tab_"+ tab).show();
-// 		$(".dropdown_name_tab_"+ tab).show();
-// 	} else {
-// 		$(".add_new_element_tab_"+ tab).hide();
-// 		$(".dropdown_name_tab_"+ tab).hide();
-// 	}
-// });
-// 
-var tab = 1;
-
-$(".ui.toggle.checkbox").on("click", "", function() {
-		alert("chuj");
+		if($("#is_dropdown_tab_"+ active_tab).is(":checked")) {
+			$(".add_new_element_tab_"+ active_tab).show();
+			$(".dropdown_name_tab_"+ active_tab).show();
+		} else {
+			$(".add_new_element_tab_"+ active_tab).hide();
+			$(".dropdown_name_tab_"+ active_tab).hide();
+		}
 	});
 
-// track active tab
-$(".tabular.menu").on("click", function() {
-	active_tab = $(".tabular.menu").find(".item.active").data("tab");
-	alert(active_tab);
-	// dropdownListener(active_tab);
-});
 
-function dropdownListener(tab) {
+function showConfirmDeleteModal() {
 
+	$('.ui.delete.modal')
+	.modal({
+		closable  : false,
+		onDeny    : function() {
+			confirm_delete = false;
+		},
+		onApprove : function() {
+			confirm_delete = true;
+		},
+	})
+	.modal('show')
+	;
 }
+
 
 function initTab() {
 	$('.menu .item').tab();
@@ -64,17 +80,24 @@ function initTab() {
 
 function prepareTabContent(tab_id) {
 	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+'>'+					
-					'<div class="fields">'+
+					'<div class="three fields">'+
 						'<div class="inline fields">'+
 							'<div class="ui toggle checkbox">'+
-								'<input type="checkbox" tabindex="0" class="hidden" name="is_dropdown_tab_'+tab_id+'" id="is_dropdown_tab_'+tab_id+'">'+
+								'<input type="checkbox" class="hidden" name="is_dropdown_tab_'+tab_id+'" id="is_dropdown_tab_'+tab_id+'">'+
 								'<label>Dropdown</label>'+
 							'</div>'+
 						'</div>'+
-						'<div class="inline fields dropdown_name dropdown_name_tab_'+tab_id+'" style="display: none;">'+
-							'<label>Nazwa</label >'+
-							'<input type="text" placeholder="Nazwa" name="item_name_tab_'+tab_id+'">'+
+						'<div class="inline fields">'+
+							'<div class="field dropdown_name dropdown_name_tab_'+tab_id+'" style="display: none;">'+
+								'<label>Nazwa</label >'+
+								'<input type="text" placeholder="Nazwa" name="item_name_tab_'+tab_id+'">'+
+							'</div>'+
 						'</div>'+
+						'<div class="inline fields delete_item_div">'+
+								'<div class="ui negative button delete_item_tab_'+tab_id+'">'+
+									'Usuń'+
+								'</div>'+
+							'</div>'+
 					'</div>'+
 					'<div class="fields elements_tab_'+tab_id+'">'+
 						'<div class=" field">'+

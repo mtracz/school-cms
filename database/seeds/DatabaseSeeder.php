@@ -9,9 +9,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        // $this->call(CopyOldDatabaseSeeder::class);
+    public function run() {
 
         $this->call(AccessibilitiesSeeder::class);
         // $this->call(SettingsSeeder::class);

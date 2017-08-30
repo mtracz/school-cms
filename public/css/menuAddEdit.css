@@ -13,14 +13,20 @@
 	color: black !important;
 }
 
-.dropdown_name {
-	margin-left: 90px !important;
-}
-
 .circular.ui.icon.button.order {
 	margin-top: +14px;
 }
 
 .ui.icon.buttons.actions {
 	margin-top: +14px;
+}
+
+.delete_item_div {
+	display: flex ;
+    justify-content: flex-end;
+}
+
+.ui.confirm.delete.modal .content{
+	/*display: flex ;*/
+    justify-content: center;
 }

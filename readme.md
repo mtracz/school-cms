@@ -1,13 +1,24 @@
 # Install
 
-## Install Content Tools
+
+!!
+## SERVER CONFIG for add files
+in
+`php.ini
+uncomment
+`extension=php_fileinfo.dll
+
+
+## Used plugins:
+
+# Content Tools
 `http://getcontenttools.com/getting-started`
 
 # When you download, type in: 
 `npm install --save ContentTools`
 
-## To install a calendar
+# calendar
 `npm install --save semantic-ui-calendar`
 
-## Install toastr
+# toastr
 `npm install --save toastr`

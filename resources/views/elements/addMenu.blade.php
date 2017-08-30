@@ -9,9 +9,9 @@
 @section("content")
 <br><br><br>
 <div class="ui centered aligned grid">
-
+	
 	<div class="column">
-
+		<div class="ui centered header">Dodaj menu</div>
 		<form class="ui form" action="" method="post" id="menu_form">
 			{{ csrf_field() }}
 
@@ -46,19 +46,28 @@
 			<div class="tabs_content">		
 
 				<div class="ui bottom attached tab segment active" data-tab="1">
-					
-					<div class="fields">
+				
+					<div class="three fields">
 						<div class="inline fields">
 							<div class="ui toggle checkbox">
-								<input type="checkbox" tabindex="0" class="hidden" name="is_dropdown_tab_1" id="is_dropdown_tab_1">
+								<input type="checkbox" class="hidden" name="is_dropdown_tab_1" id="is_dropdown_tab_1">
 								<label>Dropdown</label>
 							</div>
 						</div>
-						<div class="inline fields dropdown_name dropdown_name_tab_1" style='display: none;'>
-							<label>Nazwa</label >
-							<input type="text" placeholder="Nazwa" name="item_name_tab_1">
+						<div class="inline fields">
+							<div class="field dropdown_name dropdown_name_tab_1" style='display: none;'>
+								<label>Nazwa</label>
+								<input type="text" placeholder="Nazwa" name="item_name_tab_1">
+							</div>
 						</div>
-					</div>
+							<div class="inline fields delete_item_div">
+								<div class="ui negative button delete_item_tab_1">
+									Usuń
+								</div>
+							</div>
+						</div>
+
+									
 					<div class="fields elements_tab_1">
 						<div class=" field">
 							<div class="circular ui icon button order" disabled>
@@ -80,7 +89,7 @@
 
 								<div class="ui button element_move_up_tab_1_1"><i class="long arrow up icon"></i>
 								</div>
-								<div class="ui button element_move_down_tab_1_1"><i class="long arrow down icon"></i>
+								<div class="ui button element_move_down_tab_1_1" ><i class="long arrow down icon"></i>
 								</div>
 							</div>
 						</div>
@@ -112,6 +121,19 @@
 
 </div>
 
+
+<div class="ui basic mini confirm delete modal">
+	
+	<div class="ui icon centered header">
+		<i class="trash outline icon"></i>
+		Czy na pewno usunąć?
+	</div>
+	<div class="actions">		
+		<div class="ui cancel inverted red left floated button">Nie</div>
+		<div class="ui approve inverted green right floated button">Tak</div>
+	</div>
+	
+</div>
 @endsection
 
 @section("scripts")

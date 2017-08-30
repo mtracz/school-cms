@@ -25,7 +25,7 @@ class NewsController extends Controller {
 		} else {
 			Session::flash("messages", ["Dodano newsa" => "success" ]);
 			return response(["add_status" => "success",
-				"route" => route("index.get")]);
+				"route" => route("news.manage.get")]);
 		}
 	}
 
