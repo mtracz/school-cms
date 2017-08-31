@@ -16,7 +16,7 @@ class NewsController extends Controller {
 		$this->NewsService = new ManageNewsService();
 	}
 
-	public function addNews(Request $request) {
+	public function addNews(Request $request) {		
 		// dd($request->all());
 		$this->NewsService->setNewsData($request->all())->saveNews();
 			

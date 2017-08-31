@@ -27,6 +27,5 @@
 }
 
 .ui.confirm.delete.modal .content{
-	/*display: flex ;*/
     justify-content: center;
 }

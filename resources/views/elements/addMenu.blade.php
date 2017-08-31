@@ -32,7 +32,7 @@
 			{{-- TABS START --}}
 			<div class="ui top attached tabular menu">
 
-				<a class="item active" data-tab="1">1</a>
+				<a class="item active" data-tab="1" data-order="1">1</a>
 
 				<div class="ui icon buttons add_tab_div">
 					<div class="compact ui positive button" id="add_tab"><i class="add circle large icon"></i>
@@ -129,8 +129,8 @@
 		Czy na pewno usunąć?
 	</div>
 	<div class="actions">		
-		<div class="ui cancel inverted red left floated button">Nie</div>
-		<div class="ui approve inverted green right floated button">Tak</div>
+		<div class="ui cancel inverted red left floated button" data-value="deny">Nie</div>
+		<div class="ui approve inverted green right floated button" data-value="approve">Tak</div>
 	</div>
 	
 </div>
