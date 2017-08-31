@@ -349,9 +349,6 @@ class ViewController extends Controller {
 		$site_sectors = $this->getSiteSectorsAll();
 		$elements = $this->getElementsAll();
 
-		dump($elements);
-
-
 
 		return view("elements.elementsManage")
 		->with("site_sectors", $site_sectors)
