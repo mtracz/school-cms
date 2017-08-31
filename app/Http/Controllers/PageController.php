@@ -37,7 +37,7 @@ class PageController extends Controller {
 		} else {
 			Session::flash("messages", ["Edytowano stronę" => "success" ]);
 			return response(["edit_status" => "success",
-				"route" => route("index.get")]);
+				"route" => route("page.manage.get")]);
 		}
 	}
 

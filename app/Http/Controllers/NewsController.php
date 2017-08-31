@@ -16,7 +16,7 @@ class NewsController extends Controller {
 		$this->NewsService = new ManageNewsService();
 	}
 
-	public function addNews(Request $request) {
+	public function addNews(Request $request) {		
 		// dd($request->all());
 		$this->NewsService->setNewsData($request->all())->saveNews();
 			
@@ -25,7 +25,7 @@ class NewsController extends Controller {
 		} else {
 			Session::flash("messages", ["Dodano newsa" => "success" ]);
 			return response(["add_status" => "success",
-				"route" => route("index.get")]);
+				"route" => route("news.manage.get")]);
 		}
 	}
 
