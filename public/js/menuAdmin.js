@@ -1,7 +1,8 @@
 // menu admin js
 
 $(".sign_out").on('click',function() {
-	var route = $(this).data("route");
+	var route = $(this).attr("data-route");
+
 	$.ajax({
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),

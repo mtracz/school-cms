@@ -75,6 +75,7 @@ class LogService {
 		$log_object->actor_id = $this->actor_id;
 		$log_object->action_type_id = $this->action_type_id;
 		$log_object->content = $this->actor_name . "; " . $this->content;
+
 		$log_object->save();
 	}
 

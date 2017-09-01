@@ -47,16 +47,15 @@
 
 		@if(isset($item->panel_id))
 
-		<tr class="order @if($item->is_enabled === 0) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-order={{ $item->order }} >
+		<tr class="order @if($item->is_enabled === 0) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-order={{ $item->order }} data-panel_type_id="{{ $item->panel->panel_type->id }}">
 			<td class="center">
 				<div class="ui buttons">
 					<div class="ui up button"><i class="long arrow up icon"></i></div>
 					<div class="ui down button"><i class="long arrow down icon"></i></div>
 				</div>
 			</td>
-			<td class="center ">
+			<td class="center name">
 				{{ $item->panel->name }}
-
 			</td>
 			<td class="center">
 				{{ $item->panel->panel_type->name }}
@@ -77,14 +76,14 @@
 
 		@else
 
-		<tr class="order @if($item->is_enabled === 0) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" " data-id="{{ $item->id }}" data-order={{ $item->order }}>
+		<tr class="order @if($item->is_enabled === 0) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" " data-id="{{ $item->id }}" data-order={{ $item->order }} >
 			<td class="center">
 				<div class="ui buttons">
 					<div class="ui up button"><i class="long arrow up icon"></i></div>
 					<div class="ui down button"><i class="long arrow down icon"></i></div>
 				</div>
 			</td>
-			<td class="center">
+			<td class="center name">
 				{{ $item->menu->name }}
 			</td>
 			<td class="center">
@@ -117,6 +116,39 @@
 
 	</div>
 </div>
+
+@component("templates.listSelectModal")
+
+	@slot("header")
+		Wybierz sector
+	@endslot
+
+	@slot("selected_item")
+		Zaznaczony element: <span class="selected_item_name"></span>
+	@endslot
+
+	@slot("list")
+
+		@foreach($site_sectors as $sector)
+		<div class="ui fluid list_selector button" data-sector_panel_allowed_ids="{{ $sector->panels_types_allowed_ids }}" data-sector_is_menu_allowed="{{ $sector->is_menu_allowed }}" data-sector_id="{{ $sector->id }}">{{ $sector->name }}</div>
+		@endforeach
+
+	@endslot
+
+	@slot("actions")
+	<div class="ui red cancel inverted button">
+			<i class="remove icon"></i>
+			Anuluj
+		</div>
+		<div class="ui green ok inverted button">
+			<i class="checkmark icon"></i>
+			Przenieś
+		</div>
+	</div>
+	@endslot
+
+@endcomponent
+
 
 @endsection
 

@@ -1,6 +1,7 @@
 $(window).ready(function() {
 
 	renderOrderArrows();
+	$(".ui.longer.modal").modal();
 });
 
 var databaseElementsUpdater = new DatabaseElementsUpdater();
@@ -122,6 +123,55 @@ $(".actions").on("click",".ui.toggle.hide.button", function() {
 		$(parent_tr).attr("data-sector_id"),
 		$(parent_tr).attr("data-order"),
 		$(parent_tr).attr("data-is_enabled"));
+});
+
+$(".actions").on("click",".ui.move.button", function() {
+
+	$(".selected_item_name").text($(this).closest("tr").find("td.name").text());
+
+	var elemID = $(this).closest("tr").attr("data-id");
+	var elemPanelTypeId = $(this).closest("tr").attr("data-panel_type_id");
+
+	$(".ui.longer.modal").modal({
+		onShow: function() {
+			disableSectorFromSelection(elemPanelTypeId);
+		},
+		onApprove: function() {
+			// Add moving element function
+		},
+	}).modal("show");
+});
+
+function disableSectorFromSelection(elemPanelTypeId) {
+	$(".ui.modal .ui.list_selector.button").each(function(index, elem) {
+
+		if( elemPanelTypeId ) {
+			let allowedPanelsIds = $(this).attr("data-sector_panel_allowed_ids");
+			console.log(allowedPanelsIds);
+			if( allowedPanelsIds.search(elemPanelTypeId) == -1 ) {
+				$(this).addClass("disabled");
+			} else {
+				$(this).removeClass("disabled");
+			}
+
+		} else {
+			let isMenuAllowed = $(this).attr("data-sector_is_menu_allowed");
+
+			console.log(isMenuAllowed);
+
+			if( isMenuAllowed == 0 ) {
+				$(this).addClass("disabled");
+			} else {
+				$(this).removeClass("disabled");
+			}
+		}
+		
+	});
+}
+
+$(".ui.longer.modal .content").on("click", ".ui.list_selector.button", function() {
+	$(this).closest(".content").find(".ui.button").removeClass("activated");
+	$(this).addClass("activated");
 });
 
 $(".ui.button.save").on("click", function() {

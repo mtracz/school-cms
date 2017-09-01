@@ -20,11 +20,12 @@ Route::group(["middleware" => ["guest"]], function() {
 // LOGGED USERS
 Route::group(["middleware" => ["auth"]], function() {
 
-	// LOGOUT ADMIN
-	Route::post("/logout", ["as" => "logout.post", "uses" => "Auth\LoginController@logout"]);
+	
 
 });
 
+// LOGOUT ADMIN
+	Route::post("/logout", ["as" => "logout.post", "uses" => "Auth\LoginController@logout"]);
 
 Route::get("/global", ["as" => "global.get", "uses" => "GlobalController@serve"]);
 
