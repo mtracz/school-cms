@@ -74,6 +74,10 @@ $(".tabs_content").on("click", ".toggle.checkbox", function() {
 		}
 	});
 
+// add element in tab
+$(".tabs_content").on("click", ".fourteen.wide.field", function() {
+	alert("xd");
+});
 
 function showConfirmTabDeleteModal(element_to_delete) {
 	$('.ui.delete.modal')
