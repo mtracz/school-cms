@@ -34,4 +34,5 @@ class Log extends Model {
     	// to Disable updated_at
     	return null;
     }
+
 }

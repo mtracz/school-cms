@@ -46,7 +46,7 @@ getSettings({
 function setTheme(data){
 	for(i = 0; i < data.length; i++){
 		if(data[i].name == themeName){
-			console.log(data[i].name + " lol");
+			console.log(data[i].name + " = themeName");
 			theme.name = data[i].name;
 			theme.color_1 = data[i].color_1;
 			theme.color_2 = data[i].color_2;

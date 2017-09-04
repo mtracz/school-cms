@@ -38,7 +38,7 @@
 		<a class="ui item settings"><i class="signal icon"></i>Statystyki</a>
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>
 		<div class="right menu">
-			<a class="ui item sign_out" data-route={{route("logout.post")}}><i class="sign out icon"></i>Wyloguj</a>
+			<a class="ui item sign_out" data-route="{{ route("logout.post") }}"><i class="sign out icon"></i>Wyloguj</a>
 		</div>
 	</div>
 </div>

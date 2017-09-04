@@ -14,13 +14,9 @@ class ElementsUpdateService {
 
 			if($row) {
 
-				dump($row);
-
 				$row->site_sector_id = intval($elem["sector_id"]);
 				$row->order = intval($elem["order"]);
 				$row->is_enabled = intval($elem["is_enabled"]);
-
-				dump($row);
 
 				$row->save();
 			}

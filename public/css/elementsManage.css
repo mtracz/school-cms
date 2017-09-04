@@ -132,6 +132,32 @@
 	border: 1px solid #A9C7D7;
 }
 
+/*.ui.longer.modal {
+	height: 75vh;
+}
+
+.ui.longer.modal .content {
+	height: 70vh;
+
+	overflow-y: auto;
+	overflow-x: none;
+}*/
+
+.ui.longer.modal .content .ui.list_selector.button {
+	background-color: white;
+	border-radius: 0px;
+}
+
+.ui.longer.modal .content .ui.list_selector.button:hover {
+	background-color: white;
+	border-radius: 0px;
+}
+
+.ui.longer.modal .content .ui.list_selector.activated.button {
+	background-color: #71BDAB;
+	border-radius: 0px;
+}
+
 .pagination_container {
 	display: block;
 	/*overflow: auto;*/
