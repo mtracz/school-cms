@@ -45,14 +45,20 @@
 			{{-- TAB CONTENT --}}
 			<div class="tabs_content">		
 
-				<div class="ui bottom attached tab segment active" data-tab="1">
-				
+				<div class="ui bottom attached tab segment active" data-tab="1" data-order="1">
+					<div class="alert dropdown" hidden>
+						<i class="warning circle icon"></i>
+						Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!
+					</div>
 					<div class="three fields">
 						<div class="inline fields">
 							<div class="ui toggle checkbox">
+
 								<input type="checkbox" class="hidden" name="is_dropdown_tab_1" id="is_dropdown_tab_1">
 								<label>Dropdown</label>
+								
 							</div>
+
 						</div>
 						<div class="inline fields">
 							<div class="field dropdown_name dropdown_name_tab_1" style='display: none;'>
@@ -60,36 +66,37 @@
 								<input type="text" placeholder="Nazwa" name="item_name_tab_1">
 							</div>
 						</div>
-							<div class="inline fields delete_item_div">
-								<div class="ui negative button delete_item_tab_1">
-									Usuń
-								</div>
+						<div class="inline fields delete_item_div">
+							<div class="ui negative button delete_item_tab_1">
+								Usuń
 							</div>
 						</div>
+					</div>
 
-									
-					<div class="fields elements_tab_1">
-						<div class=" field">
-							<div class="circular ui icon button order" disabled>
-							<span class="element_order_tab_1_1">1</span>			
+					<div class="elements">
+						<div class="fields elements_tab_1_1" data-order="1">
+							<div class=" field">
+								<div class="circular ui icon button order" disabled>
+								<span class="element_order element_order_tab_1_1">1</span>			
+								</div>
 							</div>
-						</div>
-						<div class="five wide field">
-							<label>Nazwa</label>
-							<input type="text" placeholder="Nazwa elementu" name="element_name_tab_1_1">
-						</div>	
-						<div class="five wide field">
-							<label>URL</label>
-							<input type="text" placeholder="URL elementu" name="element_url_tab_1_1">						
-						</div>
-						<div class="field">
-							<div class="ui icon buttons actions">
-								<div class="ui negative button element_remove_tab_1_1"><i class="remove icon"></i>
-								</div>
+							<div class="five wide field">
+								<label>Nazwa</label>
+								<input type="text" placeholder="Nazwa elementu" name="element_name_tab_1_1">
+							</div>	
+							<div class="five wide field">
+								<label>URL</label>
+								<input type="text" placeholder="URL elementu" name="element_url_tab_1_1">						
+							</div>
+							<div class="field">
+								<div class="ui icon buttons actions" data-element="1">
+									<div class="ui negative button element_remove_tab_1_1"><i class="remove icon"></i>
+									</div>
 
-								<div class="ui button element_move_up_tab_1_1"><i class="long arrow up icon"></i>
-								</div>
-								<div class="ui button element_move_down_tab_1_1" ><i class="long arrow down icon"></i>
+									<div class="ui button element_move_up_tab_1_1"><i class="long arrow up icon"></i>
+									</div>
+									<div class="ui button element_move_down_tab_1_1" ><i class="long arrow down icon"></i>
+									</div>
 								</div>
 							</div>
 						</div>

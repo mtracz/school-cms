@@ -12,6 +12,10 @@ class Element extends Model
 {
     protected $table = "elements";
 
+    protected $fillable = ['site_sector_id', 'order', 'is_enabled'];
+
+    public $timestamps = false;
+
     public function panel() {
     	
     	return $this->belongsTo(Panel::class);

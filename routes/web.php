@@ -99,6 +99,9 @@ Route::post("file/delete/{name}", ["as" => "file.delete.post", "uses" => "FileCo
 // manage
 Route::get("element/manage", ["as" => "element.manage.get", "uses" => "ViewController@getElementsManagePage"]);
 
+// elements edit
+Route::post("element/manage/update", ["as" => "element.update.post", "uses" => "ElementsController@updateElements"]);
+
 // settings
 Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 

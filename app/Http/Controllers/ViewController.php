@@ -125,9 +125,6 @@ class ViewController extends Controller {
 	}
 
 	public function getNewsFormAdd() {
-// debug after change to laravel 5.5.0
-// dd(File::files("images/news/"));
-
 		$newsPinnedObject = NewsPinned::first();
 		return view("addEditNews")->with("newsPinned", $newsPinnedObject);
 	}
@@ -352,9 +349,6 @@ class ViewController extends Controller {
 
 		$site_sectors = $this->getSiteSectorsAll();
 		$elements = $this->getElementsAll();
-
-		dump($elements);
-
 
 
 		return view("elements.elementsManage")

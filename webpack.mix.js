@@ -97,9 +97,7 @@ mix.scripts("resources/assets/js/filesManage.js", "public/js/filesManage.js");
 mix.styles("resources/assets/css/elementsManage.css", "public/css/elementsManage.css");
 mix.scripts("resources/assets/js/elementsManage.js", "public/js/elementsManage.js");
 
-
-//DateAnalyzer
-mix.scripts("resources/assets/js/DateAnalyzer.js", "public/js/DateAnalyzer.js");
+mix.scripts("resources/assets/js/DatabaseElementsUpdater.js", "public/js/DatabaseElementsUpdater.js");
 
 //menu admin
 mix.styles("resources/assets/css/menuAdmin.css", "public/css/menuAdmin.css");
