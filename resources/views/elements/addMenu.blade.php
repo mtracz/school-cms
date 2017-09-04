@@ -12,7 +12,7 @@
 	
 	<div class="column">
 		<div class="ui centered header">Dodaj menu</div>
-		<form class="ui form" action="" method="post" id="menu_form">
+		<form class="ui form" action="{{route("menu.add.post")}}" method="post" id="menu_form">
 			{{ csrf_field() }}
 
 			<div class="six wide field focus">
@@ -21,11 +21,11 @@
 			</div>		
 
 			<h5>Dodaj element</h5>
-			<div class="field">
+			<div class="field tab arrows">
 				<div>Kolejność</div>
 				<div class="ui icon buttons">
-					<div class="ui button"><i class="long left arrow icon"></i></div>
-					<div class="ui button"><i class="long right arrow icon"></i></div>
+					<div class="ui left button "><i class="long left arrow icon"></i></div>
+					<div class="ui right button "><i class="long right arrow icon"></i></div>
 				</div>
 			</div>
 
@@ -90,12 +90,12 @@
 							</div>
 							<div class="field">
 								<div class="ui icon buttons actions" data-element="1">
-									<div class="ui negative button element_remove_tab_1_1"><i class="remove icon"></i>
+									<div class="ui negative button element_delete element_remove_tab_1_1"><i class="remove icon"></i>
 									</div>
 
-									<div class="ui button element_move_up_tab_1_1"><i class="long arrow up icon"></i>
+									<div class="ui up button element_move_up_tab_1_1 disabled"><i class="long arrow up icon"></i>
 									</div>
-									<div class="ui button element_move_down_tab_1_1" ><i class="long arrow down icon"></i>
+									<div class="ui down button element_move_down_tab_1_1 disabled" ><i class="long arrow down icon"></i>
 									</div>
 								</div>
 							</div>
@@ -117,7 +117,7 @@
 				<i class="cancel icon"></i>
 				Anuluj
 			</div>
-			<div class="ui blue right floated circular button" >
+			<div class="ui blue right floated circular button save menu" >
 				<i class="save icon"></i>
 				Zapisz
 			</div>

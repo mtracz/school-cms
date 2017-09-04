@@ -30,7 +30,8 @@ $(document).ready(function() {
 	countTabs();
 	countElementsInEachTab();
 	initTab();
-	active_tab = $(".item.active").data("tab");
+	active_tab = $(".item.active").attr("data-order");
+	renderTabOrderArrows();
 });
 
 
@@ -59,6 +60,7 @@ $(".tabular.menu").on("click", function() {
 	console.log("all tabs: " + menuObject.tabs);
 	console.log("active tab: " + active_tab);
 	console.log("elements for active menu: " + menuObject.elements[active_tab - 1]);
+	renderTabOrderArrows();
 });
 
 // add tab
@@ -90,6 +92,7 @@ $("#add_tab").on("click", function() {
 	initTab();
 	$(".toggle.checkbox").checkbox();
 	countElementsInEachTab();
+	;
 });
 
 // delete tab
@@ -102,7 +105,7 @@ $(".tabs_content").on("click", ".delete_item_div .button", function() {
 		alert("Nie mozna usunąć 1szego elementu");
 		return false;
 	}
-	showConfirmTabDeleteModal(tab);	
+	showConfirmTabDeleteModal(tab);
 });
 
 
@@ -136,7 +139,7 @@ $(".tabs_content").on("click", ".fourteen.wide.field", function() {
 });
 
 // delete element in tab
-$(".tabs_content").on("click", ".ui.negative.button", function() {
+$(".tabs_content").on("click", ".actions .element_delete", function() {
 	console.log("all el before del: " + menuObject.elements[active_tab - 1]);
 	var element_num = $(this).parent().attr("data-element");
 	if(menuObject.elements[active_tab - 1] < 2) {
@@ -155,6 +158,132 @@ $(".tabs_content").on("click", ".ui.negative.button", function() {
 	// var elements = $(".tab.segment.active .elements .fields").length;
 	// $(".elements").append(prepareElementInContent(active_tab, elements));
 });
+
+
+// LAST
+function renderElementsOrderArrows() {
+    var elements_arrows = $(".tabs_content .elements .actions").find(".ui.icon.buttons");
+    	console.log("tupe of active tab: "+typeof active_tab);
+    	if(typeof active_tab != 'undefined') {
+    	console.log("active_tab render arrows: "+active_tab);
+    		if(active_tab == 1) {
+    			$(elements_arrows).find(".ui.up.button").addClass("disabled");
+    		} else {
+    			$(elements_arrows).find(".ui.up.button").removeClass("disabled");
+    		}
+
+    		if(active_tab == menuObject.tabs) {
+    			$(elements_arrows).find(".ui.down.button").addClass("disabled");
+    		} else {
+    			$(elements_arrows).find(".ui.down.button").removeClass("disabled");
+    		}
+    	} else {
+    		console.log("is undefined");
+    		$(elements_arrows).find(".ui.up.button").addClass("disabled");
+   			$(elements_arrows).find(".ui.down.button").addClass("disabled");
+    	}       
+}
+
+function renderTabOrderArrows() {
+    var tab_menu_arrows = $(".tab.arrows").find(".ui.icon.buttons");
+    	console.log("tupe of active tab: "+typeof active_tab);
+    	if(typeof active_tab != 'undefined') {
+    	console.log("active_tab render arrows: "+active_tab);
+    		if(active_tab == 1) {
+    			$(tab_menu_arrows).find(".ui.left.button").addClass("disabled");
+    		} else {
+    			$(tab_menu_arrows).find(".ui.left.button").removeClass("disabled");
+    		}
+
+    		if(active_tab == menuObject.tabs) {
+    			$(tab_menu_arrows).find(".ui.right.button").addClass("disabled");
+    		} else {
+    			$(tab_menu_arrows).find(".ui.right.button").removeClass("disabled");
+    		}
+    	} else {
+    		console.log("is undefined");
+    		$(tab_menu_arrows).find(".ui.left.button").addClass("disabled");
+   			$(tab_menu_arrows).find(".ui.right.button").addClass("disabled");
+    	}       
+}
+
+$(".tab.arrows .ui.left.button").on("click", function() {
+	changeTabOrder("left");
+	initTab();
+});
+
+$(".tab.arrows .ui.right.button").on("click", function() {
+	changeTabOrder("right");
+	initTab();
+});
+
+function changeTabOrder(direction) {
+	var order;
+
+	if(direction == "left") {
+		order = parseInt(active_tab) - 1;
+	}
+	if(direction == "right") {
+		order = parseInt(active_tab) + 1;
+	}
+
+	var element_to_toggle = $(".tabular.menu").find("[data-order='"+ order +"']");
+	var current_element = $(".tabular.menu").find("[data-order='"+ active_tab +"']");
+
+	$(element_to_toggle).attr("data-order", active_tab);
+	$(current_element).attr("data-order", order);
+
+	// pieprzy taby
+	// $(element_to_toggle).attr("data-tab", active_tab);
+	// $(current_element).attr("data-tab", order);
+
+	$(current_element).html(order);
+	$(element_to_toggle).html(active_tab);
+
+	if(direction == "left") {
+		$(element_to_toggle).before(current_element);
+	}
+	if(direction == "right") {
+		$(element_to_toggle).after(current_element);
+	}
+	active_tab = order;
+	renderTabOrderArrows();
+}
+
+
+$(".button.save.menu").on("click", function() {
+	alert("send");
+	sendMenuViaAjax();
+	
+});
+
+function sendMenuPromise(options) {
+	return new Promise(function(resolve, reject) {
+		$.ajax(options).done(resolve).fail(reject);
+	});
+}
+
+function sendMenuViaAjax() {
+	var form = $("#menu_form").serializeArray();
+	form.push({ name: "tabs_count", value: menuObject.tabs});
+	form.push({ name: "elements_in_tabs", value: menuObject.elements});
+
+	sendMenuPromise({
+		headers: {
+			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+		},
+		url: $("#menu_form").attr("action"),
+		type: "POST",
+		data: form,
+	})
+	.then(function (response) {
+		alert("send menu succes");
+	})
+	.catch(function(error) {
+		console.log("ajax eero: "+ error);
+		alert("add menu ajax error: " + error);
+	});
+}
 
 function deleteElementsIfIsNotDropdown() {
 	menuObject.elements[active_tab - 1] = 1;
@@ -183,7 +312,9 @@ function showConfirmTabDeleteModal(element_to_delete) {
 			menuObject.elements[active_tab - 1] = 0;
 			deleteElement(element_to_delete);
 			deleteTabContent();
-			sortTabs();
+			sortTabs();	
+			active_tab = undefined;
+			renderTabOrderArrows();
 		},
 	})
 	.modal('show');
@@ -202,9 +333,8 @@ function sortTabs() {
 			menuObject.elements[deleted_tab] = menuObject.elements[deleted_tab + 1];
 			// $(".tabs_content").find("[data-tab='" + tab_number + "']").attr("data-tab", deleted_tab);
 			++deleted_tab;
-			// initTab();
-			
-		}
+			// initTab();			
+		}	
 	});
 }
 
