@@ -70,8 +70,7 @@ $('#created_at_date').calendar({
 		months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 	},
-	onShow: function(date) {		
-		//
+	onShow: function(date) {
 	},
 	onChange: function(date) {
 		if(date) {
@@ -102,8 +101,7 @@ $('#updated_at_date').calendar({
 		months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 	},
-	onShow: function(date) {		
-		//
+	onShow: function(date) {
 	},
 	onChange: function(date) {
 		if(date) {

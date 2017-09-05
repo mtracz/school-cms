@@ -7,20 +7,6 @@ use App\Models\Admin;
 
 class NewsManageService {
 
-	protected $converter_array = [
-	"publish_at_date" => "published_at",
-	"expire_at_date" => "expire_at",
-	"created_at_date" => "created_at",
-	"updated_at_date" => "updated_at",
-	"title" => "title",
-	"author" => "created_by",
-		// "is_public" => true,
-	];
-
-	public function __construct() {
-		
-	}
-
 	public function pluckNews($request) {
 		
 		$params = $this->prepareParametersArray($request);
@@ -52,12 +38,8 @@ class NewsManageService {
 		$count = count($query_array);
 
 		for($i = 0; $i < $count; $i++) {
-
-			// if( strpos($query_array[$i][2], "%") ) {
+			
 			$temp_str = str_replace("%", "", $query_array[$i][2]);
-
-			// $temp_str = str_replace("%%", "", $query_array[$i][2]);
-			// }
 			
 			if($temp_str == "") {
 

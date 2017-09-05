@@ -7,12 +7,11 @@ use App\Models\Admin;
 
 class PagesManageService {
 
-
 	public function pluckPages($request) {
 		
 		$params = $this->prepareParametersArray($request);
 
-		$pages_plucked = StaticPage::where($params)->get();
+		$pages_plucked = StaticPage::where($params)->orderBy("created_at", "desc")->get();
 
 		if($pages_plucked->toArray() == []) {
 			return null;
@@ -43,11 +42,7 @@ class PagesManageService {
 
 		for($i = 0; $i < $count; $i++) {
 
-			// if( strpos($query_array[$i][2], "%") ) {
 			$temp_str = str_replace("%", "", $query_array[$i][2]);
-
-			// $temp_str = str_replace("%%", "", $query_array[$i][2]);
-			// }
 			
 			if($temp_str == "") {
 

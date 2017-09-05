@@ -36,15 +36,15 @@ $(window).resize(function () {
 	switch(currentViewportGroupName) {
 
 		case "view_computer":
-			$(".banner .content").css("height", 600);
+			$(".banner .content").css("height", 400);
 			$(".banner .content").css("border-width", 20);
-			console.log(600);
+			console.log(400);
 			break;
 
 		case "view_tablet":
-			$(".banner .content").css("height", 300);
+			$(".banner .content").css("height", 200);
 			$(".banner .content").css("border-width", 10);
-			console.log(300);
+			console.log(200);
 			break;
 
 		case "view_mobile":

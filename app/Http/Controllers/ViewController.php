@@ -15,6 +15,7 @@ use App\Models\StaticPage;
 use App\Models\Element;
 use App\Models\SiteSector;
 use App\Models\Menu;
+use App\Models\PanelType;
 
 use App\Http\Controllers\SettingsController;
 use App\Services\PaginationService;
@@ -125,6 +126,9 @@ class ViewController extends Controller {
 	}
 
 	public function getNewsFormAdd() {
+		// debug after change to laravel 5.5.0
+		// dd(File::files("images/news/"));
+
 		$newsPinnedObject = NewsPinned::first();
 		return view("addEditNews")->with("newsPinned", $newsPinnedObject);
 	}
@@ -163,46 +167,55 @@ class ViewController extends Controller {
 			$news = $newsManageService->pluckNews($params);
 		}
 
-		$news_pinned_id = $this->getNewsPinned();
+		$news_attributes_count = 10;
 
-		$news_attributes_count = count($news[0]->getAttributes());
+		if(count($news) > 0) {
 
-		$page_number = 1;
-		$news_per_page = 15;
+			$news_pinned_id = $this->getNewsPinned();
 
-		$paginationService = new PaginationService($request, $news, $news_per_page);
+			$page_number = 1;
+			$news_per_page = 15;
 
-		$pagination_array = $paginationService->getPaginationArray();
-		$next_page = $paginationService->getNextPage();
-		$prev_page = $paginationService->getPrevPage();
-		$max_page = $paginationService->getMaxPage();
-		$page_number = $paginationService->getPageNumber();
+			$paginationService = new PaginationService($request, $news, $news_per_page);
 
-		$news_set = $news->forPage($page_number, $news_per_page);
+			$pagination_array = $paginationService->getPaginationArray();
+			$next_page = $paginationService->getNextPage();
+			$prev_page = $paginationService->getPrevPage();
+			$max_page = $paginationService->getMaxPage();
+			$page_number = $paginationService->getPageNumber();
 
-		$items_count = 0;
+			$news_set = $news->forPage($page_number, $news_per_page);
 
-		for($i = 0; $i < $page_number; $i++) {
-			$items_count += count($news->forPage($i+1, $news_per_page));
+			$items_count = 0;
+
+			for($i = 0; $i < $page_number; $i++) {
+				$items_count += count($news->forPage($i+1, $news_per_page));
+			}
+
+			/*
+			Added + 1 to columns_count for actions header in newsManage
+			*/
+			return view("newsManage")
+			->with("pagination_array", $pagination_array)
+			->with("first_page", 1)
+			->with("last_page", $max_page)
+			->with("prev_page", $prev_page)
+			->with("next_page", $next_page)
+			->with("current_page", $page_number)
+			->with("news_pinned", $news_pinned_id)
+			->with("items", $news_set)
+			->with("items_count", $items_count)
+			->with("items_count_all", $items_count_all)
+			->with("columns_count", $news_attributes_count);
+
+		} else {
+
+			$news_set = $news;
+
+			return view("newsManage")
+			->with("items", $news_set)
+			->with("columns_count", $news_attributes_count);
 		}
-
-		// dd($news_pinned_id);
-
-		/*
-		Added + 1 to columns_count for actions header in newsManage
-		*/
-		return view("newsManage")
-		->with("pagination_array", $pagination_array)
-		->with("first_page", 1)
-		->with("last_page", $max_page)
-		->with("prev_page", $prev_page)
-		->with("next_page", $next_page)
-		->with("current_page", $page_number)
-		->with("news_pinned", $news_pinned_id)
-		->with("items", $news_set)
-		->with("items_count", $items_count)
-		->with("items_count_all", $items_count_all)
-		->with("columns_count", $news_attributes_count);
 	}
 
 	public function getPagesManagePage(Request $request) {
@@ -349,10 +362,11 @@ class ViewController extends Controller {
 
 		$site_sectors = $this->getSiteSectorsAll();
 		$elements = $this->getElementsAll();
-
+		$panel_types = $this->getPanelTypesAll();
 
 		return view("elements.elementsManage")
 		->with("site_sectors", $site_sectors)
+		->with("panel_types", $panel_types)
 		->with("elements", $elements);
 	}
 
@@ -365,14 +379,14 @@ class ViewController extends Controller {
 	}
 
 	public function getNewsAll() {
-		
+
 		$news = News::orderBy("published_at", "desc")->get();
 
 		return $news;
 	}
 
 	public function getPagesAll() {
-		
+
 		$pages = StaticPage::orderBy("created_at", "desc")->get();
 
 		return $pages;
@@ -402,24 +416,36 @@ class ViewController extends Controller {
 		}
 	}
 
+	public function getMenuAddView(Request $request) {
 
-	public function getMenuAddView() {
-		return view("elements.addMenu");
+		$parameters = $request->all();
+
+		$sector_id = $parameters["sector_id"];
+		$sector_name = $parameters["sector_name"];
+
+		return view("elements.addMenu")
+		->with("sector_id", $sector_id)
+		->with("sector_name", $sector_name);
 	}
 
 	public function getSiteSectorsAll() {
-		
+
 		$site_sectors = SiteSector::all();
 
 		return $site_sectors;
 	}
 
 	public function getElementsAll() {
-		
+
 		$elements = Element::orderBy("order", "asc")->get();
 
 		return $elements;
+	}
 
+	public function getPanelTypesAll() {
+		$panel_types = PanelType::all();
+
+		return $panel_types;
 	}
 
 }

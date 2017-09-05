@@ -28,9 +28,13 @@ function DatabaseElementsUpdater() {
 			data: data,
 			method: "POST",
 		}).then(function(data) {
+
+			toastr.success("<h3>Zapisano zmiany!</h3>");
 			console.log("sendElementsUpdatePromise: success");
 			// console.log(data);
 		}).catch(function(error) {
+
+			toastr.error("<h3>Próba zmiany nie powiodła się!</h3>");
 			console.log("sendElementsUpdatePromise: fail", error);		
 		});
 	}
@@ -48,7 +52,6 @@ function DatabaseElementsUpdater() {
 		if (! this.checkIfExists(element)) {
 
 			this.elementsToUpdate.push(element);
-			console.log(this.elementsToUpdate[0].id);
 		} else {
 
 			this.updateElement(element);
