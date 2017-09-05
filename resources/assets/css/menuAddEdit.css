@@ -29,3 +29,11 @@
 .ui.confirm.delete.modal .content{
     justify-content: center;
 }
+.button.order {
+	pointer-events: none;
+}
+
+.tab.segment .alert.dropdown {
+	color: red;
+	margin-bottom: 15px;
+}

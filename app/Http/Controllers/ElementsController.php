@@ -17,4 +17,8 @@ class ElementsController extends Controller
 
     	dump($elements);
     }
+
+    public function addMenu(Request $request) {
+    	dd($request->all());
+    }
 }

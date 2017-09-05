@@ -116,4 +116,5 @@ Route::post('/content_tools/save_image', ["as" => "content_tools.image.save.post
 // SITE ELEMENTS
 // menu add view
 Route::get("/elements/menu/add", ["as" => "menu.add.get", "uses" => "ViewController@getMenuAddView"]);
-
+// menu add 
+Route::post("/elements/menu/add", ["as" => "menu.add.post", "uses" => "ElementsController@addMenu"]);
