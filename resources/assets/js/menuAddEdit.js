@@ -6,6 +6,7 @@ var menuObject = {
 	// index from 0
 	elements: [],
 	//0 => x ; 		x elements for 0 (1) tab
+	data_tabs : [],
 };
 
 var active_tab;
@@ -20,11 +21,22 @@ $(document).ready(function() {
 	active_tab = $(".item.active").attr("data-order");
 	renderTabOrderArrows();
 	renderElementsOrderArrows();
+
 });
 
 
 function countTabs() {
 	menuObject.tabs = $(".tabular.menu .item").length;
+
+	menuObject.data_tabs = [];
+// map 'data-tab' to 'data-order' tab
+	for(i = 0; i <= menuObject.tabs - 1; i++) {
+		
+		var order = i + 1;
+		var tab = $(".tabular.menu").find("[data-order='" + order + "']");
+
+		menuObject.data_tabs[i] = tab.attr("data-tab");		
+	}
 }
 
 function countElementsInEachTab() {
@@ -33,16 +45,15 @@ function countElementsInEachTab() {
 	for(i = 0; i <= menuObject.tabs - 1; i++) {
 		//i = tab
 		var tab_content_order = i + 1;
-		var tab_content = $(".tabs_content").find("[data-order='" + tab_content_order + "']");
-		console.log("i: " + i);
-		console.log(tab_content);
+
+		var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_content_order + "']");
 
 		var elements = $(tab_content).find(".elements .fields").length;
-		
-		console.log("elements:"+elements);
+
 		menuObject.elements[i] = elements;
 	}
 }
+
 
 // track active tab
 $(".tabular.menu").on("click", function() {
@@ -141,7 +152,7 @@ function renderElementsOrderArrows() {
 	for(i = 0; i <= menuObject.tabs - 1; i++) {
 		//i = tab
 		tab_content_order = i + 1;
-		var tab_content = $(".tabs_content").find("[data-order='" + tab_content_order + "']");
+		var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_content_order + "']");
 
 		var element_arrows = $(tab_content).find(".elements .actions");
 
@@ -260,6 +271,13 @@ function changeTabOrder(direction) {
 	$(element_to_toggle).attr("data-order", active_tab);
 	$(current_element).attr("data-order", order);
 
+	//change data-tab_content_order
+	var current_tab_content = $(".tabs_content").find("[data-tab_content_order='" + active_tab + "']");
+	var tab_content_to_toggle = $(".tabs_content").find("[data-tab_content_order='" + order + "']");
+
+	$(current_tab_content).attr("data-tab_content_order", order);
+	$(tab_content_to_toggle).attr("data-tab_content_order", active_tab);
+
 	// pieprzy taby
 	// $(element_to_toggle).attr("data-tab", active_tab);
 	// $(current_element).attr("data-tab", order);
@@ -281,6 +299,7 @@ function changeTabOrder(direction) {
 $(".button.save_menu").on("click", function() {
 	countTabs();
 	countElementsInEachTab();
+	sortElements();
 	sendMenuViaAjax();
 });
 
@@ -294,6 +313,7 @@ function sendMenuViaAjax() {
 	var form = $("#menu_form").serializeArray();
 	form.push({ name: "tabs_count", value: menuObject.tabs});
 	form.push({ name: "elements_in_tabs", value: menuObject.elements});
+	form.push({ name: "data_tabs", value: menuObject.data_tabs});
 
 	sendMenuPromise({
 		headers: {
@@ -335,8 +355,6 @@ function showConfirmTabDeleteModal(element_to_delete) {
 
 		},
 		onApprove : function() {
-			// menuObject.tabs -= 1;
-			// menuObject.elements[active_tab - 1] = 0;
 			deleteElement(element_to_delete);
 			deleteTabContent();
 			sortTabs();	
@@ -358,8 +376,10 @@ function sortTabs() {
 		if(tab_number > deleted_tab) {				
 			$(this).attr("data-order", deleted_tab);
 			$(this).html(deleted_tab);
-			menuObject.elements[deleted_tab] = menuObject.elements[deleted_tab + 1];	
-			++deleted_tab;		
+
+			var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_number + "']");
+			$(tab_content).attr("data-tab_content_order", deleted_tab);
+			deleted_tab++;		
 		}	
 	});
 }
@@ -369,8 +389,14 @@ function sortElements() {
 	$('.segment.active .elements .fields').each(function() { 		
 		$(this).attr("data-order", order);
 		$(this).find(".actions").attr("data-element_order", order);
-		$(this).find(".element_order").html(order);		
-		++order;
+		$(this).find(".element_order").html(order);
+
+		var input_name = $(this).find(".five.wide.field.name input");
+		var input_url = $(this).find(".five.wide.field.url input");
+
+		$(input_name).attr('name', 'element_name_tab_1_'+order);
+		$(input_url).attr('name', 'element_url_tab_1_'+order);
+		order++;
 	});
 }
 
@@ -389,7 +415,7 @@ function initTab() {
 
 
 function prepareTabContent(tab_id, tab_order, elements_in_tab) {
-	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+' data-order='+tab_order+'>'+
+	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+' data-tab_content_order='+tab_order+'>'+
 					'<div class="alert dropdown" hidden>'+
 						'<i class="warning circle icon"></i>'+
 						'Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!'+

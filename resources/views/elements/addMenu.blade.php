@@ -45,7 +45,7 @@
 			{{-- TAB CONTENT --}}
 			<div class="tabs_content">		
 
-				<div class="ui bottom attached tab segment active" data-tab="1" data-order="1">
+				<div class="ui bottom attached tab segment active" data-tab="1" data-tab_content_order="1">
 					<div class="alert dropdown" hidden>
 						<i class="warning circle icon"></i>
 						Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!
@@ -74,17 +74,18 @@
 					</div>
 
 					<div class="elements">
+
 						<div class="fields" data-order="1">
 							<div class=" field">
 								<div class="circular ui icon button order" disabled>
 								<span class="element_order">1</span>			
 								</div>
 							</div>
-							<div class="five wide field">
+							<div class="five wide field name">
 								<label>Nazwa</label>
 								<input type="text" placeholder="Nazwa elementu" name="element_name_tab_1_1">
 							</div>	
-							<div class="five wide field">
+							<div class="five wide field url">
 								<label>URL</label>
 								<input type="text" placeholder="URL elementu" name="element_url_tab_1_1">						
 							</div>
@@ -100,6 +101,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 
 					<div class="fourteen wide field add_new_element" hidden>
