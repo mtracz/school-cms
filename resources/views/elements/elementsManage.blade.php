@@ -16,7 +16,7 @@
 		<div class="ui horizontal divider">
 			<div class="ui buttons">
 				<button class="ui positive button save">Zapisz</button>
-				<button class="ui negative button cancel">Anuluj</button>
+				<button class="ui negative button main_page deny">Anuluj</button>
 			</div>
 		</div>
 
@@ -24,10 +24,16 @@
 
 		@component("templates.elements")
 
+		@slot("sector_id")
+		{{ $sector->id }}
+		@endslot
+
 		@slot("sector_name")
-		<div style="width: 100%"> 
-			{{ $sector->name }}
-			<button class="ui tr_add_element button right floated">
+		<div class="sector_data" data-sector_panel_allowed_ids="{{ $sector->panels_types_allowed_ids }}" data-sector_is_menu_allowed="{{ $sector->is_menu_allowed }}" data-sector_id="{{ $sector->id }}" style="width: 100%; padding-bottom: 20px;"> 
+			<div class="sector_name" style="float: left; line-height: 25px">
+				{{ $sector->name }}
+			</div>
+			<button class="ui add_element button">
 				<i class="plus icon"></i>
 			</button>
 		</div>
@@ -114,41 +120,83 @@
 
 		@endforeach
 
+		<div class="ui horizontal divider">
+			<div class="ui buttons">
+				<button class="ui positive button save">Zapisz</button>
+				<button class="ui negative button main_page deny">Anuluj</button>
+			</div>
+		</div>
+
 	</div>
 </div>
 
-@component("templates.listSelectModal")
+	{{-- Modals --}}
+	@component("templates.listSelectModal")
 
-	@slot("header")
-		Wybierz sector
-	@endslot
+		@slot("modal_id")
+			selectSectorModal
+		@endslot
 
-	@slot("selected_item")
-		Zaznaczony element: <span class="selected_item_name"></span>
-	@endslot
+		@slot("header")
+			Wybierz sector
+		@endslot
 
-	@slot("list")
+		@slot("selected_item")
+			Zaznaczony element: <span class="selected_item_name"></span>
+		@endslot
 
-		@foreach($site_sectors as $sector)
-		<div class="ui fluid list_selector button" data-sector_panel_allowed_ids="{{ $sector->panels_types_allowed_ids }}" data-sector_is_menu_allowed="{{ $sector->is_menu_allowed }}" data-sector_id="{{ $sector->id }}">{{ $sector->name }}</div>
-		@endforeach
+		@slot("list")
+			@foreach($site_sectors as $sector)
+				<div class="ui fluid list_selector button" data-sector_panel_allowed_ids="{{ $sector->panels_types_allowed_ids }}" data-sector_is_menu_allowed="{{ $sector->is_menu_allowed }}" data-sector_id="{{ $sector->id }}">{{ $sector->name }}</div>
+			@endforeach
+		@endslot
 
-	@endslot
+		@slot("actions")
+			<div class="ui red cancel inverted button">
+				<i class="remove icon"></i>
+				Anuluj
+			</div>
+			<div class="ui green ok inverted button">
+				<i class="checkmark icon"></i>
+				Przenieś
+			</div>
+		@endslot
+		
+	@endcomponent
 
-	@slot("actions")
-	<div class="ui red cancel inverted button">
-			<i class="remove icon"></i>
-			Anuluj
-		</div>
-		<div class="ui green ok inverted button">
-			<i class="checkmark icon"></i>
-			Przenieś
-		</div>
-	</div>
-	@endslot
+	@component("templates.listSelectModal")
 
-@endcomponent
+		@slot("modal_id")
+			selectElementModal
+		@endslot
 
+		@slot("header")
+			Wybierz element
+		@endslot
+
+		@slot("selected_item")
+			Dodajesz element do sektora: <span class="selected_item_name"></span>
+		@endslot
+
+		@slot("list")
+			<div class="ui fluid list_selector button" data-item_name="menu">menu</div>
+			@foreach($panel_types as $type)
+			<div data-panel_type_id="{{ $type->id }}" data-item_name="{{ $type->name }}" class="ui fluid list_selector button">{{ $type->name }}</div>
+			@endforeach
+		@endslot
+
+		@slot("actions")
+			<div class="ui red cancel inverted button">
+				<i class="remove icon"></i>
+				Anuluj
+			</div>
+			<div class="ui green ok inverted button">
+				<i class="checkmark icon"></i>
+				Dodaj
+			</div>
+		@endslot
+		
+	@endcomponent
 
 @endsection
 

@@ -1,7 +1,8 @@
 $(window).ready(function() {
 
 	renderOrderArrows();
-	$(".ui.longer.modal").modal();
+	$("#selectSectorModal.ui.longer.modal").modal();
+	$("#selectElementModal.ui.longer.modal").modal();
 });
 
 var databaseElementsUpdater = new DatabaseElementsUpdater();
@@ -33,6 +34,9 @@ $(".ui.buttons").on("click", ".ui.up.button", function() {
 	let parent = $(this).closest("tbody");
 	let tr = $(this).closest("tr");
 
+	let rows = $(parent).find("tr");
+	setDataOrdersAsc(rows);
+
 	let thisDataOrderNew = parseInt($(tr).attr("data-order")) - 1;
 
 	let found = $(parent).find("tr[data-order='"+ thisDataOrderNew +"']");
@@ -63,6 +67,9 @@ $(".ui.buttons").on("click", ".ui.up.button", function() {
 $(".ui.buttons").on("click", ".ui.down.button", function() {
 	let parent = $(this).closest("tbody");
 	let tr = $(this).closest("tr");
+
+	let rows = $(parent).find("tr");
+	setDataOrdersAsc(rows);
 
 	let thisDataOrderNew = parseInt($(tr).attr("data-order")) + 1;
 
@@ -125,47 +132,147 @@ $(".actions").on("click",".ui.toggle.hide.button", function() {
 		$(parent_tr).attr("data-is_enabled"));
 });
 
+
 $(".actions").on("click",".ui.move.button", function() {
 
-	$(".selected_item_name").text($(this).closest("tr").find("td.name").text());
-
-	var elemID = $(this).closest("tr").attr("data-id");
+	$("#selectSectorModal .selected_item_name").text($(this).closest("tr").find("td.name").text());
+	
+	var elem = $(this).closest("tr");
+	var elemID = $(elem).attr("data-id");
 	var elemPanelTypeId = $(this).closest("tr").attr("data-panel_type_id");
 
-	$(".ui.longer.modal").modal({
+	$("#selectSectorModal.ui.longer.modal").modal({
 		onShow: function() {
+			console.log("selectSectorModal");
 			disableSectorFromSelection(elemPanelTypeId);
 		},
-		onApprove: function() {
-			// Add moving element function
+		onApprove: function(data) {
+
+			let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
+			$(selected_list_item).removeClass("activated");
+
+			let selected_sector_id = $(selected_list_item).attr("data-sector_id");
+			
+			let previousParent = $(elem).closest("tbody");
+			let newParent = $("[data-div_sector_id='"+ selected_sector_id +"'").find("tbody");
+
+			$(elem).attr("data-sector_id", selected_sector_id);
+
+			$(elem).appendTo($(newParent));
+			renderOrderArrows();
+			setDataOrdersAsc($(previousParent).find("tr"));
+			setDataOrdersAsc($(newParent).find("tr"));
+
+			databaseElementsUpdater.addElement(
+				elemID,
+				selected_sector_id,
+				$(elem).attr("data-order"),
+				$(elem).attr("data-is_enabled"));
 		},
 	}).modal("show");
 });
 
+$(".sector_header").on("click", ".ui.add_element.button", function() {
+
+	$("#selectElementModal .selected_item_name").text($(this).parent().find(".sector_name").text());
+
+	var sector_id = $(this).closest(".sector_data").attr("data-sector_id");
+	var sector_name = $(this).closest(".sector_data").find(".sector_name").text();
+
+	var sector_data = {
+		"id": sector_id,
+		"name": sector_name,
+	}
+
+	var allowed_panels_ids = $(this).closest(".sector_data").attr("data-sector_panel_allowed_ids");
+	var is_menu_allowed = $(this).closest(".sector_data").attr("data-sector_is_menu_allowed");
+
+
+	$("#selectElementModal.ui.longer.modal").modal({
+		onShow: function() {
+			disableElementFromSelection(is_menu_allowed, allowed_panels_ids);
+		},
+		onApprove: function(data) {
+			let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
+			$(selected_list_item).removeClass("activated");
+
+			redirectTo("/elements/"+ $(selected_list_item).attr("data-item_name") +"/add", sector_data);
+
+		},
+	}).modal("show");
+});
+
+function redirectTo(url, query = null) {
+	
+	var query_string = "?";
+
+	console.log("query", query);
+
+	if(query !== null) {
+
+		query_string = query_string.concat("sector_id=" + String(query.id) + "&sector_name=" + String(query.name));
+	}
+
+	window.location.href = url.concat(query_string);
+}
+
 function disableSectorFromSelection(elemPanelTypeId) {
-	$(".ui.modal .ui.list_selector.button").each(function(index, elem) {
+	$("#selectSectorModal.ui.modal .ui.list_selector.button").each(function(index, elem) {
+
+		console.log($(this));
 
 		if( elemPanelTypeId ) {
 			let allowedPanelsIds = $(this).attr("data-sector_panel_allowed_ids");
-			console.log(allowedPanelsIds);
+			console.log("allowedPanelsIds: ", allowedPanelsIds);
 			if( allowedPanelsIds.search(elemPanelTypeId) == -1 ) {
-				$(this).addClass("disabled");
+				$(this).addClass("disabled").hide();;
 			} else {
-				$(this).removeClass("disabled");
+				$(this).removeClass("disabled").show();
 			}
 
 		} else {
 			let isMenuAllowed = $(this).attr("data-sector_is_menu_allowed");
 
-			console.log(isMenuAllowed);
+			console.log("isMenuAllowed: ", isMenuAllowed);
 
 			if( isMenuAllowed == 0 ) {
-				$(this).addClass("disabled");
+				$(this).addClass("disabled").hide();;
 			} else {
-				$(this).removeClass("disabled");
+				$(this).removeClass("disabled").show();
 			}
 		}
-		
+
+	});
+}
+
+function disableElementFromSelection(is_menu_allowed, allowed_panels_ids) {
+	$("#selectElementModal.ui.modal .ui.list_selector.button").each(function(index, elem) {
+
+		var panel_type_id = $(this).attr("data-panel_type_id");
+
+		if( panel_type_id ) {
+
+			console.log(panel_type_id, allowed_panels_ids.search($(this).attr("data-panel_type_id")));
+
+			if( allowed_panels_ids.search($(this).attr("data-panel_type_id")) == -1 ) {
+				$(this).addClass("disabled").hide();
+			} else {
+				$(this).removeClass("disabled").show();
+			}
+
+		} else {
+			if( is_menu_allowed == 0) {
+				$(this).addClass("disabled").hide();
+			} else {
+				$(this).removeClass("disabled").show();
+			}
+		}
+	});
+}
+
+function setDataOrdersAsc(rows) {
+	$(rows).each(function(index, elem) {
+		$(elem).attr("data-order", index + 1);
 	});
 }
 
@@ -176,4 +283,8 @@ $(".ui.longer.modal .content").on("click", ".ui.list_selector.button", function(
 
 $(".ui.button.save").on("click", function() {
 	databaseElementsUpdater.sendToUpdate();
+});
+
+$(".ui.button.deny.main_page").on("click", function() {
+	window.location.href = "/";
 });

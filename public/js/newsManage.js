@@ -50,15 +50,6 @@ function ajaxPostDeleteNewsPromise(options){
 	});
 }
 
-
-//function for dates format
-function addFrontZero(i) {
-	if (i < 10) {
-		i = "0" + i;
-	}
-	return i;
-}
-
 var form_create_date_object = {
 	raw_date: "",
 	parsed_date: "",
@@ -83,21 +74,6 @@ var form_expire_date_object = {
 	start_date: false,
 	timestamp: "",
 };
-
-$(".ui.search.button").on("click", function(event) {
-
-	$("input[name='publish_at_date_parsed']").val(form_publish_date_object.parsed_date);
-	$("input[name='expire_at_date_parsed']").val(form_expire_date_object.parsed_date);
-	$("input[name='created_at_date_parsed']").val(form_create_date_object.parsed_date);
-	$("input[name='updated_at_date_parsed']").val(form_update_date_object.parsed_date);
-});
-
-function ajaxPostFilterNewsPromise(options){
-	return new Promise(function(resolve, reject) {
-		$.ajax(options).done(resolve).fail(reject);
-	});
-}
-
 
 $("#publish_at_date").calendar({
 	type: 'date',
@@ -186,26 +162,23 @@ $('#created_at_date').calendar({
 		months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 	},
-	onShow: function(date) {		
-		// if(isInputValueSet("#publish_at_date")) {
-		// 	var end = form_publish_date_object.raw_date;
-		// 	$("#created_at_date").calendar("set endDate", end);
-		// }
+	onShow: function(date) {
 	},
 	onChange: function(date) {
 		if(date) {
-			// if(date <= form_publish_date_object.raw_date) {
 
-				var year = date.getFullYear();
-				var month = addFrontZero(date.getMonth() + 1);
-				var day = addFrontZero(date.getDate());
+			var year = date.getFullYear();
+			var month = addFrontZero(date.getMonth() + 1);
+			var day = addFrontZero(date.getDate());
 
-				form_create_date_object.raw_date = date;
-				form_create_date_object.parsed_date = (year + '-' + month + '-' + day);
-			// } else {
-			// 	toastr.error("Data utworzenia musi być mniejsza niż LUB równa dacie publikacji");
-			// 	return false;
-			// }
+			form_create_date_object.raw_date = date;
+			form_create_date_object.parsed_date = (year + '-' + month + '-' + day);
+
+			$("#updated_at_date").calendar("set startDate", form_create_date_object.raw_date);
+
+			if(isInputValueSet("#updated_at_date") && form_create_date_object.raw_date > form_update_date_object.raw_date) {
+				$("#updated_at_date").calendar("focus");
+			}
 		} else {
 			form_create_date_object.parsed_date = "";
 		}
@@ -219,8 +192,7 @@ $('#updated_at_date').calendar({
 		months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 		monthsShort: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
 	},
-	onShow: function(date) {		
-		//
+	onShow: function(date) {
 	},
 	onChange: function(date) {
 		if(date) {
@@ -235,6 +207,23 @@ $('#updated_at_date').calendar({
 		}
 	},
 });
+
+
+$(".ui.search.button").on("click", function(event) {
+
+	$("input[name='publish_at_date_parsed']").val(form_publish_date_object.parsed_date);
+	$("input[name='expire_at_date_parsed']").val(form_expire_date_object.parsed_date);
+	$("input[name='created_at_date_parsed']").val(form_create_date_object.parsed_date);
+	$("input[name='updated_at_date_parsed']").val(form_update_date_object.parsed_date);
+});
+
+//function for dates format
+function addFrontZero(i) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	return i;
+}
 
 function isExpireGreaterThanPublish() {
 

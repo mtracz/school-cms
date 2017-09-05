@@ -70,16 +70,6 @@
 
 							@endif
 
-							<div class="ui segment">
-								<div class="ui center grid">
-									<div class="pagination_container">
-
-									@include("templates/pagination")
-
-									</div>
-								</div>
-							</div>
-
 							@foreach($news as $item)
 
 								@include("templates/news")

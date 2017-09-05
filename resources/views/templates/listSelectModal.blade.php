@@ -1,4 +1,4 @@
-<div class="ui longer modal">
+<div id="{{ $modal_id }}" class="ui longer modal">
 	<i class="close icon"></i>
 	<div class="header">
 		{{ $header }}

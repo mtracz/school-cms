@@ -39,7 +39,7 @@
 	.banner .content {
 
 		width: 80vw;
-		height: 600px;
+		height: 400px;
 		overflow: hidden;
 
 		position: relative;
