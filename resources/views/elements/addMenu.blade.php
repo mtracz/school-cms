@@ -61,23 +61,23 @@
 
 						</div>
 						<div class="inline fields">
-							<div class="field dropdown_name dropdown_name_tab_1" style='display: none;'>
+							<div class="field dropdown_name" style='display: none;'>
 								<label>Nazwa</label>
 								<input type="text" placeholder="Nazwa" name="item_name_tab_1">
 							</div>
 						</div>
 						<div class="inline fields delete_item_div">
-							<div class="ui negative button delete_item_tab_1">
+							<div class="ui negative button">
 								Usuń
 							</div>
 						</div>
 					</div>
 
 					<div class="elements">
-						<div class="fields elements_tab_1_1" data-order="1">
+						<div class="fields" data-order="1">
 							<div class=" field">
 								<div class="circular ui icon button order" disabled>
-								<span class="element_order element_order_tab_1_1">1</span>			
+								<span class="element_order">1</span>			
 								</div>
 							</div>
 							<div class="five wide field">
@@ -89,20 +89,20 @@
 								<input type="text" placeholder="URL elementu" name="element_url_tab_1_1">						
 							</div>
 							<div class="field">
-								<div class="ui icon buttons actions" data-element="1">
-									<div class="ui negative button element_delete element_remove_tab_1_1"><i class="remove icon"></i>
+								<div class="ui icon buttons actions" data-element_order="1">
+									<div class="ui negative button element_delete"><i class="remove icon"></i>
 									</div>
 
-									<div class="ui up button element_move_up_tab_1_1 disabled"><i class="long arrow up icon"></i>
+									<div class="ui up button disabled"><i class="long arrow up icon"></i>
 									</div>
-									<div class="ui down button element_move_down_tab_1_1 disabled" ><i class="long arrow down icon"></i>
+									<div class="ui down button disabled" ><i class="long arrow down icon"></i>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="fourteen wide field add_new_element_tab_1" hidden>
+					<div class="fourteen wide field add_new_element" hidden>
 						<div class="fluid ui positive button"><i class="plus icon"></i>
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 				<i class="cancel icon"></i>
 				Anuluj
 			</div>
-			<div class="ui blue right floated circular button save menu" >
+			<div class="ui blue right floated circular button save_menu" >
 				<i class="save icon"></i>
 				Zapisz
 			</div>

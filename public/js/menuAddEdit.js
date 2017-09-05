@@ -1,5 +1,4 @@
 // menuAddEdit js
-// 
 
 var menuObject = {
 	//all tabs
@@ -9,19 +8,7 @@ var menuObject = {
 	//0 => x ; 		x elements for 0 (1) tab
 };
 
-
 var active_tab;
-
-
-
-
-
-
-
-// var all_tabs = 1;
-
-// var all_elements = 1;
-
 
 $(document).ready(function() {
 	// content width
@@ -32,6 +19,7 @@ $(document).ready(function() {
 	initTab();
 	active_tab = $(".item.active").attr("data-order");
 	renderTabOrderArrows();
+	renderElementsOrderArrows();
 });
 
 
@@ -40,16 +28,18 @@ function countTabs() {
 }
 
 function countElementsInEachTab() {
-	// alert("tabs count el " + menuObject.tabs);
+	menuObject.elements = [];
+	console.log("tabs: " +menuObject.tabs);
 	for(i = 0; i <= menuObject.tabs - 1; i++) {
 		//i = tab
-		tab_content_order = i + 1;
+		var tab_content_order = i + 1;
 		var tab_content = $(".tabs_content").find("[data-order='" + tab_content_order + "']");
-		console.log("i:" +i+ " tab:content: "+tab_content);
+		console.log("i: " + i);
+		console.log(tab_content);
 
 		var elements = $(tab_content).find(".elements .fields").length;
 		
-		console.log(elements);
+		console.log("elements:"+elements);
 		menuObject.elements[i] = elements;
 	}
 }
@@ -68,8 +58,6 @@ $("#add_tab").on("click", function() {
 
 	 menuObject.tabs += 1;
 
-	// $(".tabs_content .tab.segment").length;
-	// 
 	var last_data_tab_number = 1;
 
 	$('.tabs_content').children(".tab.segment").each(function () {
@@ -78,27 +66,22 @@ $("#add_tab").on("click", function() {
 			last_data_tab_number = num;
 		}
 	});
-
-	// alert("ast data tab: " + last_data_tab_number);
-
 	last_data_tab_number += 1;
 
-	var element_id = menuObject.tabs;
-
-	$(".add_tab_div").before('<a class="item " data-tab='+last_data_tab_number+' data-order='+element_id+'>'+element_id+'</a>');
 	var last_tab_order = menuObject.tabs;
-	$(".tabs_content").append(prepareTabContent(last_data_tab_number, last_tab_order));
+
+	$(".add_tab_div").before('<a class="item " data-tab='+last_data_tab_number+' data-order='+last_tab_order+'>'+last_tab_order+'</a>');
+	var elements_in_tab = 1;
+	$(".tabs_content").append(prepareTabContent(last_data_tab_number, last_tab_order, elements_in_tab));
 	
 	initTab();
 	$(".toggle.checkbox").checkbox();
 	countElementsInEachTab();
-	;
+	renderElementsOrderArrows();
 });
 
 // delete tab
 $(".tabs_content").on("click", ".delete_item_div .button", function() {
-	// alert("delete: " + active_tab);
-	console.log("all tabs on delete tab click: " + menuObject.tabs);
 	var tab = $(".tabular.menu").find("[data-order='" + active_tab + "']");
 
 	if(menuObject.tabs < 2) {
@@ -111,20 +94,19 @@ $(".tabs_content").on("click", ".delete_item_div .button", function() {
 
 // DROPDOWN
 $(".tabs_content").on("click", ".toggle.checkbox", function() {
-		var x = $(".tabular.menu .item.active").attr("data-tab");
-		console.log("DROPDOWN FOR item active data-tab: "+x);
-		if($("#is_dropdown_tab_"+ x).is(":checked")) {
-			$(".add_new_element_tab_"+ x).show();
-			$(".dropdown_name_tab_"+ x).show();
-			$(".tab.segment .alert.dropdown").show();
-		} else {
-			$(".add_new_element_tab_"+ x).hide();
-			$(".dropdown_name_tab_"+ x).hide();
-			$(".tab.segment .alert.dropdown").hide();
-			deleteElementsIfIsNotDropdown();
-		}
-	});
-
+	var x = $(".tabular.menu .item.active").attr("data-tab");
+	if($("#is_dropdown_tab_"+ x).is(":checked")) {
+		$(".tab.segment.active .add_new_element").show();
+		$(".tab.segment.active .dropdown_name").show();
+		$(".tab.segment.active .alert.dropdown").show();
+	} else {
+		$(".tab.segment.active .add_new_element").hide();
+		$(".tab.segment.active .dropdown_name").hide();
+		$(".tab.segment.active .alert.dropdown").hide();
+		deleteElementsIfIsNotDropdown();
+		renderElementsOrderArrows();
+	}
+});
 
 
 // ELEMENTS
@@ -135,60 +117,59 @@ $(".tabs_content").on("click", ".fourteen.wide.field", function() {
 	elements = menuObject.elements[active_tab - 1] + 1;
 	$(".tab.segment.active .elements").append(prepareElementInContent(active_tab, elements));
 	menuObject.elements[active_tab - 1] += 1;
-	console.log("all el after add: " + menuObject.elements[active_tab - 1]);
+	renderElementsOrderArrows();
 });
 
 // delete element in tab
-$(".tabs_content").on("click", ".actions .element_delete", function() {
-	console.log("all el before del: " + menuObject.elements[active_tab - 1]);
-	var element_num = $(this).parent().attr("data-element");
+$("body").on("click", ".actions .element_delete", function() {
+	var element_num = $(this).parent().attr("data-element_order");
 	if(menuObject.elements[active_tab - 1] < 2) {
 		alert("nie można usunąc 1szego elementu");
 		return false;
 	}
 
-	element_to_remove = $(".elements").find("[data-order='" + element_num + "']");
-	console.log(element_to_remove);
+	element_to_remove = $(".tab.segment.active .elements").find("[data-order='" + element_num + "']");
 	deleteElement(element_to_remove);
 	menuObject.elements[active_tab - 1] -= 1;
-
-	console.log("all el after delete: " + menuObject.elements[active_tab - 1]);
 	sortElements();
-	// element_to_remove = $(".elements").find(".item.active").attr("data-order");
-	// var elements = $(".tab.segment.active .elements .fields").length;
-	// $(".elements").append(prepareElementInContent(active_tab, elements));
+	renderElementsOrderArrows();
 });
 
 
-// LAST
 function renderElementsOrderArrows() {
-    var elements_arrows = $(".tabs_content .elements .actions").find(".ui.icon.buttons");
-    	console.log("tupe of active tab: "+typeof active_tab);
-    	if(typeof active_tab != 'undefined') {
-    	console.log("active_tab render arrows: "+active_tab);
-    		if(active_tab == 1) {
-    			$(elements_arrows).find(".ui.up.button").addClass("disabled");
-    		} else {
-    			$(elements_arrows).find(".ui.up.button").removeClass("disabled");
-    		}
 
-    		if(active_tab == menuObject.tabs) {
-    			$(elements_arrows).find(".ui.down.button").addClass("disabled");
-    		} else {
-    			$(elements_arrows).find(".ui.down.button").removeClass("disabled");
-    		}
-    	} else {
-    		console.log("is undefined");
-    		$(elements_arrows).find(".ui.up.button").addClass("disabled");
-   			$(elements_arrows).find(".ui.down.button").addClass("disabled");
-    	}       
+	for(i = 0; i <= menuObject.tabs - 1; i++) {
+		//i = tab
+		tab_content_order = i + 1;
+		var tab_content = $(".tabs_content").find("[data-order='" + tab_content_order + "']");
+
+		var element_arrows = $(tab_content).find(".elements .actions");
+
+		$.each(element_arrows, function(index, elem) {
+			$(elem).find(".ui.up.button").removeClass("disabled");
+			$(elem).find(".ui.down.button").removeClass("disabled");
+
+			var element_order = $(elem).attr("data-element_order");
+
+			if(element_order == 1) {
+				$(elem).find(".ui.up.button").addClass("disabled");
+			} else {
+				$(elem).find(".ui.up.button").removeClass("disabled");
+			}			
+			
+			if(element_order == menuObject.elements[tab_content_order - 1]) {
+				$(elem).find(".ui.down.button").addClass("disabled");
+			} else {
+				$(elem).find(".ui.down.button").removeClass("disabled");
+			}
+		});
+
+	}     
 }
 
 function renderTabOrderArrows() {
     var tab_menu_arrows = $(".tab.arrows").find(".ui.icon.buttons");
-    	console.log("tupe of active tab: "+typeof active_tab);
     	if(typeof active_tab != 'undefined') {
-    	console.log("active_tab render arrows: "+active_tab);
     		if(active_tab == 1) {
     			$(tab_menu_arrows).find(".ui.left.button").addClass("disabled");
     		} else {
@@ -201,21 +182,67 @@ function renderTabOrderArrows() {
     			$(tab_menu_arrows).find(".ui.right.button").removeClass("disabled");
     		}
     	} else {
-    		console.log("is undefined");
     		$(tab_menu_arrows).find(".ui.left.button").addClass("disabled");
    			$(tab_menu_arrows).find(".ui.right.button").addClass("disabled");
     	}       
 }
 
+// TABS order
+// left
 $(".tab.arrows .ui.left.button").on("click", function() {
 	changeTabOrder("left");
 	initTab();
 });
-
+// tab right
 $(".tab.arrows .ui.right.button").on("click", function() {
 	changeTabOrder("right");
 	initTab();
 });
+
+// ELEMENTS order
+// up
+$("body").on("click", ".actions .up.button", function() {
+	var element_order = $(this).parent().attr("data-element_order");
+	changeElementOrder("up", element_order);
+});
+// down
+$("body").on("click", ".actions .down.button", function() {
+	var element_order = $(this).parent().attr("data-element_order");
+	changeElementOrder("down", element_order);
+});
+
+function changeElementOrder(direction, element_order) {
+	var order;
+
+	if(direction == "up") {
+		order = parseInt(element_order) - 1;
+
+	}
+	if(direction == "down") {
+		order = parseInt(element_order) + 1;
+	}
+
+	var element_to_toggle = $(".tab.segment.active .elements").find("[data-order='"+ order +"']");
+	var current_element = $(".tab.segment.active .elements").find("[data-order='"+ element_order +"']");
+
+	$(element_to_toggle).attr("data-order", element_order);
+	$(current_element).attr("data-order", order);
+
+	$(element_to_toggle).find("[data-element_order='"+ order +"']").attr("data-element_order", element_order);
+	$(current_element).find("[data-element_order='"+ element_order +"']").attr("data-element_order", order);
+
+
+	$(current_element).find(".element_order").html(order);
+	$(element_to_toggle).find(".element_order").html(element_order);
+
+	if(direction == "up") {
+		$(element_to_toggle).before(current_element);
+	}
+	if(direction == "down") {
+		$(element_to_toggle).after(current_element);
+	}
+	renderElementsOrderArrows();
+}
 
 function changeTabOrder(direction) {
 	var order;
@@ -251,10 +278,10 @@ function changeTabOrder(direction) {
 }
 
 
-$(".button.save.menu").on("click", function() {
-	alert("send");
+$(".button.save_menu").on("click", function() {
+	countTabs();
+	countElementsInEachTab();
 	sendMenuViaAjax();
-	
 });
 
 function sendMenuPromise(options) {
@@ -308,13 +335,15 @@ function showConfirmTabDeleteModal(element_to_delete) {
 
 		},
 		onApprove : function() {
-			menuObject.tabs -= 1;
-			menuObject.elements[active_tab - 1] = 0;
+			// menuObject.tabs -= 1;
+			// menuObject.elements[active_tab - 1] = 0;
 			deleteElement(element_to_delete);
 			deleteTabContent();
 			sortTabs();	
 			active_tab = undefined;
 			renderTabOrderArrows();
+			countTabs();
+			countElementsInEachTab();
 		},
 	})
 	.modal('show');
@@ -325,15 +354,12 @@ function sortTabs() {
 
 	$('.tabular.menu').children(".item").each(function () {
 		var tab_number = $(this).attr("data-order");
-		// alert(tab_number);
+
 		if(tab_number > deleted_tab) {				
-			// $(this).attr("data-tab", deleted_tab);
 			$(this).attr("data-order", deleted_tab);
 			$(this).html(deleted_tab);
-			menuObject.elements[deleted_tab] = menuObject.elements[deleted_tab + 1];
-			// $(".tabs_content").find("[data-tab='" + tab_number + "']").attr("data-tab", deleted_tab);
-			++deleted_tab;
-			// initTab();			
+			menuObject.elements[deleted_tab] = menuObject.elements[deleted_tab + 1];	
+			++deleted_tab;		
 		}	
 	});
 }
@@ -342,8 +368,8 @@ function sortElements() {
 	var order = 1;
 	$('.segment.active .elements .fields').each(function() { 		
 		$(this).attr("data-order", order);
-		console.log(this);
-		$(this).find(".element_order").html(order);
+		$(this).find(".actions").attr("data-element_order", order);
+		$(this).find(".element_order").html(order);		
 		++order;
 	});
 }
@@ -362,9 +388,12 @@ function initTab() {
 }
 
 
-
-function prepareTabContent(tab_id, tab_order) {
+function prepareTabContent(tab_id, tab_order, elements_in_tab) {
 	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+' data-order='+tab_order+'>'+
+					'<div class="alert dropdown" hidden>'+
+						'<i class="warning circle icon"></i>'+
+						'Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!'+
+					'</div>'+
 					'<div class="three fields">'+
 						'<div class="inline fields">'+
 							'<div class="ui toggle checkbox">'+
@@ -373,22 +402,22 @@ function prepareTabContent(tab_id, tab_order) {
 							'</div>'+
 						'</div>'+
 						'<div class="inline fields">'+
-							'<div class="field dropdown_name dropdown_name_tab_'+tab_id+'" style="display: none;">'+
+							'<div class="field dropdown_name" style="display: none;">'+
 								'<label>Nazwa</label >'+
 								'<input type="text" placeholder="Nazwa" name="item_name_tab_'+tab_id+'">'+
 							'</div>'+
 						'</div>'+
 						'<div class="inline fields delete_item_div">'+
-								'<div class="ui negative button delete_item_tab_'+tab_id+'">'+
+								'<div class="ui negative button">'+
 									'Usuń'+
 								'</div>'+
 							'</div>'+
 					'</div>'+
 					'<div class="elements">'+
-						'<div class="fields elements_tab_'+tab_id+'">'+
+						'<div class="fields" data-order='+elements_in_tab+'>'+
 							'<div class=" field">'+
 								'<div class="circular ui icon button order" disabled>'+
-								'<span class="element_order element_order_tab_'+tab_id+'_1">1</span>'+
+								'<span class="element_order">1</span>'+
 								'</div>'+
 							'</div>'+
 							'<div class="five wide field">'+
@@ -400,19 +429,18 @@ function prepareTabContent(tab_id, tab_order) {
 								'<input type="text" placeholder="URL elementu" name="element_url_tab_'+tab_id+'_1">'+
 							'</div>'+
 							'<div class="field">'+
-								'<div class="ui icon buttons actions">'+
-									'<div class="ui negative button element_remove_tab_'+tab_id+'_1"><i class="remove icon"></i>'+
+								'<div class="ui icon buttons actions" data-element_order='+elements_in_tab+'>'+
+									'<div class="ui negative button element_delete"><i class="remove icon"></i>'+
 									'</div>'+
-
-									'<div class="ui button element_move_up_tab_'+tab_id+'_1"><i class="long arrow up icon"></i>'+
+									'<div class="ui up button disabled"><i class="long arrow up icon"></i>'+
 									'</div>'+
-									'<div class="ui button element_move_down_tab_'+tab_id+'_1"><i class="long arrow down icon"></i>'+
+									'<div class="ui down button disabled"><i class="long arrow down icon"></i>'+
 									'</div>'+
 								'</div>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
-					'<div class="fourteen wide field add_new_element_tab_'+tab_id+'" hidden>'+
+					'<div class="fourteen wide field add_new_element" hidden>'+
 						'<div class="fluid ui positive button"><i class="plus icon"></i>'+
 						'</div>'+
 					'</div>'+
@@ -422,10 +450,10 @@ function prepareTabContent(tab_id, tab_order) {
 
 function prepareElementInContent(active_tab_num, all_elements_num) {
 	var element_draft = 
-						'<div class="fields elements_tab_'+active_tab_num+'_'+all_elements_num+'" data-order='+all_elements_num+'>'+
+						'<div class="fields" data-order='+all_elements_num+'>'+
 							'<div class=" field">'+
 								'<div class="circular ui icon button order" disabled>'+
-								'<span class="element_order element_order_tab_'+active_tab_num+'_'+all_elements_num+'">'+all_elements_num+'</span>'+
+								'<span class="element_order">'+all_elements_num+'</span>'+
 								'</div>'+
 							'</div>'+
 							'<div class="five wide field">'+
@@ -437,12 +465,12 @@ function prepareElementInContent(active_tab_num, all_elements_num) {
 								'<input type="text" placeholder="URL elementu" name="element_url_tab_'+active_tab_num+'_'+all_elements_num+'">'+
 							'</div>'+
 							'<div class="field">'+
-								'<div class="ui icon buttons actions" data-element='+all_elements_num+'>'+
-									'<div class="ui negative button element_remove_tab_'+active_tab_num+'_'+all_elements_num+'"><i class="remove icon"></i>'+
+								'<div class="ui icon buttons actions" data-element_order='+all_elements_num+'>'+
+									'<div class="ui negative button element_delete"><i class="remove icon"></i>'+
 									'</div>'+
-									'<div class="ui button element_move_up_tab_'+active_tab_num+'_'+all_elements_num+'"><i class="long arrow up icon"></i>'+
+									'<div class="ui up button"><i class="long arrow up icon"></i>'+
 									'</div>'+
-									'<div class="ui button element_move_down_tab_'+active_tab_num+'_'+all_elements_num+'" ><i class="long arrow down icon"></i>'+
+									'<div class="ui down button" ><i class="long arrow down icon"></i>'+
 									'</div>'+
 								'</div>'+
 								'</div>'+
