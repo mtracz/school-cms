@@ -30,5 +30,14 @@ class ElementsController extends Controller
     	}
     }
 
+    public function deleteMenu($id) {
+    	$elementsManageService = new ElementsManageService();
+    	$elementsManageService->deleteMenuFromDatabase($id);
 
+    	if($elementsManageService->isMenuDeleted()) {
+    		return response("success");
+    	} else {
+    		return response("error: delete menu");
+    	}
+    }
 }

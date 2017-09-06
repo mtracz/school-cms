@@ -118,3 +118,6 @@ Route::post('/content_tools/save_image', ["as" => "content_tools.image.save.post
 Route::get("/elements/menu/add", ["as" => "menu.add.get", "uses" => "ViewController@getMenuAddView"]);
 // menu add 
 Route::post("/elements/menu/add", ["as" => "menu.add.post", "uses" => "ElementsController@addMenu"]);
+// menu delete 
+// change to post!
+Route::get("/elements/menu/delete/{id}", ["as" => "menu.delete.get", "uses" => "ElementsController@deleteMenu"]);

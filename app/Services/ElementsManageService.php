@@ -17,6 +17,7 @@ class ElementsManageService {
 	protected $menu_name;
 	protected $menu_id;
 	protected $is_menu_saved = false;
+	protected $is_menu_deleted = false;
 
 	protected $request_data;
 	
@@ -108,6 +109,40 @@ class ElementsManageService {
 
 	public function isMenuSaved() {
 		return $this->is_menu_saved;
+	}
+
+
+	public function deleteMenuFromDatabase($id) {
+		$menuObject = Menu::find($id);
+		if($menuObject) {
+
+			$menu_items = $menuObject->menu_item;
+
+			foreach ($menu_items as $item_key => $item_value) {
+				$links_form_menu_item = $menu_items[$item_key]->link;
+
+				// delete links for current menu item
+				foreach ($links_form_menu_item as $link_key => $link_value) {
+					Link::find($link_value["id"])->delete();
+				}
+				// delete menu item
+				MenuItem::find($item_value["id"])->delete();
+
+			}
+
+			// delete menu id from elements
+			Element::where("menu_id", $id)->delete();
+
+			// delete menu
+			$menuObject->delete();
+			$this->is_menu_deleted = true;
+		} else {
+			$this->is_menu_deleted = false;
+		}
+	}
+
+	public function isMenuDeleted() {
+		return $this->is_menu_deleted;
 	}
 
 
