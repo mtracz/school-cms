@@ -45,10 +45,4 @@
 		border-left: 10px solid #406DE4;
 	}
 
-	.list.panel a {
-		cursor: pointer;
-
-		color: #406DE4;
-	}
-
 </style>

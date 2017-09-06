@@ -31,7 +31,7 @@ class SettingsController extends Controller
 
 		$passwordService = new PasswordService();
 
-		$requestData = $request->all();
+		// $requestData = $request->all();
 
 		$admin_id = $request["admin_id"];
 		$admin_old_password = $request["old_password"];
@@ -40,13 +40,33 @@ class SettingsController extends Controller
 
 		$errors = [];
 
-		if( $passwordService->checkOldPassword($admin_id, $admin_old_password) 
-			&& $passwordService->checkConfirmPassword($admin_new_password, $admin_new_password_confirm)) {
+		if( !$passwordService->checkOldPassword($admin_id, $admin_old_password ) ) {
+			array_push($errors, "Stare hasło jest niepoprawne!");
+		}
+
+		if( !$passwordService->checkConfirmPassword($admin_new_password, $admin_new_password_confirm) ) {
+			array_push($errors, "Nowe i powtórzone hasła są różne!");
+		}
+
+		if( strlen($admin_new_password) < 6 ) {
+			array_push($errors, "Nowe hasło MUSI zawierać min. 6 znaków");
+		}
+
+		// FIX password_change response !
+
+		if( empty($errors) ) {
 
 			$passwordService->setPassword($admin_id, $admin_new_password);
+
+			return response(["password_change" => "success"]);
 		} else {
 
-			return response(["password_change" => "error"]);
+			$response_array = [
+				"password_change" => "error",
+				"errors" => $errors,
+			];
+
+			return response($response_array);
 		}
 	}
 }

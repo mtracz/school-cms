@@ -6,7 +6,7 @@
 	@if($singleItem->is_dropdown === 1)
 
 	<div class="ui accordion">
-		<div class="title" style="color: white !important">
+		<div class="title">
 			<i class="dropdown icon"></i>
 			{{ $singleItem->name }}
 		</div>

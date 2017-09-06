@@ -22,7 +22,7 @@
 	@yield("styles")
 
 </head>
-<body class="background-color">
+<body class="background-color body">
 
 	<div class="ui active page dimmer">
 		<div class="ui active text massive loader">

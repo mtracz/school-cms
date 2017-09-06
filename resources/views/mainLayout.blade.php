@@ -3,6 +3,7 @@
 @section("styles")
 
 {!! Html::style("css/mainLayout.css") !!}
+{!! Html::style("css/templates.css") !!}
 
 @endsection
 
@@ -11,7 +12,7 @@
 @inject("SectorHydratorService", "App\Services\SectorHydratorService")
 
 <div class="ui container">
-	
+
 	<div class="ui main segment" style="display: none;">
 
 		<div class="ui grid">
@@ -64,27 +65,27 @@
 
 						@if(isset($news))
 
-							@if(isset($news_pinned))
+						@if(isset($news_pinned))
 
-								@include("templates/newsPinned")
+						@include("templates/newsPinned")
 
-							@endif
+						@endif
 
-							@foreach($news as $item)
+						@foreach($news as $item)
 
-								@include("templates/news")
+						@include("templates/news")
 
-							@endforeach
-							
-							<div class="ui segment">
-								<div class="ui center grid">
-									<div class="pagination_container">
+						@endforeach
+
+						<div class="ui segment">
+							<div class="ui center grid">
+								<div class="pagination_container">
 
 									@include("templates/pagination")
 
-									</div>
 								</div>
 							</div>
+						</div>
 
 						@endif
 

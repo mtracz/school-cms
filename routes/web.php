@@ -45,6 +45,7 @@ Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@get
 
 Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsController@getSettings"]);
 Route::post('/settings/set', ["as" => "settings.set.post", "uses" => "SettingsController@setSettings"]);
+Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
 
 Route::post('/password/change', ["as" => "password.change.post", "uses" => "SettingsController@changePassword"]);
 //NEWS//
@@ -103,8 +104,7 @@ Route::get("element/manage", ["as" => "element.manage.get", "uses" => "ViewContr
 // elements edit
 Route::post("element/manage/update", ["as" => "element.update.post", "uses" => "ElementsController@updateElements"]);
 
-// settings
-Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
+
 
 // content tools
 Route::post('/content_tools/upload_image', ["as" => "content_tools.image.upload.post", "uses" => "ContentToolsController@uploadImage"]);

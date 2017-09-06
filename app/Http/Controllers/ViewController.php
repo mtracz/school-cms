@@ -365,9 +365,9 @@ class ViewController extends Controller {
 		$panel_types = $this->getPanelTypesAll();
 
 		return view("elements.elementsManage")
-		->with("site_sectors", $site_sectors)
-		->with("panel_types", $panel_types)
-		->with("elements", $elements);
+			->with("site_sectors", $site_sectors)
+			->with("panel_types", $panel_types)
+			->with("elements", $elements);
 	}
 
 	public function hasPage($params) {

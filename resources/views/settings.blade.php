@@ -42,23 +42,23 @@
 				<div class="field">
 					<div class="ui labeled input">
 						<div class="ui label"> Stare hasło </div>
-						<input class="clearable" name="old_password" type="password" placeholder="Hasło" value="">
+						<input class="clearable" name="old_password" type="password" placeholder="Stare hasło" value="">
 					</div>
 				</div>
 
 				<div class="field">
 					<div class="ui labeled input">
 						<div class="ui label"> Nowe hasło </div>
-						<input class="clearable" name="new_password" type="password" placeholder="Hasło" value="">
+						<input class="clearable" name="new_password" type="password" placeholder="Nowe hasło" value="">
 					</div>
 				</div>
 
 				<div class="field">
 					<div class="ui labeled input">
 						<div class="ui label"> Powtórz hasło </div>
-						<input class="clearable" name="new_password_confirm" type="password" placeholder="Hasło" value="">
+						<input class="clearable" name="new_password_confirm" type="password" placeholder="Powtórz hasło" value="">
 					</div>
-					<span class="password_change_hint"> <i class="warning icon"></i> Nowe i stare hasła powinny się różnić!</span><br>
+					<span class="password_change_hint"> <i class="warning icon"></i> Nowe i stare hasła MUSZĄ się różnić!</span><br>
 				</div>
 
 
