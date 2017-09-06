@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 use App\Services\ElementsUpdateService;
+use App\Services\ElementsManageService;
 
 class ElementsController extends Controller
 {
@@ -19,6 +21,23 @@ class ElementsController extends Controller
     }
 
     public function addMenu(Request $request) {
-    	dd($request->all());
+    	$elementsManageService = new ElementsManageService();
+    	$elementsManageService->prepareMenuData($request->all())->buildMenu();
+
+    	if($elementsManageService->isMenuSaved()) {
+    		Session::flash("messages", ["<h2>Dodano nowe menu</h2>" => "success" ]);
+    		return response("success");
+    	}
+    }
+
+    public function deleteMenu($id) {
+    	$elementsManageService = new ElementsManageService();
+    	$elementsManageService->deleteMenuFromDatabase($id);
+
+    	if($elementsManageService->isMenuDeleted()) {
+    		return response("success");
+    	} else {
+    		return response("error: delete menu");
+    	}
     }
 }

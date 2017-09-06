@@ -420,8 +420,8 @@ class ViewController extends Controller {
 
 		$parameters = $request->all();
 
-		$sector_id = $parameters["sector_id"];
-		$sector_name = $parameters["sector_name"];
+		$sector_id = $parameters["sector_id"] ?? "brak sektora";
+		$sector_name = $parameters["sector_name"] ?? "brak sektora";
 
 		return view("elements.addMenu")
 		->with("sector_id", $sector_id)

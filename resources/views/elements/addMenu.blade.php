@@ -11,7 +11,10 @@
 <div class="ui centered aligned grid">
 	
 	<div class="column">
-		<div class="ui centered header">Dodaj menu</div>
+			<div class="ui centered header">Dodaj menu</div>
+			<h5 class="ui centered header sector_info" data-setctor_id="{{$sector_id or ""}}">
+				Sektor: {{$sector_name or ""}}
+			</h5>
 		<form class="ui form" action="{{route("menu.add.post")}}" method="post" id="menu_form">
 			{{ csrf_field() }}
 
@@ -45,7 +48,7 @@
 			{{-- TAB CONTENT --}}
 			<div class="tabs_content">		
 
-				<div class="ui bottom attached tab segment active" data-tab="1" data-order="1">
+				<div class="ui bottom attached tab segment active" data-tab="1" data-tab_content_order="1">
 					<div class="alert dropdown" hidden>
 						<i class="warning circle icon"></i>
 						Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!
@@ -63,7 +66,7 @@
 						<div class="inline fields">
 							<div class="field dropdown_name" style='display: none;'>
 								<label>Nazwa</label>
-								<input type="text" placeholder="Nazwa" name="item_name_tab_1">
+								<input type="text" placeholder="Nazwa" name="item_name_tab_1" value="no checked">
 							</div>
 						</div>
 						<div class="inline fields delete_item_div">
@@ -74,17 +77,18 @@
 					</div>
 
 					<div class="elements">
+
 						<div class="fields" data-order="1">
 							<div class=" field">
 								<div class="circular ui icon button order" disabled>
 								<span class="element_order">1</span>			
 								</div>
 							</div>
-							<div class="five wide field">
+							<div class="five wide field name">
 								<label>Nazwa</label>
 								<input type="text" placeholder="Nazwa elementu" name="element_name_tab_1_1">
 							</div>	
-							<div class="five wide field">
+							<div class="five wide field url">
 								<label>URL</label>
 								<input type="text" placeholder="URL elementu" name="element_url_tab_1_1">						
 							</div>
@@ -100,6 +104,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 
 					<div class="fourteen wide field add_new_element" hidden>
@@ -113,7 +118,8 @@
 		
 			<br>
 			{{-- buttons --}}
-			<div class="ui red left floated circular button">
+			<div class="route_to_elements_manage" hidden data-route_to_elements_manage="{{route("element.manage.get")}}"></div>
+			<div class="ui red left floated circular button cancel">
 				<i class="cancel icon"></i>
 				Anuluj
 			</div>

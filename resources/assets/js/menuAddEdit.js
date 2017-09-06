@@ -6,6 +6,7 @@ var menuObject = {
 	// index from 0
 	elements: [],
 	//0 => x ; 		x elements for 0 (1) tab
+	data_tabs : [],
 };
 
 var active_tab;
@@ -20,11 +21,22 @@ $(document).ready(function() {
 	active_tab = $(".item.active").attr("data-order");
 	renderTabOrderArrows();
 	renderElementsOrderArrows();
+
 });
 
 
 function countTabs() {
 	menuObject.tabs = $(".tabular.menu .item").length;
+
+	menuObject.data_tabs = [];
+// map 'data-tab' to 'data-order' tab
+	for(i = 0; i <= menuObject.tabs - 1; i++) {
+		
+		var order = i + 1;
+		var tab = $(".tabular.menu").find("[data-order='" + order + "']");
+
+		menuObject.data_tabs[i] = tab.attr("data-tab");		
+	}
 }
 
 function countElementsInEachTab() {
@@ -33,16 +45,15 @@ function countElementsInEachTab() {
 	for(i = 0; i <= menuObject.tabs - 1; i++) {
 		//i = tab
 		var tab_content_order = i + 1;
-		var tab_content = $(".tabs_content").find("[data-order='" + tab_content_order + "']");
-		console.log("i: " + i);
-		console.log(tab_content);
+
+		var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_content_order + "']");
 
 		var elements = $(tab_content).find(".elements .fields").length;
-		
-		console.log("elements:"+elements);
+
 		menuObject.elements[i] = elements;
 	}
 }
+
 
 // track active tab
 $(".tabular.menu").on("click", function() {
@@ -85,7 +96,7 @@ $(".tabs_content").on("click", ".delete_item_div .button", function() {
 	var tab = $(".tabular.menu").find("[data-order='" + active_tab + "']");
 
 	if(menuObject.tabs < 2) {
-		alert("Nie mozna usunąć 1szego elementu");
+		toastr.error("<h3>Nie można usunąć 1szego elementu.</h3>");
 		return false;
 	}
 	showConfirmTabDeleteModal(tab);
@@ -96,15 +107,19 @@ $(".tabs_content").on("click", ".delete_item_div .button", function() {
 $(".tabs_content").on("click", ".toggle.checkbox", function() {
 	var x = $(".tabular.menu .item.active").attr("data-tab");
 	if($("#is_dropdown_tab_"+ x).is(":checked")) {
-		$(".tab.segment.active .add_new_element").show();
-		$(".tab.segment.active .dropdown_name").show();
+		$(".tab.segment.active .add_new_element").show();	
 		$(".tab.segment.active .alert.dropdown").show();
+		$(".tab.segment.active .dropdown_name").show();
+		$(".tab.segment.active .dropdown_name input").val("");
+		$(".tab.segment.active .dropdown_name input").attr("value", "");
 	} else {
 		$(".tab.segment.active .add_new_element").hide();
-		$(".tab.segment.active .dropdown_name").hide();
 		$(".tab.segment.active .alert.dropdown").hide();
+		$(".tab.segment.active .dropdown_name").hide();	
+		$(".tab.segment.active .dropdown_name input").val("no checked");
 		deleteElementsIfIsNotDropdown();
 		renderElementsOrderArrows();
+		sortElements();
 	}
 });
 
@@ -117,6 +132,7 @@ $(".tabs_content").on("click", ".fourteen.wide.field", function() {
 	elements = menuObject.elements[active_tab - 1] + 1;
 	$(".tab.segment.active .elements").append(prepareElementInContent(active_tab, elements));
 	menuObject.elements[active_tab - 1] += 1;
+	sortElements();
 	renderElementsOrderArrows();
 });
 
@@ -124,7 +140,7 @@ $(".tabs_content").on("click", ".fourteen.wide.field", function() {
 $("body").on("click", ".actions .element_delete", function() {
 	var element_num = $(this).parent().attr("data-element_order");
 	if(menuObject.elements[active_tab - 1] < 2) {
-		alert("nie można usunąc 1szego elementu");
+		toastr.error("<h3>Nie można usunąć 1szego elementu.</h3>");
 		return false;
 	}
 
@@ -141,7 +157,7 @@ function renderElementsOrderArrows() {
 	for(i = 0; i <= menuObject.tabs - 1; i++) {
 		//i = tab
 		tab_content_order = i + 1;
-		var tab_content = $(".tabs_content").find("[data-order='" + tab_content_order + "']");
+		var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_content_order + "']");
 
 		var element_arrows = $(tab_content).find(".elements .actions");
 
@@ -242,6 +258,7 @@ function changeElementOrder(direction, element_order) {
 		$(element_to_toggle).after(current_element);
 	}
 	renderElementsOrderArrows();
+	sortElements();
 }
 
 function changeTabOrder(direction) {
@@ -259,6 +276,13 @@ function changeTabOrder(direction) {
 
 	$(element_to_toggle).attr("data-order", active_tab);
 	$(current_element).attr("data-order", order);
+
+	//change data-tab_content_order
+	var current_tab_content = $(".tabs_content").find("[data-tab_content_order='" + active_tab + "']");
+	var tab_content_to_toggle = $(".tabs_content").find("[data-tab_content_order='" + order + "']");
+
+	$(current_tab_content).attr("data-tab_content_order", order);
+	$(tab_content_to_toggle).attr("data-tab_content_order", active_tab);
 
 	// pieprzy taby
 	// $(element_to_toggle).attr("data-tab", active_tab);
@@ -281,7 +305,13 @@ function changeTabOrder(direction) {
 $(".button.save_menu").on("click", function() {
 	countTabs();
 	countElementsInEachTab();
-	sendMenuViaAjax();
+	var redirect_url = $(".route_to_elements_manage").attr("data-route_to_elements_manage");
+	sendMenuViaAjax(redirect_url);
+});
+
+$(".button.cancel").on("click", function() {
+	var redirect_url = $(".route_to_elements_manage").attr("data-route_to_elements_manage");
+	window.location.replace(redirect_url);
 });
 
 function sendMenuPromise(options) {
@@ -290,10 +320,19 @@ function sendMenuPromise(options) {
 	});
 }
 
-function sendMenuViaAjax() {
+function sendMenuViaAjax(redirect_url) {
 	var form = $("#menu_form").serializeArray();
 	form.push({ name: "tabs_count", value: menuObject.tabs});
 	form.push({ name: "elements_in_tabs", value: menuObject.elements});
+	form.push({ name: "data_tabs", value: menuObject.data_tabs});
+
+	var sector_id = $(".ui.centered.header.sector_info").attr("data-setctor_id");
+	form.push({ name: "sector_id", value: sector_id});
+
+	if(!validateFormInputs(form)) {
+		toastr.error("<h2>Uzupełnij wszystkie pola.</h2>");
+		return false;
+	}
 
 	sendMenuPromise({
 		headers: {
@@ -304,12 +343,31 @@ function sendMenuViaAjax() {
 		data: form,
 	})
 	.then(function (response) {
-		alert("send menu succes");
+		if(response === "success") {
+			window.location.replace(redirect_url);
+		} else {
+			toastr.error("Problem z zapisem.")
+		}
+	
 	})
 	.catch(function(error) {
 		console.log("ajax eero: "+ error);
 		alert("add menu ajax error: " + error);
 	});
+}
+
+function validateFormInputs(form_serialize) {
+	for(i = 0; i < form_serialize.length; i++) {
+		// console.log(form_serialize[i].value);
+		// console.log(form_serialize[i].value.length);
+		// console.log(form_serialize[i].value.length >= 1);
+		if(form_serialize[i].value.length < 1) {
+			// alert("NULL IN FORM");
+			return false;
+		}
+	}
+	// alert("FORM CORECT");
+		return true;
 }
 
 function deleteElementsIfIsNotDropdown() {
@@ -335,8 +393,6 @@ function showConfirmTabDeleteModal(element_to_delete) {
 
 		},
 		onApprove : function() {
-			// menuObject.tabs -= 1;
-			// menuObject.elements[active_tab - 1] = 0;
 			deleteElement(element_to_delete);
 			deleteTabContent();
 			sortTabs();	
@@ -358,8 +414,10 @@ function sortTabs() {
 		if(tab_number > deleted_tab) {				
 			$(this).attr("data-order", deleted_tab);
 			$(this).html(deleted_tab);
-			menuObject.elements[deleted_tab] = menuObject.elements[deleted_tab + 1];	
-			++deleted_tab;		
+
+			var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_number + "']");
+			$(tab_content).attr("data-tab_content_order", deleted_tab);
+			deleted_tab++;		
 		}	
 	});
 }
@@ -369,8 +427,15 @@ function sortElements() {
 	$('.segment.active .elements .fields').each(function() { 		
 		$(this).attr("data-order", order);
 		$(this).find(".actions").attr("data-element_order", order);
-		$(this).find(".element_order").html(order);		
-		++order;
+		$(this).find(".element_order").html(order);
+
+		// sort input's name
+		var input_name = $(this).find(".five.wide.field.name input");
+		var input_url = $(this).find(".five.wide.field.url input");
+
+		$(input_name).attr('name', 'element_name_tab_'+active_tab+'_'+order);
+		$(input_url).attr('name', 'element_url_tab_'+active_tab+'_'+order);
+		order++;
 	});
 }
 
@@ -389,7 +454,7 @@ function initTab() {
 
 
 function prepareTabContent(tab_id, tab_order, elements_in_tab) {
-	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+' data-order='+tab_order+'>'+
+	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+' data-tab_content_order='+tab_order+'>'+
 					'<div class="alert dropdown" hidden>'+
 						'<i class="warning circle icon"></i>'+
 						'Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!'+
@@ -404,7 +469,7 @@ function prepareTabContent(tab_id, tab_order, elements_in_tab) {
 						'<div class="inline fields">'+
 							'<div class="field dropdown_name" style="display: none;">'+
 								'<label>Nazwa</label >'+
-								'<input type="text" placeholder="Nazwa" name="item_name_tab_'+tab_id+'">'+
+								'<input type="text" placeholder="Nazwa" name="item_name_tab_'+tab_id+'" value="no checked">'+
 							'</div>'+
 						'</div>'+
 						'<div class="inline fields delete_item_div">'+
@@ -420,11 +485,11 @@ function prepareTabContent(tab_id, tab_order, elements_in_tab) {
 								'<span class="element_order">1</span>'+
 								'</div>'+
 							'</div>'+
-							'<div class="five wide field">'+
+							'<div class="five wide field name">'+
 								'<label>Nazwa</label>'+
 								'<input type="text" placeholder="Nazwa elementu" name="element_name_tab_'+tab_id+'_1">'+
 							'</div>'+
-							'<div class="five wide field">'+
+							'<div class="five wide field url">'+
 								'<label>URL</label>'+
 								'<input type="text" placeholder="URL elementu" name="element_url_tab_'+tab_id+'_1">'+
 							'</div>'+
@@ -456,11 +521,11 @@ function prepareElementInContent(active_tab_num, all_elements_num) {
 								'<span class="element_order">'+all_elements_num+'</span>'+
 								'</div>'+
 							'</div>'+
-							'<div class="five wide field">'+
+							'<div class="five wide field name">'+
 								'<label>Nazwa</label>'+
 								'<input type="text" placeholder="Nazwa elementu" name="element_name_tab_'+active_tab_num+'_'+all_elements_num+'">'+
 							'</div>'+
-							'<div class="five wide field">'+
+							'<div class="five wide field url">'+
 								'<label>URL</label>'+
 								'<input type="text" placeholder="URL elementu" name="element_url_tab_'+active_tab_num+'_'+all_elements_num+'">'+
 							'</div>'+
