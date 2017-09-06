@@ -10,6 +10,7 @@ use App\Models\Link;
 class MenuItem extends Model
 {
     protected $table = "menu_items";
+    public $timestamps = false;
 
     public function menu() {
     	

@@ -11,7 +11,10 @@
 <div class="ui centered aligned grid">
 	
 	<div class="column">
-		<div class="ui centered header">Dodaj menu</div>
+			<div class="ui centered header">Dodaj menu</div>
+			<h5 class="ui centered header sector_info" data-setctor_id="{{$sector_id or ""}}">
+				Sektor: {{$sector_name or ""}}
+			</h5>
 		<form class="ui form" action="{{route("menu.add.post")}}" method="post" id="menu_form">
 			{{ csrf_field() }}
 
@@ -63,7 +66,7 @@
 						<div class="inline fields">
 							<div class="field dropdown_name" style='display: none;'>
 								<label>Nazwa</label>
-								<input type="text" placeholder="Nazwa" name="item_name_tab_1">
+								<input type="text" placeholder="Nazwa" name="item_name_tab_1" value="no checked">
 							</div>
 						</div>
 						<div class="inline fields delete_item_div">
@@ -115,7 +118,8 @@
 		
 			<br>
 			{{-- buttons --}}
-			<div class="ui red left floated circular button">
+			<div class="route_to_elements_manage" hidden data-route_to_elements_manage="{{route("element.manage.get")}}"></div>
+			<div class="ui red left floated circular button cancel">
 				<i class="cancel icon"></i>
 				Anuluj
 			</div>
