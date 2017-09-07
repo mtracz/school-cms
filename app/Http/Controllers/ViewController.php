@@ -424,8 +424,26 @@ class ViewController extends Controller {
 		$sector_name = $parameters["sector_name"] ?? "brak sektora";
 
 		return view("elements.addMenu")
-		->with("sector_id", $sector_id)
-		->with("sector_name", $sector_name);
+			->with("sector_id", $sector_id)
+			->with("sector_name", $sector_name);
+	}
+
+	public function getMenuEditView(Request $request, $id) {
+
+		$parameters = $request->all();
+
+		$sector_id = $parameters["sector_id"] ?? "brak sektora";
+		$sector_name = $parameters["sector_name"] ?? "brak sektora";
+
+		$editing_mode = true;
+
+		$menuObject = Menu::find($id);
+		
+		return view("elements.addMenu")
+			->with("sector_id", $sector_id)
+			->with("sector_name", $sector_name)
+			->with("menuObject", $menuObject)
+			->with("editing_mode", $editing_mode);
 	}
 
 	public function getSiteSectorsAll() {

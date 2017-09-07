@@ -29,9 +29,6 @@ Route::group(["middleware" => ["auth"]], function() {
 
 Route::get("/global", ["as" => "global.get", "uses" => "GlobalController@serve"]);
 
-Route::get("/test", function(){
-	return view("test");
-});
 
 //ALL USERS
 
@@ -118,6 +115,10 @@ Route::post('/content_tools/save_image', ["as" => "content_tools.image.save.post
 Route::get("/elements/menu/add", ["as" => "menu.add.get", "uses" => "ViewController@getMenuAddView"]);
 // menu add 
 Route::post("/elements/menu/add", ["as" => "menu.add.post", "uses" => "ElementsController@addMenu"]);
+// menu edit view
+Route::get("/elements/menu/edit/{id}", ["as" => "menu.edit.get", "uses" => "ViewController@getMenuEditView"]);
+// menu edit
+Route::post("/elements/menu/edit/{id}", ["as" => "menu.edit.post", "uses" => "ElementsController@editMenu"]);
 // menu delete 
 // change to post!
 Route::post("/elements/menu/delete/{id}", ["as" => "menu.delete.post", "uses" => "ElementsController@deleteMenu"]);

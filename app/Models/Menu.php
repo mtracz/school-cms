@@ -14,7 +14,7 @@ class Menu extends Model
 
     public function element() {
     	
-    	return $this->hasMany(Element::class);
+    	return $this->hasOne(Element::class);
     }
 
     public function menu_item() {

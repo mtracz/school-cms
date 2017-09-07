@@ -21,9 +21,6 @@ class ElementsManageService {
 
 	protected $request_data;
 	
-	function __construct() {
-		
-	}
 
 	public function prepareMenuData($request) {	
 		// dd($request);
@@ -40,7 +37,13 @@ class ElementsManageService {
 		return $this;
 	}
 
-	public function buildMenu() {
+	public function buildMenu($editing_mode = false, $menu_id = null) {
+		
+		if($editing_mode) {
+			$menuObject = Menu::find($menu_id);
+			$current_menu_order = $menuObject->element->order;
+			$this->deleteMenuFromDatabase($menu_id);
+		}
 
 		$this->createMenuInDatabase($this->menu_name);
 
@@ -83,7 +86,11 @@ class ElementsManageService {
 				$linkObject->save();
 			}
 		}
-		$this->addMenuToElements();
+		if($editing_mode) {
+			$this->addMenuToElements($current_menu_order);
+		} else {
+			$this->addMenuToElements();
+		}
 	}
 
 	protected function createMenuInDatabase($menu_name) {
@@ -94,12 +101,13 @@ class ElementsManageService {
 		$this->menu_id = $menuObject->id;
 	}
 
-	protected function addMenuToElements() {
+	protected function addMenuToElements($current_menu_order = null) {
+
 		$quantity_elements_in_sector = Element::where("site_sector_id", $this->sector_id)->count();
 
 		$elementObject = new Element();
 		$elementObject->site_sector_id = $this->sector_id;
-		$elementObject->order = $quantity_elements_in_sector + 1;
+		$elementObject->order = $current_menu_order ?? $quantity_elements_in_sector + 1;
 		$elementObject->menu_id = $this->menu_id;
 		$elementObject->is_enabled = true;
 		$elementObject->save();

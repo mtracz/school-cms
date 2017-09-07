@@ -30,6 +30,17 @@ class ElementsController extends Controller
     	}
     }
 
+    public function editMenu(Request $request, $id) {
+        // dd($request->all());
+    	$elementsManageService = new ElementsManageService();
+        $elementsManageService->prepareMenuData($request->all())->buildMenu($editing_mode = true, $id);
+
+        if($elementsManageService->isMenuSaved()) {
+            Session::flash("messages", ["<h2>Edytowano menu</h2>" => "success" ]);
+            return response("success");
+        }
+    }
+
     public function deleteMenu($id) {
     	$elementsManageService = new ElementsManageService();
     	$elementsManageService->deleteMenuFromDatabase($id);

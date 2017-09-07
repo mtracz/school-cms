@@ -7,21 +7,40 @@
 
 
 @section("content")
+	@php
+		$is_editing = isset($editing_mode);		
+	@endphp
 <br><br><br>
 <div class="ui centered aligned grid">
 	
 	<div class="column">
-			<div class="ui centered header">Dodaj menu</div>
+			<div class="ui centered header">
+			@if($is_editing) 
+				Edytuj menu
+			@else
+				Dodaj menu
+			@endif
+			</div>
 			<h5 class="ui centered header sector_info" data-setctor_id="{{$sector_id or ""}}">
 				Sektor: {{$sector_name or ""}}
 			</h5>
-		<form class="ui form" action="{{route("menu.add.post")}}" method="post" id="menu_form">
+			<form class="ui form" 
+			@if($is_editing) 
+					action="{{route("menu.edit.post", $menuObject->id)}}"
+			@else
+					action="{{route("menu.add.post")}}"
+			@endif  
+			method="post" id="menu_form">
 			{{ csrf_field() }}
 
 			<div class="six wide field focus">
 				<label>Nazwa</label>
-				<input type="text" placeholder="Nazwa menu" autofocus name="menu_name">
-			</div>		
+				@if($is_editing)
+					<input type="text" placeholder="Nazwa menu" name="menu_name" autofocus onfocus="this.value = '{{$menuObject->name}}'">
+				@else
+					<input type="text" placeholder="Nazwa menu" autofocus name="menu_name">
+				@endif
+			</div>
 
 			<h5>Dodaj element</h5>
 			<div class="field tab arrows">
@@ -32,10 +51,20 @@
 				</div>
 			</div>
 
+			
 			{{-- TABS START --}}
 			<div class="ui top attached tabular menu">
-
-				<a class="item active" data-tab="1" data-order="1">1</a>
+				@if($is_editing)
+					@foreach ($menuObject->menu_item as $item)
+						<a 
+						@if($item->order == 1) 
+						class="item active"
+						@else class="item" 
+						@endif data-tab={{$item->order}} data-order={{$item->order}}> {{$item->order}} </a>
+					@endforeach
+				@else
+					<a class="item active" data-tab="1" data-order="1">1</a>
+				@endif
 
 				<div class="ui icon buttons add_tab_div">
 					<div class="compact ui positive button" id="add_tab"><i class="add circle large icon"></i>
@@ -44,7 +73,9 @@
 			</div>
 			{{-- END TABS --}}
 		
-
+			@if($is_editing)
+				@include("editMenu")
+			@else
 			{{-- TAB CONTENT --}}
 			<div class="tabs_content">		
 
@@ -115,7 +146,8 @@
 				</div>
 			</div>
 			{{-- END TAB CONTENT --}}
-		
+			@endif
+
 			<br>
 			{{-- buttons --}}
 			<div class="route_to_elements_manage" hidden data-route_to_elements_manage="{{route("element.manage.get")}}"></div>
@@ -142,7 +174,7 @@
 		Czy na pewno usunąć?
 	</div>
 	<div class="actions">		
-		<div class="ui cancel inverted red left floated button" data-value="deny">Nie</div>
+		<div class="ui deny inverted red left floated button" data-value="deny">Nie</div>
 		<div class="ui approve inverted green right floated button" data-value="approve">Tak</div>
 	</div>
 	
