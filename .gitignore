@@ -19,3 +19,7 @@ semantic.json
 
 *.sublime-project
 *.sublime-workspace
+
+/public/files
+/public/images/news
+/public/images/pages
