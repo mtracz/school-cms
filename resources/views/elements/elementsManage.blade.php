@@ -98,7 +98,7 @@
 			<td class="actions">
 
 				<div class="ui edit button" data-url=""> <i class="configure icon"></i> </div>
-				<div class="ui delete button" data-url="" > <i class="trash icon"></i> </div>
+				<div class="ui delete button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.delete.post", ["id" => $item->menu->id]) }}" > <i class="trash icon"></i> </div>
 				@if($item->is_enabled === 0)
 				<div class="ui toggle show button"><i class="unhide icon"></i></div>
 				@else

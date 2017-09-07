@@ -108,3 +108,9 @@ mix.scripts("resources/assets/js/menuAdmin.js", "public/js/menuAdmin.js");
 //elements menu
 mix.styles("resources/assets/css/menuAddEdit.css", "public/css/menuAddEdit.css");
 mix.scripts("resources/assets/js/menuAddEdit.js", "public/js/menuAddEdit.js");
+
+// TEMPLATES ELEMENTS 
+
+// accessibilities 
+mix.styles("resources/assets/css/templates/accessibilities.css", "public/css/accessibilities.css");
+mix.scripts("resources/assets/js/templates/accessibilities.js", "public/js/accessibilities.js");

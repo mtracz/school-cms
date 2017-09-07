@@ -10,7 +10,7 @@
 
 		<div class="row">
 			Zmiana kontrastu
-			<i class="big icons" data-action="change_contrast">
+			<i id="change_contrast" class="big icons" data-action="change_contrast">
 				<i class="adjust icon"></i>
 			</i>
 		</div>

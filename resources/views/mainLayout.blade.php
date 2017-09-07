@@ -3,7 +3,9 @@
 @section("styles")
 
 {!! Html::style("css/mainLayout.css") !!}
-{!! Html::style("css/templates.css") !!}
+{{-- {!! Html::style("css/templates.css") !!} --}}
+
+@include("templates.templates_styles")
 
 @endsection
 
@@ -127,5 +129,7 @@
 
 {!! HTML::script("js/LayoutBuilder.js") !!}
 {!! HTML::script("js/mainLayout.js") !!}
+
+@include("templates.templates_scripts")
 
 @endsection

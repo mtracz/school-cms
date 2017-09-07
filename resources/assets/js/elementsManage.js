@@ -98,6 +98,26 @@ $(".ui.buttons").on("click", ".ui.down.button", function() {
 
 });
 
+$(".actions").on("click",".ui.delete.button", function() {
+
+	// ADD DELETE AGGREMENT MODAL HERE
+
+	ajaxDeleteRequestPromise({
+		headers: {
+			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+		},
+		method: "post",
+		url: $(this).attr("data-url").replace(window.location.origin,""),
+		data: parseInt($(this).attr("data-id")),
+	}).then(function() {
+		$(this).closest("tr").remove();
+		
+		console.log("ajaxDeleteRequestPromise: success");
+	}).catch(function() {
+		console.log("ajaxDeleteRequestPromise: fail");
+	});
+});
+
 $(".actions").on("click",".ui.toggle.show.button", function() {
 	console.log($(this));
 	$(this).removeClass().addClass("ui toggle hide button");
@@ -202,6 +222,8 @@ $(".sector_header").on("click", ".ui.add_element.button", function() {
 	}).modal("show");
 });
 
+
+
 function redirectTo(url, query = null) {
 	
 	var query_string = "?";
@@ -280,6 +302,12 @@ $(".ui.longer.modal .content").on("click", ".ui.list_selector.button", function(
 	$(this).closest(".content").find(".ui.button").removeClass("activated");
 	$(this).addClass("activated");
 });
+
+function ajaxDeleteRequestPromise(options) {
+	return new Promise(function(resolve, reject) {
+		$.ajax(options).done(resolve).fail(reject);
+	});
+}
 
 $(".ui.button.save").on("click", function() {
 	databaseElementsUpdater.sendToUpdate();

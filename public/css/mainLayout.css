@@ -207,27 +207,27 @@
 
 .ui.pagination .item:hover {
 
-	background-color: #e14658 !important;
+	background-color: #e14658;
 }
 
 .ui.pagination .active.item {
 
 	color: white !important;
 
-	background-color: #e14658 !important;
+	background-color: #e14658;
 }
 
 .ui.pagination .disabled.item {
 
 	color: white !important;
 
-	background-color: #BAC9D8 !important;
+	background-color: #BAC9D8;
 }
 
 .ui.pagination .disabled.item:hover {
-
-	background-color: #BAC9D8 !important;
+	background-color: #BAC9D8;
 }
+
 
 .no_search_results {
 

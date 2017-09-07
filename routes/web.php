@@ -120,4 +120,4 @@ Route::get("/elements/menu/add", ["as" => "menu.add.get", "uses" => "ViewControl
 Route::post("/elements/menu/add", ["as" => "menu.add.post", "uses" => "ElementsController@addMenu"]);
 // menu delete 
 // change to post!
-Route::get("/elements/menu/delete/{id}", ["as" => "menu.delete.get", "uses" => "ElementsController@deleteMenu"]);
+Route::post("/elements/menu/delete/{id}", ["as" => "menu.delete.post", "uses" => "ElementsController@deleteMenu"]);

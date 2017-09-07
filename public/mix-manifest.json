@@ -47,5 +47,7 @@
     "/css/menuAdmin.css": "/css/menuAdmin.css",
     "/js/menuAdmin.js": "/js/menuAdmin.js",
     "/css/menuAddEdit.css": "/css/menuAddEdit.css",
-    "/js/menuAddEdit.js": "/js/menuAddEdit.js"
+    "/js/menuAddEdit.js": "/js/menuAddEdit.js",
+    "/css/accessibilities.css": "/css/accessibilities.css",
+    "/js/accessibilities.js": "/js/accessibilities.js"
 }
