@@ -20,3 +20,12 @@
 	</div>
 
 @endif
+
+@if($item->panel->panel_type->name === "accessibilites")
+
+	<div class="four wide column">
+
+		@include("templates/accessibility")
+	</div>
+
+@endif

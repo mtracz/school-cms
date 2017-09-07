@@ -11,27 +11,29 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+ mix.js('resources/assets/js/app.js', 'public/js')
+ .sass('resources/assets/sass/app.scss', 'public/css');
+
+ mix.styles("resources/assets/css/templates.css", "public/css/templates.css");
 
 //semantic
 mix.copy("node_modules/semantic-ui/dist/semantic.min.js", "public/js")
-	.copy("node_modules/semantic-ui/dist/semantic.min.css", "public/css");
+.copy("node_modules/semantic-ui/dist/semantic.min.css", "public/css");
 
 //semantic calendar
 mix.copy("node_modules/semantic-ui-calendar/dist/calendar.min.js", "public/js")
-	.copy("node_modules/semantic-ui-calendar/dist/calendar.min.css", "public/css");
+.copy("node_modules/semantic-ui-calendar/dist/calendar.min.css", "public/css");
 
 // jquery
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js");
 
 //admin create
 mix.scripts("resources/assets/js/adminCreate.js", "public/js/adminCreate.js")
-	.styles("resources/assets/css/adminCreate.css", "public/css/adminCreate.css");
+.styles("resources/assets/css/adminCreate.css", "public/css/adminCreate.css");
 
 //admin login
 mix.scripts("resources/assets/js/adminLogin.js", "public/js/adminLogin.js")
-	.styles("resources/assets/css/adminLogin.css", "public/css/adminLogin.css");
+.styles("resources/assets/css/adminLogin.css", "public/css/adminLogin.css");
 
 //master
 mix.scripts("resources/assets/js/master.js", "public/js/master.js");
@@ -59,7 +61,7 @@ mix.styles("resources/assets/css/addEditPage.css", "public/css/addEditPage.css")
 
 //ContentTools
 mix.copy("node_modules/ContentTools/build/content-tools.min.js", "public/js")
-	.copy("node_modules/ContentTools/build/content-tools.min.css", "public/css");
+.copy("node_modules/ContentTools/build/content-tools.min.css", "public/css");
 
 //ContentTools init & settings
 mix.scripts("resources/assets/js/contentToolsInit.js", "public/js/contentToolsInit.js");
@@ -68,8 +70,8 @@ mix.scripts("resources/assets/js/contentToolsSetLanguage.js", "public/js/content
 
 //toastr
 mix.copy("node_modules/toastr/build/toastr.min.js", "public/js")
-	.copy("node_modules/toastr/build/toastr.min.css", "public/css");
-	
+.copy("node_modules/toastr/build/toastr.min.css", "public/css");
+
 //toastr opions
 mix.scripts("resources/assets/js/toastrOptions.js", "public/js/toastrOptions.js");
 

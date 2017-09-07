@@ -15,8 +15,6 @@ class PasswordService {
 
 		$admin->password = bcrypt($password);
 		$admin->save();
-
-		dd("password change");
 	}
 
 	public function checkOldPassword($admin_id, $password_to_check) {

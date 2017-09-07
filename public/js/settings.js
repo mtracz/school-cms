@@ -78,21 +78,23 @@ $(".ui.button.password.submit").on("click", function (event) {
 	.then(function (data) {
 		$(".ui.dimmer").dimmer("hide");
 
-		console.log(data["old_password_error"]);
+		console.log("data", data);
 
-		if( data["password_change"] == "error" ) {
+		if( data["password_change"] == "success" ) {
 
 			clearChangePasswordInputs();
 
-			toastr.error("<h2> Dane zmiany hasła niepoprawne </h2>");
-			console.log("SettingsForm: Submit fail. ERROR: Data incorrect");
-
+			console.log("SettingsForm: Submit success");
+			toastr.success("<h2> Hasło zostało pomyślnie zmienione! </h2>");
+			
 		} else {
 
 			clearChangePasswordInputs();
 
-			toastr.success("<h2> Hasło zostało pomyślnie zmienione! </h2>");
-			console.log("SettingsForm: Submit success");
+			var error_message = createErrorMessage(data["errors"]);
+
+			toastr.error(error_message, "<h2> Dane zmiany hasła niepoprawne </h2>");
+			console.log("SettingsForm: Submit fail. ERROR: Data incorrect", data["errors"][0]);
 		}
 	})
 	.catch(function (error) {
@@ -101,6 +103,17 @@ $(".ui.button.password.submit").on("click", function (event) {
 		alert("SettingsForm: Submit fail. ERROR: " + error);
 	});
 });
+
+function createErrorMessage(errors_array) {
+		
+	let error_message = "";
+
+	for( var i = 0; i < errors_array.length; i++ ) {
+		error_message = error_message.concat(errors_array[i]) + "<br>";
+	}
+
+	return error_message;
+}
 
 function clearChangePasswordInputs() {
 	$("input[type='password']").val("");
