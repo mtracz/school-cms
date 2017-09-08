@@ -1,1 +1,1 @@
-{{ Html::style("css/accessibilities.css") }}
+{!! Html::style("css/accessibilities.css") !!}

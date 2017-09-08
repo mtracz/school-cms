@@ -39,7 +39,7 @@ body {
 	}
 
 	a {
-		color: #e14658 !important;
+		color: #e14658;
 		line-height: 5px;
 
 		cursor: pointer;
@@ -48,7 +48,7 @@ body {
 	}
 
 	a:hover {
-		color: #406DE4 !important;
+		color: #406DE4;
 	}
 
 	/*Content tools top left corener widget*/

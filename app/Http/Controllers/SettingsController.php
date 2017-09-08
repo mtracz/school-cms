@@ -21,7 +21,7 @@ class SettingsController extends Controller
 	}
 
 	public function setSettings(Request $request) {
-		
+	
 		$settingsService = new SettingsService();
 
 		$settingsService->saveSettingsDataToDB($request->all());
