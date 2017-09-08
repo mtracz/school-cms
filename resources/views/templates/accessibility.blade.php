@@ -6,9 +6,9 @@
 
 	<div class="content">
 		
-		{{-- {!! $item->panel->content !!} --}}
+		{!! $item->panel->content !!}
 
-		<div class="row">
+		{{-- <div class="row">
 			Zmiana kontrastu
 			<i id="change_contrast" class="big icons" data-action="change_contrast">
 				<i class="adjust icon"></i>
@@ -29,7 +29,7 @@
 				<i class="font icon"></i> 
 			</i>
 			<div style="clear:both;"></div>
-		</div>
+		</div> --}}
 
 	</div>
 

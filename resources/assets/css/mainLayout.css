@@ -79,7 +79,7 @@
 .menuAdmin .item:hover {
 	background-color: #555 !important;
 
-	color: black !important;
+	color: white !important;
 }
 
 .menuAdmin .dropdown.item .item {
@@ -99,7 +99,7 @@
 
 .ui.menu .item,
 .ui.menu .item .default.text {
-	color: white !important;
+	color: white;
 }
 
 .ui.menu .item:hover {
@@ -124,20 +124,19 @@
 }
 
 .ui.menu .dropdown.item .menu {
-	background: #102242;
+	background: white;
 
-	color: white;
+	color: black;
 
 	border-radius: 0px;
 }
 
-.ui.menu .ui.dropdown .menu>.item {
-	color: white !important;
+.ui.menu .ui.dropdown .menu>.item{
+	color: white;
 }
 
 .ui.menu .ui.dropdown .menu >.item:hover {
-	color: white !important;
-	background: rgba(255,255,255,.08) !important;
+	
 }
 
 .ui.menu .item:hover {
@@ -200,7 +199,7 @@
 
 .ui.pagination .item {
 
-	color: white !important;
+	color: white;
 
 	background-color: #406DE4;
 }
@@ -212,14 +211,14 @@
 
 .ui.pagination .active.item {
 
-	color: white !important;
+	color: white;
 
 	background-color: #e14658;
 }
 
 .ui.pagination .disabled.item {
 
-	color: white !important;
+	color: white;
 
 	background-color: #BAC9D8;
 }

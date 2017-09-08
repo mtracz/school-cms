@@ -49,5 +49,6 @@
     "/css/menuAddEdit.css": "/css/menuAddEdit.css",
     "/js/menuAddEdit.js": "/js/menuAddEdit.js",
     "/css/accessibilities.css": "/css/accessibilities.css",
-    "/js/accessibilities.js": "/js/accessibilities.js"
+    "/js/accessibilities.js": "/js/accessibilities.js",
+    "/js/ColorSchemes.js": "/js/ColorSchemes.js"
 }

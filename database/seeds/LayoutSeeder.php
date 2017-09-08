@@ -18,7 +18,9 @@ class LayoutSeeder extends Seeder
     		["id" => "8", "site_sector_id" => 5, "order" => 2, "panel_id" => 5, "menu_id" => null, "is_enabled" => 1],
     		["id" => "9", "site_sector_id" => 6, "order" => 1, "panel_id" => 6, "menu_id" => null, "is_enabled" => 1],
     		["id" => "10", "site_sector_id" => 6, "order" => 2, "panel_id" => 7, "menu_id" => null, "is_enabled" => 1],
-    		["id" => "11", "site_sector_id" => 4, "order" => 3, "panel_id" => 8, "menu_id" => null, "is_enabled" => 1],
+            ["id" => "11", "site_sector_id" => 4, "order" => 3, "panel_id" => 8, "menu_id" => null, "is_enabled" => 1],
+    		["id" => "12", "site_sector_id" => 5, "order" => 3, "panel_id" => 10, "menu_id" => null, "is_enabled" => 1],
+
     	];
         
     	$menu = [
@@ -61,7 +63,7 @@ class LayoutSeeder extends Seeder
 
     		["id" => "8", "name" => "list_1", "header" => null, "content" => "<a> link </a></br><a> link </a></br><a> link </a></br><a> link </a></br>", "panel_type_id" => 7, "has_header" => 0],
             ["id" => "9", "name" => "google_map", "header" => null, "content" => '<iframe width="170" height="130" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.pl/maps?hl=pl&amp;lr=&amp;ie=UTF8&amp;q=sp+9+legnica&amp;fb=1&amp;split=1&amp;gl=pl&amp;cid=0,0,7333007650869757657&amp;ei=r_9NSuz9CpLm-Qbl6NCEBA&amp;source=embed&amp;ll=51.203562,16.14134&amp;spn=0.006295,0.006295&amp;output=embed"></iframe>', "panel_type_id" => 6, "has_header" => 0],
-
+            ["id" => "10", "name" => "ułatwienia_dostępu", "header" => "Ułatwienia dostepu", "content" => '<div class="row">Zmiana kontrastu<i id="change_contrast" class="big icons" data-action="change_contrast"><i class="adjust icon"></i></i></div><div class="ui divider"></div><div class="row">Zmiana czcionki <i class="big icons" data-action="change_font_size" data-font_size="big"><i class="font icon"></i><i class="corner add icon"></i><i class="top right corner add icon"></i></i><i class="large icons" data-action="change_font_size" data-font_size="bigger"><i class="font icon"></i><i class="corner add icon"></i></i><i class="icons" data-action="change_font_size" data-font_size="default"><i class="font icon"></i> </i><div style="clear:both;"></div></div>', "panel_type_id" => 4, "has_header" => 1],
     	];
 
     	Schema::disableForeignKeyConstraints();
