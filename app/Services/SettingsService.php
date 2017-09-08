@@ -32,8 +32,11 @@ class SettingsService {
 
 			if(!is_null($value)) {
 				$settings = Settings::where("name", "=", $key)->first();
-				$settings->value = $value;
-				$settings->save();
+				if($settings) {
+					$settings->value = $value;
+					$settings->save();
+				}
+				
 			}
 		}
 	}
