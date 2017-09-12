@@ -3,7 +3,7 @@
 @section("styles")
 
 {!! Html::style("css/mainLayout.css") !!}
-{{-- {!! Html::style("css/templates.css") !!} --}}
+{!! Html::style("css/contrast.css") !!}
 
 @include("templates.templates_styles")
 

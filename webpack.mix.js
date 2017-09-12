@@ -116,3 +116,6 @@ mix.styles("resources/assets/css/templates/accessibilities.css", "public/css/acc
 mix.scripts("resources/assets/js/templates/accessibilities.js", "public/js/accessibilities.js");
 
 mix.scripts("resources/assets/js/templates/ColorSchemes.js", "public/js/ColorSchemes.js");
+mix.scripts("resources/assets/js/templates/ChangeFont.js", "public/js/ChangeFont.js");
+
+mix.styles("resources/assets/css/templates/contrast.css", "public/css/contrast.css");

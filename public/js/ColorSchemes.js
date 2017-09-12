@@ -49,7 +49,7 @@ let	colorSchemes = {
 			"backgroundColor": "#e14658",
 			"color": "white",
 		},
-		".ui.segment": {
+		".panel .ui.segment, .ui.main.segment, #content_sector .ui.segment": {
 			"backgroundColor": "white",
 		},
 		".panel": {
@@ -74,6 +74,9 @@ let	colorSchemes = {
 		},
 		".ui.accordion .title, .ui.accordion .content a": {
 			"color": "white",
+		},
+		".panel a": {
+			"color": "#e14658",
 		}
 	},
 	contrast : {
@@ -154,7 +157,33 @@ let	colorSchemes = {
 		".menuAdmin .ui.inverted.menu .item": {
 			"color": "white",
 			"border": "none", 
-		}
-		
+		},
+		".panel a": {
+			"color": "orange",
+		},
 	}
 }
+
+let contrastElements = [
+	".background-color",
+	".first-color",
+	".second-color",
+	".third-color",
+	".fourth-color",
+	".fifth-color",
+	".coral-color",
+	".title, .header",
+	".panel .content",
+	".news.panel .content",
+	".ui.pagination.menu .item",
+	".ui.pagination.menu .active.item",
+	".panel .ui.segment, .ui.main.segment, #content_sector .ui.segment",
+	".panel",
+	".list.panel .content, .list.panel .wrapper",
+	".list.panel .content",
+	".ui.menu",
+	".ui.menu .item",
+	".ui.accordion .content",
+	".ui.accordion .title, .ui.accordion .content a",
+	".panel a",
+];

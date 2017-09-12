@@ -1,0 +1,73 @@
+.contrast,
+.contrast .news.panel,
+.contrast .news.panel .ui.label,
+.contrast .news.title,
+.contrast .panel .header,
+.contrast .panel .content,
+.contrast .accessibilities.panel .content,
+.contrast .ui.menu,
+.contrast .ui.vertical.menu,
+.contrast #content_sector .ui.segment,
+.contrast .ui.accordion .title:not(.ui),
+.contrast .ui.accordion .content .item,
+.contrast .ui.menu .item, 
+.contrast .ui.menu .item:hover,
+.contrast .ui.menu .item .default.text,
+.contrast .ui.pagination.menu .item:not(.disabled),
+.contrast .ui.menu .ui.dropdown .menu>.item {
+	background-color: black;
+	color: yellow;
+}
+
+.contrast :not(.menuAdmin) .ui.menu .ui.dropdown .menu>.item  {
+	background-color: black !important;
+	color: yellow !important;
+}
+
+.contrast :not(.menuAdmin) .ui.menu .ui.dropdown .menu>.item:hover {
+	background: rgba(0,0,0,0.8) !important;
+}
+
+.contrast .ui.menu .item:hover {
+	background: rgba(255,255,255,.08);
+}
+
+.contrast .menuAdmin .ui.menu .item {
+	color: white;
+}
+
+.contrast .news.panel {
+	border: 2px solid white;
+}
+
+.contrast .news.title {
+	border-bottom: 2px solid white;
+}
+
+.contrast .news.panel .ui.label {
+	border: 1px solid white;
+}
+
+.contrast .panel .header {
+	border: 2px solid white;
+}
+
+.contrast .ui.pagination.menu .active.item,
+.contrast .ui.pagination.menu .item:hover {
+	background-color: orange;
+	color: black;
+}
+
+.contrast .panel .content,
+.contrast .accessibilities.panel .content,
+.contrast .info.panel .content,
+.contrast .list.panel .content,
+.contrast .list.panel .wrapper,
+.contrast :not(.menuAdmin) .ui.menu .item,
+.contrast .ui.accordion .title:not(.ui) {
+	border: 1px solid white;
+}
+
+.contrast .list.panel .content {
+	border-left: 10px solid white;
+}

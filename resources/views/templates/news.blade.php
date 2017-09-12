@@ -12,7 +12,7 @@
 
 			</div>
 
-			<div class="title fifth-color" data-id={{ $item->id }}>
+			<div class="news title fifth-color" data-id={{ $item->id }}>
 				{!! $item->title !!}
 			</div>
 

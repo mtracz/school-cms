@@ -152,7 +152,7 @@
 			<div class="field">
 				<div class="ui labeled input">
 					<div class="ui label"> Czcionka podstawowa </div>
-					<input name="font_size_default" type="number" min="1" placeholder="px" value="{{ $settings['font_size_default'] }}">
+					<input name="font_size_default" type="number" min="1" placeholder="px" value="{{ $settings['font_size_standard'] }}">
 				</div>
 			</div>
 			<div class="field">

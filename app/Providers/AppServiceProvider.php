@@ -26,7 +26,15 @@ class AppServiceProvider extends ServiceProvider
 			if( Settings::where("name","cookie_text")->first() !== null) {
 				$cookie_text = Settings::where("name","cookie_text")->get()->toArray()[0]["value"];
 
+				$font_values = [
+					"standard" => Settings::where("name","font_size_standard")->first()->value,
+					"big" => Settings::where("name","font_size_big")->first()->value,
+					"biggest" => Settings::where("name","font_size_biggest")->first()->value,
+				];
+
 				View::share("cookie_text", $cookie_text);
+				View::share("font_values", $font_values);
+
 			}
 		} else {
 			View::share("cookie_text", "Tu są ciastka!");

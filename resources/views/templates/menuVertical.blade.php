@@ -1,4 +1,4 @@
-<div class="ui inverted vertical fifth-color menu">
+<div class="ui vertical fifth-color menu">
 
 	{{-- @include("templates/menuItem") --}}
 	@foreach($item->menu->menu_item as $singleItem)

@@ -82,13 +82,24 @@
 	color: white !important;
 }
 
-.menuAdmin .dropdown.item .item {
-	background: black !important;
+.menuAdmin .ui.menu .ui.dropdown .menu>.item {
+	color: black !important;
+}
+
+.menuAdmin .ui.menu .ui.dropdown .menu>.item:hover {
+	color: black !important;
+}
+
+.ui.menu, .ui.vertical.menu {
+	background-color: #406DE4;
+}
+
+.ui.menu .item:hover, .ui.vertical.menu .item:hover {
+	background: rgba(255,255,255,.08);
 }
 
 .ui.menu {
 	margin: 0px 0px 1px 0px !important;
-
 	border-radius: 0px !important;
 }
 
@@ -104,7 +115,6 @@
 
 .ui.menu .item:hover {
 	cursor: pointer;
-	background: rgba(255,255,255,.08) !important;
 }
 
 .ui.vertical.menu .item *{
@@ -123,20 +133,16 @@
 	color: white;
 }
 
+.ui.accordion .content .item {
+	color: white;
+}
+
 .ui.menu .dropdown.item .menu {
 	background: white;
 
 	color: black;
 
 	border-radius: 0px;
-}
-
-.ui.menu .ui.dropdown .menu>.item{
-	color: white;
-}
-
-.ui.menu .ui.dropdown .menu >.item:hover {
-	
 }
 
 .ui.menu .item:hover {
@@ -163,7 +169,7 @@
 
 	margin-bottom: 10px !important;
 
-	background-color: white !important;
+	background-color: white;
 
 	word-wrap: break-word;
 }
@@ -190,6 +196,11 @@
 	white-space: normal;
 }
 
+.news.panel .ui.label {
+	color: white;
+	background-color: #406DE4;
+}
+
 .pagination_container {
 	display: block;
 	/*overflow: auto;*/
@@ -197,36 +208,38 @@
 	margin: auto;
 }
 
-.ui.pagination .item {
+.ui.pagination.menu {
+	background: none;
+}
+
+.ui.pagination.menu .item:not(.disabled) {
 
 	color: white;
-
 	background-color: #406DE4;
 }
 
-.ui.pagination .item:hover {
+.pagination_container .ui.pagination .item:hover {
 
-	background-color: #e14658;
+	background: #e14658;
 }
 
-.ui.pagination .active.item {
+.ui.pagination.menu .active.item {
 
 	color: white;
 
 	background-color: #e14658;
 }
 
-.ui.pagination .disabled.item {
+.pagination_container .ui.menu .item.disabled,
+.pagination_container .ui.menu .item.disabled:hover {
 
-	color: white;
-
+	/*color: white;*/
 	background-color: #BAC9D8;
 }
 
-.ui.pagination .disabled.item:hover {
+.ui.pagination.menu .disabled.item:hover {
 	background-color: #BAC9D8;
 }
-
 
 .no_search_results {
 
@@ -235,4 +248,11 @@
 	font-weight: bold;
 
 	padding: 50px;
+}
+
+.ui.link.menu .item:hover, 
+.ui.menu .dropdown.item:hover, 
+.ui.menu .link.item:hover, 
+.ui.menu a.item:hover {
+	color: white;
 }
