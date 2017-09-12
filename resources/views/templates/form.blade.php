@@ -61,7 +61,6 @@
 		<div class="inline fields " >		
 
 		colorpicker-picker-longlist:
-		<div class="field">
 			<select id="change_font_color" name="colorpicker-picker-longlist" disabled>
 				<option value="">Kolor czcionki</option>
 				<option value="#ac725e">#ac725e</option>
@@ -89,7 +88,17 @@
 				<option value="#cd74e6">#cd74e6</option>
 				<option value="#a47ae2">#a47ae2</option>
 			</select>
-		</div>
+
+		
+			<select id="change_font_background_color" disabled>	 
+				<option value="">kolor tła</option>      
+		        <option value="red">red</option>
+		        <option value="blue">blue</option>
+		        <option value="yellow">yellow</option>
+		        <option value="black">black</option>
+		        <option value="white">white</option>
+		    </select>
+
 			<select id="change_font_size" disabled>	 
 				<option value="">Rozmiar czcionki</option>      
 		        <option value="13px">10</option>
