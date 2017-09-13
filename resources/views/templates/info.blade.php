@@ -1,6 +1,6 @@
 @if($item->site_sector->orientation->name === "horizontal")
 
-<div class="info panel" style="padding: 0px 2px 0px 2px;">
+<div class="info panel">
 
 	@if($item->panel->has_header)
 

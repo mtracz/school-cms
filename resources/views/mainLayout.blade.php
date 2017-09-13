@@ -3,6 +3,8 @@
 @section("styles")
 
 {!! Html::style("css/mainLayout.css") !!}
+{!! Html::style("css/bottomSector.css") !!}
+
 {!! Html::style("css/contrast.css") !!}
 
 @include("templates.templates_styles")

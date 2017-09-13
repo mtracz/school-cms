@@ -98,6 +98,22 @@ $(".ui.buttons").on("click", ".ui.down.button", function() {
 
 });
 
+$(".actions").on("click",".ui.edit.button", function() { 
+
+	let edit_url = $(this).attr("data-url");
+	let sector_id = $(this).closest("tr").attr("data-sector_id");
+	let sector_name = $(this).closest("tr").attr("data-sector_name");
+
+	console.log(sector_id);
+
+	var sector_data = {
+		"id": sector_id,
+		"name": sector_name,
+	}
+
+	redirectTo(edit_url, sector_data);
+});
+
 $(".actions").on("click",".ui.delete.button", function() {
 
 	// ADD DELETE AGGREMENT MODAL HERE

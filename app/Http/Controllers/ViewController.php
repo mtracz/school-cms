@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-use  File;
+use File;
 
 use App\Models\Admin;
 use App\Models\News;
@@ -365,9 +365,9 @@ class ViewController extends Controller {
 		$panel_types = $this->getPanelTypesAll();
 
 		return view("elements.elementsManage")
-			->with("site_sectors", $site_sectors)
-			->with("panel_types", $panel_types)
-			->with("elements", $elements);
+		->with("site_sectors", $site_sectors)
+		->with("panel_types", $panel_types)
+		->with("elements", $elements);
 	}
 
 	public function hasPage($params) {
@@ -424,8 +424,8 @@ class ViewController extends Controller {
 		$sector_name = $parameters["sector_name"] ?? "brak sektora";
 
 		return view("elements.addMenu")
-			->with("sector_id", $sector_id)
-			->with("sector_name", $sector_name);
+		->with("sector_id", $sector_id)
+		->with("sector_name", $sector_name);
 	}
 
 	public function getMenuEditView(Request $request, $id) {
@@ -440,10 +440,10 @@ class ViewController extends Controller {
 		$menuObject = Menu::find($id);
 		
 		return view("elements.addMenu")
-			->with("sector_id", $sector_id)
-			->with("sector_name", $sector_name)
-			->with("menuObject", $menuObject)
-			->with("editing_mode", $editing_mode);
+		->with("sector_id", $sector_id)
+		->with("sector_name", $sector_name)
+		->with("menuObject", $menuObject)
+		->with("editing_mode", $editing_mode);
 	}
 
 	public function getSiteSectorsAll() {
@@ -466,4 +466,13 @@ class ViewController extends Controller {
 		return $panel_types;
 	}
 
+	public function getSiteMap() {
+
+		$menus = Menu::all();
+
+		return view("templates.sitemap")
+			->with("menus", $menus);
+	}
+
 }
+

@@ -4,9 +4,11 @@
 .contrast .news.title,
 .contrast .panel .header,
 .contrast .panel .content,
+.contrast .panel .title,
 .contrast .accessibilities.panel .content,
 .contrast .ui.menu,
 .contrast .ui.vertical.menu,
+.contrast #bottom_sector,
 .contrast #content_sector .ui.segment,
 .contrast .ui.accordion .title:not(.ui),
 .contrast .ui.accordion .content .item,
@@ -14,9 +16,20 @@
 .contrast .ui.menu .item:hover,
 .contrast .ui.menu .item .default.text,
 .contrast .ui.pagination.menu .item:not(.disabled),
-.contrast .ui.menu .ui.dropdown .menu>.item {
+.contrast .ui.menu .ui.dropdown .menu>.item,
+.contrast .sitemap.panel *,
+.contrast .sitemap.panel .header,
+.contrast .sitemap.panel .content .header {
 	background-color: black;
 	color: yellow;
+}
+
+.contrast .sitemap.panel a {
+	text-decoration: underline;
+}
+
+.contrast .sitemap.panel a:hover {
+	color: orange;
 }
 
 .contrast :not(.menuAdmin) .ui.menu .ui.dropdown .menu>.item  {
@@ -48,8 +61,16 @@
 	border: 1px solid white;
 }
 
-.contrast .panel .header {
+.contrast .panel .header,
+.contrast .panel .title,
+.contrast .sitemap.panel .title {
 	border: 2px solid white;
+}
+
+.contrast .sitemap.panel *,
+.contrast .sitemap.panel .header,
+.contrast .sitemap.panel .content .header {
+	border: none;
 }
 
 .contrast .ui.pagination.menu .active.item,
@@ -58,9 +79,9 @@
 	color: black;
 }
 
-.contrast .panel .content,
 .contrast .accessibilities.panel .content,
 .contrast .info.panel .content,
+.contrast .sitemap.panel > .content,
 .contrast .list.panel .content,
 .contrast .list.panel .wrapper,
 .contrast :not(.menuAdmin) .ui.menu .item,

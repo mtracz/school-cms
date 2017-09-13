@@ -9,7 +9,7 @@
 
 	<div class="column">
 		<div class="row">
-			<div class="news panel" style="max-width: 100%;">
+			<div class="page panel" style="max-width: 100%;">
 
 				<div class="title first-color">
 					{!! $page->title !!}

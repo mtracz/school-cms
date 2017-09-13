@@ -53,7 +53,7 @@
 
 		@if(isset($item->panel_id))
 
-		<tr class="order @if($item->is_enabled === 0) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-order={{ $item->order }} data-panel_type_id="{{ $item->panel->panel_type->id }}">
+		<tr class="order @if($item->is_enabled === 0) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-sector_name="{{ $sector->name }}" data-order={{ $item->order }} data-panel_type_id="{{ $item->panel->panel_type->id }}">
 			<td class="center">
 				<div class="ui buttons">
 					<div class="ui up button"><i class="long arrow up icon"></i></div>
@@ -82,7 +82,7 @@
 
 		@else
 
-		<tr class="order @if($item->is_enabled === 0) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" " data-id="{{ $item->id }}" data-order={{ $item->order }} >
+		<tr class="order @if($item->is_enabled === 0) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-sector_name="{{ $sector->name }}" data-id="{{ $item->id }}" data-order={{ $item->order }} >
 			<td class="center">
 				<div class="ui buttons">
 					<div class="ui up button"><i class="long arrow up icon"></i></div>
@@ -97,7 +97,7 @@
 			</td>
 			<td class="actions">
 
-				<div class="ui edit button" data-url=""> <i class="configure icon"></i> </div>
+				<div class="ui edit button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.edit.get", ["id" => $item->menu->id]) }}"> <i class="configure icon"></i> </div>
 				<div class="ui delete button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.delete.post", ["id" => $item->menu->id]) }}" > <i class="trash icon"></i> </div>
 				@if($item->is_enabled === 0)
 				<div class="ui toggle show button"><i class="unhide icon"></i></div>

@@ -48,9 +48,11 @@
     "/js/menuAdmin.js": "/js/menuAdmin.js",
     "/css/menuAddEdit.css": "/css/menuAddEdit.css",
     "/js/menuAddEdit.js": "/js/menuAddEdit.js",
+    "/css/bottomSector.css": "/css/bottomSector.css",
     "/css/accessibilities.css": "/css/accessibilities.css",
     "/js/accessibilities.js": "/js/accessibilities.js",
     "/js/ColorSchemes.js": "/js/ColorSchemes.js",
     "/js/ChangeFont.js": "/js/ChangeFont.js",
-    "/css/contrast.css": "/css/contrast.css"
+    "/css/contrast.css": "/css/contrast.css",
+    "/css/sitemap.css": "/css/sitemap.css"
 }

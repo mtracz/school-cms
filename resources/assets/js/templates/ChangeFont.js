@@ -1,5 +1,5 @@
 let	changeFont = [
-	// "panel content",
+	"panel content",
 	"ui menu",
 	"ui segment",
 	"news title",

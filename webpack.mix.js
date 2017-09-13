@@ -109,6 +109,9 @@ mix.scripts("resources/assets/js/menuAdmin.js", "public/js/menuAdmin.js");
 mix.styles("resources/assets/css/menuAddEdit.css", "public/css/menuAddEdit.css");
 mix.scripts("resources/assets/js/menuAddEdit.js", "public/js/menuAddEdit.js");
 
+// Bottom sector- footer
+mix.styles("resources/assets/css/bottomSector.css", "public/css/bottomSector.css")
+
 // TEMPLATES ELEMENTS 
 
 // accessibilities 
@@ -119,3 +122,6 @@ mix.scripts("resources/assets/js/templates/ColorSchemes.js", "public/js/ColorSch
 mix.scripts("resources/assets/js/templates/ChangeFont.js", "public/js/ChangeFont.js");
 
 mix.styles("resources/assets/css/templates/contrast.css", "public/css/contrast.css");
+
+// SiteMap
+mix.styles("resources/assets/css/templates/sitemap.css", "public/css/sitemap.css");
