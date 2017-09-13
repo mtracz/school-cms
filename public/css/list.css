@@ -1,0 +1,21 @@
+.list.panel {
+	margin: 0px 0px 1px 0px !important;
+}
+
+.list.panel .wrapper {
+	border: 1px solid #406DE4;
+}
+
+.list.panel .header {
+
+	padding: 10px;
+
+	border-bottom: 1px solid #fff;
+}
+
+.list.panel .content {
+
+	padding: 20px;
+
+	border-left: 10px solid #406DE4;
+}

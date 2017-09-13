@@ -1,0 +1,29 @@
+.info.panel {
+	position: relative;
+
+	margin: 0px 0px 2px 0px !important;
+}
+
+.info.panel .header {
+
+	padding: 10px;
+
+}
+
+.info.panel .content {
+
+	padding: 10px;
+
+	text-align: justify;
+
+	border: 1px solid #102242;
+
+	max-width: 100%;
+
+	word-wrap: break-word;
+}
+
+.info.panel .content img{
+	max-width: 100%; 
+	border: 1px solid #BAC9D8;
+}

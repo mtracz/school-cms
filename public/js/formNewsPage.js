@@ -42,16 +42,16 @@ Kolich.Selector.getSelected = function(){
   // Kolich
 }
 
-Kolich.Selector.mouseup = function(){
+Kolich.Selector.mouseup = function() {
   var selected_text = Kolich.Selector.getSelected();
   // alert("select:\n"+selected_text);
-  if(selected_text != '') {
+  console.log("selected text before: " + fontManager.selection);
+  if(selected_text !== '') {
   	// alert("You selected:\n"+selected_text);
   	fontManager.selection = selected_text;
   	$("#change_font_size").removeAttr("disabled");
   	$("#change_font_color").removeAttr("disabled");
   	$("#change_font_background_color").removeAttr("disabled");
-
 
  //  	var font_tag = document.createElement('font');
 
@@ -80,46 +80,83 @@ Kolich.Selector.mouseup = function(){
   } else {
   	fontManager.selection = '';
   }
+
+  console.log("selected text after: " + fontManager.selection);
 }
 
 $(document).ready(function(){
   $('.ui.segment.content').bind("mouseup", Kolich.Selector.mouseup);
 });
+
+$(document).on("mouseup", function() {
+	console.log("Any mouseup: ",fontManager.selection.toString());
+});
+
 // /////////////////////
 // 
-$("#change_font_size").change(function() {	
-	//select value
-    console.log($(this).val());
-    let selected_item = $(this).val();
+// $("#change_font_size").change(function() {	
+// 	//select value
+//     console.log($(this).val());
+//     let selected_item = $(this).val();
    
-    let selection_string = fontManager.selection.toString();
-    if(selection_string.length > 0) {
-    	// alert("zmien");
-    	var font_tag = document.createElement('font');
+//     let selection_string = fontManager.selection.toString();
+//     if(selection_string.length > 0) {
+//     	// alert("zmien");
+//     	var font_tag = document.createElement('font');
 
-		font_tag.style["font-size"] = selected_item;
-		font_tag.textContent = selection_string;
+// 		font_tag.style["font-size"] = selected_item;
+// 		font_tag.textContent = selection_string;
 
-		var range = fontManager.selection.getRangeAt(0).cloneRange();
-		// range.surroundContents(font_tag);
+// 		var range = fontManager.selection.getRangeAt(0).cloneRange();
+// 		// range.surroundContents(font_tag);
 
-		range.deleteContents();
-    	range.insertNode(font_tag);
-		// fontManager.selection.removeAllRanges();
-		// fontManager.selection.addRange(range);
-		fontManager.selection = "";
-		$(this).val("");
-		$(this).attr("disabled", "");
-		$("#change_font_color").attr("disabled", "");
-		$("#change_font_background_color").attr("disabled", "");
+// 		range.deleteContents();
+//     	range.insertNode(font_tag);
+// 		// fontManager.selection.removeAllRanges();
+// 		// fontManager.selection.addRange(range);
+// 		fontManager.selection = "";
+// 		$(this).val("");
+// 		$(this).attr("disabled", "");
+// 		$("#change_font_color").attr("disabled", "");
+// 		$("#change_font_background_color").attr("disabled", "");
 
-    }
+//     }
 
-}); 
+// });
+
+// $("#change_font_color").on("click", ".item", function() {	
+// 	//select value
+//     console.log($(this));
+//     console.log($(this).attr("data-value"));
+//     let selected_item = $(this).attr("data-value");
+   
+//     let selection_string = fontManager.selection.toString();
+//     if(selection_string.length > 0) {
+//     	// alert("zmien");
+//     	var font_tag = document.createElement('font');
+
+// 		font_tag.style["color"] = selected_item;
+// 		font_tag.textContent = selection_string;
+
+// 		var range = fontManager.selection.getRangeAt(0).cloneRange();
+// 		// range.surroundContents(font_tag);
+
+// 		range.deleteContents();
+//     	range.insertNode(font_tag);
+// 		// fontManager.selection.removeAllRanges();
+// 		// fontManager.selection.addRange(range);
+// 		// fontManager.selection = "";
+// 		$(this).closest(".text").text("Kolor czcionki");
+// 		$(this).attr("disabled", "");
+// 		$("#change_font_size").attr("disabled", "");
+// 		$("#change_font_background_color").attr("disabled", "");
+//     }
+// });
 
 $("#change_font_color").change(function() {	
 	//select value
     console.log($(this).val());
+    console.log($(this));
     let selected_item = $(this).val();
    
     let selection_string = fontManager.selection.toString();

@@ -57,73 +57,84 @@
 				</div>
 			</div>
 		</div>
-	
-		<div class="inline fields " >		
 
-		colorpicker-picker-longlist:
+		<div class="inline fields">
+
+			{{-- <div id="change_font_color" class="ui dropdown" name="colorpicker-picker-longlist">
+			<div class="text">Kolor czcionki</div>
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<div class="item" data-value="#ac725e" style="color: white; background-color: #ac725e;">#ac725e</div>
+					<div class="item" data-value="#d06b64" style="color: white; background-color: #d06b64;">#d06b64</div>
+					<div class="item" data-value="#f83a22" style="color: white; background-color: #f83a22;">#f83a22</div>
+					<div class="item" data-value="#ff7537" style="color: white; background-color: #ff7537;">#ff7537</div>
+					<div class="item" data-value="#7bd148" style="color: white; background-color: #7bd148;">#7bd148</div>
+				</div>
+			</div> --}}
+
+			{{-- colorpicker-picker-longlist: --}}
 			<select id="change_font_color" name="colorpicker-picker-longlist" disabled>
 				<option value="">Kolor czcionki</option>
-				<option value="#ac725e">#ac725e</option>
-				<option value="#d06b64">#d06b64</option>
-				<option value="#f83a22">#f83a22</option>
-				<option value="#fa573c">#fa573c</option>
-				<option value="#ff7537">#ff7537</option>
-				<option value="#ffad46">#ffad46</option>
-				<option value="#42d692">#42d692</option>
-				<option value="#16a765">#16a765</option>
-				<option value="#7bd148">#7bd148</option>
-				<option value="#b3dc6c">#b3dc6c</option>
-				<option value="#fbe983">#fbe983</option>
-				<option value="#fad165">#fad165</option>
-				<option value="#92e1c0">#92e1c0</option>
-				<option value="#9fe1e7">#9fe1e7</option>
-				<option value="#9fc6e7">#9fc6e7</option>
-				<option value="#4986e7">#4986e7</option>
-				<option value="#9a9cff">#9a9cff</option>
-				<option value="#b99aff">#b99aff</option>
-				<option value="#c2c2c2">#c2c2c2</option>
-				<option value="#cabdbf">#cabdbf</option>
-				<option value="#cca6ac">#cca6ac</option>
-				<option value="#f691b2">#f691b2</option>
-				<option value="#cd74e6">#cd74e6</option>
-				<option value="#a47ae2">#a47ae2</option>
+				<option value="#ac725e" style="color: white; background-color: #ac725e;">#ac725e</option>
+				<option value="#d06b64" style="color: white; background-color: #d06b64;">#d06b64</option>
+				<option value="#f83a22" style="color: white; background-color: #f83a22;">#f83a22</option>
+				<option value="#fa573c" style="color: white; background-color: #fa573c;">#fa573c</option>
+				<option value="#ff7537" style="color: white; background-color: #ff7537;">#ff7537</option>
+				<option value="#ffad46" style="color: white; background-color: #ffad46;">#ffad46</option>
+				<option value="#42d692" style="color: white; background-color: #42d692;">#42d692</option>
+				<option value="#16a765" style="color: white; background-color: #16a765;">#16a765</option>
+				<option value="#7bd148" style="color: white; background-color: #7bd148;">#7bd148</option>
+				<option value="#b3dc6c" style="color: white; background-color: #b3dc6c;">#b3dc6c</option>
+				<option value="#fbe983" style="color: white; background-color: #fbe983;">#fbe983</option>
+				<option value="#fad165" style="color: white; background-color: #fad165;">#fad165</option>
+				<option value="#92e1c0" style="color: white; background-color: #92e1c0;">#92e1c0</option>
+				<option value="#9fe1e7" style="color: white; background-color: #9fe1e7;">#9fe1e7</option>
+				<option value="#9fc6e7" style="color: white; background-color: #9fc6e7;">#9fc6e7</option>
+				<option value="#4986e7" style="color: white; background-color: #4986e7;">#4986e7</option>
+				<option value="#9a9cff" style="color: white; background-color: #9a9cff;">#9a9cff</option>
+				<option value="#b99aff" style="color: white; background-color: #b99aff;">#b99aff</option>
+				<option value="#c2c2c2" style="color: white; background-color: #c2c2c2;">#c2c2c2</option>
+				<option value="#cabdbf" style="color: white; background-color: #cabdbf;">#cabdbf</option>
+				<option value="#cca6ac" style="color: white; background-color: #cca6ac;">#cca6ac</option>
+				<option value="#f691b2" style="color: white; background-color: #f691b2;">#f691b2</option>
+				<option value="#cd74e6" style="color: white; background-color: #cd74e6;">#cd74e6</option>
+				<option value="#a47ae2" style="color: white; background-color: #a47ae2;">#a47ae2</option>
 			</select>
 
-		
 			<select id="change_font_background_color" disabled>	 
-				<option value="">kolor tła</option>      
-		        <option value="red">red</option>
-		        <option value="blue">blue</option>
-		        <option value="yellow">yellow</option>
-		        <option value="black">black</option>
-		        <option value="white">white</option>
-		    </select>
+				<option value="">Kolor tła</option>      
+				<option value="red">czerwony</option>
+				<option value="blue">niebieski</option>
+				<option value="yellow">żółty</option>
+				<option value="black">czarny</option>
+				<option value="white">biały</option>
+			</select>
 
 			<select id="change_font_size" disabled>	 
 				<option value="">Rozmiar czcionki</option>      
-		        <option value="13px">10</option>
-		        <option value="15px">11</option>
-		        <option value="16px">12</option>
-		        <option value="17px">13</option>
-		        <option value="19px">14</option>
-		        <option value="21px">15</option>
-		        <option value="22px">16</option>
-		        <option value="23px">17</option>
-		        <option value="24px">18</option>
-		        <option value="26px">20</option>
-		        <option value="29px">22</option>
-		        <option value="32px">24</option>
-		        <option value="35px">26</option>
-		        <option value="36px">27</option>
-		        <option value="37px">28</option>
-		        <option value="38px">29</option>
-		        <option value="40px">30</option>
-		        <option value="42px">32</option>
-		        <option value="45px">34</option>
-		        <option value="48px">36</option>
-	    	</select>
-    	</div>
- 
+				<option value="13px">10</option>
+				<option value="15px">11</option>
+				<option value="16px">12</option>
+				<option value="17px">13</option>
+				<option value="19px">14</option>
+				<option value="21px">15</option>
+				<option value="22px">16</option>
+				<option value="23px">17</option>
+				<option value="24px">18</option>
+				<option value="26px">20</option>
+				<option value="29px">22</option>
+				<option value="32px">24</option>
+				<option value="35px">26</option>
+				<option value="36px">27</option>
+				<option value="37px">28</option>
+				<option value="38px">29</option>
+				<option value="40px">30</option>
+				<option value="42px">32</option>
+				<option value="45px">34</option>
+				<option value="48px">36</option>
+			</select>
+		</div>
+
 		<form class="ui form" action="{{$news_route or ""}}{{$page_route or ""}}" method="post" id="add_news_article_form">
 			{{ csrf_field() }}
 			<h3>Tytuł</h3>

@@ -111,12 +111,16 @@
 
 				<div id="bottom_sector" class="sixteen wide column sector">
 					<div class="ui centered inside grid">
+						<div class="row">
 
-						@php
-						$element_model = $SectorHydratorService->hydrateBottom();
-						@endphp
+							@php
+							$element_model = $SectorHydratorService->hydrateBottom();
+							@endphp
 
-						@include("templates/element")
+							@include("templates/element")
+						</div>
+						
+						@include("footerStaticData")
 					</div>
 				</div>
 

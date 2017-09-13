@@ -9,6 +9,11 @@
 .contrast .ui.menu,
 .contrast .ui.vertical.menu,
 .contrast #bottom_sector,
+.contrast #bottom_sector .ui.grid,
+.contrast #bottom_sector .copyright,
+.contrast #bottom_sector .panel,
+.contrast #bottom_sector .panel .header,
+.contrast #bottom_sector .panel .content,
 .contrast #content_sector .ui.segment,
 .contrast .ui.accordion .title:not(.ui),
 .contrast .ui.accordion .content .item,
@@ -63,7 +68,8 @@
 
 .contrast .panel .header,
 .contrast .panel .title,
-.contrast .sitemap.panel .title {
+.contrast .sitemap.panel .title,
+.contrast #bottom_sector .panel .header {
 	border: 2px solid white;
 }
 
@@ -85,7 +91,8 @@
 .contrast .list.panel .content,
 .contrast .list.panel .wrapper,
 .contrast :not(.menuAdmin) .ui.menu .item,
-.contrast .ui.accordion .title:not(.ui) {
+.contrast .ui.accordion .title:not(.ui),
+.contrast #bottom_sector .panel .content {
 	border: 1px solid white;
 }
 

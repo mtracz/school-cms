@@ -112,16 +112,36 @@ mix.scripts("resources/assets/js/menuAddEdit.js", "public/js/menuAddEdit.js");
 // Bottom sector- footer
 mix.styles("resources/assets/css/bottomSector.css", "public/css/bottomSector.css")
 
-// TEMPLATES ELEMENTS 
 
-// accessibilities 
+// CONTRAST 
+mix.styles("resources/assets/css/templates/contrast.css", "public/css/contrast.css");
+
+// SiteMap
+mix.styles("resources/assets/css/templates/sitemap.css", "public/css/sitemap.css");
+
+// TEMPLATES ELEMENTS
+// custom panel
+mix.styles("resources/assets/css/templates/custom.css", "public/css/custom.css");
+
+// editTab
+mix.scripts("resources/assets/js/templates/editTab.js", "public/js/editTab.js");
+
+// accessibilities panel
 mix.styles("resources/assets/css/templates/accessibilities.css", "public/css/accessibilities.css");
 mix.scripts("resources/assets/js/templates/accessibilities.js", "public/js/accessibilities.js");
 
 mix.scripts("resources/assets/js/templates/ColorSchemes.js", "public/js/ColorSchemes.js");
 mix.scripts("resources/assets/js/templates/ChangeFont.js", "public/js/ChangeFont.js");
 
-mix.styles("resources/assets/css/templates/contrast.css", "public/css/contrast.css");
+// info panel
+mix.styles("resources/assets/css/templates/info.css", "public/css/info.css");
 
-// SiteMap
-mix.styles("resources/assets/css/templates/sitemap.css", "public/css/sitemap.css");
+// list panel
+mix.styles("resources/assets/css/templates/list.css", "public/css/list.css");
+
+// banner panel
+mix.styles("resources/assets/css/templates/banner.css", "public/css/banner.css");
+
+// info panel
+mix.styles("resources/assets/css/templates/info.css", "public/css/info.css");
+

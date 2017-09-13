@@ -94,6 +94,9 @@ if(window.localStorage.cookie == "set"){
 $('.ui.accordion')
 .accordion();
 
+$('.ui.dropdown')
+.dropdown();
+
 $('select.dropdown')
 .dropdown();
 

@@ -40,13 +40,6 @@
 </div>
 
 @section("scripts")
-
 @parent
-
-<script type="text/javascript">
-
-	$('.ui.dropdown').dropdown();
-
-</script>
 
 @endsection
