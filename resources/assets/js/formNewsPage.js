@@ -25,28 +25,28 @@ $(document).ready(function() {
 
 
 if(!window.Kolich){
-  Kolich = {};
+	Kolich = {};
 }
 
 Kolich.Selector = {};
 Kolich.Selector.getSelected = function(){
-  var t = '';
-  if(window.getSelection){
-    t = window.getSelection();
-  }else if(document.getSelection){
-    t = document.getSelection();
-  }else if(document.selection){
-    t = document.selection.createRange().text;
-  }
-  return t;
+	var t = '';
+	if(window.getSelection){
+		t = window.getSelection();
+	}else if(document.getSelection){
+		t = document.getSelection();
+	}else if(document.selection){
+		t = document.selection.createRange().text;
+	}
+	return t;
   // Kolich
 }
 
 Kolich.Selector.mouseup = function() {
-  var selected_text = Kolich.Selector.getSelected();
+	var selected_text = Kolich.Selector.getSelected();
   // alert("select:\n"+selected_text);
   console.log("selected text before: " + fontManager.selection);
-  if(selected_text !== '') {
+  if(selected_text != '') {
   	// alert("You selected:\n"+selected_text);
   	fontManager.selection = selected_text;
   	$("#change_font_size").removeAttr("disabled");
@@ -77,101 +77,81 @@ Kolich.Selector.mouseup = function() {
     // var range = st.getRangeAt(0);
     // range.deleteContents();
     // range.insertNode(font);
-  } else {
-  	fontManager.selection = '';
-  }
-
-  console.log("selected text after: " + fontManager.selection);
+} else {
+	fontManager.selection = '';
 }
 
-$(document).ready(function(){
-  $('.ui.segment.content').bind("mouseup", Kolich.Selector.mouseup);
+console.log("selected text after: " + fontManager.selection);
+}
+
+$(document).ready(function() {
+	$('.ui.segment.content').on("mouseup", Kolich.Selector.mouseup);
+
+	$("#change_font_color option").each(function(index, elem) {
+		$(elem).css({
+			"background-color": $(elem).attr("value"),
+			"color": "white",
+		});
+	});
+
 });
 
 $(document).on("mouseup", function() {
-	console.log("Any mouseup: ",fontManager.selection.toString());
+	console.log("Any mouseup: ", fontManager.selection.toString());
 });
 
 // /////////////////////
 // 
-// $("#change_font_size").change(function() {	
-// 	//select value
-//     console.log($(this).val());
-//     let selected_item = $(this).val();
-   
-//     let selection_string = fontManager.selection.toString();
-//     if(selection_string.length > 0) {
-//     	// alert("zmien");
-//     	var font_tag = document.createElement('font');
-
-// 		font_tag.style["font-size"] = selected_item;
-// 		font_tag.textContent = selection_string;
-
-// 		var range = fontManager.selection.getRangeAt(0).cloneRange();
-// 		// range.surroundContents(font_tag);
-
-// 		range.deleteContents();
-//     	range.insertNode(font_tag);
-// 		// fontManager.selection.removeAllRanges();
-// 		// fontManager.selection.addRange(range);
-// 		fontManager.selection = "";
-// 		$(this).val("");
-// 		$(this).attr("disabled", "");
-// 		$("#change_font_color").attr("disabled", "");
-// 		$("#change_font_background_color").attr("disabled", "");
-
-//     }
-
-// });
-
-// $("#change_font_color").on("click", ".item", function() {	
-// 	//select value
-//     console.log($(this));
-//     console.log($(this).attr("data-value"));
-//     let selected_item = $(this).attr("data-value");
-   
-//     let selection_string = fontManager.selection.toString();
-//     if(selection_string.length > 0) {
-//     	// alert("zmien");
-//     	var font_tag = document.createElement('font');
-
-// 		font_tag.style["color"] = selected_item;
-// 		font_tag.textContent = selection_string;
-
-// 		var range = fontManager.selection.getRangeAt(0).cloneRange();
-// 		// range.surroundContents(font_tag);
-
-// 		range.deleteContents();
-//     	range.insertNode(font_tag);
-// 		// fontManager.selection.removeAllRanges();
-// 		// fontManager.selection.addRange(range);
-// 		// fontManager.selection = "";
-// 		$(this).closest(".text").text("Kolor czcionki");
-// 		$(this).attr("disabled", "");
-// 		$("#change_font_size").attr("disabled", "");
-// 		$("#change_font_background_color").attr("disabled", "");
-//     }
-// });
-
-$("#change_font_color").change(function() {	
+$("#change_font_size").change(function() {	
 	//select value
-    console.log($(this).val());
-    console.log($(this));
-    let selected_item = $(this).val();
-   
-    let selection_string = fontManager.selection.toString();
-    if(selection_string.length > 0) {
+	console.log($(this).val());
+	let selected_item = $(this).val();
+
+	let selection_string = fontManager.selection.toString();
+	if(selection_string.length > 0) {
     	// alert("zmien");
     	var font_tag = document.createElement('font');
 
-		font_tag.style["color"] = selected_item;
-		font_tag.textContent = selection_string;
+    	font_tag.style["font-size"] = selected_item;
+    	font_tag.textContent = selection_string;
 
-		var range = fontManager.selection.getRangeAt(0).cloneRange();
+    	var range = fontManager.selection.getRangeAt(0).cloneRange();
 		// range.surroundContents(font_tag);
 
 		range.deleteContents();
-    	range.insertNode(font_tag);
+		range.insertNode(font_tag);
+		// fontManager.selection.removeAllRanges();
+		// fontManager.selection.addRange(range);
+		fontManager.selection = "";
+		$(this).val("");
+		$(this).attr("disabled", "");
+		$("#change_font_color").attr("disabled", "");
+		$("#change_font_background_color").attr("disabled", "");
+
+	}
+
+});
+
+$("#change_font_color").change(function() {	
+	//select value
+	console.log($(this).val());
+	console.log($(this));
+	let selected_item = $(this).val();
+
+	let selection_string = fontManager.selection.toString();
+	console.log("selection: " + selection_string);
+	if(selection_string.length > 0) {
+    	// alert("zmien");
+    	var font_tag = document.createElement('font');
+
+    	font_tag.style["color"] = selected_item;
+    	font_tag.textContent = selection_string;
+
+    	var range = fontManager.selection.getRangeAt(0).cloneRange();
+		// range.surroundContents(font_tag);
+
+		range.deleteContents();
+		range.insertNode(font_tag);
 		// fontManager.selection.removeAllRanges();
 		// fontManager.selection.addRange(range);
 		fontManager.selection = "";
@@ -179,28 +159,28 @@ $("#change_font_color").change(function() {
 		$(this).attr("disabled", "");
 		$("#change_font_size").attr("disabled", "");
 		$("#change_font_background_color").attr("disabled", "");
-    }
+	}
 
 });
 
 $("#change_font_background_color").change(function() {	
 	//select value
-    console.log($(this).val());
-    let selected_item = $(this).val();
-   
-    let selection_string = fontManager.selection.toString();
-    if(selection_string.length > 0) {
+	console.log($(this).val());
+	let selected_item = $(this).val();
+
+	let selection_string = fontManager.selection.toString();
+	if(selection_string.length > 0) {
     	// alert("zmien");
     	var font_tag = document.createElement('font');
 
-		font_tag.style["background-color"] = selected_item;
-		font_tag.textContent = selection_string;
+    	font_tag.style["background-color"] = selected_item;
+    	font_tag.textContent = selection_string;
 
-		var range = fontManager.selection.getRangeAt(0).cloneRange();
+    	var range = fontManager.selection.getRangeAt(0).cloneRange();
 		// range.surroundContents(font_tag);
 
 		range.deleteContents();
-    	range.insertNode(font_tag);
+		range.insertNode(font_tag);
 		// fontManager.selection.removeAllRanges();
 		// fontManager.selection.addRange(range);
 		fontManager.selection = "";
@@ -208,7 +188,7 @@ $("#change_font_background_color").change(function() {
 		$(this).attr("disabled", "");
 		$("#change_font_size").attr("disabled", "");
 		$("#change_font_color").attr("disabled", "");
-    }
+	}
 
 });
 
@@ -302,18 +282,18 @@ function sendAjaxFormData(payload) {
 			if(data.add_status === "success" ||
 				data.edit_status === "success") {
 				window.location.href = data.route;
-			} else {				
-				$("#errors_list").removeClass("hidden");
-				errors = JSON.parse(data);
-				$.each(errors, function(key, value) {
-					$("#errors_list").append("<p><i class='warning icon'></i>" + value + "</p>");
-				});
-			}
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert('add news ajax error: ', errorThrown);
+		} else {				
+			$("#errors_list").removeClass("hidden");
+			errors = JSON.parse(data);
+			$.each(errors, function(key, value) {
+				$("#errors_list").append("<p><i class='warning icon'></i>" + value + "</p>");
+			});
 		}
-	});
+	},
+	error: function(XMLHttpRequest, textStatus, errorThrown) {
+		alert('add news ajax error: ', errorThrown);
+	}
+});
 }
 
 function validateTitle() {
