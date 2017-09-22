@@ -407,7 +407,7 @@ class ViewController extends Controller {
 
 	public function getPageView($slug) {
 		$page = StaticPage::where("slug", $slug)->where("is_public", true)->first();
-
+		
 		if($page) {
 			return view("templates/staticPage")->with("page", $page);
 		} else {
@@ -472,6 +472,12 @@ class ViewController extends Controller {
 
 		return view("templates.sitemap")
 			->with("menus", $menus);
+	}
+
+	public function redirectArticle($article_id) {
+		$articleObject = StaticPage::find($article_id);
+
+		return redirect()->route("pages.show.get", $articleObject->slug ?? " ");
 	}
 
 }

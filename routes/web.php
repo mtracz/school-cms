@@ -126,7 +126,8 @@ Route::get('/pages/{slug}', ["as" => "pages.show.get", "uses" => "ViewController
 // Site Map
 Route::get('/sitemap', ["as" => "sitemap.show.get", "uses" => "ViewController@getSiteMap"]);
 
-
+// redirect old route to article
+Route::get('/readarticle/{id}', ["as" => "article.redirect.get", "uses" => "ViewController@redirectArticle"]);
 
 
 
