@@ -22,3 +22,6 @@ uncomment
 
 # toastr
 `npm install --save toastr`
+
+#piklor (color picker)
+http://jillix.github.io/piklor.js/

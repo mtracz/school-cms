@@ -13,7 +13,37 @@ var fontManager = {
 
 $(window).ready(function() {
 
+	$('select[name="colorpicker-picker-longlist-font-color"]').simplecolorpicker({
+		picker: true
+	}).on('change', function() {
+		$(document.body).css('background-color', $('select[name="colorpicker-picker-longlist-font-color"]').val());
+	});
+
+	$('select[name="colorpicker-picker-longlist-font-background-color"]').simplecolorpicker({
+		picker: true
+	}).on('change', function() {
+		$(document.body).css('background-color', $('select[name="colorpicker-picker-longlist-font-color"]').val());
+	});
+
+	//disable colorpicker span click
+	$(".simplecolorpicker.icon").css("pointer-events", "none");
+	// $(".simplecolorpicker.icon").css("display", "none");
+	// $(".simplecolorpicker.icon").hide();
+	
 	$(".ui.centered.aligned.grid").removeAttr("style");
+});
+
+$("#change_font_color").on("click", function(event) {
+	// event.preventDefault();
+	let x =  $(".font_color").find('.simplecolorpicker.icon');
+
+	// let y =  $(this).find('.simplecolorpicker.icon');
+	let y =  $("#change_font_color").find('.simplecolorpicker.icon');
+	console.log("y", y);
+	console.log("x", x);
+	x.click();
+	// $('.simplecolorpicker.icon').click();	
+
 });
 
 $(document).ready(function() {
@@ -43,12 +73,20 @@ Kolich.Selector.getSelected = function(){
 }
 
 Kolich.Selector.mouseup = function() {
+
 	var selected_text = Kolich.Selector.getSelected();
   // alert("select:\n"+selected_text);
   console.log("selected text before: " + fontManager.selection);
   if(selected_text != '') {
   	// alert("You selected:\n"+selected_text);
+
+  	// check if content is in editing mode
+ //  	if(! $(".ct-widget.ct-ignition.ct-widget--active").hasClass("ct-ignition--editing")) {
+	// 	return false;
+	// }
+
   	fontManager.selection = selected_text;
+  	// $(".simplecolorpicker.icon").css("pointer-events", "auto");
   	$("#change_font_size").removeAttr("disabled");
   	$("#change_font_color").removeAttr("disabled");
   	$("#change_font_background_color").removeAttr("disabled");
@@ -208,6 +246,7 @@ $("#reedit_button").on("click", function() {
 	$("#preview_news").hide();
 	$("#edit_step").addClass("active").removeClass("completed");
 	$("#preview_step").addClass("disabled").removeClass("active");
+	toogleFontManagerSection();
 });
 
 // public button
@@ -329,4 +368,15 @@ function setContent() {
 	$("#preview_news").show();
 	$("#edit_step").addClass("completed").removeClass("active");
 	$("#preview_step").addClass("active").removeClass("disabled");
+}
+
+function toogleFontManagerSection() {
+	$(".font_manager_section").toggle();
+	// font_manager_section.toggle();
+	// alert("")
+	// if(font_manager_section.hasClass("hidden")) {
+	// 	font_manager_section.show();
+	// } else {
+	// 	font_manager_section.hide();
+	// }
 }

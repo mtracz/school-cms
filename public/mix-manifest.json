@@ -59,5 +59,7 @@
     "/js/ChangeFont.js": "/js/ChangeFont.js",
     "/css/info.css": "/css/info.css",
     "/css/list.css": "/css/list.css",
-    "/css/banner.css": "/css/banner.css"
+    "/css/banner.css": "/css/banner.css",
+    "/js/jquery.simplecolorpicker.js": "/js/jquery.simplecolorpicker.js",
+    "/css/jquery.simplecolorpicker.css": "/css/jquery.simplecolorpicker.css"
 }

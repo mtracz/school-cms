@@ -4,6 +4,7 @@
 	@parent
 	{!!Html::style("css/formNewsPage.css")!!}
 	{!!Html::style("css/addEditPage.css")!!}
+	{!!Html::style("css/jquery.simplecolorpicker.css")!!}
 @endsection
 
 @section("content")
@@ -40,4 +41,5 @@
 	@parent
 	{!!Html::script("js/formNewsPage.js")!!}
 	{!!Html::script("js/addEditPage.js")!!}
+	{!!Html::script("js/jquery.simplecolorpicker.js")!!}
 @endsection

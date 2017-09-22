@@ -217,6 +217,7 @@ $("#preview_button").on("click", function() {
 	}
 	setDateInPreviewContent();
 	setContent();
+	toogleFontManagerSection();
 });
 
 // public button

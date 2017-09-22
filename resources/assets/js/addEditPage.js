@@ -10,6 +10,7 @@ $("#preview_button").on("click", function() {
 		return false;
 	}
 	setContent();
+	toogleFontManagerSection();
 });
 
 // public button
