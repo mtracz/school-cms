@@ -37,10 +37,15 @@ $("#change_font_color").on("click", function(event) {
 	// event.preventDefault();
 	let x =  $(".font_color").find('.simplecolorpicker.icon');
 
-	// let y =  $(this).find('.simplecolorpicker.icon');
-	let y =  $("#change_font_color").find('.simplecolorpicker.icon');
-	console.log("y", y);
-	console.log("x", x);
+	x.click();
+	// $('.simplecolorpicker.icon').click();	
+
+});
+
+$("#change_font_background_color").on("click", function(event) {
+	// event.preventDefault();
+	let x =  $(".font_background_color").find('.simplecolorpicker.icon');
+
 	x.click();
 	// $('.simplecolorpicker.icon').click();	
 
@@ -135,12 +140,13 @@ $(document).ready(function() {
 });
 
 $(document).on("mouseup", function() {
-	console.log("Any mouseup: ", fontManager.selection.toString());
+	// console.log("Any mouseup: ", fontManager.selection.toString());
 });
 
 // /////////////////////
 // 
 $("#change_font_size").change(function() {	
+	alert("font size");
 	//select value
 	console.log($(this).val());
 	let selected_item = $(this).val();
