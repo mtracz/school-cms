@@ -8,27 +8,52 @@ var json_images_src;
 
 var fontManager = {
 	selection: '',
+	font_color: '',
+	background_color: '',
+	font_size: 10
 	
 };
 
 $(window).ready(function() {
-
+	//KOLOR CZCIONKI
 	$('select[name="colorpicker-picker-longlist-font-color"]').simplecolorpicker({
 		picker: true
 	}).on('change', function() {
-		$(document.body).css('background-color', $('select[name="colorpicker-picker-longlist-font-color"]').val());
-	});
+		fontManager.font_color = $('select[name="colorpicker-picker-longlist-font-color"]').val();
+		console.log("font color", color);
+		//$(document.body).css('background-color', $('select[name="colorpicker-picker-longlist-font-color"]').val());
 
+
+		var font_tag = document.createElement('font');
+
+    //font_tag.style["font-size"] = "30px";
+    font_tag.style["color"] = fontManager.font_color;
+    //font_tag.style["background-color"] = fontManager.background_color;
+    font_tag.textContent = fontManager.selection;    
+
+	// alert("You selected:\n"+selected_text);
+
+	var range = fontManager.selection.getRangeAt(0).cloneRange();
+            range.surroundContents(font_tag);
+            fontManager.selection.removeAllRanges();
+            fontManager.selection.addRange(range);
+
+
+	});
+	//KOLOR TŁA
 	$('select[name="colorpicker-picker-longlist-font-background-color"]').simplecolorpicker({
 		picker: true
 	}).on('change', function() {
-		$(document.body).css('background-color', $('select[name="colorpicker-picker-longlist-font-color"]').val());
+		fontManager.background_color = $('select[name="colorpicker-picker-longlist-font-background-color"]').val();
+		console.log("background-color", color);
 	});
 
 	//disable colorpicker span click
 	$(".simplecolorpicker.icon").css("pointer-events", "none");
 	// $(".simplecolorpicker.icon").css("display", "none");
-	// $(".simplecolorpicker.icon").hide();
+	 //$(".simplecolorpicker.icon").hide();
+
+	 //TODO: disable font manager buttons
 	
 	$(".ui.centered.aligned.grid").removeAttr("style");
 });
@@ -91,24 +116,18 @@ Kolich.Selector.mouseup = function() {
 	// }
 
   	fontManager.selection = selected_text;
+
+//alert(selected_text);
   	// $(".simplecolorpicker.icon").css("pointer-events", "auto");
+  //	$("#change_font_size.icon").css("pointer-events", "all");
+
+  	//enable fontmanager buttons
   	$("#change_font_size").removeAttr("disabled");
   	$("#change_font_color").removeAttr("disabled");
   	$("#change_font_background_color").removeAttr("disabled");
 
- //  	var font_tag = document.createElement('font');
-
- //    font_tag.style["font_tag-size"] = "30px";
- //    font_tag.style["color"] = "red";
- //    font_tag.style["background-color"] = "yellow";
- //    font_tag.textContent = selected_text;    
-
-	// alert("You selected:\n"+selected_text);
-
-	// var range = selected_text.getRangeAt(0).cloneRange();
- //            range.surroundContents(font_tag);
- //            selected_text.removeAllRanges();
- //            selected_text.addRange(range);
+  	//
+  	
 
     // var font = document.createElement('font');
 
@@ -116,6 +135,7 @@ Kolich.Selector.mouseup = function() {
     // font.style["color"] = "red";
     // font.style["background-color"] = "yellow";
     // font.textContent = st;    
+
     // // var selection = getSelectedText();
     // var range = st.getRangeAt(0);
     // range.deleteContents();
@@ -378,11 +398,4 @@ function setContent() {
 
 function toogleFontManagerSection() {
 	$(".font_manager_section").toggle();
-	// font_manager_section.toggle();
-	// alert("")
-	// if(font_manager_section.hasClass("hidden")) {
-	// 	font_manager_section.show();
-	// } else {
-	// 	font_manager_section.hide();
-	// }
 }
