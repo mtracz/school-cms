@@ -82,6 +82,7 @@ class FileService {
 	}
 
 	protected function listFilesInDirectory($dir) : array {
+		if(!is_dir($dir)) return [];	//if directory '/public/files/'' doesn't exist return empty array
 		$files = File::files($dir);
 		$files_on_server = [];
 
