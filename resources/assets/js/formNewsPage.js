@@ -10,71 +10,106 @@ var fontManager = {
 	selection: '',
 	font_color: '',
 	background_color: '',
-	font_size: 10
+	font_size: '13px'
 	
 };
 
 $(window).ready(function() {
+
 	//KOLOR CZCIONKI
 	$('select[name="colorpicker-picker-longlist-font-color"]').simplecolorpicker({
 		picker: true
 	}).on('change', function() {
 		fontManager.font_color = $('select[name="colorpicker-picker-longlist-font-color"]').val();
-		console.log("font color", color);
-		//$(document.body).css('background-color', $('select[name="colorpicker-picker-longlist-font-color"]').val());
 
+			var font_tag = document.createElement('font');
+		    font_tag.style["color"] = fontManager.font_color;
+		    font_tag.textContent = fontManager.selection;    
 
-		var font_tag = document.createElement('font');
+			if(fontManager.selection.rangeCount) {
+				var range = fontManager.selection.getRangeAt(0).cloneRange();
+				range.surroundContents(font_tag); //bugs here
+				fontManager.selection.removeAllRanges();
+				fontManager.selection.addRange(range);
+			}
+		});
 
-    //font_tag.style["font-size"] = "30px";
-    font_tag.style["color"] = fontManager.font_color;
-    //font_tag.style["background-color"] = fontManager.background_color;
-    font_tag.textContent = fontManager.selection;    
-
-	// alert("You selected:\n"+selected_text);
-
-	var range = fontManager.selection.getRangeAt(0).cloneRange();
-            range.surroundContents(font_tag);
-            fontManager.selection.removeAllRanges();
-            fontManager.selection.addRange(range);
-
-
-	});
 	//KOLOR TŁA
 	$('select[name="colorpicker-picker-longlist-font-background-color"]').simplecolorpicker({
 		picker: true
 	}).on('change', function() {
-		fontManager.background_color = $('select[name="colorpicker-picker-longlist-font-background-color"]').val();
-		console.log("background-color", color);
-	});
+			fontManager.background_color = $('select[name="colorpicker-picker-longlist-font-background-color"]').val();
+
+			var font_tag = document.createElement('font');
+		    font_tag.style["background-color"] = fontManager.background_color;
+		    font_tag.textContent = fontManager.selection;    
+
+		    var range = fontManager.selection.getRangeAt(0).cloneRange();
+		    range.surroundContents(font_tag);//bugs here
+		    fontManager.selection.removeAllRanges();
+		    fontManager.selection.addRange(range);
+		});
 
 	//disable colorpicker span click
 	$(".simplecolorpicker.icon").css("pointer-events", "none");
-	// $(".simplecolorpicker.icon").css("display", "none");
-	 //$(".simplecolorpicker.icon").hide();
-
-	 //TODO: disable font manager buttons
 	
 	$(".ui.centered.aligned.grid").removeAttr("style");
 });
 
+//FONT SIZE ON CHANGE
+$('#change_font_size').on("click", function(event) {
+
+	if(!checkEditorIsInEditState() || !checkIsTextSelectedInFontManager()) {
+		event.stopImmediatePropagation();
+		return false;
+	}
+});
+
+$('#change_font_size').dropdown({ 
+ onChange: function(val) {
+	 	var font_tag = document.createElement('font');
+	 	font_tag.style["font-size"] = val;	    
+	 	font_tag.textContent = fontManager.selection; 
+
+	 	var range = fontManager.selection.getRangeAt(0).cloneRange();	 
+	 	range.surroundContents(font_tag);//bugs here
+	 	fontManager.selection.removeAllRanges();
+	 	fontManager.selection.addRange(range);
+	}
+});
+
+
+////
 $("#change_font_color").on("click", function(event) {
-	// event.preventDefault();
-	let x =  $(".font_color").find('.simplecolorpicker.icon');
+	let x =  $(".font_color").find('.simplecolorpicker.icon');	
+  	if(!checkEditorIsInEditState() || !checkIsTextSelectedInFontManager()) return false;
 
 	x.click();
-	// $('.simplecolorpicker.icon').click();	
-
 });
-
+//////
 $("#change_font_background_color").on("click", function(event) {
-	// event.preventDefault();
 	let x =  $(".font_background_color").find('.simplecolorpicker.icon');
-
+	if(!checkEditorIsInEditState() || !checkIsTextSelectedInFontManager()) return false;
+	
 	x.click();
-	// $('.simplecolorpicker.icon').click();	
-
 });
+/////
+
+function checkIsTextSelectedInFontManager() {
+	if(!fontManager.selection != '') {
+		toastr.warning("Zaznacz tekst w polu 'Treść'.");
+		return false;
+	}
+	return true;
+}
+
+function checkEditorIsInEditState() {
+	if(! $(".ct-widget.ct-ignition.ct-widget--active").hasClass("ct-ignition--editing")) {
+  		toastr.warning("Włącz tryb edycji aby edytowakć czcionkę.");
+		return false;
+	}
+	return true;
+}
 
 $(document).ready(function() {
 	form_content = "";
@@ -82,7 +117,6 @@ $(document).ready(function() {
 	//paste content to form_content onload edit form
 	form_content = $(".ui.segment.content").html();
 });
-
 
 if(!window.Kolich){
 	Kolich = {};
@@ -103,161 +137,21 @@ Kolich.Selector.getSelected = function(){
 }
 
 Kolich.Selector.mouseup = function() {
-
 	var selected_text = Kolich.Selector.getSelected();
-  // alert("select:\n"+selected_text);
-  console.log("selected text before: " + fontManager.selection);
-  if(selected_text != '') {
-  	// alert("You selected:\n"+selected_text);
-
-  	// check if content is in editing mode
- //  	if(! $(".ct-widget.ct-ignition.ct-widget--active").hasClass("ct-ignition--editing")) {
-	// 	return false;
-	// }
-
+  // console.log("selected text before: " + fontManager.selection);
+  	if(selected_text != '') {
   	fontManager.selection = selected_text;
-
-//alert(selected_text);
-  	// $(".simplecolorpicker.icon").css("pointer-events", "auto");
-  //	$("#change_font_size.icon").css("pointer-events", "all");
-
-  	//enable fontmanager buttons
-  	$("#change_font_size").removeAttr("disabled");
-  	$("#change_font_color").removeAttr("disabled");
-  	$("#change_font_background_color").removeAttr("disabled");
-
-  	//
-  	
-
-    // var font = document.createElement('font');
-
-    // font.style["font-size"] = "30px";
-    // font.style["color"] = "red";
-    // font.style["background-color"] = "yellow";
-    // font.textContent = st;    
-
-    // // var selection = getSelectedText();
-    // var range = st.getRangeAt(0);
-    // range.deleteContents();
-    // range.insertNode(font);
-} else {
-	fontManager.selection = '';
-}
-
-console.log("selected text after: " + fontManager.selection);
+  	} else {
+  	fontManager.selection = '';
+  }
+// console.log("selected text after: " + fontManager.selection);
 }
 
 $(document).ready(function() {
 	$('.ui.segment.content').on("mouseup", Kolich.Selector.mouseup);
-
-	$("#change_font_color option").each(function(index, elem) {
-		$(elem).css({
-			"background-color": $(elem).attr("value"),
-			"color": "white",
-		});
-	});
-
-});
-
-$(document).on("mouseup", function() {
-	// console.log("Any mouseup: ", fontManager.selection.toString());
 });
 
 // /////////////////////
-// 
-$("#change_font_size").change(function() {	
-	alert("font size");
-	//select value
-	console.log($(this).val());
-	let selected_item = $(this).val();
-
-	let selection_string = fontManager.selection.toString();
-	if(selection_string.length > 0) {
-    	// alert("zmien");
-    	var font_tag = document.createElement('font');
-
-    	font_tag.style["font-size"] = selected_item;
-    	font_tag.textContent = selection_string;
-
-    	var range = fontManager.selection.getRangeAt(0).cloneRange();
-		// range.surroundContents(font_tag);
-
-		range.deleteContents();
-		range.insertNode(font_tag);
-		// fontManager.selection.removeAllRanges();
-		// fontManager.selection.addRange(range);
-		fontManager.selection = "";
-		$(this).val("");
-		$(this).attr("disabled", "");
-		$("#change_font_color").attr("disabled", "");
-		$("#change_font_background_color").attr("disabled", "");
-
-	}
-
-});
-
-$("#change_font_color").change(function() {	
-	//select value
-	console.log($(this).val());
-	console.log($(this));
-	let selected_item = $(this).val();
-
-	let selection_string = fontManager.selection.toString();
-	console.log("selection: " + selection_string);
-	if(selection_string.length > 0) {
-    	// alert("zmien");
-    	var font_tag = document.createElement('font');
-
-    	font_tag.style["color"] = selected_item;
-    	font_tag.textContent = selection_string;
-
-    	var range = fontManager.selection.getRangeAt(0).cloneRange();
-		// range.surroundContents(font_tag);
-
-		range.deleteContents();
-		range.insertNode(font_tag);
-		// fontManager.selection.removeAllRanges();
-		// fontManager.selection.addRange(range);
-		fontManager.selection = "";
-		$(this).val("");
-		$(this).attr("disabled", "");
-		$("#change_font_size").attr("disabled", "");
-		$("#change_font_background_color").attr("disabled", "");
-	}
-
-});
-
-$("#change_font_background_color").change(function() {	
-	//select value
-	console.log($(this).val());
-	let selected_item = $(this).val();
-
-	let selection_string = fontManager.selection.toString();
-	if(selection_string.length > 0) {
-    	// alert("zmien");
-    	var font_tag = document.createElement('font');
-
-    	font_tag.style["background-color"] = selected_item;
-    	font_tag.textContent = selection_string;
-
-    	var range = fontManager.selection.getRangeAt(0).cloneRange();
-		// range.surroundContents(font_tag);
-
-		range.deleteContents();
-		range.insertNode(font_tag);
-		// fontManager.selection.removeAllRanges();
-		// fontManager.selection.addRange(range);
-		fontManager.selection = "";
-		$(this).val("");
-		$(this).attr("disabled", "");
-		$("#change_font_size").attr("disabled", "");
-		$("#change_font_color").attr("disabled", "");
-	}
-
-});
-
-
-
 
 // cancel button
 $("#cancel_button").on("click", function() {

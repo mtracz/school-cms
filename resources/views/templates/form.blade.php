@@ -58,11 +58,11 @@
 			</div>
 		</div>
 
-		<div class="ui form">
+		<div class="ui form font_manager">
 		<div class="inline fields font_manager_section">
 
-			<div class="field font_color">
-				<div class="ui tiny button" id="change_font_color" disabled>
+			<div class="field font_color " >
+				<div class="ui tiny button" id="change_font_color">
 				Kolor czcionki:
 				</div>
 				<select name="colorpicker-picker-longlist-font-color">
@@ -95,8 +95,8 @@
 				</select>
 			</div> 
 
-			<div class=" field font_background_color">
-				<div class="ui tiny button" id="change_font_background_color" disabled>
+			<div class="field font_background_color " >
+				<div class="ui tiny button" id="change_font_background_color">
 				Kolor tła:
 				</div>
 				<select name="colorpicker-picker-longlist-font-background-color">	     
@@ -130,61 +130,34 @@
 			</div>
 
 			<div class="field"></div>
-				<div class="ui floating search dropdown icon button" id="change_font_size">
+				<div class="ui floating search dropdown icon button " id="change_font_size">
 					<i class="text height icon"></i>
 					<div class="menu">
 						<div class="header">Rozmiar czcionki</div>
-						<div class="item" value="13px">10</div>
-						<div class="item" value="15px">11</div>
-						<div class="item" value="16px">12</div>
-						<div class="item" value="17px">13</div>
-						<div class="item" value="19px">14</div>
-						<div class="item" value="21px">15</div>
-						<div class="item" value="22px">16</div>
-						<div class="item" value="23px">17</div>
-						<div class="item" value="24px">18</div>
-						<div class="item" value="26px">20</div>
-						<div class="item" value="29px">22</div>
-						<div class="item" value="32px">24</div>
-						<div class="item" value="35px">26</div>
-						<div class="item" value="36px">27</div>
-						<div class="item" value="37px">28</div>
-						<div class="item" value="38px">29</div>
-						<div class="item" value="40px">30</div>
-						<div class="item" value="42px">32</div>
-						<div class="item" value="45px">34</div>
-						<div class="item" value="48px">36</div>
+						<div class="item" data-value="13px">10</div>
+						<div class="item" data-value="15px">11</div>
+						<div class="item" data-value="16px">12</div>
+						<div class="item" data-value="17px">13</div>
+						<div class="item" data-value="19px">14</div>
+						<div class="item" data-value="21px">15</div>
+						<div class="item" data-value="22px">16</div>
+						<div class="item" data-value="23px">17</div>
+						<div class="item" data-value="24px">18</div>
+						<div class="item" data-value="26px">20</div>
+						<div class="item" data-value="29px">22</div>
+						<div class="item" data-value="32px">24</div>
+						<div class="item" data-value="35px">26</div>
+						<div class="item" data-value="36px">27</div>
+						<div class="item" data-value="37px">28</div>
+						<div class="item" data-value="38px">29</div>
+						<div class="item" data-value="40px">30</div>
+						<div class="item" data-value="42px">32</div>
+						<div class="item" data-value="45px">34</div>
+						<div class="item" data-value="48px">36</div>
 					</div>
 				</div>
 		</div>
 		</div>
-
-
-		<!-- 	<select class="ui icon pointing dropdown button"  >
-			  <i class="text height icon"></i>	 
-				<option value="">Rozmiar czcionki</option>      
-				<option value="13px">10</option>
-				<option value="15px">11</option>
-				<option value="16px">12</option>
-				<option value="17px">13</option>
-				<option value="19px">14</option>
-				<option value="21px">15</option>
-				<option value="22px">16</option>
-				<option value="23px">17</option>
-				<option value="24px">18</option>
-				<option value="26px">20</option>
-				<option value="29px">22</option>
-				<option value="32px">24</option>
-				<option value="35px">26</option>
-				<option value="36px">27</option>
-				<option value="37px">28</option>
-				<option value="38px">29</option>
-				<option value="40px">30</option>
-				<option value="42px">32</option>
-				<option value="45px">34</option>
-				<option value="48px">36</option>
-			</select> -->
-
 
 		<form class="ui form" action="{{$news_route or ""}}{{$page_route or ""}}" method="post" id="add_news_article_form">
 			{{ csrf_field() }}
