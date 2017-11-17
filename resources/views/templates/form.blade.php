@@ -107,7 +107,11 @@
 		</div>
 		
 		{{-- BUTTONS --}}
-		<div class="ui red left floated circular button" id="cancel_button">
+		<div class="ui red left floated circular button" id="cancel_button" 
+		@if(isset($news_header)) data-route="{{route('news.manage.get')}}"
+		@else
+		data-route="{{route('page.manage.get')}}"
+		@endif>
 			<i class="cancel icon"></i>
 			Anuluj
 		</div>

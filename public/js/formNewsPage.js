@@ -16,8 +16,8 @@ $(document).ready(function() {
 });
 
 // cancel button
-$("#cancel_button").on("click", function() {
-	window.location.href = "/";
+$("#cancel_button").on("click", function(el) {
+	window.location.href = $(this).data("route");
 });
 
 // reedit button
