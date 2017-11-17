@@ -34,6 +34,15 @@
 			</div>
 		</div>
 
+		<div class="ui simple dropdown item links">
+			<i class="linkify text icon"></i>
+			Linki
+			<div class="ui menu">
+				<div class="ui item menuAdmin_news_links"><i class="newspaper icon"></i>Newsy</div>
+				<div class="ui item menuAdmin_pages_links"><i class="sticky note icon"></i>Strony</div>
+			</div>
+		</div>
+
 		<a class="ui item site_sectors" href="{{ route("element.manage.get") }}"><i class="group object icon"></i>Zarządzanie elementami</a>
 		{{-- <a class="ui item statistics"><i class="signal icon"></i>Statystyki</a> --}}
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>
@@ -46,6 +55,9 @@
 
 	{{-- MODAL ADD_FILE --}}
 	@include("addFileModal")
+
+	{{-- MODAL LINKS --}}
+	@include("linksModal")
 
 
 {!! Html::script("js/menuAdmin.js") !!}	

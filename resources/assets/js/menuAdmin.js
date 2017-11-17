@@ -39,3 +39,27 @@ $(".menuAdmin_add_file").on("click", function(event) {
   // return false;
 });
 
+
+
+
+$(".menuAdmin_news_links").on("click", function(event) {
+
+	//not select button after click
+	event.stopPropagation();
+
+	$(".modal_links").modal({
+		selector: { 
+			close: 'icon.close'
+		} 
+	})
+	.modal({
+		onApprove: function () {
+			
+			return false;
+		}
+	})
+	.modal("show");
+
+  //not select button after click
+  // return false;
+});
