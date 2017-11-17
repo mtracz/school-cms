@@ -11,8 +11,8 @@ input.addEventListener('change', function() {
 	validateFile(this);
 });
 
-
-$(document).ready(function() {
+//load files from server
+$(".ui.item.menuAdmin_add_file").on("click", function() {
 	getFilesViaAjax();
 });
 
