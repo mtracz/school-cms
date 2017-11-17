@@ -148,3 +148,6 @@ mix.styles("resources/assets/css/templates/info.css", "public/css/info.css");
 // jquery-simplecolorpicker
 mix.copy("node_modules/jquery-simplecolorpicker/jquery.simplecolorpicker.js", "public/js");
 mix.copy("node_modules/jquery-simplecolorpicker/jquery.simplecolorpicker.css", "public/css");
+
+// fontManager
+mix.scripts("resources/assets/js/templates/fontManager.js", "public/js/fontManager.js");
