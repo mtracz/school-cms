@@ -53,4 +53,8 @@ class NewsController extends Controller {
 		Session::flash("messages", ["Usunięto newsa" => "success" ]);
 		return redirect()->route("news.manage.get");
 	}
+
+	public function getAllNews() {
+		return json_encode($this->NewsService->getNews());
+	}
 }

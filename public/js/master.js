@@ -95,10 +95,39 @@ $('.ui.accordion')
 .accordion();
 
 $('.ui.dropdown')
-.dropdown();
+.dropdown({ fullTextSearch: true });
+//sortSelect: true
 
 $('select.dropdown')
 .dropdown();
 
 $('.ui.checkbox')
 .checkbox();
+
+
+function copyToClipboard(text) {
+
+	var textarea = $('<textarea />');
+	textarea.val(text).css({
+		width: '0px',
+		height: '0px',
+		border: 'none',
+		visibility: 'none'
+	}).appendTo('body');
+
+	textarea.focus().select();
+
+	try {
+		if (document.execCommand('copy')) {
+			textarea.remove();    
+			toastr.info("skopiowano do schowka");
+      return true;
+  }
+} catch (error) {
+	console.log(error);
+	toastr.error("problem z kopiowaniem");
+}
+
+	textarea.remove();
+	return false;
+}

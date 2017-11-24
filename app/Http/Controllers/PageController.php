@@ -52,4 +52,8 @@ class PageController extends Controller {
 		Session::flash("messages", ["Usunięto stronę" => "success" ]);
 		return redirect()->route("page.manage.get");
 	}
+
+	public function getAllPages() {
+		return json_encode($this->PageService->getPages());
+	}
 }

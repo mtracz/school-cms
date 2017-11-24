@@ -1,5 +1,13 @@
 // menu admin js
 
+var linksManager = {
+	name: "",
+};
+
+$(document).ready( function() {
+	linksManager.name = "";
+});
+
 $(".sign_out").on('click',function() {
 	var route = $(this).attr("data-route");
 
@@ -39,11 +47,30 @@ $(".menuAdmin_add_file").on("click", function(event) {
   // return false;
 });
 
-
-
-
 $(".menuAdmin_news_links").on("click", function(event) {
+	linksManager.name = "news";
+	//not select button after click
+	event.stopPropagation();
 
+	$(".modal_links").modal({
+		selector: { 
+			close: 'icon.close'
+		} 
+	})
+	.modal({
+		onApprove: function () {
+			
+			return false;
+		}
+	})
+	.modal("show");
+
+  //not select button after click
+  // return false;
+});
+
+$(".menuAdmin_pages_links").on("click", function(event) {
+	linksManager.name = "pages";
 	//not select button after click
 	event.stopPropagation();
 

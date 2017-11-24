@@ -221,4 +221,14 @@ class ManagePageService {
 	public function isDeleted() {
 		return $this->is_page_deleted;
 	}
+
+	public function getPages() : array {
+		$pages = StaticPage::orderBy("title")->get();
+		$pages_list = [];
+		foreach ($pages as $page) {
+			$path = route("index.get") . "/pages/" . $page->slug;
+			$pages_list += [$path => $page->title];
+		}
+		return $pages_list;
+	}
 }

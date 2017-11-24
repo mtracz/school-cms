@@ -62,5 +62,6 @@
     "/css/banner.css": "/css/banner.css",
     "/js/jquery.simplecolorpicker.js": "/js/jquery.simplecolorpicker.js",
     "/css/jquery.simplecolorpicker.css": "/css/jquery.simplecolorpicker.css",
-    "/js/fontManager.js": "/js/fontManager.js"
+    "/js/fontManager.js": "/js/fontManager.js",
+    "/js/createLink.js": "/js/createLink.js"
 }

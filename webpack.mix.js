@@ -151,3 +151,6 @@ mix.copy("node_modules/jquery-simplecolorpicker/jquery.simplecolorpicker.css", "
 
 // fontManager
 mix.scripts("resources/assets/js/templates/fontManager.js", "public/js/fontManager.js");
+
+//createLink
+mix.scripts("resources/assets/js/createLink.js", "public/js/createLink.js");

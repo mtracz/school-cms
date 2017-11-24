@@ -416,6 +416,17 @@ class ViewController extends Controller {
 		}
 	}
 
+	public function getNewsView($slug) {
+		$news = News::where("slug", $slug)->where("is_public", true)->first();
+		
+		if($news) {
+			return view("templates/staticPage")->with("page", $news);
+		} else {
+			Session::flash("messages", ["Nie znaleziono takiej strony" => "error" ]);
+			return redirect()->route("index.get");
+		}
+	}
+
 	public function getMenuAddView(Request $request) {
 
 		$parameters = $request->all();

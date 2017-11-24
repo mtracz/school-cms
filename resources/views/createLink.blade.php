@@ -16,17 +16,19 @@
 
 				<div class="ui form">
 					<div class="fields ">
-						<div class="field dropdown">
+						<div class="field dropdown" >
 							<div class="ui action input" >
-								<select class="ui search dropdown" data-file_route="{{route('file.list.get')}}" id="files_dropdown">
-									<option value="">Wybierz plik</option>
+								<select class="ui search dropdown"
+								data-link_route="{{route('news_links.list.get')}}" 			
+								id="links_dropdown">
+									<option value="">Wybierz element</option>
 								</select>
 
 							</div>
 						</div>
 
 						<div class="field">
-							<button class="ui teal right labeled icon button" id="copy_to_clipboard">
+							<button class="ui teal right labeled icon button" id="copy_to_clipboard_links">
 								<i class="copy icon"></i>
 								Kopiuj do schowka
 							</button>
@@ -41,4 +43,6 @@
 	</div>
 </div>
 
-<!-- {!! Html::script("js/addFile.js") !!} --> 
+{!! Html::script("js/createLink.js") !!} 
+
+<!-- data-link_route="{{route('pages_links.list.get')}}"	 -->

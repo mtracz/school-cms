@@ -373,4 +373,15 @@ class ManageNewsService {
 		return $this->is_news_deleted;
 	}
 
+	public function getNews() : array {
+		//$news = News::all();
+		$news = News::orderBy("title")->get();
+		$news_list = [];
+		foreach ($news as $item) {
+			$path = route("index.get") . "/news_show/" . $item->slug;
+			$news_list += [$path => $item->title];
+		}
+		return $news_list;
+	}
+
 }

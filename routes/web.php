@@ -105,7 +105,11 @@ Route::group(["middleware" => ["auth"]], function() {
 	// menu delete 
 	Route::post("/elements/menu/delete/{id}", ["as" => "menu.delete.post", "uses" => "ElementsController@deleteMenu"]);
 
-
+	// LINKS //
+	// get news list
+	Route::get("news_links/list", ["as" => "news_links.list.get", "uses" => "NewsController@getAllNews"]);
+	// get pages list
+	Route::get("pages_links/list", ["as" => "pages_links.list.get", "uses" => "PageController@getAllPages"]);
 
 });
 // end logged users group
@@ -122,6 +126,9 @@ Route::get("/maintenance", ["as" => "maintenance", "uses" => "ViewController@get
 
 //show page
 Route::get('/pages/{slug}', ["as" => "pages.show.get", "uses" => "ViewController@getPageView"]);
+
+//show news
+Route::get('/news_show/{slug}', ["as" => "news.show.get", "uses" => "ViewController@getNewsView"]);
 
 // Site Map
 Route::get('/sitemap', ["as" => "sitemap.show.get", "uses" => "ViewController@getSiteMap"]);
