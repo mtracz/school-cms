@@ -12,14 +12,15 @@
 		<div class="ui segments">
 
 			<div class="ui segment">
-				<h5>Utwórz link do </h5>
+				<h5 class="links header">Utwórz link do </h5>
 
 				<div class="ui form">
-					<div class="fields ">
+					<div class="fields">
 						<div class="field dropdown" >
 							<div class="ui action input" >
 								<select class="ui search dropdown"
-								data-link_route="{{route('news_links.list.get')}}" 			
+								data-news_link_route="{{route('news_links.list.get')}}" 
+								data-page_link_route="{{route('pages_links.list.get')}}" 
 								id="links_dropdown">
 									<option value="">Wybierz element</option>
 								</select>
@@ -34,8 +35,8 @@
 							</button>
 						</div>
 
-					</div>						
-				</div>				
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -44,5 +45,3 @@
 </div>
 
 {!! Html::script("js/createLink.js") !!} 
-
-<!-- data-link_route="{{route('pages_links.list.get')}}"	 -->

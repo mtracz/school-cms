@@ -103,11 +103,6 @@ class ViewController extends Controller {
 		return NewsPinned::first();
 	}
 
-	public function test() {
-
-		return view("test");
-	}
-
 	public function getLoginView() {
 		$super_admin = Admin::where("is_super_admin", 1)->first();
 
@@ -420,7 +415,9 @@ class ViewController extends Controller {
 		$news = News::where("slug", $slug)->where("is_public", true)->first();
 		
 		if($news) {
-			return view("templates/staticPage")->with("page", $news);
+			$show_news = true;
+			return view("templates/staticPage")->with("page", $news)
+												->with("show_news", $show_news);
 		} else {
 			Session::flash("messages", ["Nie znaleziono takiej strony" => "error" ]);
 			return redirect()->route("index.get");

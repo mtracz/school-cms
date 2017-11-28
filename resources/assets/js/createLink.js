@@ -2,12 +2,12 @@
 
 //load news from server
 $(".ui.item.menuAdmin_news_links").on("click", function() {
-	getFilesViaAjax();
+	getItemsViaAjax("news");
 });
 
 //load pages from server
 $(".ui.item.menuAdmin_pages_links").on("click", function() {
-	getFilesViaAjax();
+	getItemsViaAjax("pages");
 });
 
 function getFiles(options) {
@@ -16,9 +16,15 @@ function getFiles(options) {
 	});
 }
 
-function getFilesViaAjax() {
+function getItemsViaAjax(item_type) {
+	if(item_type == "news")
+		var route = $("#links_dropdown").data("news_link_route");
+	else if (item_type == "pages")
+		var route = $("#links_dropdown").data("page_link_route");
+
 	getFiles({
-		url: $("#links_dropdown").data("link_route"),
+
+		url: route,
 		type: "get",
 	})
 	//success
