@@ -14,7 +14,7 @@ class isMaintenanceModeChecked {
 		"/login",
 		"/login_create",
 		"/logout",
-		"/settings",	//ten route do poprawny
+		//"/settings",	//ten route do poprawny
 	];
 
 	/**
@@ -28,18 +28,18 @@ class isMaintenanceModeChecked {
 	
 		$response = $next($request);
 		$maintenanceModeHelper = new MaintenanceModeHelper();
-
-		if($maintenanceModeHelper->isMaintenance() && ! $request->user()) {
-
+			//dd($request->user());
+		if($maintenanceModeHelper->isMaintenance() && ($request->user() == null)) {
+			//dd("1");
 			if(! in_array($_SERVER['REQUEST_URI'], $this->allowed_routes)) {
-				return redirect("maintenance");
+				return redirect()->route("maintenance");
 			}			
 		}
 
+		// wracamy na index.get jeśli Maintenance == 0 i weszliśmy na route /maintenance
 		if(! $maintenanceModeHelper->isMaintenance() && $_SERVER['REQUEST_URI'] == "/maintenance") {
-			return redirect("/");
+			return redirect()->route("index.get");
 		}
-
 		return $response;			
 	}
 }

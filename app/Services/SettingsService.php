@@ -8,6 +8,8 @@ use Session;
 
 class SettingsService {
 
+	protected $is_maintenance_mode = false; //unchecked
+
 	public function getSettingsData() {
 
 		$settings = Settings::all()->toArray();	
@@ -22,20 +24,19 @@ class SettingsService {
 	}
 
 	public function saveSettingsDataToDB($request) {
-		
-		Session::flash("settingsFormData", $request);
 
 		foreach($request as $key => $value) {
-
-			Session::flash("Request key", $key);
-			Session::flash("Request value", $value);
 
 			if(!is_null($value)) {
 
 				$settings = Settings::where("name", "=", $key)->first();
 				if($settings) {
-					$settings->value = $value;
-					$settings->save();
+					if($key == "is_maintenance_mode" && $value == "on") {
+						$settings->value = 1;
+					} else {
+						$settings->value = $value;						
+					}
+					$settings->save();	
 				}
 			}
 		}

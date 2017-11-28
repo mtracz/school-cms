@@ -74,6 +74,7 @@
 			<div class="ui segment content " data-editable data-name="content" @if(isset($editing_news) || isset($editing_page)) data-editing_mode='true'@endif>
 				{!!$editing_news->content or ""!!}
 				{!!$editing_page->content or ""!!}
+				
 				{{-- <p class="title-only">title</p>
 				<p class="image-only">image</p>
 				<p class="links-only">links</p>

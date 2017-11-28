@@ -4,15 +4,13 @@ var settingsUrl = window.location.origin + "/settings/set";
 $(".ui.button.settings.submit").on("click", function(event) {
 	event.preventDefault();
 
-	var formData = $(".ui.form :not(.change_password_toggle input)").serialize();
+	var formData = $("#settings_form :not(.change_password_toggle input):not(.field.maintenance input)").serialize();
 
-	if( $(".ui.form .ui.toggle.checkbox").is(":checked") ) {
-
+	if( $(".field.maintenance .ui.toggle.checkbox input").is(":checked") ) {
 		formData += "&is_maintenance_mode=" + 1;
 	} else {
 		formData += "&is_maintenance_mode=" + 0;
 	}
-
 	postSettingsData({
 		headers: {
 			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")

@@ -29,3 +29,12 @@
 	</div>
 
 @endif
+
+@if($item->panel->panel_type->name === "google_maps")
+
+	<div class="four wide column">
+
+		@include("templates/googleMaps")
+	</div>
+
+@endif

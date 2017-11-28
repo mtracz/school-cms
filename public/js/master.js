@@ -35,11 +35,10 @@ getSettings({
 	$("meta[name=description]").attr("content", data.description);
 	$("meta[name=keywords]").attr("content", data.keywords);
 
-	if(data.is_maintenance_mode){
-
-		$(".maintenance_text").text(data.maintenance_mode_text);
-		$(".site_title").text(data.title);
-	}
+	// MAINTENANCE TITLE AND TEXT set
+		// $(".maintenance_text").text(data.maintenance_mode_text);
+		// $(".site_title").text(data.title);
+	// 
 	
 });
 

@@ -117,7 +117,12 @@ class ViewController extends Controller {
 
 	public function getMaintenancePage() {
 
-		return view("maintenance");
+		$maintenance_text = Settings::where("name", "maintenance_mode_text")->first();
+		$maintenance_title = Settings::where("name", "title")->first();
+		$maintenance_settings = [ "text" => $maintenance_text["value"],
+								"title" => $maintenance_title["value"]];
+
+		return view("maintenance")->with("settings", $maintenance_settings);
 	}
 
 	public function getNewsFormAdd() {

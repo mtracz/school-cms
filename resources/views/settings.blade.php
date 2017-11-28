@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="wrapper">
-		<form class="ui form">
+		<form class="ui form" id="settings_form">
 
 			<div class="ui horizontal divider">
 				<i class="user circle icon"></i> Admin
@@ -39,21 +39,21 @@
 
 				<input name="admin_id" type="number" value="{{ Auth::user()->id }}" hidden>
 
-				<div class="field">
+				<div class="field chuj">
 					<div class="ui labeled input">
 						<div class="ui label"> Stare hasło </div>
 						<input class="clearable" name="old_password" type="password" placeholder="Stare hasło" value="">
 					</div>
 				</div>
 
-				<div class="field">
+				<div class="field passwords">
 					<div class="ui labeled input">
 						<div class="ui label"> Nowe hasło </div>
 						<input class="clearable" name="new_password" type="password" placeholder="Nowe hasło" value="">
 					</div>
 				</div>
 
-				<div class="field">
+				<div class="field passwords">
 					<div class="ui labeled input">
 						<div class="ui label"> Powtórz hasło </div>
 						<input class="clearable" name="new_password_confirm" type="password" placeholder="Powtórz hasło" value="">
@@ -117,18 +117,16 @@
 				<i class="configure icon"></i> Tryb serwisowy
 			</div>
 
-			<div class="field">
-				@if($settings["is_maintenance_mode"] === 1)
-
+			<div class="field maintenance">
+				@if($settings["is_maintenance_mode"] === "1")
 				<div class="inline field">
-					<div class="ui toggle checkbox checked">
-						<input type="checkbox" name="is_maintenance_mode">
+					<div class="ui toggle checkbox">
+						<input type="checkbox" name="is_maintenance_mode" checked>
 						<label>Włącz tryb serwisowy</label>
 					</div>
 				</div>
 
 				@else
-
 				<div class="inline field">
 					<div class="ui toggle checkbox">
 						<input type="checkbox" name="is_maintenance_mode">
@@ -152,7 +150,7 @@
 			<div class="field">
 				<div class="ui labeled input">
 					<div class="ui label"> Czcionka podstawowa </div>
-					<input name="font_size_default" type="number" min="1" placeholder="px" value="{{ $settings['font_size_standard'] }}">
+					<input name="font_size_standard" type="number" min="1" placeholder="px" value="{{ $settings['font_size_standard'] }}">
 				</div>
 			</div>
 			<div class="field">

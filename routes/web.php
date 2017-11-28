@@ -24,9 +24,12 @@ Route::group(["middleware" => ["auth"]], function() {
 	Route::post("/logout", ["as" => "logout.post", "uses" => "Auth\LoginController@logout"]);
 
 	// SITE SETTINGS//
-	Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsController@getSettings"]);
-	Route::post('/settings/set', ["as" => "settings.set.post", "uses" => "SettingsController@setSettings"]);
+	
+	// Settings view
 	Route::get('/settings', ["as" => "settings.get", "uses" => "ViewController@getSettings"]);
+	// set settings
+	Route::post('/settings/set', ["as" => "settings.set.post", "uses" => "SettingsController@setSettings"]);
+	// password change	
 	Route::post('/password/change', ["as" => "password.change.post", "uses" => "SettingsController@changePassword"]);
 
 
@@ -105,6 +108,8 @@ Route::group(["middleware" => ["auth"]], function() {
 	// menu delete 
 	Route::post("/elements/menu/delete/{id}", ["as" => "menu.delete.post", "uses" => "ElementsController@deleteMenu"]);
 
+
+
 	// LINKS //
 	// get news list
 	Route::get("news_links/list", ["as" => "news_links.list.get", "uses" => "NewsController@getAllNews"]);
@@ -136,6 +141,5 @@ Route::get('/sitemap', ["as" => "sitemap.show.get", "uses" => "ViewController@ge
 // redirect old route to article
 Route::get('/readarticle/{id}', ["as" => "article.redirect.get", "uses" => "ViewController@redirectArticle"]);
 
-
-
-
+// settings get
+Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsController@getSettings"]);
