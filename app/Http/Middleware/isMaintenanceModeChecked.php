@@ -14,7 +14,6 @@ class isMaintenanceModeChecked {
 		"/login",
 		"/login_create",
 		"/logout",
-		//"/settings",	//ten route do poprawny
 	];
 
 	/**
@@ -28,9 +27,8 @@ class isMaintenanceModeChecked {
 	
 		$response = $next($request);
 		$maintenanceModeHelper = new MaintenanceModeHelper();
-			//dd($request->user());
+
 		if($maintenanceModeHelper->isMaintenance() && ($request->user() == null)) {
-			//dd("1");
 			if(! in_array($_SERVER['REQUEST_URI'], $this->allowed_routes)) {
 				return redirect()->route("maintenance");
 			}			

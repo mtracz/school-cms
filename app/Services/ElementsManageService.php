@@ -77,7 +77,7 @@ class ElementsManageService {
 				if(strpos($url, $domain) !== false) {			    
 				    $linkObject->url = $url;
 				} else {
-					//  // - redirect to other site
+					//  // - redirect to other site					
 					$linkObject->url = "//" . $url;
 				}
 		

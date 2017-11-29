@@ -103,12 +103,12 @@ $(".actions").on("click",".ui.edit.button", function() {
 	let edit_url = $(this).attr("data-url");
 	let sector_id = $(this).closest("tr").attr("data-sector_id");
 	let sector_name = $(this).closest("tr").attr("data-sector_name");
-
-	console.log(sector_id);
+	// let element_id = $(this).closest("tr").attr("data-id");
 
 	var sector_data = {
 		"id": sector_id,
 		"name": sector_name,
+		// "element_id": element_id,
 	}
 
 	redirectTo(edit_url, sector_data);
@@ -127,7 +127,7 @@ $(".actions").on("click",".ui.delete.button", function() {
 		data: parseInt($(this).attr("data-id")),
 	}).then(function() {
 		$(this).closest("tr").remove();
-		
+
 		console.log("ajaxDeleteRequestPromise: success");
 	}).catch(function() {
 		console.log("ajaxDeleteRequestPromise: fail");
@@ -182,6 +182,12 @@ $(".actions").on("click",".ui.move.button", function() {
 			console.log("selectSectorModal");
 			disableSectorFromSelection(elemPanelTypeId);
 		},
+		onHide: function() {
+			let selected_list_item = $("#selectSectorModal").find("activated");
+			console.log("selected_list_item", selected_list_item);
+
+			$(selected_list_item).removeClass("activated");
+		},
 		onApprove: function(data) {
 
 			let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
@@ -210,47 +216,66 @@ $(".actions").on("click",".ui.move.button", function() {
 
 $(".sector_header").on("click", ".ui.add_element.button", function() {
 
+	//sector name in modal
 	$("#selectElementModal .selected_item_name").text($(this).parent().find(".sector_name").text());
-
+	
 	var sector_id = $(this).closest(".sector_data").attr("data-sector_id");
 	var sector_name = $(this).closest(".sector_data").find(".sector_name").text();
 
-	var sector_data = {
-		"id": sector_id,
-		"name": sector_name,
-	}
-
 	var allowed_panels_ids = $(this).closest(".sector_data").attr("data-sector_panel_allowed_ids");
 	var is_menu_allowed = $(this).closest(".sector_data").attr("data-sector_is_menu_allowed");
-
 
 	$("#selectElementModal.ui.longer.modal").modal({
 		onShow: function() {
 			disableElementFromSelection(is_menu_allowed, allowed_panels_ids);
 		},
+		onHide: function() {
+			$(".scrolling.content").find("div").removeClass("activated");
+			// console.log("selected_list_item", selected_list_item);
+
+			// $(selected_list_item).removeClass("activated");
+			// let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
+			// $(selected_list_item).removeClass("activated");
+			// alert("stop");
+		},
 		onApprove: function(data) {
 			let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
 			$(selected_list_item).removeClass("activated");
 
-			redirectTo("/elements/"+ $(selected_list_item).attr("data-item_name") +"/add", sector_data);
+			var sector_data = {
+				"id": sector_id,
+				"name": sector_name,
+				"panel_type_id": "",
+				"item_name": "",
+			}
 
+			let item_name = $(selected_list_item).attr("data-item_name");
+			let panel_type_id = $(selected_list_item).attr("data-panel_type_id");			
+			if(item_name != undefined)
+				$("#selectElementModal.ui.longer.modal .ui.green.ok.inverted.button").toggleClass("disabled");
+			
+			if(item_name == "menu")
+				redirectTo("/elements/"+ item_name +"/add", sector_data);
+			else {	
+				sector_data.panel_type_id = panel_type_id;
+				sector_data.item_name = item_name;
+
+				redirectTo("/elements/panel/add", sector_data);
+			} 	
 		},
 	}).modal("show");
 });
-
-
 
 function redirectTo(url, query = null) {
 	
 	var query_string = "?";
 
-	console.log("query", query);
-
 	if(query !== null) {
-
-		query_string = query_string.concat("sector_id=" + String(query.id) + "&sector_name=" + String(query.name));
+		query_string = query_string.concat("sector_id=" + String(query.id) 
+			+ "&sector_name=" + String(query.name) 
+			+ "&panel_type_id=" + String(query.panel_type_id)
+			+ "&item_name=" + String(query.item_name));
 	}
-
 	window.location.href = url.concat(query_string);
 }
 
@@ -287,6 +312,7 @@ function disableElementFromSelection(is_menu_allowed, allowed_panels_ids) {
 	$("#selectElementModal.ui.modal .ui.list_selector.button").each(function(index, elem) {
 
 		var panel_type_id = $(this).attr("data-panel_type_id");
+		console.log("panel_type_id", panel_type_id);
 
 		if( panel_type_id ) {
 

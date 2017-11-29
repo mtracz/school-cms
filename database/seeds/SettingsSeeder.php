@@ -11,6 +11,7 @@ class SettingsSeeder extends Seeder
 	 */
 	public function run()
 	{
+
 		$settings = [
 
 			["id" => 1, "name" => "font_size_standard", "value" => 0],
@@ -20,7 +21,7 @@ class SettingsSeeder extends Seeder
 			["id" => 5, "name" => "news_per_page", "value" => 10],
 			["id" => 6, "name" => "cookie_text", "value" => "Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki."],
 			["id" => 7, "name" => "is_maintenance_mode", "value" => 0],
-			["id" => 8, "name" => "maintenance_mode_text", "value" => "Fuck off, get lost!"],
+			["id" => 8, "name" => "maintenance_mode_text", "value" => "Tryb serwisowy. Spróbuj później."],
 			["id" => 9, "name" => "title", "value" => "Set title"],
 			["id" => 10, "name" => "description", "value" => ""],
 			["id" => 11, "name" => "keywords", "value" => ""],

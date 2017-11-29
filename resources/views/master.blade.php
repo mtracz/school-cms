@@ -60,7 +60,8 @@
 	@yield("content")
 
 	{{-- Scripts --}}
-	
+
+	{!! Html::script("js/jquery.min.js") !!}
 	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}
@@ -70,7 +71,6 @@
 	{!! Html::script("js/contentToolsInit.js") !!}
 	{!! Html::script("js/toastr.min.js") !!}
 	{!! Html::script("js/toastrOptions.js") !!}	
-	{!! Html::script("js/jquery.min.js") !!}
 	
 	@yield("scripts")
 

@@ -68,8 +68,8 @@
 			</td>
 			<td class="actions">
 
-				<div class="ui edit button" data-url=""> <i class="configure icon"></i> </div>
-				<div class="ui delete button" data-url="" > <i class="trash icon"></i> </div>
+				<div class="ui edit button" data-url="{{ route("panel.edit.get", ["id" => $item->panel->id]) }}"> <i class="configure icon"></i> </div>
+				<div class="ui delete button" data-url="{{ route("panel.delete.post", ["id" => $item->panel->id]) }}" > <i class="trash icon"></i> </div>
 				@if($item->is_enabled === 0)
 				<div class="ui toggle show button"><i class="unhide icon"></i></div>
 				@else
@@ -156,7 +156,7 @@
 				<i class="remove icon"></i>
 				Anuluj
 			</div>
-			<div class="ui green ok inverted button">
+			<div class="ui green ok inverted button disabled">
 				<i class="checkmark icon"></i>
 				Przenieś
 			</div>
@@ -190,7 +190,7 @@
 				<i class="remove icon"></i>
 				Anuluj
 			</div>
-			<div class="ui green ok inverted button">
+			<div class="ui green ok inverted button disabled">
 				<i class="checkmark icon"></i>
 				Dodaj
 			</div>

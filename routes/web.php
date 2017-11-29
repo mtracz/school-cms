@@ -97,6 +97,7 @@ Route::group(["middleware" => ["auth"]], function() {
 
 
 	// SITE ELEMENTS
+	// MENU
 	// menu add view
 	Route::get("/elements/menu/add", ["as" => "menu.add.get", "uses" => "ViewController@getMenuAddView"]);
 	// menu add 
@@ -107,8 +108,17 @@ Route::group(["middleware" => ["auth"]], function() {
 	Route::post("/elements/menu/edit/{id}", ["as" => "menu.edit.post", "uses" => "ElementsController@editMenu"]);
 	// menu delete 
 	Route::post("/elements/menu/delete/{id}", ["as" => "menu.delete.post", "uses" => "ElementsController@deleteMenu"]);
-
-
+		
+	// PANELS
+	Route::get("/elements/panel/add", ["as" => "panel.add.get", "uses" => "ViewController@getPanelAddView"]);
+	// panel add 
+	Route::post("/elements/panel/add", ["as" => "panel.add.post", "uses" => "ElementsController@addPanel"]);
+	// panel edit view
+	Route::get("/elements/panel/edit/{id}", ["as" => "panel.edit.get", "uses" => "ViewController@getPanelEditView"]);
+	// panel edit
+	Route::post("/elements/panel/edit/{id}", ["as" => "panel.edit.post", "uses" => "ElementsController@editPanel"]);
+	// panel delete 
+	Route::post("/elements/panel/delete/{id}", ["as" => "panel.delete.post", "uses" => "ElementsController@deletePanel"]);
 
 	// LINKS //
 	// get news list

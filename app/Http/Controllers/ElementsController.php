@@ -16,9 +16,9 @@ class ElementsController extends Controller
 
     	$elementsUpdateService = new ElementsUpdateService();
     	$elementsUpdateService->saveChanges($elements["data"]);
-
-    	dump($elements);
     }
+
+    // MENU //
 
     public function addMenu(Request $request) {
     	$elementsManageService = new ElementsManageService();
@@ -51,4 +51,22 @@ class ElementsController extends Controller
     		return response("error: delete menu");
     	}
     }
+    //--
+    // PANELS //
+    public function addPanel(Request $request) {
+        dd("add panel", $request->all());
+        // name, header, content, panel_type_id
+        // site_sector_id, panel_id (po dodaniu)
+    }
+
+    public function editPanel(Request $request, $id) {
+        dd("edit panel: ", $request->all(), $id);
+        // dd($reguest->all(), $id);
+    }
+
+    public function deletePanel($id) {
+        // dd("delete panel id: " . $id);
+        dd("delete panel: ", $id);
+    }
+
 }

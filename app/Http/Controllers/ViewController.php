@@ -16,6 +16,7 @@ use App\Models\Element;
 use App\Models\SiteSector;
 use App\Models\Menu;
 use App\Models\PanelType;
+use App\Models\Panel;
 
 use App\Http\Controllers\SettingsController;
 use App\Services\PaginationService;
@@ -491,6 +492,36 @@ class ViewController extends Controller {
 		$articleObject = StaticPage::find($article_id);
 
 		return redirect()->route("pages.show.get", $articleObject->slug ?? " ");
+	}
+
+	//PANELS
+	public function getPanelAddView(Request $request) {
+		$parameters = $request->all();
+
+		$sector_id = $parameters["sector_id"] ?? "brak sektora";
+		$sector_name = $parameters["sector_name"] ?? "brak sektora";
+		$panel_type_id = $parameters["panel_type_id"] ?? "bral id typu panelu";
+		$item_name = $parameters["item_name"] ?? "brak item_name";
+
+		return view("elements.addEditPanel")
+		->with("panel_type_id", $panel_type_id)
+		->with("item_name", $item_name)
+		->with("sector_id", $sector_id)
+		->with("sector_name", $sector_name);
+	}
+
+	public function getPanelEditView(Request $request, $id) {
+		$parameters = $request->all();
+
+		$sector_id = $parameters["sector_id"] ?? "brak id sektora";
+		$sector_name = $parameters["sector_name"] ?? "brak nazwy sektora";
+
+		$panelObject = Panel::find($id);
+		
+		return view("elements.addEditPanel")
+		->with("sector_id", $sector_id)
+		->with("sector_name", $sector_name)
+		->with("panelObject", $panelObject);
 	}
 
 }
