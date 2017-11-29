@@ -69,8 +69,8 @@
 	{!! Html::script("js/contentToolsSetLanguage.js") !!}
 	{!! Html::script("js/contentToolsInit.js") !!}
 	{!! Html::script("js/toastr.min.js") !!}
-	{!! Html::script("js/toastrOptions.js") !!}
-	{!! Html::script("js/toastrOptions.js") !!}
+	{!! Html::script("js/toastrOptions.js") !!}	
+	{!! Html::script("js/jquery.min.js") !!}
 	
 	@yield("scripts")
 

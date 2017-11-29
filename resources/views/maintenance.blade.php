@@ -1,8 +1,8 @@
 @extends("master")
 
 @section("styles")
-
-{!! Html::style("css/maintenance.css") !!}
+	@parent
+	{!! Html::style("css/maintenance.css") !!}
 
 @endsection
 

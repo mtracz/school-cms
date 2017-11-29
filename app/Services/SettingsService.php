@@ -8,8 +8,6 @@ use Session;
 
 class SettingsService {
 
-	protected $is_maintenance_mode = false; //unchecked
-
 	public function getSettingsData() {
 
 		$settings = Settings::all()->toArray();	
