@@ -183,10 +183,8 @@ $(".actions").on("click",".ui.move.button", function() {
 			disableSectorFromSelection(elemPanelTypeId);
 		},
 		onHide: function() {
-			let selected_list_item = $("#selectSectorModal").find("activated");
-			console.log("selected_list_item", selected_list_item);
-
-			$(selected_list_item).removeClass("activated");
+			$(".scrolling.content").find(".ui.button").removeClass("activated");
+			$(".ui.green.ok.inverted.button").addClass("disabled");
 		},
 		onApprove: function(data) {
 
@@ -230,13 +228,8 @@ $(".sector_header").on("click", ".ui.add_element.button", function() {
 			disableElementFromSelection(is_menu_allowed, allowed_panels_ids);
 		},
 		onHide: function() {
-			$(".scrolling.content").find("div").removeClass("activated");
-			// console.log("selected_list_item", selected_list_item);
-
-			// $(selected_list_item).removeClass("activated");
-			// let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
-			// $(selected_list_item).removeClass("activated");
-			// alert("stop");
+			$(".scrolling.content").find(".ui.button").removeClass("activated");
+			$(".ui.green.ok.inverted.button").addClass("disabled");
 		},
 		onApprove: function(data) {
 			let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
@@ -343,6 +336,12 @@ function setDataOrdersAsc(rows) {
 $(".ui.longer.modal .content").on("click", ".ui.list_selector.button", function() {
 	$(this).closest(".content").find(".ui.button").removeClass("activated");
 	$(this).addClass("activated");
+	//enable Approve button in modal
+	var selected_items = $(".scrolling.content").find(".ui.list_selector.activated");
+	if(selected_items.length > 0)
+		$(".ui.green.ok.inverted.button").removeClass("disabled");
+	else
+		$(".ui.green.ok.inverted.button").addClass("disabled");
 });
 
 function ajaxDeleteRequestPromise(options) {
