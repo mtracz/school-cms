@@ -11,6 +11,8 @@ class Panel extends Model
 {
     protected $table = "panels";
 
+    public $timestamps = false;
+
     public function element() {
     	return $this->hasMany(Element::class);
     }

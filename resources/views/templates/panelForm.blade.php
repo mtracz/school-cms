@@ -33,39 +33,56 @@
 
 		</div>
 
-		<div class="ui segment preview" hidden id="preview_news">
-			<!-- <div class="ui centered grid" style="padding: 20px"> -->
-				<div class="four wide column">
-					<div class="header fifth-color" id="preview_header">
+		<div class="ui segment preview" hidden data-item_name={{$item_name}} id="preview_news">
+			<div class="ui centered grid" style="padding: 20px">
+				@if($item_name == "banner")
+					<div class="sixteen wide column">
+				@else
+					<div class="four wide column">
+				@endif
 
-					</div>
-					<!-- if(panel == list) -->
-					<!-- <div class="wrapper"> -->
-					<!-- endif -->
-						<div class="content" id="preview_content">
-					
-						</div>
-					<!-- if(panel == list) -->
-					<!-- </div> -->
-					<!-- endif -->
-				</div>
-			<!-- </div> -->
-		</div>
-
-		@include("templates.fontManager")
-
-		<form class="ui form" action="{{$panel_route or ""}} method="post" id="add_news_article_form">
-			{{ csrf_field() }}
-			<h3>Tytuł</h3>
-			<div class="field">
-				<input name="title" placeholder="Tu wpisz tytuł" value="{{$editing_panel->title or ""}}">
-				<div class="ui pointing red basic label hidden" id="title_warning">
-					To pole musi być wypełnione
+				@if($item_name == "banner")
+					{{ $banner }}
+				@elseif($item_name == "list")
+					{{ $list_panel }}
+				@elseif($item_name == "info")
+					{{ $info_panel }}
+				@endif
 				</div>
 			</div>
+		</div>
+
+		<!-- FONT MANAGER -->
+		@if($item_name != "banner")
+			@include("templates.fontManager")
+		@endif
+		<!--  -->
+
+		<form class="ui form" action="{{$panel_route or ""}}" method="post" id="add_news_article_form" @if(!isset($editing_panel)) data-panel_type_id={{$panel_type_id}} @endif data-sector_id={{$sector_id}}>
+			{{ csrf_field() }}
+				<h3>Nazwa</h3>
+				<div class="field">
+					<input name="title" placeholder="Tu wpisz nazwę" value="{{$editing_panel->name or ""}}">
+					<div class="ui pointing red basic label hidden" id="title_warning">
+						To pole musi być wypełnione
+					</div>
+				</div>
+
+			@if($item_name != "banner")	
+				<h3>Nagłówek</h3>
+				<div class="field">
+					<input name="header" placeholder="Tu wpisz nagłówek" value="{{$editing_panel->header or ""}}">
+				</div>
+			@endif
 
 			<h3>Treść</h3>
-			<div class="ui segment content " data-editable data-name="content" @if(isset($editing_panel)) data-editing_mode='true'@endif>
+			<div class="ui segment content" data-editable data-name="content" @if(isset($editing_panel)) data-editing_mode='true'@endif>
+
+				@if($item_name == "banner") <p class="image-only">image</p> @endif
+
+				@if($item_name == "list") <p class="links-only">links</p> @endif
+
+				@if($item_name == "info") <p class="title-only">title</p> @endif
 
 				{!!$editing_panel->content or ""!!}
 				
@@ -109,9 +126,3 @@
 	</div>
 
 </div>
-
-<script type="text/javascript">
-	
-	$("#preview_news .column").removeClass().addClass(window.localStorage.getItem("newsWidth") + " wide column" );
-
-</script>

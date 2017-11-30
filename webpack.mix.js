@@ -154,3 +154,7 @@ mix.scripts("resources/assets/js/templates/fontManager.js", "public/js/fontManag
 
 //createLink
 mix.scripts("resources/assets/js/createLink.js", "public/js/createLink.js");
+
+//panel add edit
+mix.scripts("resources/assets/js/addEditPanel.js", "public/js/addEditPanel.js");
+mix.styles("resources/assets/css/addEditPanel.css", "public/css/addEditPanel.css");

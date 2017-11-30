@@ -7,6 +7,7 @@ use Session;
 
 use App\Services\ElementsUpdateService;
 use App\Services\ElementsManageService;
+use App\Services\PanelsManageService;
 
 class ElementsController extends Controller
 {
@@ -54,19 +55,18 @@ class ElementsController extends Controller
     //--
     // PANELS //
     public function addPanel(Request $request) {
-        dd("add panel", $request->all());
-        // name, header, content, panel_type_id
-        // site_sector_id, panel_id (po dodaniu)
+        $panelsManageService = new PanelsManageService();
+        $panelsManageService->preparePanelData($request->all())->addPanelToDatabase()->addElementInDatabase();
+        //ajax repsonse
     }
 
     public function editPanel(Request $request, $id) {
-        dd("edit panel: ", $request->all(), $id);
-        // dd($reguest->all(), $id);
+        dump("edit panel: ", $request->all(), $id);
+
     }
 
     public function deletePanel($id) {
-        // dd("delete panel id: " . $id);
-        dd("delete panel: ", $id);
+        dump("delete panel: ", $id);
     }
 
 }

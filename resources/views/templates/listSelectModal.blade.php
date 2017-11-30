@@ -5,7 +5,7 @@
 		<div class="ui divider"></div>
 		{{ $selected_item }}
 	</div>
-	<div class="scrolling content" id="dupa">
+	<div class="scrolling content">
 		{{ $list }}
 	</div>
 	<div class="actions">
