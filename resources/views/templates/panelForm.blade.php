@@ -78,18 +78,16 @@
 			<h3>Treść*</h3>
 			<div class="ui segment content" data-editable data-name="content" @if(isset($editing_panel)) data-editing_mode='true'@endif>
 
-				@if($item_name == "banner") <p class="image-only">image</p> @endif
+				@if(! isset($editing_panel))
+					@if($item_name == "banner") <p class="image-only"></p> @endif
 
-				@if($item_name == "list") <p class="links-only">links</p> @endif
+					@if($item_name == "list") <p class="links-only"></p> @endif
 
-				@if($item_name == "info") <p class="title-only">title</p> @endif
+					@if($item_name == "info") <p class="info-only"></p> @endif
+				@endif
 
 				{!!$editing_panel->content or ""!!}
-				
-				{{-- <p class="title-only">title</p>
-				<p class="image-only">image</p>
-				<p class="links-only">links</p>
-				<p> all</p> --}}
+
 			</div>
 			<div class="required fields info">* - pola wymagane</div>
 			<div class="ui pointing red basic label hidden" id="content_warning">

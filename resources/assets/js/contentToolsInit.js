@@ -25,8 +25,8 @@ ContentEdit.Root.get().bind('focus', function (element) {
     editor.toolbox().tools(DEFAULT_TOOLS);
   // # If the element with focus has the CSS class `text-only` set the
   // # tools in the toolbox to `x_TOOLS`...
-  if (element.domElement().classList.contains('title-only')) {
-      editor.toolbox().tools(TITLE_TOOLS);
+  if (element.domElement().classList.contains('info-only')) {
+      editor.toolbox().tools(INFO_TOOLS);
   }
   if (element.domElement().classList.contains('image-only') ||
     element.domElement().classList.contains('ce-element--type-image')) {

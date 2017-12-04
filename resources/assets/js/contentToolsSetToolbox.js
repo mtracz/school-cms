@@ -29,10 +29,13 @@ DEFAULT_TOOLS= [
     ]
 ];
 
-TITLE_TOOLS = [
+INFO_TOOLS = [
     [
         'bold',
         'italic',
+        'link',
+        'paragraph',
+        'image',
     ], [   
         'align-left',
         'align-center',
