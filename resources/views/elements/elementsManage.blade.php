@@ -198,6 +198,28 @@
 		
 	@endcomponent
 
+	@component("templates/deleteAggrementModal")
+		@slot("header")
+			<i class="trash outline icon"></i>
+			Potwierdzenie usunięcia
+		@endslot
+
+		@slot("content")
+			<p>Czy na pewno chcesz usunąć wybrany element?</p>
+		@endslot
+
+		@slot("actions")
+		<div class="ui red basic cancel inverted button" >
+			<i class="remove icon"></i>
+			Anuluj
+		</div>
+		<div class="ui green ok inverted button">
+			<i class="checkmark icon"></i>
+			Usuń
+		</div>
+		@endslot
+	@endcomponent
+
 @endsection
 
 @section("scripts")

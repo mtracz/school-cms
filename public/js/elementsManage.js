@@ -97,7 +97,7 @@ $(".ui.buttons").on("click", ".ui.down.button", function() {
 		$(found).attr("data-is_enabled"));
 
 });
-
+// EDIT
 $(".actions").on("click",".ui.edit.button", function() { 
 
 	let edit_url = $(this).attr("data-url");
@@ -113,27 +113,40 @@ $(".actions").on("click",".ui.edit.button", function() {
 
 	redirectTo(edit_url, sector_data);
 });
-
+// DELETE
 $(".actions").on("click",".ui.delete.button", function() {
-
-	// ADD DELETE AGGREMENT MODAL HERE
-
-	ajaxDeleteRequestPromise({
-		headers: {
-			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+	var element = $(this);
+	$('.ui.basic.delete_aggrement.modal')
+	.modal({
+		closable  : false,
+		onDeny    : function(){
 		},
-		method: "post",
-		url: $(this).attr("data-url").replace(window.location.origin,""),
-		data: parseInt($(this).attr("data-id")),
-	}).then(function() {
-		$(this).closest("tr").remove();
+		onApprove : function() {
+			ajaxDeleteRequestPromise({
+				headers: {
+					"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+				},
+				method: "post",
+				url: $(element).attr("data-url").replace(window.location.origin,""),
+				data: parseInt($(element).attr("data-id")),
+			}).then(function(response) {
+				if(response === "success") {
+					$(element).closest("tr").remove();
 
-		console.log("ajaxDeleteRequestPromise: success");
-	}).catch(function() {
-		console.log("ajaxDeleteRequestPromise: fail");
-	});
+					console.log("ajaxDeleteRequestPromise: success");
+					toastr.success("Usunięto");
+				} else {
+					toastr.error("Problem z usunięciem");
+				}		
+			}).catch(function() {
+				console.log("ajaxDeleteRequestPromise: fail");
+				toastr.error("Problem z usunięciem");
+			});
+		}
+	})
+	.modal('show');
 });
-
+// SHOW
 $(".actions").on("click",".ui.toggle.show.button", function() {
 	console.log($(this));
 	$(this).removeClass().addClass("ui toggle hide button");
@@ -150,7 +163,7 @@ $(".actions").on("click",".ui.toggle.show.button", function() {
 		$(parent_tr).data("order"),
 		$(parent_tr).data("is_enabled"));
 });
-
+// HIDE
 $(".actions").on("click",".ui.toggle.hide.button", function() {
 	console.log($(this));
 	$(this).removeClass().addClass("ui toggle show button");
@@ -168,7 +181,7 @@ $(".actions").on("click",".ui.toggle.hide.button", function() {
 		$(parent_tr).attr("data-is_enabled"));
 });
 
-
+// MOVE
 $(".actions").on("click",".ui.move.button", function() {
 
 	$("#selectSectorModal .selected_item_name").text($(this).closest("tr").find("td.name").text());
@@ -211,7 +224,7 @@ $(".actions").on("click",".ui.move.button", function() {
 		},
 	}).modal("show");
 });
-
+// ADD
 $(".sector_header").on("click", ".ui.add_element.button", function() {
 
 	//sector name in modal

@@ -57,16 +57,30 @@ class ElementsController extends Controller
     public function addPanel(Request $request) {
         $panelsManageService = new PanelsManageService();
         $panelsManageService->preparePanelData($request->all())->addPanelToDatabase()->addElementInDatabase();
-        //ajax repsonse
+        if($panelsManageService->isPanelSaved()) {
+            Session::flash("messages", ["<h2>Dodano nowy panel</h2>" => "success" ]);
+            return response("success");
+        }
     }
 
     public function editPanel(Request $request, $id) {
-        dump("edit panel: ", $request->all(), $id);
-
+        // dump("edit panel: ", $request->all(), $id);
+        
+        if($panelsManageService->isPanelSaved()) {
+            Session::flash("messages", ["<h2>Edytowano panel</h2>" => "success" ]);
+            return response("success");
+        }
     }
 
     public function deletePanel($id) {
-        dump("delete panel: ", $id);
+        $panelsManageService = new PanelsManageService();
+        $panelsManageService->deletePanelFromDatabase($id);
+
+        if($panelsManageService->isPanelDeleted()) {
+            return response("success");
+        } else {
+            return response("error: delete panel");
+        }
     }
 
 }
