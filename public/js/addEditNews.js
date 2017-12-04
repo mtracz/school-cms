@@ -218,6 +218,7 @@ $("#preview_button").on("click", function() {
 	setDateInPreviewContent();
 	setContent();
 	toogleFontManagerSection();
+	$("#errors_list").addClass("hidden");
 });
 
 // public button

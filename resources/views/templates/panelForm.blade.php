@@ -60,7 +60,7 @@
 
 		<form class="ui form" action="{{$panel_route or ""}}" method="post" id="add_news_article_form" @if(!isset($editing_panel)) data-panel_type_id={{$panel_type_id}} @endif data-sector_id={{$sector_id}}>
 			{{ csrf_field() }}
-				<h3>Nazwa</h3>
+				<h3>Nazwa*</h3>
 				<div class="field">
 					<input name="title" placeholder="Tu wpisz nazwę" value="{{$editing_panel->name or ""}}">
 					<div class="ui pointing red basic label hidden" id="title_warning">
@@ -75,7 +75,7 @@
 				</div>
 			@endif
 
-			<h3>Treść</h3>
+			<h3>Treść*</h3>
 			<div class="ui segment content" data-editable data-name="content" @if(isset($editing_panel)) data-editing_mode='true'@endif>
 
 				@if($item_name == "banner") <p class="image-only">image</p> @endif
@@ -91,11 +91,12 @@
 				<p class="links-only">links</p>
 				<p> all</p> --}}
 			</div>
-
+			<div class="required fields info">* - pola wymagane</div>
 			<div class="ui pointing red basic label hidden" id="content_warning">
 				To pole musi być wypełnione		
 			</div>
 			<br>
+
 			
 		</form>
 		<div id="errors_list" class="ui error message hidden">			

@@ -57,18 +57,26 @@ class ElementsController extends Controller
     public function addPanel(Request $request) {
         $panelsManageService = new PanelsManageService();
         $panelsManageService->preparePanelData($request->all())->addPanelToDatabase()->addElementInDatabase();
-        if($panelsManageService->isPanelSaved()) {
+
+        if($panelsManageService->getErrors()) {
+            return json_encode($panelsManageService->getErrors());
+        } else if($panelsManageService->isPanelSaved()) {
             Session::flash("messages", ["<h2>Dodano nowy panel</h2>" => "success" ]);
-            return response("success");
+            return response(["add_status" => "success",
+                "route" => route("element.manage.get")]);
         }
     }
 
     public function editPanel(Request $request, $id) {
-        // dump("edit panel: ", $request->all(), $id);
-        
-        if($panelsManageService->isPanelSaved()) {
+        $panelsManageService = new PanelsManageService();
+        $panelsManageService->preparePanelData($request->all(), $id)->updatePanelInDatabase();
+
+        if($panelsManageService->getErrors()) {
+            return json_encode($panelsManageService->getErrors());
+        } else if($panelsManageService->isPanelSaved()) {
             Session::flash("messages", ["<h2>Edytowano panel</h2>" => "success" ]);
-            return response("success");
+            return response(["edit_status" => "success",
+                "route" => route("element.manage.get")]);
         }
     }
 

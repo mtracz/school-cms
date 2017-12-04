@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 	//set font manager here
+	$("#preview_header").html("");
 });
 
 // preview button
@@ -16,7 +17,19 @@ $("#preview_button").on("click", function() {
 	}
 	
 	setContent();
+	//override setContent();
+	var form = document.getElementById('add_news_article_form');
+	let header = form.header.value;
+	if(header.length > 0) {
+		$("#preview_header").html(header);
+		$("#preview_header").show();
+	}
+	else 
+		$("#preview_header").hide();
+	
+	//--
 	toogleFontManagerSection();
+	$("#errors_list").addClass("hidden");
 });
 
 // public button
@@ -41,5 +54,5 @@ function sendPageData() {
 
 	payload_form.append("header", form.header.value);
 	
-	sendAjaxFormData(payload_form);	
+	sendAjaxFormData(payload_form);
 };

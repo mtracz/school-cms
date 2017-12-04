@@ -11,6 +11,7 @@ $("#preview_button").on("click", function() {
 	}
 	setContent();
 	toogleFontManagerSection();
+	$("#errors_list").addClass("hidden");
 });
 
 // public button
