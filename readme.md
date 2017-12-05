@@ -23,5 +23,7 @@ uncomment
 # toastr
 `npm install --save toastr`
 
-#piklor (color picker)
-http://jillix.github.io/piklor.js/
+#jquery-simplecolorpicker
+https://github.com/tkrotoff/jquery-simplecolorpicker
+
+npm install jquery-simplecolorpicker
