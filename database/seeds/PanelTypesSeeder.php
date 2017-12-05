@@ -14,12 +14,10 @@ class PanelTypesSeeder extends Seeder
         $panel_types = [
 
         	["id" => 1, "name" => "custom"],
-    		["id" => 2, "name" => "search"],
-    		["id" => 3, "name" => "banner"],
-    		["id" => 4, "name" => "accessibilites"],
-    		["id" => 5, "name" => "info"],
-    		["id" => 6, "name" => "google_maps"],
-    		["id" => 7, "name" => "list"],
+        	["id" => 2, "name" => "banner"],
+    		["id" => 3, "name" => "accessibilites"],
+    		["id" => 4, "name" => "info"],
+    		["id" => 5, "name" => "list"],
     		
     	];
 
