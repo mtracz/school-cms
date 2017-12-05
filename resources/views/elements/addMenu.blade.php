@@ -74,7 +74,7 @@
 			{{-- END TABS --}}
 		
 			@if($is_editing)
-				@include("editMenu")
+				@include("elements.editMenu")
 			@else
 			{{-- TAB CONTENT --}}
 			<div class="tabs_content">		
