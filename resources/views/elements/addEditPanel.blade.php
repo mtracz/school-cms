@@ -75,6 +75,7 @@
 
 @section("scripts")
 	@parent
+	@stack("fontManager")	
 	{!!Html::script("js/formNewsPage.js")!!}
 	{!!Html::script("js/addEditPanel.js")!!}
 	{!!Html::script("js/jquery.simplecolorpicker.js")!!}

@@ -8,6 +8,7 @@ var json_images_src;
 
 
 $(document).ready(function() {
+	enableFontManager('.ui.segment.content');
 	form_content = "";
 	hideButtons();
 	//paste content to form_content onload edit form

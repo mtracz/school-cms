@@ -76,7 +76,7 @@
 			@endif
 
 			<h3>Treść*</h3>
-			<div class="ui segment content" data-editable data-name="content" @if(isset($editing_panel)) data-editing_mode='true'@endif>
+			<div class="ui segment content" data-editable data-name="content" @if(isset($editing_panel)) data-editing_mode='true'@endif">
 
 				@if(! isset($editing_panel))
 					@if($item_name == "banner") <p class="image-only"></p> @endif

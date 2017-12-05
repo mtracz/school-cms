@@ -1,7 +1,7 @@
 // addEditPanel.js
 
 $(document).ready(function() {
-	//set font manager here
+	enableFontManager('.ui.segment.content');
 	$("#preview_header").html("");
 });
 

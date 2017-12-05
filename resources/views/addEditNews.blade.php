@@ -188,6 +188,7 @@
 
 @section("scripts")
 	@parent
+	@stack("fontManager")
 	{!!Html::script("js/formNewsPage.js")!!}
 	{!!Html::script("js/addEditNews.js")!!}
 	{!!Html::script("js/jquery.simplecolorpicker.js")!!}

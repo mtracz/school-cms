@@ -100,7 +100,6 @@
 	</div>
 </div>
 
-@section("scripts")
-	@parent
+@push("fontManager")
 	{!!Html::script("js/fontManager.js")!!}
-@endsection
+@endpush

@@ -1,4 +1,10 @@
 
+
+function enableFontManager(target) {
+	$(target).on("mouseup", CurrentSelection.Selector.mouseup);
+}
+
+
 $(window).ready(function() {
 
 	//KOLOR CZCIONKI
@@ -126,7 +132,3 @@ CurrentSelection.Selector.mouseup = function() {
   		CurrentSelection.selection = '';
   	}
 }
-
-$(document).ready(function() {
-	$('.ui.segment.content').on("mouseup", CurrentSelection.Selector.mouseup);		
-});
