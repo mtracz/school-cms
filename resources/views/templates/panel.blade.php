@@ -30,11 +30,11 @@
 
 @endif
 
-@if($item->panel->panel_type->name === "google_maps")
+@if($item->panel->panel_type->name === "custom")
 
 	<div class="four wide column">
 
-		@include("templates/googleMaps")
+		@include("templates/custom")
 	</div>
 
 @endif

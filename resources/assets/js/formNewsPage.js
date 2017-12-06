@@ -8,7 +8,10 @@ var json_images_src;
 
 
 $(document).ready(function() {
-	enableFontManager('.ui.segment.content');
+	// let banner_panel = $(".ui.segment.content").find(".image-only");
+	if(!isBannerPanel())
+		enableFontManager('.ui.segment.content');
+
 	form_content = "";
 	hideButtons();
 	//paste content to form_content onload edit form
@@ -155,4 +158,12 @@ function setContent() {
 
 function toogleFontManagerSection() {
 	$(".font_manager_section").toggle();
+}
+
+function isBannerPanel() {
+	let banner_panel = $(".ui.segment.preview").find(".banner.panel");
+	if(banner_panel)
+		return true;
+
+	return false;	
 }

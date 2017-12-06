@@ -1,8 +1,14 @@
-<div class="five wide column">
+<div class="custom panel">
 
-	<div class="custom panel">
+	@if($item->panel->has_header)
 
-		jeste custom panel
+		<div class="header fifth-color">
+			{!! $item->panel->header !!}
+		</div>
+
+	@endif
+	<div class="content">	
+		{!! $item->panel->content !!}
 	</div>
 
 </div>

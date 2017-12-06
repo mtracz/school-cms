@@ -1,7 +1,6 @@
 // addEditPanel.js
 
 $(document).ready(function() {
-	enableFontManager('.ui.segment.content');
 	$("#preview_header").html("");
 });
 
@@ -30,6 +29,15 @@ $("#preview_button").on("click", function() {
 	//--
 	toogleFontManagerSection();
 	$("#errors_list").addClass("hidden");
+
+	//render content to html if custom panel chose
+	let customPanel = $(".ui.segment.preview").find(".custom.panel")
+	if(customPanel) {
+		var content = $("textarea#custom_textarea").val();		
+		console.log("content", content);
+		alert(content);
+		$("#preview_content").html(content);
+	}	
 });
 
 // public button
@@ -56,3 +64,5 @@ function sendPageData() {
 	
 	sendAjaxFormData(payload_form);
 };
+
+// 

@@ -70,12 +70,23 @@
 	</div>
 	@endslot
 
+	@slot("custom_panel")
+	<div class="custom panel">
+		<div class="header default-primary-color text-primary-color" id="preview_header">
+		</div>
+		<div class="editMe">
+			<div class="content primary-text-color" id="preview_content">
+			</div>
+		</div>
+	</div>
+	@endslot
+
 	@endcomponent
 @endsection
 
 @section("scripts")
 	@parent
-	@stack("fontManager")	
+	@stack("fontManager")
 	{!!Html::script("js/formNewsPage.js")!!}
 	{!!Html::script("js/addEditPanel.js")!!}
 	{!!Html::script("js/jquery.simplecolorpicker.js")!!}

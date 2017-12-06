@@ -47,6 +47,8 @@
 					{{ $list_panel }}
 				@elseif($item_name == "info")
 					{{ $info_panel }}
+				@elseif($item_name == "custom")
+					{{ $custom_panel }}
 				@endif
 				</div>
 			</div>
@@ -84,6 +86,8 @@
 					@if($item_name == "list") <p class="links-only"></p> @endif
 
 					@if($item_name == "info") <p class="info-only"></p> @endif
+
+					@if($item_name == "custom") <textarea value="" name="custom-only" id="custom_textarea"></textarea> @endif
 				@endif
 
 				{!!$editing_panel->content or ""!!}
