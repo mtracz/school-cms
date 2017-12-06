@@ -15,7 +15,7 @@ class SettingsSeeder extends Seeder
 		$settings = [
 
 			["id" => 1, "name" => "font_size_standard", "value" => 0],
-			["id" => 2, "name" => "font_size_big", "value" => 0,5],
+			["id" => 2, "name" => "font_size_big", "value" => 0.5],
 			["id" => 3, "name" => "font_size_biggest", "value" => 1],
 			["id" => 4, "name" => "admin_email", "value" => ""],
 			["id" => 5, "name" => "news_per_page", "value" => 10],

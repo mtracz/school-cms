@@ -2,20 +2,27 @@
 
 
 !!
-## SERVER CONFIG for add files
-in
-`php.ini
-uncomment
-`extension=php_fileinfo.dll
+## SERVER CONFIG
+
+extensions:
+	openssl
+	mbstring
+	gd2
+	fileinfo
+	intl
+	mbstring
+	mysqli
+	openssl
+	pdo_mysql
+	curl
+	xsl
 
 
 ## Used plugins:
 
 # Content Tools
 `http://getcontenttools.com/getting-started`
-
-# When you download, type in: 
-`npm install --save ContentTools`
+ `npm install --save ContentTools`
 
 # calendar
 `npm install --save semantic-ui-calendar`
@@ -26,4 +33,4 @@ uncomment
 #jquery-simplecolorpicker
 https://github.com/tkrotoff/jquery-simplecolorpicker
 
-npm install jquery-simplecolorpicker
+npm install --save jquery-simplecolorpicker
