@@ -116,6 +116,8 @@ $(".actions").on("click",".ui.edit.button", function() {
 // DELETE
 $(".actions").on("click",".ui.delete.button", function() {
 	var element = $(this);
+	let parent = $(this).closest("tbody");
+	let rows = $(parent).find("tr");
 	$('.ui.basic.delete_aggrement.modal')
 	.modal({
 		closable  : false,
@@ -132,6 +134,9 @@ $(".actions").on("click",".ui.delete.button", function() {
 			}).then(function(response) {
 				if(response === "success") {
 					$(element).closest("tr").remove();
+					renderOrderArrows();
+
+					setDataOrdersAsc(rows);
 
 					console.log("ajaxDeleteRequestPromise: success");
 					toastr.success("Usunięto");

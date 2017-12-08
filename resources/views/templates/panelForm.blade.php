@@ -55,7 +55,7 @@
 		</div>
 
 		<!-- FONT MANAGER -->
-		@if($item_name != "banner")
+		@if($item_name != "banner" && $item_name != "custom")
 			@include("templates.fontManager")
 		@endif
 		<!--  -->
@@ -87,16 +87,21 @@
 
 					@if($item_name == "info") <p class="info-only"></p> @endif
 
-					@if($item_name == "custom") <textarea value="" name="custom-only" id="custom_textarea"></textarea> @endif
+					@if($item_name == "custom") <textarea id="custom_textarea"></textarea> @endif
+				@else
+					@if($item_name == "custom") 
+						<textarea id="custom_textarea">{!!$editing_panel->content or ""!!}</textarea> 
+					@else
+						{!!$editing_panel->content or ""!!}
+					@endif
 				@endif
-
-				{!!$editing_panel->content or ""!!}
-
+				
 			</div>
-			<div class="required fields info">* - pola wymagane</div>
+			
 			<div class="ui pointing red basic label hidden" id="content_warning">
 				To pole musi być wypełnione		
 			</div>
+			<div class="required fields info">* - pola wymagane</div>
 			<br>
 
 			
