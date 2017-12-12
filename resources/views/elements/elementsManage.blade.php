@@ -156,7 +156,7 @@
 				<i class="remove icon"></i>
 				Anuluj
 			</div>
-			<div class="ui green ok inverted button disabled">
+			<div class="ui green ok inverted add_move button disabled">
 				<i class="checkmark icon"></i>
 				Przenieś
 			</div>
@@ -190,7 +190,7 @@
 				<i class="remove icon"></i>
 				Anuluj
 			</div>
-			<div class="ui green ok inverted button disabled">
+			<div class="ui green ok inverted add_move button disabled">
 				<i class="checkmark icon"></i>
 				Dodaj
 			</div>

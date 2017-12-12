@@ -250,7 +250,7 @@ $(".sector_header").on("click", ".ui.add_element.button", function() {
 		},
 		onHide: function() {
 			$(".scrolling.content").find(".ui.button").removeClass("activated");
-			$(".ui.green.ok.inverted.button").addClass("disabled");
+			$(".ui.green.ok.inverted.add_move.button").addClass("disabled");
 		},
 		onApprove: function(data) {
 			let selected_list_item = $(data).parent().parent().find(".ui.list_selector.activated");
@@ -360,9 +360,9 @@ $(".ui.longer.modal .content").on("click", ".ui.list_selector.button", function(
 	//enable Approve button in modal
 	var selected_items = $(".scrolling.content").find(".ui.list_selector.activated");
 	if(selected_items.length > 0)
-		$(".ui.green.ok.inverted.button").removeClass("disabled");
+		$(".ui.green.ok.inverted.add_move.button").removeClass("disabled");
 	else
-		$(".ui.green.ok.inverted.button").addClass("disabled");
+		$(".ui.green.ok.inverted.add_move.button").addClass("disabled");
 });
 
 function ajaxDeleteRequestPromise(options) {
