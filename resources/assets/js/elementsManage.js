@@ -153,7 +153,7 @@ $(".actions").on("click",".ui.delete.button", function() {
 // SHOW
 $(".actions").on("click",".ui.toggle.show.button", function() {
 	console.log($(this));
-	$(this).removeClass().addClass("ui toggle hide button");
+	$(this).removeClass().addClass("ui toggle hide button").attr("data-tooltip", "Ukryj element");
 
 	$(this).find("i").removeClass("unhide").addClass("hide");
 
@@ -170,7 +170,7 @@ $(".actions").on("click",".ui.toggle.show.button", function() {
 // HIDE
 $(".actions").on("click",".ui.toggle.hide.button", function() {
 	console.log($(this));
-	$(this).removeClass().addClass("ui toggle show button");
+	$(this).removeClass().addClass("ui toggle show button").attr("data-tooltip", "Pokaż element");
 
 	$(this).find("i").removeClass("hide").addClass("unhide");
 

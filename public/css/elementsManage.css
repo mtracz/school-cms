@@ -1,6 +1,10 @@
 .air_bag {
 	margin-top: 50px;
 }
+/*for show tooltip*/
+.ui.fixed.table td {
+    overflow: visible !important;
+}
 
 #sector_table.ui.table {
 

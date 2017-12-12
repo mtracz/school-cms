@@ -33,7 +33,7 @@
 			<div class="sector_name" style="float: left; line-height: 25px">
 				{{ $sector->name }}
 			</div>
-			<button class="ui add_element button">
+			<button class="ui add_element button" data-inverted="" data-tooltip="Dodaj element" data-position="bottom center">
 				<i class="plus icon"></i>
 			</button>
 		</div>
@@ -56,8 +56,8 @@
 		<tr class="order @if($item->is_enabled === 0) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-sector_name="{{ $sector->name }}" data-order={{ $item->order }} data-panel_type_id="{{ $item->panel->panel_type->id }}">
 			<td class="center">
 				<div class="ui buttons">
-					<div class="ui up button"><i class="long arrow up icon"></i></div>
-					<div class="ui down button"><i class="long arrow down icon"></i></div>
+					<div class="ui up button" data-inverted="" data-tooltip="Przesuń do góry" data-position="bottom center"><i class="long arrow up icon"></i></div>
+					<div class="ui down button" data-inverted="" data-tooltip="Przesuń w dół" data-position="bottom center"><i class="long arrow down icon"></i></div>
 				</div>
 			</td>
 			<td class="center name">
@@ -68,14 +68,14 @@
 			</td>
 			<td class="actions">
 
-				<div class="ui edit button" data-url="{{ route("panel.edit.get", ["id" => $item->panel->id]) }}"> <i class="configure icon"></i> </div>
-				<div class="ui delete button" data-url="{{ route("panel.delete.post", ["id" => $item->panel->id]) }}" > <i class="trash icon"></i> </div>
+				<div class="ui edit button" data-url="{{ route("panel.edit.get", ["id" => $item->panel->id]) }}" data-inverted="" data-tooltip="Edytuj element" data-position="bottom center"> <i class="configure icon"></i> </div>
+				<div class="ui delete button" data-inverted="" data-tooltip="Usuń element" data-position="bottom center"" data-url="{{ route("panel.delete.post", ["id" => $item->panel->id]) }}" > <i class="trash icon"></i> </div>
 				@if($item->is_enabled === 0)
-				<div class="ui toggle show button"><i class="unhide icon"></i></div>
+				<div class="ui toggle show button" data-inverted="" data-tooltip="Pokaż element" data-position="bottom center"><i class="unhide icon"></i></div>
 				@else
-				<div class="ui toggle hide button"><i class="hide icon"></i></div>
+				<div class="ui toggle hide button" data-inverted="" data-tooltip="Ukryj element" data-position="bottom center"><i class="hide icon"></i></div>
 				@endif
-				<div class="ui move button"><i class="move icon"></i></div>
+				<div class="ui move button" data-inverted="" data-tooltip="Przenieś element" data-position="bottom center"><i class="move icon"></i></div>
 				
 			</td>
 		</tr>
@@ -85,8 +85,8 @@
 		<tr class="order @if($item->is_enabled === 0) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-sector_name="{{ $sector->name }}" data-id="{{ $item->id }}" data-order={{ $item->order }} >
 			<td class="center">
 				<div class="ui buttons">
-					<div class="ui up button"><i class="long arrow up icon"></i></div>
-					<div class="ui down button"><i class="long arrow down icon"></i></div>
+					<div class="ui up button" data-inverted="" data-tooltip="Przesuń do góry" data-position="bottom center"><i class="long arrow up icon"></i></div>
+					<div class="ui down button" data-inverted="" data-tooltip="Przesuń na dół" data-position="bottom center"><i class="long arrow down icon"></i></div>
 				</div>
 			</td>
 			<td class="center name">
@@ -97,14 +97,14 @@
 			</td>
 			<td class="actions">
 
-				<div class="ui edit button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.edit.get", ["id" => $item->menu->id]) }}"> <i class="configure icon"></i> </div>
-				<div class="ui delete button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.delete.post", ["id" => $item->menu->id]) }}" > <i class="trash icon"></i> </div>
+				<div class="ui edit button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.edit.get", ["id" => $item->menu->id]) }}" data-inverted="" data-tooltip="Edytuj element" data-position="bottom center"> <i class="configure icon"></i> </div>
+				<div class="ui delete button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.delete.post", ["id" => $item->menu->id]) }}" data-inverted="" data-tooltip="Usuń element" data-position="bottom center"> <i class="trash icon"></i> </div>
 				@if($item->is_enabled === 0)
-				<div class="ui toggle show button"><i class="unhide icon"></i></div>
+				<div class="ui toggle show button" data-inverted="" data-tooltip="Pokaż element" data-position="bottom center"><i class="unhide icon"></i></div>
 				@else
-				<div class="ui toggle hide button"><i class="hide icon"></i></div>
+				<div class="ui toggle hide button" data-inverted="" data-tooltip="Ukryj element" data-position="bottom center"><i class="hide icon"></i></div>
 				@endif
-				<div class="ui move button"><i class="move icon"></i></div>
+				<div class="ui move button" data-inverted="" data-tooltip="Przenieś element" data-position="bottom center"><i class="move icon"></i></div>
 
 			</td>
 		</tr>
