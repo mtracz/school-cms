@@ -81,7 +81,10 @@ function sendPageData() {
 	payload_form.append("sector_id", $("#add_news_article_form").data("sector_id"));
 	payload_form.append("panel_type_id", $("#add_news_article_form").data("panel_type_id"));
 
-	payload_form.append("header", form.header.value);
+	if($(".ui.segment.preview").find(".banner.panel").length > 0)
+		payload_form.append("header", "");	
+	else
+		payload_form.append("header", form.header.value);
 	
 	sendAjaxFormData(payload_form);
 };

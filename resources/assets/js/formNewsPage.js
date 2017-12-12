@@ -13,6 +13,8 @@ $(document).ready(function() {
 	//paste content to form_content onload edit form
 	form_content = $(".ui.segment.content").html();
 	$(".ui.centered.aligned.grid").removeAttr("style");
+
+	enableFontManager(".ui.segment.content");
 });
 
 // cancel button

@@ -116,8 +116,6 @@ $(".actions").on("click",".ui.edit.button", function() {
 // DELETE
 $(".actions").on("click",".ui.delete.button", function() {
 	var element = $(this);
-	let parent = $(this).closest("tbody");
-	let rows = $(parent).find("tr");
 	$('.ui.basic.delete_aggrement.modal')
 	.modal({
 		closable  : false,
@@ -133,9 +131,10 @@ $(".actions").on("click",".ui.delete.button", function() {
 				data: parseInt($(element).attr("data-id")),
 			}).then(function(response) {
 				if(response === "success") {
+					let parent = $(element).closest("tbody");					
 					$(element).closest("tr").remove();
+					let rows = $(parent).find("tr");
 					renderOrderArrows();
-
 					setDataOrdersAsc(rows);
 
 					console.log("ajaxDeleteRequestPromise: success");
@@ -240,7 +239,11 @@ $(".sector_header").on("click", ".ui.add_element.button", function() {
 
 	var allowed_panels_ids = $(this).closest(".sector_data").attr("data-sector_panel_allowed_ids");
 	var is_menu_allowed = $(this).closest(".sector_data").attr("data-sector_is_menu_allowed");
-
+	
+	//DISABLE ACCESSIBILITES
+	// 3 - id in Database
+	allowed_panels_ids = allowed_panels_ids.replace("3;", "");
+	//
 	$("#selectElementModal.ui.longer.modal").modal({
 		onShow: function() {
 			disableElementFromSelection(is_menu_allowed, allowed_panels_ids);
