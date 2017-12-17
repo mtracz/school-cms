@@ -91,6 +91,9 @@
 
 					<button class="ui submit search left floated button"><i class="search icon"></i>Szukaj</button>
 				</form>
+				<button class="ui clear_search button" data-url="{{ route('news.manage.get') }}">
+					<i class="close icon"></i>Wyczyść
+				</button>
 				<button class="ui add_news button" data-url="{{ route('news.add.get') }}">
 					<i class="newspaper icon"></i>Dodaj nowego newsa
 				</button>

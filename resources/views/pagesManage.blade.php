@@ -80,7 +80,7 @@
 				<button class="ui clear_search button" data-url="{{ route('page.manage.get') }}">
 					<i class="close icon"></i>Wyczyść
 				</button>
-				<button class="ui add_pages button" data-url="{{ route('page.add.get') }}">
+				<button class="ui add_page button" data-url="{{ route('page.add.get') }}">
 					<i class="file icon"></i>Dodaj nową stronę
 				</button>
 			</div>

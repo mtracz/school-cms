@@ -10,10 +10,8 @@ $(".preview_toggle_button").on("click", function() {
 });
 
 
-$(".actions .ui.edit.button, .ui.add_page.button, .ui.clear_search.button").on("click", function() {
-
+$(".actions .ui.edit.button, .ui.clear_search.button, .ui.add_page.button").on("click", function() {
 	window.location.href = $(this).attr("data-url");
-
 });
 
 $(".ui.delete.button").on("click", function() {
