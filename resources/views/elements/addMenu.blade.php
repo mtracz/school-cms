@@ -10,10 +10,10 @@
 	@php
 		$is_editing = isset($editing_mode);		
 	@endphp
-<br><br><br>
+
 <div class="ui centered aligned grid">
 	
-	<div class="column">
+	<div class="column" id="menu_main_column">
 			<div class="ui centered header">
 			@if($is_editing) 
 				Edytuj menu
