@@ -68,7 +68,7 @@
 					</td>
 					<td class="actions">
 					{{-- set name for route !! --}}
-						<div class="ui delete button" data-url="{{ route('file.delete.post', ["name" => $item['name'] ])}}" > <i class="trash icon"></i> </div>
+						<div class="ui delete button" data-url="{{ route('file.delete.post', ['name' => $item['name'] ])}}" data-inverted="" data-tooltip="Usuń" data-position="bottom center"> <i class="trash icon"></i> </div>
 					</td>
 				</tr>
 

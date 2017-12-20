@@ -46,6 +46,7 @@
 #manage_table.ui.table tr td {
 	background-color: #A9C7D7;
 	border-top: 1px solid #282A2E  !important;
+	overflow: visible !important;
 }
 
 #manage_table.ui.table tr:hover td {

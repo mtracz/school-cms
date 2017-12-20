@@ -175,9 +175,9 @@
 				</td>
 				<td class="actions">
 
-					<div class="ui edit button" data-url="{{ route('news.edit.get', ['id' => $item->id])}} "> <i class="configure icon"></i> </div>
+					<div class="ui edit button" data-url="{{ route('news.edit.get', ['id' => $item->id])}} " data-inverted="" data-tooltip="Edytuj" data-position="bottom center"> <i class="configure icon"></i> </div>
 
-					<div class="ui delete button" data-url="{{ route('news.delete.get', ['id' => $item->id])}}"> <i class="trash icon"></i> </div>
+					<div class="ui delete button" data-url="{{ route('news.delete.get', ['id' => $item->id])}}" data-inverted="" data-tooltip="Usuń" data-position="bottom center"> <i class="trash icon"></i> </div>
 
 				</td>
 			</tr>
@@ -213,6 +213,28 @@
 	</div>
 </div>
 
+@component("templates/deleteAggrementModal")
+		@slot("header")
+			<i class="trash outline icon"></i>
+			Potwierdzenie usunięcia
+		@endslot
+
+		@slot("content")
+			<p>Czy na pewno chcesz usunąć wybrany element?</p>
+		@endslot
+
+		@slot("actions")
+		<div class="ui red basic cancel inverted button" >
+			<i class="remove icon"></i>
+			Anuluj
+		</div>
+		<div class="ui green ok inverted button">
+			<i class="checkmark icon"></i>
+			Usuń
+		</div>
+		@endslot
+@endcomponent
+
 @endsection
 
 @section("scripts")
@@ -220,38 +242,3 @@
 {!!Html::script("js/DateAnalyzer.js")!!}
 {!!Html::script("js/newsManage.js")!!}
 @endsection
-
-
-{{-- <div class="ui grid">
-						<div class="row">
-							<div class="four wide column">
-								<div class="ui right icon input">
-									<input type="text">
-									<i class="circular search link icon"></i>
-								</div>
-							</div>
-							<div class="four wide column">
-								
-							</div>
-							<div class="four wide column">
-								
-							</div>
-							<div class="four wide column">
-								
-							</div>
-						</div>
-						<div class="bottom row">
-							<div class="eight wide column">
-								<div class="ui right action left icon search input center aligned">
-									<i class="search icon"></i>
-									<input type="text">
-									<button class="ui search button">Szukaj</button>
-								</div>
-							</div>
-							<div class="eight wide column">
-								<button class="ui add_news button" data-url="{{ route('news.add.get') }}">
-									<i class="newspaper icon"></i>Dodaj newsa
-								</button>
-							</div>
-						</div>
-					</div> --}}

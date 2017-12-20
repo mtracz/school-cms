@@ -46,12 +46,12 @@ class NewsController extends Controller {
 		$this->NewsService->deleteNewsFromDB($id);
 
 		if(! $this->NewsService->isDeleted()) {
-			Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
-			return redirect()->route("index.get");
-		}
+			return response(["error" => "Nie znaleziono newsa o podanym ID"]);
+			// Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
+			// return redirect()->route("index.get");
 
-		Session::flash("messages", ["Usunięto newsa" => "success" ]);
-		return redirect()->route("news.manage.get");
+		}
+		return response("success");
 	}
 
 	public function getAllNews() {

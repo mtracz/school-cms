@@ -138,9 +138,9 @@
 					</td>
 					<td class="actions">
 
-						<div class="ui edit button" data-url="{{ route('page.edit.get', ['id' => $item->id])}} "> <i class="configure icon"></i> </div>
+						<div class="ui edit button" data-url="{{ route('page.edit.get', ['id' => $item->id])}} " data-inverted="" data-tooltip="Edytuj" data-position="bottom center"> <i class="configure icon"></i> </div>
 
-						<div class="ui delete button" data-url="{{ route('page.delete.post', ['id' => $item->id])}}"> <i class="trash icon"></i> </div>
+						<div class="ui delete button" data-url="{{ route('page.delete.post', ['id' => $item->id])}}" data-inverted="" data-tooltip="Usuń" data-position="bottom center"> <i class="trash icon"></i> </div>
 
 					</td>
 				</tr>

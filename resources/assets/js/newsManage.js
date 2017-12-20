@@ -16,30 +16,38 @@ $(".actions .ui.edit.button, .ui.clear_search.button, .ui.add_news.button").on("
 });
 
 $(".ui.delete.button").on("click", function() {
-
 	let data_url = $(this).attr("data-url");
-
 	let parent_row = $(this).parent().parent();
 
-	$(".ui.dimmer").dimmer("show");
-
-	ajaxPostDeleteNewsPromise({
-		headers: {
-			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+	$('.ui.basic.delete_aggrement.modal')
+	.modal({
+		closable  : false,
+		onDeny    : function(){
 		},
-		url: data_url,
-		method: "POST",
+		onApprove : function() {
+			
+			ajaxPostDeleteNewsPromise({
+				headers: {
+					"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+				},
+				method: "post",
+				url: data_url,
+			}).then(function(response) {
+				if(response === "success") {
+					$(parent_row).remove();
 
-	}).then(function() {
-		console.log("ajaxPostDeleteNewsPromise: success");
-
-		$(parent_row).remove();
-		$(".ui.dimmer").dimmer("hide");
-
-	}).catch(function(error) {
-		$(".ui.dimmer").dimmer("hide");
-		console.log("ajaxPostDeleteNewsPromise: failure, error: " + error);
-	});
+					console.log("ajaxPostDeleteNewsPromise: success");
+					toastr.success("Usunięto");
+				} else {
+					toastr.error(response["error"]);
+				}		
+			}).catch(function() {
+				console.log("ajaxPostDeleteNewsPromise: fail");
+				toastr.error("Problem z usunięciem");
+			});
+		}
+	})
+	.modal('show');
 });
 
 function ajaxPostDeleteNewsPromise(options){
