@@ -33,9 +33,9 @@ class FileController extends Controller {
 		$this->file_service->delete($name);
 
 		if($this->file_service->isFileDeleted()) {
-				return response(["message" => "Usunięto plik"]);
+				return response("success");
 			} else {
-				return response(["message" => "Nie znaleziono pliku."]);
+				return response(["error" => "Nie znaleziono newsa o podanym ID"]);
 			}
 	}
 
