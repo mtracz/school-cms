@@ -88,7 +88,7 @@
 
 		@endslot
 
-		@if(count($items) > 0)
+		@if($items && count($items) > 0)
 
 			@slot("pagination")
 

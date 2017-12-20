@@ -237,7 +237,7 @@ class ViewController extends Controller {
 		$page_number = 1;
 		$pages_per_page = 15;
 
-		if(count($pages) > 0) {
+		if($pages && count($pages) > 0) {
 			$paginationService = new PaginationService($request, $pages, $pages_per_page);
 
 			$pagination_array = $paginationService->getPaginationArray();
