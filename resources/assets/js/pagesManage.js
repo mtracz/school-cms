@@ -15,30 +15,39 @@ $(".actions .ui.edit.button, .ui.clear_search.button, .ui.add_page.button").on("
 });
 
 $(".ui.delete.button").on("click", function() {
-
 	let data_url = $(this).attr("data-url");
-
 	let parent_row = $(this).parent().parent();
 
-	$(".ui.dimmer").dimmer("show");
-
-	ajaxPostDeletePagesPromise({
-		headers: {
-			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+	$('.ui.basic.delete_aggrement.modal')
+	.modal({
+		closable  : false,
+		onDeny    : function(){
 		},
-		url: data_url,
-		method: "POST",
+		onApprove : function() {
+			
+			ajaxPostDeletePagesPromise({
+				headers: {
+					"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+				},
+				method: "post",
+				url: data_url,
+			}).then(function(response) {
+				if(response === "success") {
+					$(parent_row).remove();
 
-	}).then(function() {
-		console.log("ajaxPostDeletePagesPromise: success");
-
-		$(parent_row).remove();
-		$(".ui.dimmer").dimmer("hide");
-
-	}).catch(function(error) {
-		$(".ui.dimmer").dimmer("hide");
-		console.log("ajaxPostDeletePagesPromise: failure, error: " + error);
-	});
+					console.log("ajaxPostDeletePagesPromise: success");
+					toastr.success("Usunięto");
+				} else {
+					toastr.error(response["error"]);
+				}		
+			}).catch(function() {
+				console.log("ajaxPostDeletePagesPromise: fail");
+				toastr.error("Problem z usunięciem");
+			});
+		}
+	})
+	.modal('show');
+	
 });
 
 function ajaxPostDeletePagesPromise(options){

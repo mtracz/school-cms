@@ -30,7 +30,6 @@ class NewsController extends Controller {
 	}
 
 	public function editNews($id, Request $request) {
-		// dd($request->all());
 		$this->NewsService->setNewsData($request->all())->updateNews($id);
 
 		if($this->NewsService->getErrors()) {
@@ -47,9 +46,6 @@ class NewsController extends Controller {
 
 		if(! $this->NewsService->isDeleted()) {
 			return response(["error" => "Nie znaleziono newsa o podanym ID"]);
-			// Session::flash("messages", ["Nie znaleziono newsa o podanym ID" => "error" ]);
-			// return redirect()->route("index.get");
-
 		}
 		return response("success");
 	}

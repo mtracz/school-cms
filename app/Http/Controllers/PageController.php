@@ -45,12 +45,9 @@ class PageController extends Controller {
 		$this->PageService->deletePageFromDB($id);
 
 		if(! $this->PageService->isDeleted()) {
-			Session::flash("messages", ["Nie znaleziono strony o podanym ID" => "error" ]);
-			return redirect()->route("index.get");
+			return response(["error" => "Nie znaleziono newsa o podanym ID"]);
 		}
-
-		Session::flash("messages", ["Usunięto stronę" => "success" ]);
-		return redirect()->route("page.manage.get");
+		return response("success");
 	}
 
 	public function getAllPages() {
