@@ -3,32 +3,29 @@
 }
 
 .banner .header {
-
 	font-size: 16px;
-
 	padding: 10px;
-
 	border-bottom: 3px solid #303F9F;
 }
 
-.banner .content {
-
-	width: 80vw;
-	height: 400px;
-	overflow: hidden;
-
-	position: relative;
+.banner .content .editMe{
+	/*overflow: hidden;*/
+	
+	/*position: relative;*/
 }
 
-.banner .content img {
-	position: absolute;
-	margin: auto; 
-	min-height: 100%;
-	min-width: 100%;
+.banner .content img {	
+	max-width: 80vw;
+	max-height: 300px;
+	width: 100%;
+	height: auto;
+	margin: auto;
 
-	/* For the following settings we set 100%, but it can be higher if needed*/
-	left: -100%;
-	right: -100%;
-	top: -100%;
-	bottom: -100%;
+
+	
+	/*display: block !important;*/
+	/*position: absolute !important;*/
+	/*position: absolute;*/
+	position: relative;
+
 }

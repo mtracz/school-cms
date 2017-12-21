@@ -36,20 +36,24 @@ $(window).resize(function () {
 	switch(currentViewportGroupName) {
 
 		case "view_computer":
-		$(".banner .content").css("height", 400);
-		$(".banner .content").css("border-width", 20);
-		console.log(400);
+		$(".banner .editMe .content .img").css({"max-height": 300});
+		$(".banner .content .img").css("border-width", 20);
+		console.log(300);
 		break;
 
 		case "view_tablet":
-		$(".banner .content").css("height", 200);
-		$(".banner .content").css("border-width", 10);
+		$(".banner .editMe .content .img").css({"max-height": "200px !important"});
+		$(".banner .editMe .content .img").height(200);
+		$(".banner .editMe .content .img").css("border-bottom", "15px red");
+
+		// $(".banner .editMe .content .img").css({"height": 200});
+		$(".banner .content .img").css("border-width", 10);
 		console.log(200);
 		break;
 
 		case "view_mobile":
-		$(".banner .content").css("height", 100);
-		$(".banner .content").css("border-width", 5);
+		$(".banner .editMe .content .img").css("max-height", '100px', 'important');
+		$(".banner .content .img").css("border-width", 5);
 		console.log(100);
 		break;
 	};
