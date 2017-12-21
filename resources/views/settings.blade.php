@@ -94,7 +94,8 @@
 					<input name="news_per_page" type="number" min="1" placeholder="Maksymalna liczba newsów na stronę" value="{{ $settings['news_per_page'] }}">
 				</div>
 			</div>
-			<div class="field">
+			<!-- THEMES -->
+			<!-- <div class="field">
 				<div class="ui labeled input">
 					<div class="ui label"> Motyw </div>
 					<select name="theme">
@@ -111,7 +112,7 @@
 						@endforeach
 					</select>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="ui horizontal divider">
 				<i class="configure icon"></i> Tryb serwisowy
