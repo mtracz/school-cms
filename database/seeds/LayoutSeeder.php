@@ -55,9 +55,7 @@ class LayoutSeeder extends Seeder
     	];
 
     	$panels = [
-    		["id" => "1", "name" => "banner_1", "header" => null, "content" => "<img src='/images/banner/test_1.jpeg'>", "panel_type_id" => 2, "has_header" => 0],
-    		["id" => "2", "name" => "banner_2", "header" => null, "content" => "<img src='/images/banner/test_2.jpeg'>", "panel_type_id" => 2, "has_header" => 0],
-    		["id" => "3", "name" => "banner_3", "header" => null, "content" => "<img src='/images/banner/test_3.jpeg'>", "panel_type_id" => 2, "has_header" => 0],
+    		["id" => "3", "name" => "banner_3", "header" => null, "content" => "<div id='main_banner'><img src='/images/banner/test_3.jpeg'></div>", "panel_type_id" => 2, "has_header" => 0],
 
     		["id" => "4", "name" => "info_1", "header" => "info_1", "content" => "<img src='/images/banner/test_1.jpeg'> <p> sample text </p>", "panel_type_id" => 4, "has_header" => 1],
     		["id" => "5", "name" => "info_2", "header" => "<strong>Operating Hours:</strong>", "content" => "<p><strong>Monday-Saturday:</strong><br/>8:00am–12:00am (EDT)<br/><strong>Sunday:</strong> <br/>9:00am–12:00am (EDT)<br/></p>", "panel_type_id" => 4, "has_header" => 1],

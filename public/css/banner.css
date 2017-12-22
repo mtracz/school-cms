@@ -8,24 +8,40 @@
 	border-bottom: 3px solid #303F9F;
 }
 
-.banner .content .editMe{
-	/*overflow: hidden;*/
-	
-	/*position: relative;*/
-}
-
-.banner .content img {	
+/*.banner .content img {	
 	max-width: 80vw;
-	max-height: 300px;
+	max-height: 250px;
 	width: 100%;
 	height: auto;
 	margin: auto;
-
-
-	
-	/*display: block !important;*/
-	/*position: absolute !important;*/
-	/*position: absolute;*/
 	position: relative;
+}*/
 
+.banner .content {
+	width: 80vw;
+	height: 250px;
+	max-height: 250px;
+	overflow: hidden;
+	position: relative;
 }
+
+.banner .content img {
+	position: absolute;
+	margin: auto; 
+	min-height: 100%;
+	min-width: 100%;
+}
+
+#main_banner img {
+	position: absolute;
+	margin: auto; 
+	min-height: 100%;
+	min-width: 100%;
+	
+	top: -15%;
+	bottom: -100%;
+	left: -100%;
+	right: -100%;
+}
+
+/* 1160px */

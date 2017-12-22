@@ -26,9 +26,51 @@ var viewportGroups = [
 },
 ];
 
+var layoutBuilder = new LayoutBuilder();
+layoutBuilder.build();
+
+$(window).ready( function() {
+
+	$(".ui.main.segment").removeAttr("style");
+	scaleBanner();
+	resizeBanner();	
+});
 
 $(window).resize(function () {
+	scaleBanner();
+	resizeBanner();	
+});
 
+function resizeBanner() {
+	if($(window).width() < 1120) {
+		$("#main_banner img").css("bottom", "auto");
+		$("#main_banner img").css("top", "auto");
+	}
+	else {
+		$("#main_banner img").css("top", "-15%");
+		$("#main_banner img").css("bottom", "-100%");
+	}
+
+	if($(window).width() < 991)
+		$("#main_banner img").css("top", "-25%");
+
+	if($(window).width() < 768) 
+		$("#main_banner img").css("bottom", "-100%");	
+
+	if($(window).width() < 558) 
+		$("#main_banner img").css("bottom", "auto");
+	
+	if($(window).width() < 426)
+		$("#main_banner img").css("top", "-15%");
+
+	if($(window).width() < 376)
+		$("#main_banner img").css("top", "-10%");
+
+	if($(window).width() < 321)
+		$("#main_banner img").css("top", "auto");
+}
+
+function scaleBanner() {
 	layoutBuilder.build();
 
 	var currentViewportGroupName = localStorage.getItem("viewportGroupName");
@@ -36,33 +78,21 @@ $(window).resize(function () {
 	switch(currentViewportGroupName) {
 
 		case "view_computer":
-		$(".banner .editMe .content .img").css({"max-height": 300});
-		$(".banner .content .img").css("border-width", 20);
-		console.log(300);
+		$(".banner .editMe .content ").css({"max-height": 250});
+		$(".banner .content img").css("border-width", 20);
+		console.log(250);
 		break;
 
 		case "view_tablet":
-		$(".banner .editMe .content .img").css({"max-height": "200px !important"});
-		$(".banner .editMe .content .img").height(200);
-		$(".banner .editMe .content .img").css("border-bottom", "15px red");
-
-		// $(".banner .editMe .content .img").css({"height": 200});
-		$(".banner .content .img").css("border-width", 10);
-		console.log(200);
+		$(".banner .editMe .content ").css({"max-height": 175});
+		$(".banner .content img").css("border-width", 10);
+		console.log(175);
 		break;
 
 		case "view_mobile":
-		$(".banner .editMe .content .img").css("max-height", '100px', 'important');
-		$(".banner .content .img").css("border-width", 5);
+		$(".banner .editMe .content ").css({"max-height": 100});
+		$(".banner .content img").css("border-width", 5);
 		console.log(100);
 		break;
 	};
-});
-
-var layoutBuilder = new LayoutBuilder();
-layoutBuilder.build();
-
-$(window).ready( function() {
-
-	$(".ui.main.segment").removeAttr("style");
-});
+}
