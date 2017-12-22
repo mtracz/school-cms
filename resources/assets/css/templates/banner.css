@@ -18,10 +18,11 @@
 }*/
 
 .banner .content {
-	width: 80vw;
+	/*width: 80vw;*/
+	width: auto !important;
 	height: 250px;
 	max-height: 250px;
-	overflow: hidden;
+	overflow: hidden !important;
 	position: relative;
 }
 
