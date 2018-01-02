@@ -8,6 +8,30 @@ function Theme(){
 	var color_5;
 }
 
+$(document).ready(function() {
+
+	$('#content_sector').magnificPopup({
+		delegate: 'img' , 		
+		fixedContentPos: false, 
+		type: 'image', 
+		// gallery:{
+		// 	enabled:true
+		// },
+		callbacks: {
+			elementParse: function(item) { 
+				item.src = item.el.attr('src'); 
+			},
+			open: function() {
+				jQuery('body').addClass('noscroll');
+			},
+			close: function() {
+				jQuery('body').removeClass('noscroll');
+            }
+		}
+	});
+
+});
+
 var themeName;
 
 var theme = new Theme();

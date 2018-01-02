@@ -158,3 +158,7 @@ mix.scripts("resources/assets/js/createLink.js", "public/js/createLink.js");
 //panel add edit
 mix.scripts("resources/assets/js/addEditPanel.js", "public/js/addEditPanel.js");
 mix.styles("resources/assets/css/addEditPanel.css", "public/css/addEditPanel.css");
+
+//magnifict popup
+mix.copy("node_modules/magnific-popup/dist/jquery.magnific-popup.min.js", "public/js")
+.copy("node_modules/magnific-popup/dist/magnific-popup.css", "public/css");
