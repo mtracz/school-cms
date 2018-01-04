@@ -14,10 +14,12 @@
 .banner .content {
 
 	width: 80vw;
-	height: 400px;
+	height: 200px;
 	overflow: hidden;
 
 	position: relative;
+	background-image: url('/images/banner/test_3.jpeg');
+	background-size: 100% 100%;
 }
 
 .banner .content img {

@@ -11,7 +11,7 @@
 	<div class="editMe">
 		<div class="content primary-text-color">
 			<!-- <img src="{!! $item->panel->content !!}"> -->
-			{!! $item->panel->content !!}
+			<!-- {!! $item->panel->content !!} -->
 		</div>
 	</div>
 
