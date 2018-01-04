@@ -524,5 +524,25 @@ class ViewController extends Controller {
 		->with("panelObject", $panelObject);
 	}
 
+	//ADMINS
+	public function getAdminsManageView() {
+		$admins = Admin::all();
+		return view("adminManage")
+			->with("admins", $admins);
+	}
+
+	public function getAdminFormAdd() {
+		return view("addEditAdmin");
+	}
+
+	public function getAdminFormEdit($id) {
+		$editing_admin = Admin::find($id);
+		if(! $editing_admin) {
+			Session::flash("messages", ["Nie znaleziono administratora o podanym ID" => "error" ]);
+			return redirect()->route("index.get");
+		}
+		return view("addEditAdmin")->with("editing_admin", $editing_admin);
+	}
+
 }
 
