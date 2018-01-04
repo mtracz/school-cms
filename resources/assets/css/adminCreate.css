@@ -1,21 +1,18 @@
 /* Admin create blade */
 
 body {
-	background-color: #2574A9;
-	/*background-color: #222;*/
-}
-
-
-label { 
-	color: white !important;
+	background-color: #A9C7D7 !important;
 }
 
 .ui.header {
-	/*color: #EBF680;*/
+	color: #3f0900;
 }
 
-.email.info, .required.info {	
-	color: white;
+#info {
+	color: black;
+}
+.required.info {	
+	color: #3f0900;
 	font-size: 14px;
 	font-style: italic;
 }
@@ -23,7 +20,7 @@ label {
 .information {
 	text-align: center;
 	font-size: 19px;
-	color: white;
+	color: #3f0900;
 }
 
 .container {
@@ -34,6 +31,13 @@ label {
 	color: red;
 }
 
-.column {
-	/*border-style: solid;*/
+#create_super_admin:hover {
+	background-color: #3f0900 !important;
+	color: white;	
+}
+#create_super_admin {
+	background-color: #A9C7D7!important;
+	color: #490b00;
+	border: 2px solid #490b00;
+	border-radius: 12px;
 }

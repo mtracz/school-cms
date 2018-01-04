@@ -8,13 +8,13 @@
 	border-bottom: 3px solid #303F9F;
 }
 
-<<<<<<< HEAD
-.banner .content {
+
+/*.banner .content {
 
 	width: 80vw;
 	height: 200px;
 	overflow: hidden;
-=======
+*/
 /*.banner .content img {	
 	max-width: 80vw;
 	max-height: 250px;
@@ -23,7 +23,6 @@
 	margin: auto;
 	position: relative;
 }*/
->>>>>>> 5da71ce190385615416efba708bc2b30535efc1d
 
 .banner .content {
 	/*width: 80vw;*/
@@ -32,8 +31,6 @@
 	max-height: 250px;
 	overflow: hidden !important;
 	position: relative;
-	background-image: url('/images/banner/test_3.jpeg');
-	background-size: 100% 100%;
 }
 
 .banner .content img {
