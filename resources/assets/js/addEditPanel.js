@@ -12,10 +12,7 @@ $(document).ready(function() {
 
 // preview button
 $("#preview_button").on("click", function() {
-	if($("#preview_news").attr("data-item_name") == "banner") {
-		if(!validateContent())
-			return false;
-	} else if($("#preview_news").attr("data-item_name") == "custom") {
+	if($("#preview_news").attr("data-item_name") == "custom") {
 		if(!validateTitle())
 			return false;
 	} else 

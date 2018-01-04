@@ -149,3 +149,8 @@ body {
 		text-align: right;
 	}
 
+/* image popup no scroll */
+body.noscroll
+{
+    overflow-y:hidden !important;
+}

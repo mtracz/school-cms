@@ -3,10 +3,14 @@
 namespace App\Services;
 
 use App\Models\Settings;
+use App\Models\Admin;
 
+use Auth;
 use Session;
 
 class SettingsService {
+
+	protected $userNameUpdated = false;
 
 	public function getSettingsData() {
 
@@ -34,9 +38,24 @@ class SettingsService {
 					} else {
 						$settings->value = $value;						
 					}
-					$settings->save();	
+					$settings->save();
 				}
 			}
 		}
+		//change admin name
+		$user_name = $request["admin_name"];
+		$user = Admin::where("id", "!=", Auth::user()->id)->where("name", $user_name)->first();
+		if(!$user) {
+			if(Auth::user()->name != $user_name) {
+				$admin = Admin::find(Auth::user()->id);
+				$admin->name = $user_name;
+				$admin->save();
+			}
+			$this->userNameUpdated = true;		
+		}
+	}
+
+	public function isUserNameUpdated() {
+		return $this->userNameUpdated;
 	}
 }

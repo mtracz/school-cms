@@ -25,6 +25,12 @@ class SettingsController extends Controller
 		$settingsService = new SettingsService();
 
 		$settingsService->saveSettingsDataToDB($request->all());
+
+		if(!$settingsService->isUserNameUpdated()) {
+			return response(["status" => "error",
+							"message" => "Nie zmieniono nazwy użytkownika, już istnieje taka nazwa."]);
+		}
+
 	}
 
 	public function changePassword(Request $request) {

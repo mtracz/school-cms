@@ -61,8 +61,8 @@
 
 	@slot("banner")
 	<div class="banner panel">
-		<div class="header default-primary-color text-primary-color" id="preview_header">
-		</div>
+		<!-- <div class="header default-primary-color text-primary-color" id="preview_header">
+		</div> -->
 		<div class="editMe">
 			<div class="content primary-text-color" id="preview_content">
 			</div>

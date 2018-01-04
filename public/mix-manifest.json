@@ -65,5 +65,10 @@
     "/js/fontManager.js": "/js/fontManager.js",
     "/js/createLink.js": "/js/createLink.js",
     "/js/addEditPanel.js": "/js/addEditPanel.js",
-    "/css/addEditPanel.css": "/css/addEditPanel.css"
+    "/css/addEditPanel.css": "/css/addEditPanel.css",
+    "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
+    "/css/magnific-popup.css": "/css/magnific-popup.css",
+    "/js/formAdmin.js": "/js/formAdmin.js",
+    "/css/formAdmin.css": "/css/formAdmin.css",
+    "/js/adminsManage.js": "/js/adminsManage.js"
 }

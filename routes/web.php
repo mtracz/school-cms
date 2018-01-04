@@ -126,6 +126,20 @@ Route::group(["middleware" => ["auth"]], function() {
 	// get pages list
 	Route::get("pages_links/list", ["as" => "pages_links.list.get", "uses" => "PageController@getAllPages"]);
 
+	// ADMINS //
+	// admins manage view
+	Route::get("/admins/manage", ["as" => "admin.manage.get", "uses" => "ViewController@getAdminsManageView"]);
+	// admin add view
+	Route::get('/admin/add', ["as" => "admin.add.get", "uses" => "ViewController@getAdminFormAdd"]);
+	// admin add
+	Route::post('/admin/add', ["as" => "admin.add.post", "uses" => "AdminController@addAdmin"]);
+	// admin edit view
+	Route::get('/admin/edit/{id}', ["as" => "admin.edit.get", "uses" => "ViewController@getAdminFormEdit"]);
+	// admin edit 
+	Route::post('/admin/edit/{id}', ["as" => "admin.edit.post", "uses" => "AdminController@editAdmin"]);
+	// admin delete
+	Route::post('/admin/delete/{id}', ["as" => "admin.delete.post", "uses" => "AdminController@deleteAdmin"]);
+
 });
 // end logged users group
 
