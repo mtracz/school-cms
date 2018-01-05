@@ -154,3 +154,7 @@ body.noscroll
 {
     overflow-y:hidden !important;
 }
+
+#content_sector img:hover {
+	cursor: zoom-in;
+}

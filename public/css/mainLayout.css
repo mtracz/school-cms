@@ -24,7 +24,8 @@
 
 .ui.container {
 	height: 100%;
-	width: 80vw !important;
+	width: 80vw;
+	/*width: 80vw !important;*/
 
 	margin-top: 20px;
 
