@@ -68,11 +68,13 @@ function isContent() {
 	if($(".ui.segment.content").data("editing_mode") === "true") {
 		form_content = $(".ui.segment.content").html();
 	}
-	if($(".ui.segment.content").text() < 1) {
-		return false;
-	} else {
+	if($(".ui.segment.content").find("img").length)
 		return true;
-	}
+
+	if($(".ui.segment.content").text() < 1) 
+		return false;
+	else
+		return true;	
 }
 
 function getImagesSrc() {	
