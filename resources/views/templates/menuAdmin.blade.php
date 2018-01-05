@@ -47,7 +47,10 @@
 		<!-- disable statistics -->
 		<!-- <a class="ui item statistics"><i class="signal icon"></i>Statystyki</a> -->
 		<a class="ui item settings" href="{{ route("settings.get") }}" ><i class="options icon"></i>Ustawienia</a>
-		<a class="ui item settings" href="{{ route("admin.manage.get") }}" ><i class="users icon"></i>Administratorzy</a>
+		@if(Auth::user()->is_super_admin)
+		<a class="ui item settings" href="{{ route("admin.manage.get") }}" ><i class="users icon"></i>
+		Administratorzy</a>
+		@endif
 		<div class="right menu">
 			<a class="ui item sign_out" data-route="{{ route("logout.post") }}"><i class="sign out icon"></i>Wyloguj</a>
 		</div>

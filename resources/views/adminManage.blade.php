@@ -15,9 +15,18 @@
 
 		@component("templates.manage")
 
-		@slot("options")
+		@slot("header")
+			<i class="users icon"></i>
+			Administratorzy
+		@endslot
 
-		<div class="ui segment">
+		@slot("options")
+		 <div class="ui segment">
+			<button class="ui add_admin button" data-url="{{ route('admin.add.get') }}">
+				<i class="file icon"></i>Dodaj administratora
+			</button>
+		</div>
+		<!-- <div class="ui segment">
 			<h2><i class="search icon"></i>Filtry</h2>
 
 			<div class="ui divider"></div>
@@ -76,7 +85,7 @@
 					<i class="file icon"></i>Dodaj administratora
 				</button>
 			</div>
-		</div>
+		</div> -->
 
 		@endslot
 
@@ -93,6 +102,7 @@
 
 			@slot("headers")
 				<th class="center"> Nazwa </th>
+				<th class="center"> Login </th>
 				<th class="center"> Super administrator </th>
 				<th class="center"> Aktywny </th>
 				<th class="center"> Data utworzenia </th>
@@ -110,6 +120,9 @@
 				<tr>
 					<td class="center">
 						{{ $admin->name }}
+					</td>
+					<td class="center">
+						{{ $admin->login }}
 					</td>
 					<td class="center">
 						@if( $admin->is_super_admin == 1)

@@ -15,6 +15,11 @@
 
 		@component("templates.manage")
 
+		@slot("header")
+			<i class="sticky note icon"></i>
+			Strony
+		@endslot
+
 		@slot("options")
 
 		<div class="ui segment">

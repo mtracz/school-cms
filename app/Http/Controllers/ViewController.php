@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use File;
+use Carbon\Carbon;
+use Auth;
 
 use App\Models\Admin;
 use App\Models\News;
@@ -25,7 +27,7 @@ use App\Services\PagesManageService;
 use App\Services\FilesManageService;
 use App\Http\Controllers\FileController;
 
-use Carbon\Carbon;
+
 
 class ViewController extends Controller {
 
@@ -526,22 +528,32 @@ class ViewController extends Controller {
 
 	//ADMINS
 	public function getAdminsManageView() {
-		$admins = Admin::all();
-		return view("adminManage")
-			->with("admins", $admins);
+		if(Auth::user()->is_super_admin) {
+			$admins = Admin::all();
+			return view("adminManage")
+				->with("admins", $admins);
+		}
+		return redirect()->route("index.get");
 	}
 
 	public function getAdminFormAdd() {
-		return view("addEditAdmin");
+		if(Auth::user()->is_super_admin) 
+			return view("addEditAdmin");
+
+		return redirect()->route("index.get");
 	}
 
 	public function getAdminFormEdit($id) {
-		$editing_admin = Admin::find($id);
-		if(! $editing_admin) {
-			Session::flash("messages", ["Nie znaleziono administratora o podanym ID" => "error" ]);
-			return redirect()->route("index.get");
+		if(Auth::user()->is_super_admin) {
+			$editing_admin = Admin::find($id);
+			if(! $editing_admin) {
+				Session::flash("messages", ["Nie znaleziono administratora o podanym ID" => "error" ]);
+				return redirect()->route("index.get");
+			}
+			return view("addEditAdmin")->with("editing_admin", $editing_admin);
 		}
-		return view("addEditAdmin")->with("editing_admin", $editing_admin);
+
+		return redirect()->route("index.get");
 	}
 
 }
