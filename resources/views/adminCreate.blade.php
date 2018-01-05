@@ -33,6 +33,15 @@
 			<div class="ui six column grid container">
 					<div class="column centered aligned row">		
 						<div class="column">
+								<div class="error field required" id="super_admin_name">
+									<label>Nazwa</label>
+									<input placeholder="wpisz nazwę" name="name" id="super_admin_name_input">
+								</div>	
+							</div>
+					</div>
+
+					<div class="column centered aligned row">		
+						<div class="column">
 								<div class="error field required" id="super_admin_login">
 									<label>Login</label>
 									<input placeholder="wpisz login" name="login" id="super_admin_login_input">

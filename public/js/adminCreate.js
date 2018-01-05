@@ -1,11 +1,18 @@
 // admin create blade
 
+var input_super_admin_name;
 var input_super_admin_login;
 var input_super_admin_password;
 var input_super_admin_password_confirmation;
 var input_super_admin_email;
 
-// LOGIN INPUT VALIDATE
+// NAME INPUT VALIDATE
+$("#super_admin_name").on("change keyup paste click", function(){
+	$input_super_admin_name = $("#super_admin_name_input").val();
+	$field = $("#super_admin_name");
+	validateInput($field, $input_super_admin_name);
+
+});// LOGIN INPUT VALIDATE
 $("#super_admin_login").on("change keyup paste click", function(){
 	$input_super_admin_login = $("#super_admin_login_input").val();
 	$field = $("#super_admin_login");
@@ -53,7 +60,8 @@ $("#create_super_admin_form").on("submit", function(event) {
 	event.preventDefault();
 	
 	$("#errors_list").html("");
-	if($("#super_admin_login").hasClass("error")
+	if($("#super_admin_name").hasClass("error")
+		|| $("#super_admin_login").hasClass("error")
 		|| $("#super_admin_password").hasClass("error")
 		|| $("#super_admin_password_confirmation").hasClass("error")
 		|| $("#super_admin_email").hasClass("error")) {
@@ -103,6 +111,9 @@ function sendFormData() {
 				$.each($data, function(key, value) {
 					$("#errors_list").append("<p><i class='warning icon'></i>" + value + "</p>");
 					
+					if(/nazw/.test(value)) {
+						$("#super_admin_name").addClass("error");
+					}
 					if(/login/.test(value)) {
 						$("#super_admin_login").addClass("error");
 					}

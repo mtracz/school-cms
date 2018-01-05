@@ -1,7 +1,7 @@
 
 
 <div class="ui centered aligned grid" style='display: none;'>
-<div class="center aligned column row">
+
 	<div class="ui column " id="main_column">
 
 		<div class="ui icon header centered aligned">
@@ -11,65 +11,89 @@
 				
 		<form class="ui form" action="{{$admin_route or ""}}" method="post" id="admin_form">
 			{{ csrf_field() }}
-			<h3>Nazwa</h3>
-			<div class="field four wide">
-				<input name="name" placeholder="Tu wpisz nazwe" value="{{$editing_admin->name or ""}}">
-				<div class="ui pointing red basic label hidden" id="name_warning">
-					To pole musi być wypełnione
+			<div class="ui four column grid container">
+				
+				<div class="column centered aligned row">		
+					<div class="column">
+						<br>
+						<div class="field name">
+							<h3>Nazwa</h3>
+							<input name="name" placeholder="Tu wpisz nazwe" value="{{$editing_admin->name or ""}}">
+						</div>
+					</div>
 				</div>
-			</div>
 
-			<h3>Login</h3>
-			<div class="field four wide">
-				<input name="title" placeholder="Tu wpisz login" value="{{$editing_admin->login or ""}}">
-				<div class="ui pointing red basic label hidden" id="login_warning">
-					To pole musi być wypełnione
+				<div class="column centered aligned row">
+					<div class="column">
+						<br>
+						<div class="field login">
+							<h3>Login</h3>
+							<input name="login" placeholder="Tu wpisz login" value="{{$editing_admin->login or ""}}">
+						</div>	
+					</div>
 				</div>
-			</div>
 
-			<h3>Hasło</h3>
-			<div class="field four wide">
-				<input name="title" placeholder="Tu wpisz hasło" value="{{$editing_admin->password or ""}}">
-				<div class="ui pointing red basic label hidden" id="password_warning">
-					To pole musi być wypełnione
+				<div class="column centered aligned row">		
+					<div class="column">
+						<br>
+						<div class="field password">
+							<h3>Hasło</h3>
+							<input name="password" type="password" placeholder="Tu wpisz hasło" @if(isset($editing_admin)) disabled @endif>
+						</div>
+						@if(isset($editing_admin))
+						<div class="ui tiny button" id="reset_password_button">		
+							<i class="refresh icon"></i>
+							Resetuj hasło
+						</div>
+						@endif
+					</div>
+					
 				</div>
-			</div>
+				<br>
+				<div class="column centered aligned row">		
+					<div class="column">
+						<br>
+							<div class="ui checkbox">
+								@if(isset($editing_admin) && $editing_admin->is_active == false)
+								<input type="checkbox" name="is_active">
+								@else
+								<input type="checkbox" name="is_active" checked>
+								@endif
+								<label>Aktywny</label>
+							</div>
+							<i class="add user icon"></i>							
+					</div>
+				</div>
 
-			<br>
-			<div class="field">
-				<div class="ui checkbox">
-					@if(isset($editing_admin) && $editing_admin->is_active == false)
-					<input type="checkbox" name="is_active">
-					@else
-					<input type="checkbox" name="is_active" checked>
-					@endif
-					<label>Aktywny</label>
-				</div>
-				<i class="world icon"></i>
-			</div>	
+				<div class="column centered aligned row">		
+					<div class="column">
+						<br>
+							{{-- BUTTONS --}}
+							<div class="ui red left floated circular button" id="cancel_button" 
+							data-route="{{route('admin.manage.get')}}">
+							<i class="cancel icon"></i>
+							Anuluj
+						</div>
+
+						<div class="ui green right floated circular button" id="save_button">
+							<i class="check chevron icon"></i>
+							@if(isset($editing_admin)) 
+								Zapisz
+							@else 
+								Dodaj				
+							@endif
+						</div>	
+				
+					</div>
+				</div>			
+
+			</div>
 		</form>
-
-		<div id="errors_list" class="ui error message hidden">			
-		</div>
 		<br>
-		{{-- BUTTONS --}}
-		<div class="ui red centered floated circular button" id="cancel_button" 
-		data-route="{{route('admin.manage.get')}}">
-			<i class="cancel icon"></i>
-			Anuluj
+		<div id="errors_list" class="ui error message hidden">	
+
 		</div>
-
-		<div class="ui green centered floated circular button" id="public_button">
-			<i class="check chevron icon"></i>
-			Dodaj				
-		</div>	
-
 	</div>
-</div>
+
 </div>
 
-<script type="text/javascript">
-	
-	$("#preview_news .column").removeClass().addClass(window.localStorage.getItem("newsWidth") + " wide column" );
-
-</script>

@@ -9,56 +9,90 @@ $("#cancel_button").on("click", function(el) {
 	window.location.href = $(this).data("route");
 });
 
-// public button
-$("#public_button").on("click", function() {
+// save button
+$("#save_button").on("click", function() {
 	$("#errors_list").html("").addClass("hidden");
-	validateForm();
-	sendPageData();
+	if(validateForm())
+		if(validateInputLength()) 
+			sendAdminData();		
+		else
+			$("#errors_list").removeClass("hidden").html("Nazwa, login i hasło min. 6 znaków.");	
+	else
+		$("#errors_list").removeClass("hidden").html("Wszystkie pola są wymagane.");
 });
+
+// reset password button
+$("#reset_password_button").on("click", function() {
+	var form = document.getElementById('admin_form');
+	form.password.type = "text";
+	form.password.value = getTimeStamp();
+});
+
+function getTimeStamp() {
+       var now = new Date();
+       return (
+       	// (now.getMonth() + 1) 
+       	// + '/' + (now.getDate()) 
+       	// + '/' + now.getFullYear() 
+       	now.getHours() 
+       	+''+ ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) 
+       	+''+ ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds()))
+       	);
+}
+
 
 function isName() {
 	var name = document.getElementById('admin_form').name.value;
-	if(! name) {
-		$("#name_warning").addClass("hidden");
+	if(! name)
 		return false;
-	} else {
-		$("#name_warning").removeClass("hidden");		
+	else
 		return true;
-	}
 }
 
 function isLogin() {
 	var login = document.getElementById('admin_form').login.value;
-	if(! login) {
-		$("#login_warning").addClass("hidden");
+	if(! login)
 		return false;
-	} else {
-		$("#login_warning").removeClass("hidden");
+	else 
 		return true;
-	}
 }
 
 function isPassword() {
 	var password = document.getElementById('admin_form').password.value;
-	if(! password) {
-		$("#password_warning").addClass("hidden");
+	if(! password)
 		return false;
-	} else {
-		$("#password_warning").removeClass("hidden");
+	else
 		return true;
-	}
 }
 
-
 function validateForm() {
-	if(! isName() || ! isLogin() || ! isPassword())
-		return false;
+	var edit_mode = $(".field.password input").attr("disabled");
+	if(edit_mode && edit_mode != false) {
+		if(! isName() || ! isLogin())
+			return false;
+	} else {
+		if(! isName() || ! isLogin() || ! isPassword())
+			return false;
+	}
 
 	return true;
 }
 
+function validateInputLength() {
+	var form = document.getElementById('admin_form');
+	var edit_mode = $(".field.password input").attr("disabled");
+	if(edit_mode && edit_mode != false) {
+		if(form.name.value.length < 6 || form.login.value.length < 6)
+			return false;
+	} else {
+		if(form.name.value.length < 6 || form.login.value.length < 6 || form.password.value.length < 6)
+			return false;
+	}
 
-function sendPageData() {
+	return true;
+}
+
+function sendAdminData() {
 
 	var payload_form = new FormData();
 	var form = document.getElementById('admin_form');
@@ -70,7 +104,7 @@ function sendPageData() {
 	payload_form.append("password", form.password.value);
 	payload_form.append("is_active", form.is_active.checked);
 	
-	sendAjaxFormData(payload_form);	
+	sendAjaxFormData(payload_form);
 };
 
 function sendAjaxFormData(payload) {
