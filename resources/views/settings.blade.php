@@ -31,6 +31,13 @@
 				</div>
 			</div>
 
+			<div class="field">
+				<div class="ui labeled input">
+					<div class="ui label"> Nazwa użytkownika </div>
+					<input name="admin_name" placeholder="Nazwa użytkownika" value="{{ Auth::user()->name }}">
+				</div>
+			</div>
+
 			<div class="ui button show_change_password_toggle">
 				Zmiana hasła
 			</div>
@@ -39,7 +46,7 @@
 
 				<input name="admin_id" type="number" value="{{ Auth::user()->id }}" hidden>
 
-				<div class="field chuj">
+				<div class="field">
 					<div class="ui labeled input">
 						<div class="ui label"> Stare hasło </div>
 						<input class="clearable" name="old_password" type="password" placeholder="Stare hasło" value="">

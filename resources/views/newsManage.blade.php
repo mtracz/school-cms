@@ -14,6 +14,11 @@
 	<div class="news_manage">
 
 		@component("templates.manage")
+		
+		@slot("header")
+			<i class="newspaper icon"></i>
+			Newsy
+		@endslot
 
 		@slot("options")
 

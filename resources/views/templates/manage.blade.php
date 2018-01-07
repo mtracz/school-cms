@@ -1,4 +1,7 @@
 
+<div class="ui icon header centered aligned">			
+			{{ $header }}
+		</div>
 <div class="options_container">
 	{{ $options }}
 </div>

@@ -18,6 +18,7 @@
 	{!! Html::style("css/master.css") !!}
 	{!! Html::style("css/content-tools.min.css") !!}
 	{!! Html::style("css/toastr.min.css") !!}
+	{!! Html::style("css/magnific-popup.css") !!}
 
 	@yield("styles")
 
@@ -71,6 +72,7 @@
 	{!! Html::script("js/contentToolsInit.js") !!}
 	{!! Html::script("js/toastr.min.js") !!}
 	{!! Html::script("js/toastrOptions.js") !!}	
+	{!! Html::script("js/jquery.magnific-popup.min.js") !!}	
 	
 	@yield("scripts")
 

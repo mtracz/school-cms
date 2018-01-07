@@ -13,6 +13,6 @@ class CopyOldDatabaseSeeder extends Seeder
     {
         $this->call(CopyOldArticlesSeeder::class);
         $this->call(CopyOldNewsSeeder::class);
-        $this->call(CopyOldSettingsSeeder::class);
+        //$this->call(CopyOldSettingsSeeder::class);
     }
 }

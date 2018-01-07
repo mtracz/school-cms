@@ -17,7 +17,7 @@ class CreateSettingsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('value');
+            $table->text('value');
 
             $table->unique(["id"], 'id_UNIQUE');
         });

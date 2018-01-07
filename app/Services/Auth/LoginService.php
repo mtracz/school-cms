@@ -61,7 +61,7 @@ class LoginService {
 		if($this->isValidated && $this->userObject) {
 			if(! $this->userObject->is_active()) {
 				$this->logged = false;
-				array_push($this->errors, "Użytkownik jest nie aktywowany");
+				array_push($this->errors, "Użytkownik jest nieaktywowany");
 				return $this;
 			}
 			if(Auth::attempt($this->userData)) {

@@ -149,3 +149,12 @@ body {
 		text-align: right;
 	}
 
+/* image popup no scroll */
+body.noscroll
+{
+    overflow-y:hidden !important;
+}
+
+#content_sector img:hover {
+	cursor: zoom-in;
+}

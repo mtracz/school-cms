@@ -26,7 +26,9 @@ $(".ui.button.settings.submit").on("click", function(event) {
 		$(".ui.dimmer").dimmer("hide");
 
 		toastr.success("<h1> Zapisano zmiany! </h1>");
-
+		if(data["status"] == "error") {
+			toastr.error("<h2>"+ data["message"] +"</h2>");
+		}
 		console.log("SettingsForm: Submit success");
 	})
 	.catch(function (error) {

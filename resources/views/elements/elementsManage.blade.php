@@ -69,7 +69,9 @@
 			<td class="actions">
 
 				<div class="ui edit button" data-url="{{ route("panel.edit.get", ["id" => $item->panel->id]) }}" data-inverted="" data-tooltip="Edytuj element" data-position="bottom center"> <i class="configure icon"></i> </div>
+				@if($item->panel->panel_type->name != "accessibilites")
 				<div class="ui delete button" data-inverted="" data-tooltip="Usuń element" data-position="bottom center"" data-url="{{ route("panel.delete.post", ["id" => $item->panel->id]) }}" > <i class="trash icon"></i> </div>
+				@endif
 				@if($item->is_enabled === 0)
 				<div class="ui toggle show button" data-inverted="" data-tooltip="Pokaż element" data-position="bottom center"><i class="unhide icon"></i></div>
 				@else

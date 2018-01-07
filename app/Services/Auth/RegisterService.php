@@ -18,6 +18,7 @@ class RegisterService {
 
 	public function setRegisterData($request) {
 		$this->registerData = [
+			"name" => $request["name"],
 			"login" => $request["login"],
 			"password" => $request["password"],
 			"password_confirmation" => $request["password_confirmation"],
@@ -29,12 +30,16 @@ class RegisterService {
 
 	protected function getValidateRules() : array {	
 		$rules = [
+			"name"	=> "required|min:6|unique:admins",
 			"login"	=> "required|min:6|unique:admins",
 			"email"	=> "required|email|max:50",
 			"password" => "required|min:6|required|confirmed",
 			];		
 
 		$this->errorMessages = [
+			"name.required" => "Pole nazwa jest wymagane",
+			"name.min" => "Nazwa musi mieć min. 6 znaków",
+			"name.unique" => "Podaj inną nazwę",
 			"login.required" => "Pole login jest wymagane",
 			"login.min" => "Login musi mieć min. 6 znaków",
 			"login.unique" => "Podaj inny login",
@@ -68,7 +73,7 @@ class RegisterService {
 	public function registerSuperAdmin() {
 		if($this->isValidated) {
 			$admin = new Admin();
-			$admin->name = "SuperAdmin";
+			$admin->name = $this->registerData["name"];
 			$admin->login = $this->registerData["login"];
 			$admin->password = bcrypt($this->registerData["password"]);
 			$admin->is_super_admin = 1;
