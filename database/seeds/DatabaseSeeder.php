@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(LayoutSeeder::class);
         // $this->call(NewsSeeder::class);
         $this->call(CopyOldDatabaseSeeder::class);
+        $this->call(StaticPagesSeeder::class);
         
     }
 }
