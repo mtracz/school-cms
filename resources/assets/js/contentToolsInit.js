@@ -19,22 +19,43 @@ function runContentTools() {
 	// init IMAGE UPLOADER
     ContentTools.IMAGE_UPLOADER = imageUploader;
 
+// własne style
+ContentTools.StylePalette.add([
+    // new ContentTools.Style('Wyrównaj do lewej w lini', 'align-left-line', ['img', 'iframe']),
+    // new ContentTools.Style('Wyrównaj do prawej w lini', 'align-right-line', ['img', 'iframe']),
+
+    new ContentTools.Style('Wyrównaj do lewej', 'align-left', ['img', 'iframe']),
+    new ContentTools.Style('Wyrównaj do prawej', 'align-right', ['img', 'iframe']),
+    new ContentTools.Style('Wyrównaj do środka', 'align-center', ['img', 'iframe']),
+
+    new ContentTools.Style('Wyrównaj do lewej w lini', 'align-left-inline', ['img', 'iframe']),
+    new ContentTools.Style('Wyrównaj do prawej w lini', 'align-right-inline', ['img', 'iframe']),
+
+    new ContentTools.Style('Wyśrodkuj', 'align-center', ['img', 'iframe']),
+
+    new ContentTools.Style('Nie umieszczaj zdjęcia po lewej', 'image-off-left', ['table', 'p', 'a']),
+    new ContentTools.Style('Nie umieszczaj zdjęcia po prawej', 'image-off-right', ['table', 'p', 'a']),
+    new ContentTools.Style('Nie umieszczaj zdjęcia po bokach', 'image-off-both', ['table', 'p', 'a'])
+]);
+
+
 
 // monitor for focus events
 ContentEdit.Root.get().bind('focus', function (element) {
     editor.toolbox().tools(DEFAULT_TOOLS);
   // # If the element with focus has the CSS class `text-only` set the
   // # tools in the toolbox to `x_TOOLS`...
-  if (element.domElement().classList.contains('info-only')) {
-      editor.toolbox().tools(INFO_TOOLS);
-  }
-  if (element.domElement().classList.contains('image-only') ||
-    element.domElement().classList.contains('ce-element--type-image')) {
-      editor.toolbox().tools(IMAGE_TOOLS);
-  }
-  if (element.domElement().classList.contains('links-only')) {
-      editor.toolbox().tools(LINKS_TOOLS);
-  }
+
+  // if (element.domElement().classList.contains('info-only')) {
+  //     editor.toolbox().tools(INFO_TOOLS);
+  // }
+  // if (element.domElement().classList.contains('image-only') ||
+  //   element.domElement().classList.contains('ce-element--type-image')) {
+  //     editor.toolbox().tools(IMAGE_TOOLS);
+  // }
+  // if (element.domElement().classList.contains('links-only')) {
+  //     editor.toolbox().tools(LINKS_TOOLS);
+  // }
 
 });
 
@@ -77,6 +98,7 @@ ContentEdit.Root.get().bind('focus', function (element) {
 // CONTENT TOOLS image uploader
 function imageUploader(dialog) {
      var image, xhr, xhrComplete, xhrProgress;
+
 
     // Set up the event handlers
     dialog.addEventListener('imageuploader.cancelupload', function () {
