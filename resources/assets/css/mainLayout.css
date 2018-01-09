@@ -196,7 +196,7 @@
 
 	white-space: normal;
 
-	text-align: center;
+	/*text-align: center;*/
 }
 
 .news.panel {
@@ -233,7 +233,7 @@
 
 	white-space: normal;
 
-	text-align: center;
+	/*text-align: center;*/
 }
 
 .news.panel .ui.label {

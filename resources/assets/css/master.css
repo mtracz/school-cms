@@ -113,7 +113,7 @@ body {
     /*clear: initial;*/
     display: inline-block !important;
     float: left !important;
-    margin-right: 0.5em;
+    margin: 0.2em;
 }
 
 /* Right align inline*/
@@ -121,7 +121,7 @@ body {
     /*clear: initial;*/
     display: inline-block !important;
     float: right !important;
-    margin-left: 0.5em;
+    margin: 0.2em;
 }
 
 /*.align-center-inline {
@@ -136,8 +136,8 @@ body {
     clear: both;
     display: block !important;
     float: left !important;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
+    margin: 0.2em;
+    margin: 0.2em;
 }
 
 /* Right align */
@@ -145,8 +145,8 @@ body {
     clear: both;
     display: block !important;
     float: right !important;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
+    margin: 0.2em;
+    margin: 0.2em;
 }
 /* Center align */
 .align-center {

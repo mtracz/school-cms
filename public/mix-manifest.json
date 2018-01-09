@@ -70,5 +70,8 @@
     "/css/magnific-popup.css": "/css/magnific-popup.css",
     "/js/formAdmin.js": "/js/formAdmin.js",
     "/css/formAdmin.css": "/css/formAdmin.css",
-    "/js/adminsManage.js": "/js/adminsManage.js"
+    "/js/adminsManage.js": "/js/adminsManage.js",
+    "/js/archiveNews.js": "/js/archiveNews.js",
+    "/js/archiveNewsForYear.js": "/js/archiveNewsForYear.js",
+    "/css/archiveNewsForYear.css": "/css/archiveNewsForYear.css"
 }

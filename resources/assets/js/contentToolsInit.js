@@ -26,7 +26,6 @@ ContentTools.StylePalette.add([
 
     new ContentTools.Style('Wyrównaj do lewej', 'align-left', ['img', 'iframe']),
     new ContentTools.Style('Wyrównaj do prawej', 'align-right', ['img', 'iframe']),
-    new ContentTools.Style('Wyrównaj do środka', 'align-center', ['img', 'iframe']),
 
     new ContentTools.Style('Wyrównaj do lewej w lini', 'align-left-inline', ['img', 'iframe']),
     new ContentTools.Style('Wyrównaj do prawej w lini', 'align-right-inline', ['img', 'iframe']),

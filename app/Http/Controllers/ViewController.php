@@ -556,5 +556,21 @@ class ViewController extends Controller {
 		return redirect()->route("index.get");
 	}
 
+	//ARCHIVE
+	public function getNewsArchiveView() {
+		$news_years_count = News::selectRaw("is_public, DATE_FORMAT(published_at, '%Y') as year, count(*) as count")->where("is_public", true)->groupby("year", "is_public")->orderby('year', 'desc')->get();
+
+		return view("archiveNews")->with("news_years_count", $news_years_count);
+	}
+
+	public function getNewsArchiveViewForYear($year) {
+		$news_for_year = News::where("is_public", true)->whereYear("published_at", $year)->orderby('published_at', 'desc')->get(["title","slug"]);
+		$quantity = $news_for_year->count();
+		return view("archiveNewsForYear")
+		->with("news_for_year", $news_for_year)
+		->with("year", $year)
+		->with("quantity", $quantity);
+	}
+
 }
 
