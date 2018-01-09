@@ -87,7 +87,6 @@ body {
 	}
 
 	.cookie_info .ui.button {
-
 		background-color: red !important;
 		color: white;
 	}
@@ -95,46 +94,79 @@ body {
 
 	/* Alignment styles for images, videos and iframes in editable regions */
 
-	/* Center (default) */
-	iframe,
-	image,
-	[data-ce-tag=img],
-	img,
-	video {
-		clear: both;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 100%;
-	}
+/* Center (default) */
+/*[data-editable] iframe,
+[data-editable] image,
+[data-editable] [data-ce-tag=img],
+[data-editable] img,
+[data-editable] video,
+[data-editable].align-center {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}*/
 
-	/* Left align */
-	.align-left {
-		clear: initial;
-		float: left;
-		margin-right: 0.5em;
-	}
+/* Left align inline */
+.align-left-inline {
+    /*clear: initial;*/
+    display: inline-block !important;
+    float: left !important;
+    margin: 0.2em;
+}
 
+/* Right align inline*/
+.align-right-inline {
+    /*clear: initial;*/
+    display: inline-block !important;
+    float: right !important;
+    margin: 0.2em;
+}
 
-	/* Center (default) */
-	iframe,
-	image,
-	[data-ce-tag=img],
-	img,
-	video {
-		clear: both;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 100%;    
-	}
+/*.align-center-inline {
 
-	/* Right align */
-	.align-right {
-		clear: initial;
-		float: right;
-		margin-left: 0.5em;
-	}
+    display: inline-block !important;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}*/
+
+/* Left align */
+.align-left {
+    clear: both;
+    display: block !important;
+    float: left !important;
+    margin: 0.2em;
+    margin: 0.2em;
+}
+
+/* Right align */
+.align-right{
+    clear: both;
+    display: block !important;
+    float: right !important;
+    margin: 0.2em;
+    margin: 0.2em;
+}
+/* Center align */
+.align-center {
+	clear: both;
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-off-left {
+	clear: left;
+}
+
+.image-off-right {
+	clear: right;
+}
+
+.image-off-both {
+	clear: both;
+}
 
 	/* Alignment styles for text in editable regions */
 	.text-center {
@@ -157,4 +189,8 @@ body.noscroll
 
 #content_sector img:hover {
 	cursor: zoom-in;
+}
+
+.ui.accordion .title.active {
+	background-color: #3356b5;
 }

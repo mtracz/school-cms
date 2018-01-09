@@ -167,3 +167,8 @@ Route::get('/readarticle/{id}', ["as" => "article.redirect.get", "uses" => "View
 
 // settings get
 Route::get('/settings/show', ["as" => "settings.show.get", "uses" => "SettingsController@getSettings"]);
+
+// archive news
+Route::get('/archive', ["as" => "archive.show.get", "uses" => "ViewController@getNewsArchiveView"]);
+// archive news year 
+Route::get('/archive/{year}', ["as" => "archiveYear.show.get", "uses" => "ViewController@getNewsArchiveViewForYear"]);

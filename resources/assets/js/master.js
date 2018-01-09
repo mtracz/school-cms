@@ -115,7 +115,8 @@ if(window.localStorage.cookie == "set"){
 }
 
 $('.ui.accordion')
-.accordion();
+.accordion("open", 0);
+
 
 $('.ui.dropdown')
 .dropdown({ fullTextSearch: true });

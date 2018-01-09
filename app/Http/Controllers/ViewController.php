@@ -556,5 +556,41 @@ class ViewController extends Controller {
 		return redirect()->route("index.get");
 	}
 
+	//ARCHIVE
+	public function getNewsArchiveView() {
+		$news_years_count = News::selectRaw("is_public, DATE_FORMAT(published_at, '%Y') as year, count(*) as count")->where("is_public", true)->groupby("year", "is_public")->orderby('year', 'desc')->get();
+
+		return view("archiveNews")->with("news_years_count", $news_years_count);
+	}
+
+	public function getNewsArchiveViewForYear(Request $request, $year) {
+		$news_for_year = News::where("is_public", true)->whereYear("published_at", $year)->orderby('published_at', 'desc')->get(["title","slug"]);
+		$quantity = $news_for_year->count();
+
+		$page_number = 1;
+		$news_per_page_value = 30;
+		
+		$paginationService = new PaginationService($request, $news_for_year, $items_per_page = 30);
+
+		$pagination_array = $paginationService->getPaginationArray();
+		$next_page = $paginationService->getNextPage();
+		$prev_page = $paginationService->getPrevPage();
+		$max_page = $paginationService->getMaxPage();
+		$page_number = $paginationService->getPageNumber();
+
+		$news_set = $news_for_year->forPage($page_number, $news_per_page_value);
+
+		return view("archiveNewsForYear")
+		->with("news_for_year", $news_set)
+		->with("year", $year)
+		->with("news_per_page", $news_per_page_value)
+		->with("pagination_array", $pagination_array)
+		->with("first_page", 1)
+		->with("last_page", $max_page)
+		->with("prev_page", $prev_page)
+		->with("next_page", $next_page)
+		->with("current_page", $page_number);
+	}
+
 }
 

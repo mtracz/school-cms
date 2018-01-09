@@ -50,6 +50,9 @@ INFO_TOOLS = [
 IMAGE_TOOLS = [
     [
         'link',
+        'align-left',
+        'align-center',
+        'align-right',
         'paragraph',
     ],[        
         'image',

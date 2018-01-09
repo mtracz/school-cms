@@ -170,3 +170,10 @@ mix.styles("resources/assets/css/formAdmin.css", "public/css/formAdmin.css");
 //admins manage
 //mix.styles("resources/assets/css/pagesManage.css", "public/css/pagesManage.css");
 mix.scripts("resources/assets/js/adminsManage.js", "public/js/adminsManage.js");
+
+//archive news
+mix.scripts("resources/assets/js/archiveNews.js", "public/js/archiveNews.js");
+
+//archive news for year
+mix.scripts("resources/assets/js/archiveNewsForYear.js", "public/js/archiveNewsForYear.js");
+mix.styles("resources/assets/css/archiveNewsForYear.css", "public/css/archiveNewsForYear.css");
