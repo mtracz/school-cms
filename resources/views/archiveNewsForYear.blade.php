@@ -32,6 +32,10 @@ $is_news_show = isset($show_news);
 					</div>	
 					@endforeach	
 				</div>
+
+				<div class="pagination_container">
+						@include("templates/pagination")
+				</div>
 				
 			</div>	
 
