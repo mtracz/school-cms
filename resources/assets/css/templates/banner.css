@@ -38,6 +38,7 @@
 	margin: auto; 
 	min-height: 100%;
 	min-width: 100%;
+	width: 100%;
 	
 	top: -15%;
 	bottom: -100%;
@@ -46,3 +47,4 @@
 }
 
 /* 1160px */
+
