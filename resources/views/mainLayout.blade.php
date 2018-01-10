@@ -142,10 +142,10 @@
 	</div>
 
 </div>
-<button class="ui big button attach_fixed attach_left view_marker view_mobile view_tablet">
+<button class="ui big button attach_fixed attach_left view_marker view_mobile view_tablet hideElement">
 	<i class="arrow right icon"></i>
 </button>
-<button class="ui big button attach_fixed attach_right view_marker view_mobile view_tablet">
+<button class="ui big button attach_fixed attach_right view_marker view_mobile view_tablet hideElement">
 	<i class="arrow left icon"></i>
 </button>
 @endsection
