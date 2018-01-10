@@ -15,6 +15,13 @@
 
 		@component("templates.manage")
 
+		@slot("header")
+
+			<i class="file text icon"></i>
+			Pliki
+
+		@endslot
+
 		@slot("options")
 
 		<div class="ui segment">

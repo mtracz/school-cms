@@ -65,12 +65,20 @@ function LayoutBuilder() {
 
 		$(".view_marker").each(function (index) {
 
-			console.log("view_marker element: " + $(this));
+			console.log("view_marker element:", $(this));
 
 			if( $(this).hasClass(viewportGroupName)) {
 
+				if( !$(this).hasClass("sector") ) {
+					$(this).addClass("sector");
+				}
+
 				$(this).removeClass("hideElement");
 			} else {
+
+				if( $(this).hasClass("sector") ) {
+					$(this).removeClass("sector");
+				}
 
 				$(this).addClass("hideElement");
 			}

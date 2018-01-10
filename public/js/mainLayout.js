@@ -38,7 +38,7 @@ $(window).ready( function() {
 
 $(window).resize(function () {
 	scaleBanner();
-	resizeBanner();	
+	resizeBanner();
 });
 
 function resizeBanner() {
@@ -87,12 +87,24 @@ function scaleBanner() {
 		$(".banner .editMe .content ").css({"max-height": 175});
 		$(".banner .content img").css("border-width", 10);
 		console.log(175);
+
+
 		break;
 
 		case "view_mobile":
 		$(".banner .editMe .content ").css({"max-height": 100});
 		$(".banner .content img").css("border-width", 5);
 		console.log(100);
+
+
 		break;
 	};
 }
+
+$(".ui.button.attach_left").on("click", function() {
+	$(".ui.left.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
+});
+
+$(".ui.button.attach_right").on("click", function() {
+	$(".ui.right.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
+});
