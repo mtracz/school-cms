@@ -104,6 +104,8 @@ $(window).ready(function () {
 	$(".ui.dimmer").dimmer("hide");
 });
 
+$(".cookie_info").css("display","");
+
 $(".accept_coockies").on("click", function() {
 	
 	window.localStorage.setItem("cookie","set");
