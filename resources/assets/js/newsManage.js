@@ -252,3 +252,27 @@ function isInputValueSet(elem) {
 function showWarning(text) {
 	toastr.warning(text);
 }
+
+var params = JSON.parse($("#parameters").text());
+
+console.log("params", params);
+
+if(typeof params == "object" && params["length"] != 0) {
+	alert("fillDatesInputs");
+	fillDatesInputs(params);
+}
+
+function fillDatesInputs(params) {
+	
+	$("#publish_at_date").calendar("set date", params["publish_at_date"] , true, false);
+	$("input[name='publish_at_date_parsed']").val(params["publish_at_date_parsed"]);
+
+	$("#expire_at_date").calendar("set date", params["expire_at_date"] , true, false);
+	$("input[name='expire_at_date_parsed']").val(params["expire_at_date_parsed"]);
+
+	$("#created_at_date").calendar("set date", params["created_at_date"] , true, false);
+	$("input[name='created_at_date_parsed']").val(params["created_at_date_parsed"]);
+
+	$("#updated_at_date").calendar("set date", params["updated_at_date"] , true, false);
+	$("input[name='updated_at_date_parsed']").val(params["updated_at_date_parsed"]);
+}

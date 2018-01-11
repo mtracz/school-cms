@@ -142,12 +142,16 @@
 	</div>
 
 </div>
-<button class="ui big button attach_fixed attach_left view_marker view_mobile view_tablet hideElement">
+<button class="ui big button attach_fixed_bottom attach_right go_top">
+	<i class="chevron circle up icon"></i> Do góry
+</button>
+<button class="ui big button attach_fixed attach_left view_marker view_mobile view_tablet ">
 	<i class="arrow right icon"></i>
 </button>
-<button class="ui big button attach_fixed attach_right view_marker view_mobile view_tablet hideElement">
+<button class="ui big button attach_fixed attach_right view_marker view_mobile view_tablet ">
 	<i class="arrow left icon"></i>
 </button>
+
 @endsection
 
 @section("scripts")

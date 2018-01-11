@@ -62,13 +62,15 @@
 	display: none !important;
 }
 
-.ui.button.attach_fixed {
+.ui.button.attach_fixed,
+.ui.button.attach_fixed_bottom {
 	opacity: 0.6;
 	background-color: #e14658;
 	color: white;
 }
 
-.ui.button.attach_fixed:hover {
+.ui.button.attach_fixed:hover,
+.ui.button.attach_fixed_bottom:hover {
 	opacity: 1;
 }
 
@@ -77,6 +79,13 @@
 	top: 200px;
 
 	z-index: 100;
+}
+
+.attach_fixed_bottom {
+	position: fixed;
+	top: 90%;
+
+	z-index: 101;
 }
 
 .attach_left {
@@ -120,8 +129,19 @@
 }
 
 .ui.menu .item,
-.ui.menu .item .default.text {
+.ui.menu .item .default.text,
+.ui.menu .item, .ui.menu .item .default.text,
+.ui.menu .ui.dropdown .menu>.item {
 	color: white;
+}
+
+.ui.menu.mobile .ui.dropdown .menu>.item {
+	color: white !important;
+	background-color: #406DE4 !important;
+}
+
+.ui.menu.mobile .ui.dropdown .menu>.item:hover {
+	background: rgba(255,255,255,.08) !important;
 }
 
 .ui.menu .item:hover {
@@ -167,6 +187,8 @@
 .ui.accordion .content .item {
 	padding-left: 30px !important;
 }
+
+.ui.
 
 .news.panel .ui.bottom.right.attached.label i {
 	padding-left: 10px !important; 
@@ -307,8 +329,10 @@
 	color: white;
 }
 
+/* Center icons */
 .ui.button:not(.icon)>.right.icon:not(.button):not(.dropdown),
-.ui.button:not(.icon)>.left.icon:not(.button):not(.dropdown)
+.ui.button:not(.icon)>.left.icon:not(.button):not(.dropdown),
+.ui.button:not(.icon)>.up.icon:not(.button):not(.dropdown)
  {
 	margin: 0;
 }
