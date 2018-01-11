@@ -122,7 +122,7 @@
 
 					<div id="bottom_sector" class="sixteen wide column sector">
 						<div class="ui centered inside grid">
-							<div class="row">
+							<div class="doubling two column row">
 
 								@php
 								$element_model = $SectorHydratorService->hydrateBottom();
