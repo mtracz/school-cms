@@ -41,6 +41,10 @@ $(window).resize(function () {
 	resizeBanner();
 });
 
+$(window).scroll(function() {
+	scrollFunction();
+});
+
 function resizeBanner() {
 	if($(window).width() < 1120) {
 		$("#main_banner img").css("bottom", "auto");
@@ -101,6 +105,18 @@ function scaleBanner() {
 	};
 }
 
+function scrollFunction() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        document.getElementById("go_top").style.display = "block";
+    } else {
+        document.getElementById("go_top").style.display = "none";
+    }
+}
+
+$(".ui.button.attach_fixed_bottom").on("click", function() {
+	$('html, body').animate({ scrollTop: 0 }, 'fast');
+});
+
 $(".ui.button.attach_fixed.attach_left").on("click", function() {
 	$(".ui.left.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
 });
@@ -109,6 +125,4 @@ $(".ui.button.attach_fixed.attach_right").on("click", function() {
 	$(".ui.right.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
 });
 
-$(".ui.button.attach_fixed_bottom").on("click", function() {
-	$('html, body').animate({ scrollTop: 0 }, 'fast');
-});
+
