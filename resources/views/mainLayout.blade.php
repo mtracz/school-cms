@@ -150,13 +150,13 @@
 <!--  -->
 
 <!-- SIDEBAR LEFT -->
-<button class="ui big button attach_fixed attach_left view_marker view_mobile view_tablet ">
+<button class="ui tiny button attach_fixed attach_left view_marker view_mobile view_tablet ">
 	<i class="arrow right icon"></i>
 </button>
 <!--  -->
 
 <!-- SIDEBAR RIGHT -->
-<button class="ui big button attach_fixed attach_right view_marker view_mobile view_tablet ">
+<button class="ui tiny button attach_fixed attach_right view_marker view_mobile view_tablet ">
 	<i class="arrow left icon"></i>
 </button>
 <!--  -->

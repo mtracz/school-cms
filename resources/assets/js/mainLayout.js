@@ -112,17 +112,52 @@ function scrollFunction() {
         document.getElementById("go_top").style.display = "none";
     }
 }
-
+// SCROLL TOP
 $(".ui.button.attach_fixed_bottom").on("click", function() {
 	$('html, body').animate({ scrollTop: 0 }, 'fast');
 });
+//  --
 
+// LEFT SIDEBAR SETTINGS
+$(".ui.left.sidebar").sidebar({
+		transition: "overlay",
+		onVisible: function() {
+			$(".ui.button.attach_fixed.attach_left").css({"left": "265px", "background-color": "white", "color": "#e14658"});
+			$(".ui.button.attach_fixed.attach_left i").removeClass("right").addClass("left");
+			$(".ui.button.attach_fixed.attach_right").css({"display": "none"});
+			$(document.body).addClass("noscroll");
+		},
+		onHide: function() {
+			$(".ui.button.attach_fixed.attach_left").css({"left": "0%", "background-color": "#e14658", "color": "white"});
+			$(".ui.button.attach_fixed.attach_left i").removeClass("left").addClass("right");
+			$(".ui.button.attach_fixed.attach_right").css({"display": "block"});
+			$(document.body).removeClass("noscroll");
+		}
+});
+
+// LEFT SIDEBAR SHOW EVENT
 $(".ui.button.attach_fixed.attach_left").on("click", function() {
-	$(".ui.left.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
+	$(".ui.left.sidebar").sidebar("toggle");
 });
 
+// RIGHT SIDEBAR SETTINGS
+$(".ui.right.sidebar").sidebar({
+		transition: "overlay",
+		onVisible: function() {;
+			$(".ui.button.attach_fixed.attach_right").css({"right": "265px", "background-color": "white", "color": "#e14658"});
+			$(".ui.button.attach_fixed.attach_right i").removeClass("left").addClass("right");
+			$(".ui.button.attach_fixed.attach_left").css({"display": "none"});
+			$(document.body).addClass("noscroll");
+		},
+		onHide: function() {
+			$(".ui.button.attach_fixed.attach_right").css({"right": "0%", "background-color": "#e14658", "color": "white"});
+			$(".ui.button.attach_fixed.attach_right i").removeClass("right").addClass("left");
+			$(".ui.button.attach_fixed.attach_left").css({"display": "block"});
+			$(document.body).removeClass("noscroll");
+		}
+});
+// RIGHT SIDEBAR SHOW EVENT
 $(".ui.button.attach_fixed.attach_right").on("click", function() {
-	$(".ui.right.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
+	$(".ui.right.sidebar").sidebar("toggle");
 });
-
 
