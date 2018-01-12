@@ -21,9 +21,6 @@ function runContentTools() {
 
 // własne style
 ContentTools.StylePalette.add([
-    // new ContentTools.Style('Wyrównaj do lewej w lini', 'align-left-line', ['img', 'iframe']),
-    // new ContentTools.Style('Wyrównaj do prawej w lini', 'align-right-line', ['img', 'iframe']),
-
     new ContentTools.Style('Wyrównaj do lewej', 'align-left', ['img', 'iframe']),
     new ContentTools.Style('Wyrównaj do prawej', 'align-right', ['img', 'iframe']),
 
@@ -31,10 +28,15 @@ ContentTools.StylePalette.add([
     new ContentTools.Style('Wyrównaj do prawej w lini', 'align-right-inline', ['img', 'iframe']),
 
     new ContentTools.Style('Wyśrodkuj', 'align-center', ['img', 'iframe']),
+    new ContentTools.Style('Wyśrodkuj w lini', 'align-center-inline', ['img', 'iframe']),
 
-    new ContentTools.Style('Nie umieszczaj zdjęcia po lewej', 'image-off-left', ['table', 'p', 'a']),
-    new ContentTools.Style('Nie umieszczaj zdjęcia po prawej', 'image-off-right', ['table', 'p', 'a']),
-    new ContentTools.Style('Nie umieszczaj zdjęcia po bokach', 'image-off-both', ['table', 'p', 'a'])
+    new ContentTools.Style('Nie umieszczaj zdjęcia po lewej', 'image-off-left', ['p', 'a']),
+    new ContentTools.Style('Nie umieszczaj zdjęcia po prawej', 'image-off-right', ['p', 'a']),
+    new ContentTools.Style('Nie umieszczaj zdjęcia po bokach', 'image-off-both', ['p', 'a']),
+
+    new ContentTools.Style('Tabela UI', 'ui', ['table']),
+    new ContentTools.Style('Tabela (obramowanie w środku)', 'celled', ['table']),
+    new ContentTools.Style('Tabela (wymagane)', 'table', ['table']),
 ]);
 
 

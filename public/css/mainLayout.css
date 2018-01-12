@@ -231,6 +231,11 @@
 	/*text-align: center;*/
 }
 
+.page.panel .content img, iframe {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
 .news.panel {
 
 	min-height: 100px;
@@ -266,6 +271,11 @@
 	white-space: normal;
 
 	/*text-align: center;*/
+}
+
+.news.panel .content img, iframe {
+	max-width: 100% !important;
+	height: auto !important;
 }
 
 .news.panel .ui.label {
