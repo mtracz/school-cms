@@ -258,7 +258,7 @@ var params = JSON.parse($("#parameters").text());
 console.log("params", params);
 
 if(typeof params == "object" && params["length"] != 0) {
-	alert("fillDatesInputs");
+	//alert("fillDatesInputs");
 	fillDatesInputs(params);
 }
 
@@ -276,3 +276,19 @@ function fillDatesInputs(params) {
 	$("#updated_at_date").calendar("set date", params["updated_at_date"] , true, false);
 	$("input[name='updated_at_date_parsed']").val(params["updated_at_date_parsed"]);
 }
+
+$("a").on("click", function() {
+	event.preventDefault();
+
+	// let query_string = window.location.search;
+	// query_string = query_string.replace("?", "");
+	// alert(query_string);
+
+	let page = $(this).attr("href");
+	let query = $("#query").data("query");
+
+	
+	window.location.search = page + "test" +"&" + query;
+	//return false;
+	// $(this).atrr("href", x + query);
+});

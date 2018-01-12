@@ -29,10 +29,15 @@
 
 			<div id="parameters">
 			@if(isset($params))
-				{{ json_encode($params) }}
+				<!-- {{ json_encode($params) }} -->
 			@endif
 			</div>
 
+			<div id="query" data-query="{{ $query }}">
+			@if(isset($query))
+				{{ $query }}
+			@endif
+			</div>
 			
 
 			<div class="ui options segment">
@@ -54,7 +59,7 @@
 								@if(isset($params["status"]) && $params["status"] == "public") 
 								<div class="text"> Publiczny </div>
 								@elseif(isset($params["status"]) && $params["status"] == "private")
-								<div class="text"> Publiczny </div>
+								<div class="text"> Prywatny </div>
 								@else
 								<div class="default text">Status</div>
 								@endif

@@ -215,6 +215,21 @@ class ViewController extends Controller {
 			/*
 			Added + 1 to columns_count for actions header in newsManage
 			*/
+
+			$url = $request->fullUrl();
+
+			$query_string = "";
+
+			// if (strpos($url, '?') !== false) {
+			// 	$query = explode("?", $url);
+			// 	$query_string = $query[1];
+			// } 
+
+			// if (strpos($url, 'test') !== false) {
+			// 	$query = explode("test", $url);
+			// 	$query_string = $query[1];
+			// } 
+
 			return view("newsManage")
 			->with("pagination_array", $pagination_array)
 			->with("first_page", 1)
@@ -227,8 +242,8 @@ class ViewController extends Controller {
 			->with("items_count", $items_count)
 			->with("items_count_all", $items_count_all)
 			->with("columns_count", $news_attributes_count)
-			->with("params", $params);
-
+			->with("params", $params)
+			->with("query", $query_string);
 		} else {
 
 			$news_set = $news;
@@ -608,6 +623,9 @@ class ViewController extends Controller {
 
 			$news_set = $news_for_year->forPage($page_number, $news_per_page_value);
 
+			$paginationServiceMobile = new PaginationService($request, $news_for_year, $news_per_page_value, 0);
+			$pagination_array_mobile = $paginationServiceMobile->getPaginationArray();
+		
 			return view("archiveNewsForYear")
 			->with("news_for_year", $news_set)
 			->with("year", $year)
@@ -617,7 +635,9 @@ class ViewController extends Controller {
 			->with("last_page", $max_page)
 			->with("prev_page", $prev_page)
 			->with("next_page", $next_page)
-			->with("current_page", $page_number);
+			->with("current_page", $page_number)
+			->with("mobile_version", true)
+			->with("pagination_array_mobile", $pagination_array_mobile);
 		}
 
 	}

@@ -17,8 +17,9 @@
 	position: relative;
 }*/
 
+/*width: 80vw;*/
 .banner .content {
-	/*width: 80vw;*/
+	
 	width: auto !important;
 	height: 250px;
 	max-height: 250px;
@@ -26,7 +27,7 @@
 	position: relative;
 }
 
-.banner .content img {
+/*.banner .content img {
 	position: absolute;
 	margin: auto; 
 	min-height: 100%;
@@ -44,7 +45,7 @@
 	bottom: -100%;
 	left: -100%;
 	right: -100%;
-}
+}*/
 
 /* 1160px */
 
