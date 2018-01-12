@@ -40,7 +40,7 @@
 	@endif
 	{{-- //////////////// --}}
 
-	<div class="cookie_info">
+	<div class="cookie_info" style="display: none;">
 		<p class="text">
 			{{ $cookie_text }} 
 		</p>

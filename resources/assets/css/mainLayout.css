@@ -62,6 +62,16 @@
 	display: none !important;
 }
 
+.ui.button.attach_fixed {
+	opacity: 0.6;
+	background-color: #e14658;
+	color: white;
+}
+
+.ui.button.attach_fixed:hover {
+	opacity: 1;
+}
+
 .attach_fixed {
 	position: fixed;
 	top: 200px;
@@ -295,4 +305,10 @@
 .ui.menu .link.item:hover, 
 .ui.menu a.item:hover {
 	color: white;
+}
+
+.ui.button:not(.icon)>.right.icon:not(.button):not(.dropdown),
+.ui.button:not(.icon)>.left.icon:not(.button):not(.dropdown)
+ {
+	margin: 0;
 }
