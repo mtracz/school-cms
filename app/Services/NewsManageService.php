@@ -27,7 +27,7 @@ class NewsManageService {
 
 		$query_array = [
 			["published_at", ">=", $parameters["publish_at_date_parsed"]],
-			["expire_at", "<", $parameters["expire_at_date_parsed"]],
+			["expire_at", "<=", $parameters["expire_at_date_parsed"]],
 			["created_at", "like", $parameters["created_at_date_parsed"] . "%"],
 			["updated_at", "like", $parameters["updated_at_date_parsed"] . "%"],
 			["title", "like", "%" . $parameters["title"] . "%"],

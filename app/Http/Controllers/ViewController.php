@@ -7,6 +7,7 @@ use Session;
 use File;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 use App\Models\Admin;
 use App\Models\News;
@@ -52,6 +53,9 @@ class ViewController extends Controller {
 
 		$news_set = $news->forPage($page_number, $news_per_page_value);
 
+		$paginationServiceMobile = new PaginationService($request, $news, $news_per_page_value, 0);
+		$pagination_array_mobile = $paginationServiceMobile->getPaginationArray();
+
 		return view("mainLayout")
 		->with("news", $news_set)
 		->with("news_pinned", $news_pinned)
@@ -61,7 +65,9 @@ class ViewController extends Controller {
 		->with("last_page", $max_page)
 		->with("prev_page", $prev_page)
 		->with("next_page", $next_page)
-		->with("current_page", $page_number);
+		->with("current_page", $page_number)
+		->with("mobile_version", true)
+		->with("pagination_array_mobile", $pagination_array_mobile);
 	}
 
 	public function getNewsSpecific() {
@@ -123,7 +129,7 @@ class ViewController extends Controller {
 		$maintenance_text = Settings::where("name", "maintenance_mode_text")->first();
 		$maintenance_title = Settings::where("name", "title")->first();
 		$maintenance_settings = [ "text" => $maintenance_text["value"],
-								"title" => $maintenance_title["value"]];
+		"title" => $maintenance_title["value"]];
 
 		return view("maintenance")->with("settings", $maintenance_settings);
 	}
@@ -161,13 +167,24 @@ class ViewController extends Controller {
 
 		$params = $request->all();
 
-		$news = $this->getNewsAll();
-		$items_count_all = count($news);
+		$items_count_all;
+		$news;
+
+		// $news = $this->getNewsAll();
+		// $items_count_all = count($news);
 
 		if(count($params) > 1) {
 
 			$newsManageService = new NewsManageService();
 			$news = $newsManageService->pluckNews($params);
+			if($news) {
+				$items_count_all = count($news);
+			}
+			
+		} else {
+
+			$news = $this->getNewsAll();
+			$items_count_all = count($news);
 		}
 
 		$news_attributes_count = 10;
@@ -209,7 +226,8 @@ class ViewController extends Controller {
 			->with("items", $news_set)
 			->with("items_count", $items_count)
 			->with("items_count_all", $items_count_all)
-			->with("columns_count", $news_attributes_count);
+			->with("columns_count", $news_attributes_count)
+			->with("params", $params);
 
 		} else {
 
@@ -217,7 +235,8 @@ class ViewController extends Controller {
 
 			return view("newsManage")
 			->with("items", $news_set)
-			->with("columns_count", $news_attributes_count);
+			->with("columns_count", $news_attributes_count)
+			->with("params", $params);
 		}
 	}
 
@@ -225,15 +244,24 @@ class ViewController extends Controller {
 
 		$params = $request->all();
 
-		$pages = $this->getPagesAll();
+		// $pages = $this->getPagesAll();
 
-		$items_count_all = count($pages);
+		$items_count_all;
+		$pages;
 		$pages_attributes_count = 5;
 
 		if(count($params) > 1) {
 
 			$pagesManageService = new PagesManageService();
 			$pages = $pagesManageService->pluckPages($params);
+			if($pages) {
+				$items_count_all = count($pages);
+			}
+			
+		} else {
+
+			$pages = $this->getPagesAll();
+			$items_count_all = count($pages);
 		}
 
 		$page_number = 1;
@@ -425,7 +453,7 @@ class ViewController extends Controller {
 		if($news) {
 			$show_news = true;
 			return view("templates/staticPage")->with("page", $news)
-												->with("show_news", $show_news);
+			->with("show_news", $show_news);
 		} else {
 			Session::flash("messages", ["Nie znaleziono takiej strony" => "error" ]);
 			return redirect()->route("index.get");
@@ -487,7 +515,7 @@ class ViewController extends Controller {
 		$menus = Menu::all();
 
 		return view("templates.sitemap")
-			->with("menus", $menus);
+		->with("menus", $menus);
 	}
 
 	public function redirectArticle($article_id) {
@@ -531,7 +559,7 @@ class ViewController extends Controller {
 		if(Auth::user()->is_super_admin) {
 			$admins = Admin::all();
 			return view("adminManage")
-				->with("admins", $admins);
+			->with("admins", $admins);
 		}
 		return redirect()->route("index.get");
 	}
@@ -540,57 +568,57 @@ class ViewController extends Controller {
 		if(Auth::user()->is_super_admin) 
 			return view("addEditAdmin");
 
-		return redirect()->route("index.get");
-	}
-
-	public function getAdminFormEdit($id) {
-		if(Auth::user()->is_super_admin) {
-			$editing_admin = Admin::find($id);
-			if(! $editing_admin) {
-				Session::flash("messages", ["Nie znaleziono administratora o podanym ID" => "error" ]);
-				return redirect()->route("index.get");
-			}
-			return view("addEditAdmin")->with("editing_admin", $editing_admin);
+			return redirect()->route("index.get");
 		}
 
-		return redirect()->route("index.get");
-	}
+		public function getAdminFormEdit($id) {
+			if(Auth::user()->is_super_admin) {
+				$editing_admin = Admin::find($id);
+				if(! $editing_admin) {
+					Session::flash("messages", ["Nie znaleziono administratora o podanym ID" => "error" ]);
+					return redirect()->route("index.get");
+				}
+				return view("addEditAdmin")->with("editing_admin", $editing_admin);
+			}
+
+			return redirect()->route("index.get");
+		}
 
 	//ARCHIVE
-	public function getNewsArchiveView() {
-		$news_years_count = News::selectRaw("is_public, DATE_FORMAT(published_at, '%Y') as year, count(*) as count")->where("is_public", true)->groupby("year", "is_public")->orderby('year', 'desc')->get();
+		public function getNewsArchiveView() {
+			$news_years_count = News::selectRaw("is_public, DATE_FORMAT(published_at, '%Y') as year, count(*) as count")->where("is_public", true)->groupby("year", "is_public")->orderby('year', 'desc')->get();
 
-		return view("archiveNews")->with("news_years_count", $news_years_count);
+			return view("archiveNews")->with("news_years_count", $news_years_count);
+		}
+
+		public function getNewsArchiveViewForYear(Request $request, $year) {
+			$news_for_year = News::where("is_public", true)->whereYear("published_at", $year)->orderby('published_at', 'desc')->get(["title","slug"]);
+			$quantity = $news_for_year->count();
+
+			$page_number = 1;
+			$news_per_page_value = 30;
+
+			$paginationService = new PaginationService($request, $news_for_year, $items_per_page = 30);
+
+			$pagination_array = $paginationService->getPaginationArray();
+			$next_page = $paginationService->getNextPage();
+			$prev_page = $paginationService->getPrevPage();
+			$max_page = $paginationService->getMaxPage();
+			$page_number = $paginationService->getPageNumber();
+
+			$news_set = $news_for_year->forPage($page_number, $news_per_page_value);
+
+			return view("archiveNewsForYear")
+			->with("news_for_year", $news_set)
+			->with("year", $year)
+			->with("news_per_page", $news_per_page_value)
+			->with("pagination_array", $pagination_array)
+			->with("first_page", 1)
+			->with("last_page", $max_page)
+			->with("prev_page", $prev_page)
+			->with("next_page", $next_page)
+			->with("current_page", $page_number);
+		}
+
 	}
-
-	public function getNewsArchiveViewForYear(Request $request, $year) {
-		$news_for_year = News::where("is_public", true)->whereYear("published_at", $year)->orderby('published_at', 'desc')->get(["title","slug"]);
-		$quantity = $news_for_year->count();
-
-		$page_number = 1;
-		$news_per_page_value = 30;
-		
-		$paginationService = new PaginationService($request, $news_for_year, $items_per_page = 30);
-
-		$pagination_array = $paginationService->getPaginationArray();
-		$next_page = $paginationService->getNextPage();
-		$prev_page = $paginationService->getPrevPage();
-		$max_page = $paginationService->getMaxPage();
-		$page_number = $paginationService->getPageNumber();
-
-		$news_set = $news_for_year->forPage($page_number, $news_per_page_value);
-
-		return view("archiveNewsForYear")
-		->with("news_for_year", $news_set)
-		->with("year", $year)
-		->with("news_per_page", $news_per_page_value)
-		->with("pagination_array", $pagination_array)
-		->with("first_page", 1)
-		->with("last_page", $max_page)
-		->with("prev_page", $prev_page)
-		->with("next_page", $next_page)
-		->with("current_page", $page_number);
-	}
-
-}
 

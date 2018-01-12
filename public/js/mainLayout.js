@@ -101,10 +101,14 @@ function scaleBanner() {
 	};
 }
 
-$(".ui.button.attach_left").on("click", function() {
+$(".ui.button.attach_fixed.attach_left").on("click", function() {
 	$(".ui.left.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
 });
 
-$(".ui.button.attach_right").on("click", function() {
+$(".ui.button.attach_fixed.attach_right").on("click", function() {
 	$(".ui.right.sidebar").sidebar('setting', 'transition', 'overlay').sidebar("toggle");
+});
+
+$(".ui.button.attach_fixed_bottom").on("click", function() {
+	$('html, body').animate({ scrollTop: 0 }, 'fast');
 });
