@@ -608,6 +608,9 @@ class ViewController extends Controller {
 
 			$news_set = $news_for_year->forPage($page_number, $news_per_page_value);
 
+			$paginationServiceMobile = new PaginationService($request, $news_for_year, $news_per_page_value, 0);
+			$pagination_array_mobile = $paginationServiceMobile->getPaginationArray();
+		
 			return view("archiveNewsForYear")
 			->with("news_for_year", $news_set)
 			->with("year", $year)
@@ -617,7 +620,9 @@ class ViewController extends Controller {
 			->with("last_page", $max_page)
 			->with("prev_page", $prev_page)
 			->with("next_page", $next_page)
-			->with("current_page", $page_number);
+			->with("current_page", $page_number)
+			->with("mobile_version", true)
+			->with("pagination_array_mobile", $pagination_array_mobile);
 		}
 
 	}
