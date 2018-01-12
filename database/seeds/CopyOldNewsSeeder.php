@@ -30,6 +30,9 @@ class CopyOldNewsSeeder extends Seeder {
 			$temp_row = str_replace("<font", "<p", $temp_row);
 			$temp_row = str_replace("</font>", "</p>", $temp_row);
 
+			// REPLACE <TABLE to semantic ui table class
+			$temp_row = str_replace("<table", "<table class='ui table' ", $temp_row);
+
 			array_push($news,
 				["id" => $sp9_news_row["news_id"],
 				"title" => $sp9_news_row["news_subject"],
