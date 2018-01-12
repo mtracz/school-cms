@@ -215,6 +215,21 @@ class ViewController extends Controller {
 			/*
 			Added + 1 to columns_count for actions header in newsManage
 			*/
+
+			$url = $request->fullUrl();
+
+			$query_string = "";
+
+			// if (strpos($url, '?') !== false) {
+			// 	$query = explode("?", $url);
+			// 	$query_string = $query[1];
+			// } 
+
+			// if (strpos($url, 'test') !== false) {
+			// 	$query = explode("test", $url);
+			// 	$query_string = $query[1];
+			// } 
+
 			return view("newsManage")
 			->with("pagination_array", $pagination_array)
 			->with("first_page", 1)
@@ -227,8 +242,8 @@ class ViewController extends Controller {
 			->with("items_count", $items_count)
 			->with("items_count_all", $items_count_all)
 			->with("columns_count", $news_attributes_count)
-			->with("params", $params);
-
+			->with("params", $params)
+			->with("query", $query_string);
 		} else {
 
 			$news_set = $news;
