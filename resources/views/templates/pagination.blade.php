@@ -12,8 +12,8 @@
 
 	@else
 
-	<a class="item" href="?page={{ $first_page }}"><i class="chevron left icon"></i></a>
-	<a class="item" href="?page={{ $prev_page }}"><i class="caret left icon"></i></a>
+	<a class="item" href="?page={{ $first_page }}@if(isset($paramsString)){{$paramsString}}@endif"><i class="chevron left icon"></i></a>
+	<a class="item" href="?page={{ $prev_page }}@if(isset($paramsString)){{$paramsString}}@endif"><i class="caret left icon"></i></a>
 	
 	@endif
 
@@ -25,7 +25,7 @@
 
 	@else
 
-	<a class="item" href="?page={{ $page }}"> {{ $page }} </a>
+	<a class="item" href="?page={{ $page }}@if(isset($paramsString)){{$paramsString}}@endif"> {{ $page }} </a>
 
 	@endif
 
@@ -38,8 +38,8 @@
 
 	@else
 
-	<a class="item" href="?page={{ $next_page }}"><i class="caret right icon"></i></a>
-	<a class="item" href="?page={{ $last_page }}"><i class="chevron right icon"></i></a>
+	<a class="item" href="?page={{ $next_page }}@if(isset($paramsString)){{$paramsString}}@endif"><i class="caret right icon"></i></a>
+	<a class="item" href="?page={{ $last_page }}@if(isset($paramsString)){{$paramsString}}@endif"><i class="chevron right icon"></i></a>
 	
 	@endif
 
