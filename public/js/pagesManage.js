@@ -88,6 +88,8 @@ $('#created_at_date').calendar({
 
 			form_create_date_object.raw_date = date;
 			form_create_date_object.parsed_date = (year + '-' + month + '-' + day);
+
+			alert(form_create_date_object.parsed_date);
 			
 			$("#updated_at_date").calendar("set startDate", form_create_date_object.raw_date);
 
@@ -129,7 +131,6 @@ $(".ui.search.button").on("click", function(event) {
 	
 	$("input[name='created_at_date_parsed']").val(form_create_date_object.parsed_date);
 	$("input[name='updated_at_date_parsed']").val(form_update_date_object.parsed_date);
-
 });
 
 //function for dates format
@@ -147,4 +148,27 @@ function isInputValueSet(elem) {
 	} else {
 		return false;
 	}
+}
+
+var params = JSON.parse($("#parameters").text());
+
+console.log("params", params);
+
+if(typeof params == "object" && params["length"] != 0) {
+	fillDatesInputs(params);
+}
+
+function fillDatesInputs(params) {
+	
+	$("#publish_at_date").calendar("set date", params["publish_at_date"] , true, true);
+	$("input[name='publish_at_date_parsed']").val(params["publish_at_date_parsed"]);
+
+	$("#expire_at_date").calendar("set date", params["expire_at_date"] , true, true);
+	$("input[name='expire_at_date_parsed']").val(params["expire_at_date_parsed"]);
+
+	$("#created_at_date").calendar("set date", params["created_at_date"] , true, true);
+	$("input[name='created_at_date_parsed']").val(params["created_at_date_parsed"]);
+
+	$("#updated_at_date").calendar("set date", params["updated_at_date"] , true, true);
+	$("input[name='updated_at_date_parsed']").val(params["updated_at_date_parsed"]);
 }

@@ -16,11 +16,17 @@
 		@component("templates.manage")
 
 		@slot("header")
-			<i class="sticky note icon"></i>
-			Strony
+		<i class="sticky note icon"></i>
+		Strony
 		@endslot
 
 		@slot("options")
+
+		<div id="parameters" hidden>
+			@if(isset($params))
+			{{ json_encode($params) }}
+			@endif
+		</div>
 
 		<div class="ui segment">
 			<h2><i class="search icon"></i>Filtry</h2>
@@ -95,82 +101,82 @@
 
 		@if($items && count($items) > 0)
 
-			@slot("pagination")
+		@slot("pagination")
 
-			<div class="pagination_container">
-				@include("templates/pagination")
-			</div>
-			
-			@endslot
+		<div class="pagination_container">
+			@include("templates/pagination")
+		</div>
+
+		@endslot
 
 
-			@slot("headers")
-				<th class="center"> Tytuł </th>
-				<th class="center"> Autor </th>
-				<th class="center"> Publiczna </th>
-				<th class="center"> Data utworzenia </th>
-				<th class="center"> Data ostatniej edycji </th>
-				<th class="center"> Akcje </th>
+		@slot("headers")
+		<th class="center"> Tytuł </th>
+		<th class="center"> Autor </th>
+		<th class="center"> Publiczna </th>
+		<th class="center"> Data utworzenia </th>
+		<th class="center"> Data ostatniej edycji </th>
+		<th class="center"> Akcje </th>
 
-				<div class="counter" style="color: black;">
-				{{ $items_count }} / {{ $items_count_all }}
-				</div>
-			@endslot
+		<div class="counter" style="color: black;">
+			{{ $items_count }} / {{ $items_count_all }}
+		</div>
+		@endslot
 
-			@slot("rows")
+		@slot("rows")
 
-				@foreach($items as $item)
+		@foreach($items as $item)
 
-				<tr>
-					<td class="center">
-						{{ $item->title }}
-					</td>
-					<td class="center">
-						{{ $item->admin->name }}
-					</td>
-					<td class="center">
-						@if( $item->is_public == 1)
-						<i class="checkmark green icon"></i>
-						@else
-						<i class="remove red icon"></i>
-						@endif
-					</td>
-					<td class="center" data-created_at="{{ strtotime($item->created_at) }}">
-						{{ $item->created_at }}
-					</td>
-					<td class="center" data-updated_at="{{ strtotime($item->updated_at) }}">
-						{{ $item->updated_at }}
-					</td>
-					<td class="actions">
+		<tr>
+			<td class="center">
+				{{ $item->title }}
+			</td>
+			<td class="center">
+				{{ $item->admin->name }}
+			</td>
+			<td class="center">
+				@if( $item->is_public == 1)
+				<i class="checkmark green icon"></i>
+				@else
+				<i class="remove red icon"></i>
+				@endif
+			</td>
+			<td class="center" data-created_at="{{ strtotime($item->created_at) }}">
+				{{ $item->created_at }}
+			</td>
+			<td class="center" data-updated_at="{{ strtotime($item->updated_at) }}">
+				{{ $item->updated_at }}
+			</td>
+			<td class="actions">
 
-						<div class="ui edit button" data-url="{{ route('page.edit.get', ['id' => $item->id])}} " data-inverted="" data-tooltip="Edytuj" data-position="bottom center"> <i class="configure icon"></i> </div>
+				<div class="ui edit button" data-url="{{ route('page.edit.get', ['id' => $item->id])}} " data-inverted="" data-tooltip="Edytuj" data-position="bottom center"> <i class="configure icon"></i> </div>
 
-						<div class="ui delete button" data-url="{{ route('page.delete.post', ['id' => $item->id])}}" data-inverted="" data-tooltip="Usuń" data-position="bottom center"> <i class="trash icon"></i> </div>
+				<div class="ui delete button" data-url="{{ route('page.delete.post', ['id' => $item->id])}}" data-inverted="" data-tooltip="Usuń" data-position="bottom center"> <i class="trash icon"></i> </div>
 
-					</td>
-				</tr>
+			</td>
+		</tr>
 
-				@endforeach
+		@endforeach
 
-			@endslot
+		@endslot
 
-			@slot("pagination")
+		@slot("pagination")
 
-				<div class="pagination_container">
-					@include("templates/pagination")
-				</div>
+		<div class="pagination_container">
+			@include("templates/pagination")
+		</div>
 
-			@endslot
+		@endslot
 
 		@else 
 
-			@slot("headers")
-			@include("templates/noSearchResults")
-			@endslot
+		@slot("headers")
+		@include("templates/noSearchResults")
+		@endslot
 
-			@slot("rows") @endslot
+		@slot("rows") @endslot
 
-			@slot("pagination") @endslot
+		@slot("pagination") @endslot
 
 		@endif
 
@@ -179,25 +185,25 @@
 </div>
 
 @component("templates/deleteAggrementModal")
-		@slot("header")
-			<i class="trash outline icon"></i>
-			Potwierdzenie usunięcia
-		@endslot
+@slot("header")
+<i class="trash outline icon"></i>
+Potwierdzenie usunięcia
+@endslot
 
-		@slot("content")
-			<p>Czy na pewno chcesz usunąć wybrany element?</p>
-		@endslot
+@slot("content")
+<p>Czy na pewno chcesz usunąć wybrany element?</p>
+@endslot
 
-		@slot("actions")
-		<div class="ui red basic cancel inverted button" >
-			<i class="remove icon"></i>
-			Anuluj
-		</div>
-		<div class="ui green ok inverted button">
-			<i class="checkmark icon"></i>
-			Usuń
-		</div>
-		@endslot
+@slot("actions")
+<div class="ui red basic cancel inverted button" >
+	<i class="remove icon"></i>
+	Anuluj
+</div>
+<div class="ui green ok inverted button">
+	<i class="checkmark icon"></i>
+	Usuń
+</div>
+@endslot
 @endcomponent
 
 @endsection

@@ -27,17 +27,17 @@
 
 			<div class="ui divider"></div>
 
-			<div id="parameters">
+			<div id="parameters" hidden>
 			@if(isset($params))
-				<!-- {{ json_encode($params) }} -->
+				{{ json_encode($params) }}
 			@endif
 			</div>
 
-			<div id="query" data-query="{{ $query }}">
+			{{-- <div id="query" data-query="{{ $query }}">
 			@if(isset($query))
 				{{ $query }}
 			@endif
-			</div>
+			</div> --}}
 			
 
 			<div class="ui options segment">

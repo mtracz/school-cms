@@ -258,37 +258,36 @@ var params = JSON.parse($("#parameters").text());
 console.log("params", params);
 
 if(typeof params == "object" && params["length"] != 0) {
-	//alert("fillDatesInputs");
 	fillDatesInputs(params);
 }
 
 function fillDatesInputs(params) {
 	
-	$("#publish_at_date").calendar("set date", params["publish_at_date"] , true, false);
+	$("#publish_at_date").calendar("set date", params["publish_at_date"] , true, true);
 	$("input[name='publish_at_date_parsed']").val(params["publish_at_date_parsed"]);
 
-	$("#expire_at_date").calendar("set date", params["expire_at_date"] , true, false);
+	$("#expire_at_date").calendar("set date", params["expire_at_date"] , true, true);
 	$("input[name='expire_at_date_parsed']").val(params["expire_at_date_parsed"]);
 
-	$("#created_at_date").calendar("set date", params["created_at_date"] , true, false);
+	$("#created_at_date").calendar("set date", params["created_at_date"] , true, true);
 	$("input[name='created_at_date_parsed']").val(params["created_at_date_parsed"]);
 
-	$("#updated_at_date").calendar("set date", params["updated_at_date"] , true, false);
+	$("#updated_at_date").calendar("set date", params["updated_at_date"] , true, true);
 	$("input[name='updated_at_date_parsed']").val(params["updated_at_date_parsed"]);
 }
 
-$("a").on("click", function() {
-	event.preventDefault();
+// $("a").on("click", function() {
+// 	event.preventDefault();
 
-	// let query_string = window.location.search;
-	// query_string = query_string.replace("?", "");
-	// alert(query_string);
+// 	// let query_string = window.location.search;
+// 	// query_string = query_string.replace("?", "");
+// 	// alert(query_string);
 
-	let page = $(this).attr("href");
-	let query = $("#query").data("query");
+// 	let page = $(this).attr("href");
+// 	let query = $("#query").data("query");
 
 	
-	window.location.search = page + "test" +"&" + query;
-	//return false;
-	// $(this).atrr("href", x + query);
-});
+// 	window.location.search = page + "test" +"&" + query;
+// 	//return false;
+// 	// $(this).atrr("href", x + query);
+// });

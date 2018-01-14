@@ -163,9 +163,22 @@ class ViewController extends Controller {
 		return view("settings")->with("settings", $settings)->with("themes", $themes);
 	}
 
+	public function parametersArrayToURL($parameters) {
+		$paramsString = "&";
+
+		foreach ($parameters as $key => $value) {
+			if($key != "page") {
+			$paramsString .= "" . $key . "=" . $value . "&";
+			}
+		}
+
+		return $paramsString;
+	}
+
 	public function getNewsManagePage(Request $request) {
 
 		$params = $request->all();
+		$paramsString = $this->parametersArrayToURL($params);
 
 		$items_count_all;
 		$news;
@@ -242,6 +255,7 @@ class ViewController extends Controller {
 			->with("items_count", $items_count)
 			->with("items_count_all", $items_count_all)
 			->with("columns_count", $news_attributes_count)
+			->with("paramsString", $paramsString)
 			->with("params", $params)
 			->with("query", $query_string);
 		} else {
@@ -258,6 +272,7 @@ class ViewController extends Controller {
 	public function getPagesManagePage(Request $request) {
 
 		$params = $request->all();
+		$paramsString = $this->parametersArrayToURL($params);
 
 		// $pages = $this->getPagesAll();
 
@@ -309,7 +324,8 @@ class ViewController extends Controller {
 			->with("items_count", $items_count)
 			->with("items_count_all", $items_count_all)
 			->with("columns_count", $pages_attributes_count + 1)
-			->with("params", $params);
+			->with("params", $params)
+			->with("paramsString", $paramsString);
 
 		} else {
 
@@ -325,6 +341,7 @@ class ViewController extends Controller {
 	public function getFilesManagePage(Request $request) {
 
 		$params = $request->all();
+		$paramsString = $this->parametersArrayToURL($params);
 
 		$fileController = new FileController();
 
@@ -391,7 +408,8 @@ class ViewController extends Controller {
 			->with("items_count", $items_count)
 			->with("items_count_all", $items_count_all)
 			->with("columns_count", $files_attributes_count + 1)
-			->with("params", $params);
+			->with("params", $params)
+			->with("paramsString", $paramsString);
 
 		} else {
 
