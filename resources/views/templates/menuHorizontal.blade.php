@@ -34,9 +34,10 @@
 	@endforeach
 </div>
 
-<div class="ui menu view_marker view_marker view_tablet view_mobile mobile">
+<div class="ui menu view_marker view_tablet view_mobile mobile">
 	<div class="ui simple dropdown item" style="width: 100%">
 		<i class="align justify icon"></i>
+		<span>Menu</span>
 		<div class="menu fifth-color">
 
 			@foreach($item->menu->menu_item as $singleItem)
