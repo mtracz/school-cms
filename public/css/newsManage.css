@@ -74,6 +74,7 @@
 
 	background-color: #282A2E !important;
 	color: white !important;
+	margin: 3px;
 }
 
 #manage_table.ui.table td.actions .ui.button i{

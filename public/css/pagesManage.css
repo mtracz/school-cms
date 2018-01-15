@@ -74,15 +74,21 @@
 	color: #282A2E;
 }
 
-#manage_table.ui.table td.actions .ui.button{
+#manage_table.ui.table td.actions .ui.button {
 
 	width: 40% !important;
 
 	background-color: #282A2E !important;
 	color: white !important;
+	margin: 3px;
 }
 
-#manage_table.ui.table td.actions .ui.button i{
+#manage_table.ui.table td.actions {
+	/*display: flex;*/
+	justify-content: center ;
+}
+
+#manage_table.ui.table td.actions .ui.button i {
 	
 }
 
@@ -96,6 +102,10 @@
 	color: white !important;
 }
 
+#manage_table.ui.table td.actions .ui.show.button:hover {
+	background-color: #EDB26A !important;
+	color: white !important;
+}
 
 .pagination_container {
 	display: block;

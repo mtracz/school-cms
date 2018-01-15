@@ -153,6 +153,8 @@
 
 				<div class="ui delete button" data-url="{{ route('page.delete.post', ['id' => $item->id])}}" data-inverted="" data-tooltip="Usuń" data-position="bottom center"> <i class="trash icon"></i> </div>
 
+				<div class="ui show button" data-url="{{ route('pages.show.get', ['slug' => $item->slug])}}" data-inverted="" data-tooltip="Pokaż" data-position="bottom center"> <i class="file text outline icon"></i> </div>
+
 			</td>
 		</tr>
 

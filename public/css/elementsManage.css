@@ -56,6 +56,7 @@
 
 	background-color: #282A2E !important;
 	color: white !important;
+	margin: 3px;
 }
 
 #sector_table.ui.table td.actions .ui.button i{
