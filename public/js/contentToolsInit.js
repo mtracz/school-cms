@@ -30,6 +30,8 @@ ContentTools.StylePalette.add([
     new ContentTools.Style('Wyśrodkuj', 'align-center', ['img', 'iframe']),
     new ContentTools.Style('Wyśrodkuj w lini', 'align-center-inline', ['img', 'iframe']),
 
+    new ContentTools.Style('Zaokrąglone rogi', 'border-radius', ['img', 'iframe']),
+
     new ContentTools.Style('Nie umieszczaj zdjęcia po lewej', 'image-off-left', ['p', 'a']),
     new ContentTools.Style('Nie umieszczaj zdjęcia po prawej', 'image-off-right', ['p', 'a']),
     new ContentTools.Style('Nie umieszczaj zdjęcia po bokach', 'image-off-both', ['p', 'a']),
