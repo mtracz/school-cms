@@ -34,17 +34,29 @@ $(window).ready( function() {
 	$(".ui.main.segment").removeAttr("style");
 	scaleBanner();
 	resizeBanner();	
+	adjustMenuAdmin();
 });
 
 $(window).resize(function () {
 	scaleBanner();
 	resizeBanner();	
 	layoutBuilder.build();
+	adjustMenuAdmin();
 });
 
 $(window).scroll(function() {
 	scrollFunction();
 });
+
+function adjustMenuAdmin() {
+	if($(window).width() < 1054) {
+		$("#menu_admin_mobile").addClass("view_computer").removeClass("hideElement");
+		$(".sixteen.wide.column.menuAdmin.view_marker.view_computer").hide();
+	} else {
+		$("#menu_admin_mobile").removeClass("view_computer").addClass("hideElement");
+		$(".sixteen.wide.column.menuAdmin.view_marker.view_computer").show();
+	}
+}
 
 function resizeBanner() {
 	if($(window).width() < 1120) {

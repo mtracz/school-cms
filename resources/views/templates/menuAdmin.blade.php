@@ -57,7 +57,7 @@
 
 <!-- MOBILE / TABLET MENU ADMIN -->
 
-<div class="ui inverted menu menuAdmin view_marker view_tablet view_mobile sticky_menu">
+<div class="ui inverted menu menuAdmin view_marker view_tablet view_mobile sticky_menu" id="menu_admin_mobile">
 	<div class="ui dropdown item" style="width: 100%">
 		<i class="align justify icon"></i>
 		<span>Panel administratora</span>
