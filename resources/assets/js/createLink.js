@@ -1,12 +1,12 @@
 
 
 //load news from server
-$(".ui.item.menuAdmin_news_links").on("click", function() {
+$(".ui.menuAdmin_news_links").on("click", function() {
 	getItemsViaAjax("news");
 });
 
 //load pages from server
-$(".ui.item.menuAdmin_pages_links").on("click", function() {
+$(".ui.menuAdmin_pages_links").on("click", function() {
 	getItemsViaAjax("pages");
 });
 
@@ -29,9 +29,12 @@ function getItemsViaAjax(item_type) {
 	})
 	//success
 	.then(function (response) {
+			$("#links_dropdown").empty();
+
 			$data = JSON.parse(response);
 			$.each($data, function(key, value) {
 				if(!checkIsValueInDropdown(key)) {
+
 			 		$("#links_dropdown").append("<option value="+ key +">"+ value +"</option>");
 			 	}
 			})				

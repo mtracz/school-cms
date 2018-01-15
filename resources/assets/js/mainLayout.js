@@ -121,7 +121,6 @@ function scaleBanner() {
 function scrollFunction() {
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         document.getElementById("go_top").style.display = "block";
-        console.log("scrollTop > 200");
     } else {
         document.getElementById("go_top").style.display = "none";
     }

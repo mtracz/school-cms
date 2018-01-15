@@ -12,7 +12,7 @@ input.addEventListener('change', function() {
 });
 
 //load files from server
-$(".ui.item.menuAdmin_add_file").on("click", function() {
+$(".ui.menuAdmin_add_file").on("click", function() {
 	getFilesViaAjax();
 });
 
@@ -150,7 +150,7 @@ function getFilesViaAjax() {
 	.then(function (response) {
 			$data = JSON.parse(response);
 			$.each($data, function(key, value) {
-				if(!checkIsValueInDropdown(key)) {
+				if(!checkIsValueInDropdown(key)) {					
 			 		$("#files_dropdown").append("<option value="+ key +">"+ value +"</option>");
 			 	}
 			})				
