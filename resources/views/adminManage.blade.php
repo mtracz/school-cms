@@ -21,7 +21,7 @@
 		@endslot
 
 		@slot("options")
-		 <div class="ui segment">
+		 <div class="ui options segment">
 			<button class="ui add_admin button" data-url="{{ route('admin.add.get') }}">
 				<i class="file icon"></i>Dodaj administratora
 			</button>

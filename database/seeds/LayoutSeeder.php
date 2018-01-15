@@ -36,15 +36,18 @@ class LayoutSeeder extends Seeder
             ["id" => "11", "site_sector_id" => 5, "order" => 2, "panel_id" => 3, "menu_id" => null, "is_enabled" => 1],           
             // oddziały gimnazjalne
             ["id" => "12", "site_sector_id" => 5, "order" => 3, "panel_id" => 4, "menu_id" => null, "is_enabled" => 1],
+            // projekt unijny
+            ["id" => "13", "site_sector_id" => 5, "order" => 4, "panel_id" => 9, "menu_id" => null, "is_enabled" => 1],
             // BIP
-            ["id" => "13", "site_sector_id" => 5, "order" => 5, "panel_id" => 5, "menu_id" => null, "is_enabled" => 1],
+            ["id" => "14", "site_sector_id" => 5, "order" => 5, "panel_id" => 5, "menu_id" => null, "is_enabled" => 1],
             // legnica z nia zawsze po drodze
-            ["id" => "14", "site_sector_id" => 5, "order" => 6, "panel_id" => 6, "menu_id" => null, "is_enabled" => 1],
+            ["id" => "15", "site_sector_id" => 5, "order" => 6, "panel_id" => 6, "menu_id" => null, "is_enabled" => 1],
             // poczta dla nauczycieli (office 365)
-            ["id" => "15", "site_sector_id" => 5, "order" => 7, "panel_id" => 7, "menu_id" => null, "is_enabled" => 1],
+            ["id" => "16", "site_sector_id" => 5, "order" => 7, "panel_id" => 7, "menu_id" => null, "is_enabled" => 1],
+            
             // DOWN
             // tu jestesmy (google map)
-            ["id" => "16", "site_sector_id" => 6, "order" => 1, "panel_id" => 8, "menu_id" => null, "is_enabled" => 1],
+            ["id" => "17", "site_sector_id" => 6, "order" => 1, "panel_id" => 8, "menu_id" => null, "is_enabled" => 1],
 
     	];
 
@@ -172,9 +175,7 @@ class LayoutSeeder extends Seeder
                 e-mail: <a href="mailto:sekretariat@sp9.legnica.eu">sekretariat@sp9.legnica.eu</a><br><br>
                 kontakt<br>
                 z administratorem strony:<br>
-                <a href="mailto:info@sp9.legnica.pl">info@sp9.legnica.pl</a><br>', "panel_type_id" => 4, "has_header" => 1],
-
-            // ["id" => "3", "name" => "Projekt unijny", "header" => "Projekt unijny", "content" => '<a href="images_old/articles/2017_18/Projekt_unijny.pdf"><img src="http://sp9.legnica.eu/images_old/articles/2017_18/PR.png"></a>', "panel_type_id" => 4, "has_header" => 1],
+                <a href="mailto:info@sp9.legnica.pl">info@sp9.legnica.pl</a><br>', "panel_type_id" => 4, "has_header" => 1],            
 
             ["id" => "4", "name" => "Oddziały gimnazjalne", "header" => "Oddziały gimnazjalne", "content" => '<a href="http://www.gim5leg.pl/"><img src="images_old/Oddzialy_gim1.png"></a><br><p style="text-align: justify;">Szkoła Podstawowa nr 9<br>Oddziały gimnazjalne<br>ul. Chojnowska 100<br>59-220 Legnica<br>tel.: 76 723 32 93<br></p>', "panel_type_id" => 4, "has_header" => 1],
 
@@ -185,6 +186,8 @@ class LayoutSeeder extends Seeder
             ["id" => "7", "name" => "Office 365", "header" => "Poczta dla nauczycieli", "content" => '<a href="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000006-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid+profile&state=OpenIdConnect.AuthenticationProperties%3dEZdPaSYlmnvfVeRXQbeslVs9i-mtuVTd8cGU7ObLaIjgpfasMMgPF0_Ys13ECmJgsumgInkvuVkE_0cpvWolIsmbmyqrtabB0-tWoY01rsEFI6sAb7AiD27iGYVhRIl6g8W6Bip4D0yRPibORWTIKIQmdXGtVYkK6XHEc0ad0t40i-7kO8na8w-zd596N0Ct&nonce=636409908781488413.MmE1MGI5NzMtOGI5Ny00Nzk1LWI1YzAtZDM3YmVlMDJhZDJkYTczYWMzYzItZGZkNy00YjlmLWE2ZTAtMDEwYjNiOTY3MDk0&redirect_uri=https%3a%2f%2fportal.office.com%2flanding&ui_locales=pl-PL&mkt=pl-PL&client-request-id=9b3310a9-fe8e-4901-b184-598f20a7e5e9&msafed=0"><img src="images_old/poczta.png"></a>', "panel_type_id" => 4, "has_header" => 1],
 
             ["id" => "8", "name" => "google_map", "header" => "Tu jesteśmy", "content" => '<iframe width="300" height="130" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.pl/maps?hl=pl&amp;lr=&amp;ie=UTF8&amp;q=sp+9+legnica&amp;fb=1&amp;split=1&amp;gl=pl&amp;cid=0,0,7333007650869757657&amp;ei=r_9NSuz9CpLm-Qbl6NCEBA&amp;source=embed&amp;ll=51.203562,16.14134&amp;spn=0.006295,0.006295&amp;output=embed"></iframe>', "panel_type_id" => 1, "has_header" => 1],
+
+            ["id" => "9", "name" => "Projekt unijny", "header" => "Projekt unijny", "content" => '<a href="images_old/articles/2017_18/Projekt_unijny.pdf"><img src="http://sp9.legnica.eu/images_old/articles/2017_18/PR.png"></a>', "panel_type_id" => 4, "has_header" => 1],
 
     	];
 

@@ -31,8 +31,9 @@ class StaticPagesSeeder extends Seeder
 				<br><b>Sekretariat</b> <br>
 				tel. 76 72 33 130 <br>
 				fax: 76 75 40 104 <br>
+				e-mail: <a href="mailto:sekretariat@sp9.legnica.eu">sekretariat@sp9.legnica.eu</a> <br><br>
 
-				<br><b>E-mail:</b> <br>
+				<br><b>Kontakt z administratorem strony:</b> <br>
 				<a href="mailto:info@sp9.legnica.pl">info@sp9.legnica.pl</a>
 				</td>
 
@@ -41,8 +42,7 @@ class StaticPagesSeeder extends Seeder
 
 				<td valign="top" style="min-width: 285px;">				
 				<b>Dyrektor szkoły</b> - mgr Katarzyna Hornicka
-				<br><br>
-				jest do Państwa dyspozycji:<br>- w poniedziałek: od 7.30 - 8.30<br>- w czwartek: od 14.30 - 15.30 <br>
+				<br><br>				
 				</td>
 				</tr>
 				</tbody>

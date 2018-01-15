@@ -33,13 +33,6 @@
 			@endif
 			</div>
 
-			{{-- <div id="query" data-query="{{ $query }}">
-			@if(isset($query))
-				{{ $query }}
-			@endif
-			</div> --}}
-			
-
 			<div class="ui options segment">
 				<form class="ui filters form" action="{{ route("news.manage.get") }}" method="get">
 					<div class="three fields">

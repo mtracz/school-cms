@@ -21,9 +21,10 @@
 			</div>
 
 			<div class="ui bottom right attached label fifth-color">
-
+				
 				<i class="user icon"></i>
 				{!! $item->admin->name !!}
+				 &nbsp; &nbsp; &nbsp; &nbsp;
 				<i class="calendar icon"></i>
 				{!! $item->published_at !!}
 				

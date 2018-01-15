@@ -43,9 +43,10 @@ class CopyOldNewsSeeder extends Seeder {
 				"expire_at" => $sp9_news_row["news_end"], 
 				"is_public" => 1,
 				"created_at" => $sp9_news_row["news_datestamp"],
+				// "created_at" => date("Y-m-d H:i:s", $sp9_news_row["news_datestamp"]),
 				"updated_at" => null,
-				"news_reads" => $sp9_news_row["news_reads"]]
-				);         
+				"news_reads" => $sp9_news_row["news_reads"]],
+				);
 		}
 
 		foreach ($news as $array) {

@@ -2,8 +2,28 @@
 	padding-top: 10px !important;
 }
 
+#left_sector img, iframe {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+.ui.left.sidebar img, iframe {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
 #right_sector {
 	padding-top: 10px !important;
+}
+
+#right_sector img, iframe {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+.ui.right.sidebar img, iframe {
+	max-width: 100% !important;
+	height: auto !important;
 }
 
 #bottom_sector {

@@ -1,8 +1,8 @@
-@extends("master")
+@extends("mainLayout")
 
 @section("styles")
-
-{!! Html::style("/css/settings.css") !!}
+	@parent
+	{!! Html::style("/css/settings.css") !!}
 
 @endsection
 
@@ -199,8 +199,7 @@
 @endsection
 
 @section("scripts")
-
-@parent
-{!!Html::script("js/settings.js")!!}
+	@parent
+	{!!Html::script("js/settings.js")!!}
 
 @endsection
