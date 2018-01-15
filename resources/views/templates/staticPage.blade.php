@@ -27,6 +27,7 @@
 					<div class="ui bottom right attached label fifth-color">
 						<i class="user icon"></i>
 						{!! $page->admin->name !!}
+						&nbsp;&nbsp;&nbsp;&nbsp;
 						<i class="calendar icon"></i>
 						{!! $page->published_at !!}
 					</div>

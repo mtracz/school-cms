@@ -38,7 +38,7 @@ class ElementsManageService {
 	}
 
 	public function buildMenu($editing_mode = false, $menu_id = null) {
-		
+	try {
 		if($editing_mode) {
 			$menuObject = Menu::find($menu_id);
 			$current_menu_order = $menuObject->element->order;
@@ -75,10 +75,13 @@ class ElementsManageService {
 				$url = $this->request_data["element_url_tab_" . $this->data_tab_for_tabs[$tab] . "_" . $order];
 
 				if(strpos($url, $domain) !== false) {			    
-				    $linkObject->url = $url;
+				    $linkObject->url = $url;	//znaleziono
 				} else {
-					//  // - redirect to other site					
-					$linkObject->url = "//" . $url;
+					//  // - redirect to other site
+					if($url.substring(0, 1).matches("/"))
+						$linkObject->url = $url;	//znaleziono
+					else
+						$linkObject->url = "//" . $url;	//nieznaleziono
 				}
 		
 				$linkObject->order = $order;
@@ -91,6 +94,10 @@ class ElementsManageService {
 		} else {
 			$this->addMenuToElements();
 		}
+	} catch (\Exception $e) {
+
+	}
+
 	}
 
 	protected function createMenuInDatabase($menu_name) {
