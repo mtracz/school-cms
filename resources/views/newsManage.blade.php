@@ -205,7 +205,7 @@
 
 			</td>
 		</tr>
-		<tr class="preview_content" data-id="{{ $item->id }}" style="display: none;">
+		<tr class="preview_content" data-id="{{ $item->id }}" style="display: none !important;">
 			<td colspan="{{ $columns_count }}">
 
 				@if(isset($news_pinned) && $item->id == $news_pinned->news_id)

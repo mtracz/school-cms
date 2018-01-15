@@ -56,6 +56,7 @@
 </div>
 
 <!-- MOBILE / TABLET MENU ADMIN -->
+
 <div class="ui inverted menu menuAdmin view_marker view_tablet view_mobile sticky_menu">
 	<div class="ui dropdown item" style="width: 100%">
 		<i class="align justify icon"></i>
@@ -63,31 +64,91 @@
 
 		<div class="menu mobile" id="mobile_menu">
 
-			<div class="ui list">
-				<a class="ui home" href="/">
-					<div class="item">
-						<i class="home icon"></i>
-						Strona główna
-					</div>
-				</a>
+
 				<div class="item">
-					<div>
-						<i class="newspaper icon"></i>
-						News
-					</div>
-					<div class="list">
-						<a class=" item" href="{{ route("news.manage.get") }}">
-							<!-- <div class="item"> -->
-							<i class="list layout icon"> Zarządzaj </i>
-							<!-- </div> -->
-						</a>
-						<a class=" item" href="{{ route("news.add.get") }}" >
-							<!-- <div class="item"> -->
-							<i class="plus icon"> Dodaj </i>
-							<!-- </div> -->
-						</a>
-					</div>
+					<a class="ui home" href="/">					
+						<i class="home icon"></i>
+						Strona główna					
+					</a>
 				</div>
+				<!-- NEWSY -->
+				<div class="item">
+					<a>
+						<i class="newspaper icon"></i>
+						News					
+					</a>
+				</div>
+					<div class="sub item">
+						<a class="" href="{{ route("news.manage.get") }}">					
+							<i class="list layout icon"></i>
+							Zarządzaj			
+						</a>
+					</div>
+					<div class="sub item">
+						<a class="" href="{{ route("news.add.get") }}" >						
+							<i class="plus icon"></i>
+							Dodaj 
+						</a>
+					</div>
+				<!-- STRONY -->
+				<div class="item">
+					<a>
+						<i class="sticky note icon"></i>
+						Strony					
+					</a>
+				</div>
+					<div class="sub item">
+						<a class="ui" href="{{ route("page.manage.get") }}">
+							<i class="list layout icon"></i>
+							Zarządzaj
+						</a>
+					</div>
+					<div class="sub item">
+						<a class="ui" href="{{ route("page.add.get") }}">
+							<i class="plus icon"></i>
+							Dodaj
+						</a>
+					</div>
+				<!-- PLIKI -->
+				<div class="item">
+					<a>
+						<i class="file text icon"></i>
+						Pliki				
+					</a>
+				</div>
+					<div class="sub item">
+						<a class="ui" href="{{ route("file.manage.get") }}">
+							<i class="list layout icon"></i>
+							Zarządzaj
+						</a>					
+						
+					</div>
+					<div class="sub item">
+						<a class="ui menuAdmin_add_file">
+							<i class="plus icon"></i>
+							Dodaj
+						</a>
+					</div>
+				<!-- LINKI -->
+				<div class="item">
+					<a>
+						<i class="linkify text icon"></i>
+						Linki				
+					</a>
+				</div>
+				<div class="sub item">
+					<a class="ui menuAdmin_news_links">
+						<i class="newspaper icon"></i>
+						Newsy
+					</a>
+				</div>
+				<div class="sub item">
+					<a class="ui menuAdmin_pages_links">
+						<i class="sticky note icon"></i>
+						Strony
+					</a>
+				</div>
+				
 
 				<div class="item">
 				<a class="ui site_sectors" href="{{ route("element.manage.get") }}">
@@ -118,8 +179,11 @@
 					Wyloguj
 				</a>
 				</div>
-			</div>
 
+			
+		</div>
+	</div>
+</div>
 			<!-- <a class="ui item home" href="/"><i class="home icon"></i>Strona główna</a>
 			
 			<div class="ui list">
@@ -134,7 +198,7 @@
 				</div>
 			</div>
 			<div class="item">Warranty</div> -->
-		</div>
+		
 
 		<!-- 	<div class="ui simple dropdown item news">
 			<i class="newspaper icon"></i>
@@ -185,8 +249,7 @@
 	
  -->
 		<!-- </div> -->
-	</div>
-</div>
+
 
 
 	{{-- MODAL ADD_FILE --}}

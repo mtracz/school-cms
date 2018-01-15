@@ -7,3 +7,8 @@
 #mobile_menu {
 	background-color:#353535;
 }
+
+
+#mobile_menu .sub.item {
+	margin-left: 50px;
+}

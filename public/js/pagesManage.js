@@ -7,6 +7,10 @@ $(".preview_toggle_button").on("click", function() {
 
 	console.log(obj);
 	$(obj).toggle( "fast", function() {} );
+	$(obj).toggleClass("visible");
+
+	if(!$(obj).hasClass("visible"))
+		$(obj).attr("style", "display: none !important");
 });
 
 

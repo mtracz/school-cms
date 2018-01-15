@@ -8,6 +8,10 @@ $(".preview_toggle_button").on("click", function() {
 
 	console.log(obj);
 	$(obj).toggle( "fast", function() {} );
+	$(obj).toggleClass("visible");
+
+	if(!$(obj).hasClass("visible"))
+		$(obj).attr("style", "display: none !important");
 });
 
 
@@ -275,19 +279,3 @@ function fillDatesInputs(params) {
 	$("#updated_at_date").calendar("set date", params["updated_at_date"] , true, true);
 	$("input[name='updated_at_date_parsed']").val(params["updated_at_date_parsed"]);
 }
-
-// $("a").on("click", function() {
-// 	event.preventDefault();
-
-// 	// let query_string = window.location.search;
-// 	// query_string = query_string.replace("?", "");
-// 	// alert(query_string);
-
-// 	let page = $(this).attr("href");
-// 	let query = $("#query").data("query");
-
-	
-// 	window.location.search = page + "test" +"&" + query;
-// 	//return false;
-// 	// $(this).atrr("href", x + query);
-// });

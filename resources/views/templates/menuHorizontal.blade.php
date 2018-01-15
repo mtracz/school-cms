@@ -34,6 +34,8 @@
 	@endforeach
 </div>
 
+<!-- MOBILE MENU -->
+
 <div class="ui menu view_marker view_tablet view_mobile mobile">
 	<div class="ui simple dropdown item" style="width: 100%">
 		<i class="align justify icon"></i>
