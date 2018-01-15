@@ -32,13 +32,13 @@ layoutBuilder.build();
 $(window).ready( function() {
 
 	$(".ui.main.segment").removeAttr("style");
-	// scaleBanner();
-	// resizeBanner();	
+	scaleBanner();
+	resizeBanner();	
 });
 
 $(window).resize(function () {
-	// scaleBanner();
-	// resizeBanner();	
+	scaleBanner();
+	resizeBanner();	
 	layoutBuilder.build();
 });
 

@@ -99,9 +99,9 @@ class LayoutSeeder extends Seeder
     	$links = [
             // menu główne
     		["id" => "1", "name" => "Strona główna", "url" => "/", "order" => 1, "menu_item_id" => 1],
-    		["id" => "2", "name" => "Dziennik", "url" => "https://uonetplus.vulcan.net.pl/Legnica", "order" => 2, "menu_item_id" => 2],
-    		["id" => "3", "name" => "Plan lekcji", "url" => "/plan/index.html", "order" => 3, "menu_item_id" => 3],
-    		["id" => "4", "name" => "Kontakt", "url" => "/pages/kontakt", "order" => 4, "menu_item_id" => 4],
+    		["id" => "2", "name" => "Dziennik", "url" => "https://uonetplus.vulcan.net.pl/Legnica", "order" => 1, "menu_item_id" => 2],
+    		["id" => "3", "name" => "Plan lekcji", "url" => "/plan/index.html", "order" => 1, "menu_item_id" => 3],
+    		["id" => "4", "name" => "Kontakt", "url" => "/pages/kontakt", "order" => 1, "menu_item_id" => 4],
             // --
             // menu Szkoła
     		["id" => "5", "name" => "Archiwum", "url" => "/archive", "order" => 1, "menu_item_id" => 5],

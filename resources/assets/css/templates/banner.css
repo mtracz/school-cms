@@ -27,7 +27,7 @@
 	position: relative;
 }
 
-/*.banner .content img {
+.banner .content img {
 	position: absolute;
 	margin: auto; 
 	min-height: 100%;
@@ -45,7 +45,7 @@
 	bottom: -100%;
 	left: -100%;
 	right: -100%;
-}*/
+}
 
 /* 1160px */
 
