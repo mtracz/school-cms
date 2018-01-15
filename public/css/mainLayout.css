@@ -347,3 +347,9 @@
 	margin: 0;
 }
 /**/
+
+/* top menu*/
+
+.top_menu {
+	width: fit-content;
+}
