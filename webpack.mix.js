@@ -45,7 +45,8 @@ mix.styles("resources/assets/css/maintenance.css", "public/css/maintenance.css")
 //mainLayout
 mix.styles("resources/assets/css/mainLayout.css", "public/css/mainLayout.css");
 mix.scripts("resources/assets/js/mainLayout.js", "public/js/mainLayout.js");
-mix.scripts("resources/assets/js/LayoutBuilder.js", "public/js/LayoutBuilder.js");
+
+mix.babel("resources/assets/js/LayoutBuilder.js", "public/js/LayoutBuilder.js");
 
 //form news page
 mix.scripts("resources/assets/js/formNewsPage.js", "public/js/formNewsPage.js");
@@ -77,7 +78,7 @@ mix.scripts("resources/assets/js/toastrOptions.js", "public/js/toastrOptions.js"
 
 //settings
 mix.styles("resources/assets/css/settings.css", "public/css/settings.css");
-mix.scripts("resources/assets/js/settings.js", "public/js/settings.js");
+mix.babel("resources/assets/js/settings.js", "public/js/settings.js");
 
 //file
 mix.scripts("resources/assets/js/addFile.js", "public/js/addFile.js");
@@ -85,21 +86,21 @@ mix.styles("resources/assets/css/addFile.css", "public/css/addFile.css");
 
 //news manage
 mix.styles("resources/assets/css/newsManage.css", "public/css/newsManage.css");
-mix.scripts("resources/assets/js/newsManage.js", "public/js/newsManage.js");
+mix.babel("resources/assets/js/newsManage.js", "public/js/newsManage.js");
 
 //pages manage
 mix.styles("resources/assets/css/pagesManage.css", "public/css/pagesManage.css");
-mix.scripts("resources/assets/js/pagesManage.js", "public/js/pagesManage.js");
+mix.babel("resources/assets/js/pagesManage.js", "public/js/pagesManage.js");
 
 //files manage
 mix.styles("resources/assets/css/filesManage.css", "public/css/filesManage.css");
-mix.scripts("resources/assets/js/filesManage.js", "public/js/filesManage.js");
+mix.babel("resources/assets/js/filesManage.js", "public/js/filesManage.js");
 
 //elements manage
 mix.styles("resources/assets/css/elementsManage.css", "public/css/elementsManage.css");
-mix.scripts("resources/assets/js/elementsManage.js", "public/js/elementsManage.js");
+mix.babel("resources/assets/js/elementsManage.js", "public/js/elementsManage.js");
 
-mix.scripts("resources/assets/js/DatabaseElementsUpdater.js", "public/js/DatabaseElementsUpdater.js");
+mix.babel("resources/assets/js/DatabaseElementsUpdater.js", "public/js/DatabaseElementsUpdater.js");
 
 //menu admin
 mix.styles("resources/assets/css/menuAdmin.css", "public/css/menuAdmin.css");
@@ -130,8 +131,8 @@ mix.scripts("resources/assets/js/templates/editTab.js", "public/js/editTab.js");
 mix.styles("resources/assets/css/templates/accessibilities.css", "public/css/accessibilities.css");
 mix.scripts("resources/assets/js/templates/accessibilities.js", "public/js/accessibilities.js");
 
-mix.scripts("resources/assets/js/templates/ColorSchemes.js", "public/js/ColorSchemes.js");
-mix.scripts("resources/assets/js/templates/ChangeFont.js", "public/js/ChangeFont.js");
+mix.babel("resources/assets/js/templates/ColorSchemes.js", "public/js/ColorSchemes.js");
+mix.babel("resources/assets/js/templates/ChangeFont.js", "public/js/ChangeFont.js");
 
 // info panel
 mix.styles("resources/assets/css/templates/info.css", "public/css/info.css");
@@ -150,13 +151,13 @@ mix.copy("node_modules/jquery-simplecolorpicker/jquery.simplecolorpicker.js", "p
 mix.copy("node_modules/jquery-simplecolorpicker/jquery.simplecolorpicker.css", "public/css");
 
 // fontManager
-mix.scripts("resources/assets/js/templates/fontManager.js", "public/js/fontManager.js");
+mix.babel("resources/assets/js/templates/fontManager.js", "public/js/fontManager.js");
 
 //createLink
 mix.scripts("resources/assets/js/createLink.js", "public/js/createLink.js");
 
 //panel add edit
-mix.scripts("resources/assets/js/addEditPanel.js", "public/js/addEditPanel.js");
+mix.babel("resources/assets/js/addEditPanel.js", "public/js/addEditPanel.js");
 mix.styles("resources/assets/css/addEditPanel.css", "public/css/addEditPanel.css");
 
 //magnifict popup
@@ -169,7 +170,7 @@ mix.styles("resources/assets/css/formAdmin.css", "public/css/formAdmin.css");
 
 //admins manage
 //mix.styles("resources/assets/css/pagesManage.css", "public/css/pagesManage.css");
-mix.scripts("resources/assets/js/adminsManage.js", "public/js/adminsManage.js");
+mix.babel("resources/assets/js/adminsManage.js", "public/js/adminsManage.js");
 
 //archive news
 mix.scripts("resources/assets/js/archiveNews.js", "public/js/archiveNews.js");

@@ -26,11 +26,11 @@
 	display:block;
 	overflow:auto;
 	padding: 10px ;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 #preview_content {
 	display:block;
 	overflow:auto;
-	text-align: center;
+	/*text-align: center;*/
 }

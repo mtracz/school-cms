@@ -78,7 +78,7 @@ class ViewController extends Controller {
 
 		if($news_pinned) {
 
-			$news = News::orderBy("published_at", "desc")
+			$news = News::with(["admin"])->orderBy("published_at", "desc")
 			->where("published_at", "<=", Carbon::now()->toDateTimeString())
 			->whereNull("expire_at")
 			->where("is_public","1")
@@ -92,7 +92,7 @@ class ViewController extends Controller {
 
 		} else {
 
-			$news = News::orderBy("published_at", "desc")
+			$news = News::with(["admin"])->orderBy("published_at", "desc")
 			->where("published_at", "<=", Carbon::now()->toDateTimeString())
 			->whereNull("expire_at")
 			->where("is_public","1")
@@ -431,14 +431,14 @@ class ViewController extends Controller {
 
 	public function getNewsAll() {
 
-		$news = News::orderBy("published_at", "desc")->get();
+		$news = News::with(["admin"])->orderBy("published_at", "desc")->get();
 
 		return $news;
 	}
 
 	public function getPagesAll() {
 
-		$pages = StaticPage::orderBy("created_at", "desc")->get();
+		$pages = StaticPage::with(["admin"])->orderBy("created_at", "desc")->get();
 
 		return $pages;
 	}
@@ -457,7 +457,7 @@ class ViewController extends Controller {
 	}
 
 	public function getPageView($slug) {
-		$page = StaticPage::where("slug", $slug)->where("is_public", true)->first();
+		$page = StaticPage::with(["admin"])->where("slug", $slug)->where("is_public", true)->first();
 		
 		if($page) {
 			return view("templates/staticPage")->with("page", $page);
@@ -468,7 +468,7 @@ class ViewController extends Controller {
 	}
 
 	public function getNewsView($slug) {
-		$news = News::where("slug", $slug)->where("is_public", true)->first();
+		$news = News::with(["admin"])->where("slug", $slug)->where("is_public", true)->first();
 		
 		if($news) {
 			$show_news = true;
@@ -501,7 +501,7 @@ class ViewController extends Controller {
 
 		$editing_mode = true;
 
-		$menuObject = Menu::find($id);
+		$menuObject = Menu::with("menu_item.link")->find($id);
 		
 		return view("elements.addMenu")
 		->with("sector_id", $sector_id)
@@ -512,14 +512,14 @@ class ViewController extends Controller {
 
 	public function getSiteSectorsAll() {
 
-		$site_sectors = SiteSector::all();
+		$site_sectors = SiteSector::with("orientation")->get();
 
 		return $site_sectors;
 	}
 
 	public function getElementsAll() {
 
-		$elements = Element::orderBy("order", "asc")->get();
+		$elements = Element::with(["panel.panel_type", "menu.menu_item.link", "site_sector.orientation"])->orderBy("order", "asc")->get();
 
 		return $elements;
 	}
@@ -532,7 +532,7 @@ class ViewController extends Controller {
 
 	public function getSiteMap() {
 
-		$menus = Menu::all();
+		$menus = Menu::with("menu_item.link")->get();
 
 		return view("templates.sitemap")
 		->with("menus", $menus);
@@ -566,7 +566,7 @@ class ViewController extends Controller {
 		$sector_id = $parameters["sector_id"] ?? "brak id sektora";
 		$sector_name = $parameters["sector_name"] ?? "brak nazwy sektora";
 
-		$panelObject = Panel::find($id);
+		$panelObject = Panel::with("panel_type")->find($id);
 		
 		return view("elements.addEditPanel")
 		->with("sector_id", $sector_id)
