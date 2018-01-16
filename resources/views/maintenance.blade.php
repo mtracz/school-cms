@@ -1,4 +1,4 @@
-@extends("master")
+@extends("mainLayout")
 
 @section("styles")
 	@parent

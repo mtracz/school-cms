@@ -33,17 +33,22 @@ class CopyOldNewsSeeder extends Seeder {
 			// REPLACE <TABLE to semantic ui table class
 			$temp_row = str_replace("<table", "<table class='ui table' ", $temp_row);
 
+
+			if($sp9_news_row["news_end"] > 0)
+				$expire_at = date("Y-m-d H:i:s", $sp9_news_row["news_end"]);
+			else
+				$expire_at = null;
+
 			array_push($news,
 				["id" => $sp9_news_row["news_id"],
 				"title" => $sp9_news_row["news_subject"],
 				"content" => $temp_row,
 				"slug" => str_slug($sp9_news_row["news_subject"] . $sp9_news_row["news_id"]),
 				"created_by" => 1,
-				"published_at" => $sp9_news_row["news_datestamp"],
-				"expire_at" => $sp9_news_row["news_end"], 
+				"published_at" => date("Y-m-d H:i:s", $sp9_news_row["news_datestamp"]),
+				"expire_at" => $expire_at,
 				"is_public" => 1,
-				"created_at" => $sp9_news_row["news_datestamp"],
-				// "created_at" => date("Y-m-d H:i:s", $sp9_news_row["news_datestamp"]),
+				"created_at" => date("Y-m-d H:i:s", $sp9_news_row["news_datestamp"]),
 				"updated_at" => null,
 				"news_reads" => $sp9_news_row["news_reads"]]
 				);
