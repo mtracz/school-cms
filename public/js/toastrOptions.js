@@ -1,1 +1,34 @@
-toastr.options={closeButton:!1,debug:!1,newestOnTop:!1,progressBar:!1,positionClass:"toast-top-right",preventDuplicates:!0,onclick:null,showDuration:"300",hideDuration:"1000",timeOut:"5000",extendedTimeOut:"1000",showEasing:"swing",hideEasing:"linear",showMethod:"fadeIn",hideMethod:"fadeOut"},$(document).ready(function(){$("#InfromationMessages > span").each(function(){"info"==$(this).attr("type")&&toastr.info($(this).attr("data-message")),"warning"==$(this).attr("type")&&toastr.warning($(this).attr("data-message")),"error"==$(this).attr("type")&&toastr.error($(this).attr("data-message")),"success"==$(this).attr("type")&&toastr.success($(this).attr("data-message"))})});
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": true,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+$(document).ready(function() {
+  $("#InfromationMessages > span").each(function() {  //master.blade
+    if($(this).attr("type") == "info") {
+      toastr.info($(this).attr("data-message"));
+    }
+    if($(this).attr("type") == "warning") {
+      toastr.warning($(this).attr("data-message"));
+    }
+    if($(this).attr("type") == "error") {
+      toastr.error($(this).attr("data-message"));
+    }
+    if($(this).attr("type") == "success") {
+      toastr.success($(this).attr("data-message"));
+    }
+  });
+});

@@ -1,1 +1,544 @@
-function countTabs(){for(menuObject.tabs=$(".tabular.menu .item").length,menuObject.data_tabs=[],i=0;i<=menuObject.tabs-1;i++){var e=i+1,t=$(".tabular.menu").find("[data-order='"+e+"']");menuObject.data_tabs[i]=t.attr("data-tab")}}function countElementsInEachTab(){for(menuObject.elements=[],console.log("tabs: "+menuObject.tabs),i=0;i<=menuObject.tabs-1;i++){var e=i+1,t=$(".tabs_content").find("[data-tab_content_order='"+e+"']"),a=$(t).find(".elements .fields").length;menuObject.elements[i]=a}}function renderElementsOrderArrows(){for(i=0;i<=menuObject.tabs-1;i++){tab_content_order=i+1;var e=$(".tabs_content").find("[data-tab_content_order='"+tab_content_order+"']"),t=$(e).find(".elements .actions");$.each(t,function(e,t){$(t).find(".ui.up.button").removeClass("disabled"),$(t).find(".ui.down.button").removeClass("disabled");var a=$(t).attr("data-element_order");1==a?$(t).find(".ui.up.button").addClass("disabled"):$(t).find(".ui.up.button").removeClass("disabled"),a==menuObject.elements[tab_content_order-1]?$(t).find(".ui.down.button").addClass("disabled"):$(t).find(".ui.down.button").removeClass("disabled")})}}function renderTabOrderArrows(){var e=$(".tab.arrows").find(".ui.icon.buttons");void 0!==active_tab?(1==active_tab?$(e).find(".ui.left.button").addClass("disabled"):$(e).find(".ui.left.button").removeClass("disabled"),active_tab==menuObject.tabs?$(e).find(".ui.right.button").addClass("disabled"):$(e).find(".ui.right.button").removeClass("disabled")):($(e).find(".ui.left.button").addClass("disabled"),$(e).find(".ui.right.button").addClass("disabled"))}function changeElementOrder(e,t){var a;"up"==e&&(a=parseInt(t)-1),"down"==e&&(a=parseInt(t)+1);var n=$(".tab.segment.active .elements").find("[data-order='"+a+"']"),i=$(".tab.segment.active .elements").find("[data-order='"+t+"']");$(n).attr("data-order",t),$(i).attr("data-order",a),$(n).find("[data-element_order='"+a+"']").attr("data-element_order",t),$(i).find("[data-element_order='"+t+"']").attr("data-element_order",a),$(i).find(".element_order").html(a),$(n).find(".element_order").html(t),"up"==e&&$(n).before(i),"down"==e&&$(n).after(i),renderElementsOrderArrows(),sortElements()}function changeTabOrder(e){var t;"left"==e&&(t=parseInt(active_tab)-1),"right"==e&&(t=parseInt(active_tab)+1);var a=$(".tabular.menu").find("[data-order='"+t+"']"),n=$(".tabular.menu").find("[data-order='"+active_tab+"']");$(a).attr("data-order",active_tab),$(n).attr("data-order",t);var i=$(".tabs_content").find("[data-tab_content_order='"+active_tab+"']"),d=$(".tabs_content").find("[data-tab_content_order='"+t+"']");$(i).attr("data-tab_content_order",t),$(d).attr("data-tab_content_order",active_tab),$(n).html(t),$(a).html(active_tab),"left"==e&&$(a).before(n),"right"==e&&$(a).after(n),active_tab=t,renderTabOrderArrows()}function sendMenuPromise(e){return new Promise(function(t,a){$.ajax(e).done(t).fail(a)})}function sendMenuViaAjax(e){var t=$("#menu_form").serializeArray();t.push({name:"tabs_count",value:menuObject.tabs}),t.push({name:"elements_in_tabs",value:menuObject.elements}),t.push({name:"data_tabs",value:menuObject.data_tabs});var a=$(".ui.centered.header.sector_info").attr("data-setctor_id");if(t.push({name:"sector_id",value:a}),!validateFormInputs(t))return toastr.error("<h2>Uzupełnij wszystkie pola.</h2>"),!1;sendMenuPromise({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},url:$("#menu_form").attr("action"),type:"POST",data:t}).then(function(t){"success"===t?window.location.replace(e):toastr.error("Problem z zapisem.")}).catch(function(e){console.log("ajax eero: "+e),alert("add menu ajax error: "+e)})}function validateFormInputs(e){for(i=0;i<e.length;i++)if(e[i].value.length<1)return!1;return!0}function deleteElementsIfIsNotDropdown(){menuObject.elements[active_tab-1]=1,$(".elements .fields").each(function(){var e=$(this).attr("data-order");e>1&&(element_to_remove=$(".elements").find("[data-order='"+e+"']"),deleteElement(element_to_remove))})}function showConfirmTabDeleteModal(e){$(".ui.delete.modal").modal({closable:!1,onDeny:function(){},onApprove:function(){deleteElement(e),deleteTabContent(),sortTabs(),active_tab=void 0,renderTabOrderArrows(),countTabs(),countElementsInEachTab()}}).modal("show")}function sortTabs(){var e=active_tab;$(".tabular.menu").children(".item").each(function(){var t=$(this).attr("data-order");if(t>e){$(this).attr("data-order",e),$(this).html(e);var a=$(".tabs_content").find("[data-tab_content_order='"+t+"']");$(a).attr("data-tab_content_order",e),e++}})}function sortElements(){var e=1;$(".segment.active .elements .fields").each(function(){$(this).attr("data-order",e),$(this).find(".actions").attr("data-element_order",e),$(this).find(".element_order").html(e);var t=$(this).find(".five.wide.field.name input"),a=$(this).find(".five.wide.field.url input");$(t).attr("name","element_name_tab_"+active_tab+"_"+e),$(a).attr("name","element_url_tab_"+active_tab+"_"+e),e++})}function deleteElement(e){$(e).remove()}function deleteTabContent(){$(".tabs_content .segment.active").remove()}function initTab(){$(".menu .item").tab()}function prepareTabContent(e,t,a){return'<div class="ui bottom attached tab segment" data-tab='+e+" data-tab_content_order="+t+'><div class="alert dropdown" hidden><i class="warning circle icon"></i>Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!</div><div class="three fields"><div class="inline fields"><div class="ui toggle checkbox"><input type="checkbox" class="hidden" name="is_dropdown_tab_'+e+'" id="is_dropdown_tab_'+e+'"><label>Dropdown</label></div></div><div class="inline fields"><div class="field dropdown_name" style="display: none;"><label>Nazwa</label ><input type="text" placeholder="Nazwa" name="item_name_tab_'+e+'" value="no checked"></div></div><div class="inline fields delete_item_div"><div class="ui negative button">Usuń</div></div></div><div class="elements"><div class="fields" data-order='+a+'><div class=" field"><div class="circular ui icon button order" disabled><span class="element_order">1</span></div></div><div class="five wide field name"><label>Nazwa</label><input type="text" placeholder="Nazwa elementu" name="element_name_tab_'+e+'_1"></div><div class="five wide field url"><label>URL</label><input type="text" placeholder="URL elementu" name="element_url_tab_'+e+'_1"></div><div class="field"><div class="ui icon buttons actions" data-element_order='+a+'><div class="ui negative button element_delete"><i class="remove icon"></i></div><div class="ui up button disabled"><i class="long arrow up icon"></i></div><div class="ui down button disabled"><i class="long arrow down icon"></i></div></div></div></div></div><div class="fourteen wide field add_new_element" hidden><div class="fluid ui positive button"><i class="plus icon"></i></div></div></div>'}function prepareElementInContent(e,t){return'<div class="fields" data-order='+t+'><div class=" field"><div class="circular ui icon button order" disabled><span class="element_order">'+t+'</span></div></div><div class="five wide field name"><label>Nazwa</label><input type="text" placeholder="Nazwa elementu" name="element_name_tab_'+e+"_"+t+'"></div><div class="five wide field url"><label>URL</label><input type="text" placeholder="URL elementu" name="element_url_tab_'+e+"_"+t+'"></div><div class="field"><div class="ui icon buttons actions" data-element_order='+t+'><div class="ui negative button element_delete"><i class="remove icon"></i></div><div class="ui up button"><i class="long arrow up icon"></i></div><div class="ui down button" ><i class="long arrow down icon"></i></div></div></div></div>'}var menuObject={tabs:0,elements:[],data_tabs:[]},active_tab;$(document).ready(function(){$(".column").removeClass().addClass(window.localStorage.getItem("newsWidth")+" wide column"),countTabs(),countElementsInEachTab(),initTab(),active_tab=$(".item.active").attr("data-order"),renderTabOrderArrows(),renderElementsOrderArrows()}),$(".tabular.menu").on("click",function(){active_tab=$(".tabular.menu").find(".item.active").attr("data-order"),console.log("all tabs: "+menuObject.tabs),console.log("active tab: "+active_tab),console.log("elements for active menu: "+menuObject.elements[active_tab-1]),renderTabOrderArrows()}),$("#add_tab").on("click",function(){menuObject.tabs+=1;var e=1;$(".tabs_content").children(".tab.segment").each(function(){var t=parseInt($(this).attr("data-tab"));e<t&&(e=t)}),e+=1;var t=menuObject.tabs;$(".add_tab_div").before('<a class="item " data-tab='+e+" data-order="+t+">"+t+"</a>");$(".tabs_content").append(prepareTabContent(e,t,1)),initTab(),$(".toggle.checkbox").checkbox(),countElementsInEachTab(),renderElementsOrderArrows()}),$(".tabs_content").on("click",".delete_item_div .button",function(){var e=$(".tabular.menu").find("[data-order='"+active_tab+"']");if(menuObject.tabs<2)return toastr.error("<h3>Nie można usunąć 1szego elementu.</h3>"),!1;showConfirmTabDeleteModal(e)}),$(".tabs_content").on("click",".toggle.checkbox",function(){var e=$(".tabular.menu .item.active").attr("data-tab");$("#is_dropdown_tab_"+e).is(":checked")?($(".tab.segment.active .add_new_element").show(),$(".tab.segment.active .alert.dropdown").show(),$(".tab.segment.active .dropdown_name").show(),$(".tab.segment.active .dropdown_name input").val(""),$(".tab.segment.active .dropdown_name input").attr("value","")):($(".tab.segment.active .add_new_element").hide(),$(".tab.segment.active .alert.dropdown").hide(),$(".tab.segment.active .dropdown_name").hide(),$(".tab.segment.active .dropdown_name input").val("no checked"),deleteElementsIfIsNotDropdown(),renderElementsOrderArrows(),sortElements())}),$(".tabs_content").on("click",".fourteen.wide.field",function(){elements=menuObject.elements[active_tab-1]+1,$(".tab.segment.active .elements").append(prepareElementInContent(active_tab,elements)),menuObject.elements[active_tab-1]+=1,sortElements(),renderElementsOrderArrows()}),$("body").on("click",".actions .element_delete",function(){var e=$(this).parent().attr("data-element_order");if(menuObject.elements[active_tab-1]<2)return toastr.error("<h3>Nie można usunąć 1szego elementu.</h3>"),!1;element_to_remove=$(".tab.segment.active .elements").find("[data-order='"+e+"']"),deleteElement(element_to_remove),menuObject.elements[active_tab-1]-=1,sortElements(),renderElementsOrderArrows()}),$(".tab.arrows .ui.left.button").on("click",function(){changeTabOrder("left"),initTab()}),$(".tab.arrows .ui.right.button").on("click",function(){changeTabOrder("right"),initTab()}),$("body").on("click",".actions .up.button",function(){changeElementOrder("up",$(this).parent().attr("data-element_order"))}),$("body").on("click",".actions .down.button",function(){changeElementOrder("down",$(this).parent().attr("data-element_order"))}),$(".button.save_menu").on("click",function(){countTabs(),countElementsInEachTab(),sendMenuViaAjax($(".route_to_elements_manage").attr("data-route_to_elements_manage"))}),$(".button.cancel").on("click",function(){var e=$(".route_to_elements_manage").attr("data-route_to_elements_manage");window.location.replace(e)});
+// menuAddEdit js
+
+var menuObject = {
+	//all tabs
+	tabs: 0,
+	// index from 0
+	elements: [],
+	//0 => x ; 		x elements for 0 (1) tab
+	data_tabs : [],
+};
+
+var active_tab;
+
+$(document).ready(function() {
+	// content width
+	$(".column").removeClass().addClass(window.localStorage.getItem("newsWidth") + " wide column" );
+	
+	countTabs();
+	countElementsInEachTab();
+	initTab();
+	active_tab = $(".item.active").attr("data-order");
+	renderTabOrderArrows();
+	renderElementsOrderArrows();
+
+});
+
+
+function countTabs() {
+	menuObject.tabs = $(".tabular.menu .item").length;
+
+	menuObject.data_tabs = [];
+// map 'data-tab' to 'data-order' tab
+	for(i = 0; i <= menuObject.tabs - 1; i++) {
+		
+		var order = i + 1;
+		var tab = $(".tabular.menu").find("[data-order='" + order + "']");
+
+		menuObject.data_tabs[i] = tab.attr("data-tab");		
+	}
+}
+
+function countElementsInEachTab() {
+	menuObject.elements = [];
+	console.log("tabs: " +menuObject.tabs);
+	for(i = 0; i <= menuObject.tabs - 1; i++) {
+		//i = tab
+		var tab_content_order = i + 1;
+
+		var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_content_order + "']");
+
+		var elements = $(tab_content).find(".elements .fields").length;
+
+		menuObject.elements[i] = elements;
+	}
+}
+
+
+// track active tab
+$(".tabular.menu").on("click", function() {
+	active_tab = $(".tabular.menu").find(".item.active").attr("data-order");
+	console.log("all tabs: " + menuObject.tabs);
+	console.log("active tab: " + active_tab);
+	console.log("elements for active menu: " + menuObject.elements[active_tab - 1]);
+	renderTabOrderArrows();
+});
+
+// add tab
+$("#add_tab").on("click", function() {
+
+	 menuObject.tabs += 1;
+
+	var last_data_tab_number = 1;
+
+	$('.tabs_content').children(".tab.segment").each(function () {
+		var num = parseInt($(this).attr("data-tab"));
+		if (last_data_tab_number < num) {
+			last_data_tab_number = num;
+		}
+	});
+	last_data_tab_number += 1;
+
+	var last_tab_order = menuObject.tabs;
+
+	$(".add_tab_div").before('<a class="item " data-tab='+last_data_tab_number+' data-order='+last_tab_order+'>'+last_tab_order+'</a>');
+	var elements_in_tab = 1;
+	$(".tabs_content").append(prepareTabContent(last_data_tab_number, last_tab_order, elements_in_tab));
+	
+	initTab();
+	$(".toggle.checkbox").checkbox();
+	countElementsInEachTab();
+	renderElementsOrderArrows();
+});
+
+// delete tab
+$(".tabs_content").on("click", ".delete_item_div .button", function() {
+	var tab = $(".tabular.menu").find("[data-order='" + active_tab + "']");
+
+	if(menuObject.tabs < 2) {
+		toastr.error("<h3>Nie można usunąć 1szego elementu.</h3>");
+		return false;
+	}
+	showConfirmTabDeleteModal(tab);
+});
+
+
+// DROPDOWN
+$(".tabs_content").on("click", ".toggle.checkbox", function() {
+	var x = $(".tabular.menu .item.active").attr("data-tab");
+	if($("#is_dropdown_tab_"+ x).is(":checked")) {
+		$(".tab.segment.active .add_new_element").show();	
+		$(".tab.segment.active .alert.dropdown").show();
+		$(".tab.segment.active .dropdown_name").show();
+		$(".tab.segment.active .dropdown_name input").val("");
+		$(".tab.segment.active .dropdown_name input").attr("value", "");
+	} else {
+		$(".tab.segment.active .add_new_element").hide();
+		$(".tab.segment.active .alert.dropdown").hide();
+		$(".tab.segment.active .dropdown_name").hide();	
+		$(".tab.segment.active .dropdown_name input").val("no checked");
+		deleteElementsIfIsNotDropdown();
+		renderElementsOrderArrows();
+		sortElements();
+	}
+});
+
+
+// ELEMENTS
+
+// add element in tab
+$(".tabs_content").on("click", ".fourteen.wide.field", function() {
+	// var elements = $(".tab.segment.active .elements .fields").length ;
+	elements = menuObject.elements[active_tab - 1] + 1;
+	$(".tab.segment.active .elements").append(prepareElementInContent(active_tab, elements));
+	menuObject.elements[active_tab - 1] += 1;
+	sortElements();
+	renderElementsOrderArrows();
+});
+
+// delete element in tab
+$("body").on("click", ".actions .element_delete", function() {
+	var element_num = $(this).parent().attr("data-element_order");
+	if(menuObject.elements[active_tab - 1] < 2) {
+		toastr.error("<h3>Nie można usunąć 1szego elementu.</h3>");
+		return false;
+	}
+
+	element_to_remove = $(".tab.segment.active .elements").find("[data-order='" + element_num + "']");
+	deleteElement(element_to_remove);
+	menuObject.elements[active_tab - 1] -= 1;
+	sortElements();
+	renderElementsOrderArrows();
+});
+
+
+function renderElementsOrderArrows() {
+
+	for(i = 0; i <= menuObject.tabs - 1; i++) {
+		//i = tab
+		tab_content_order = i + 1;
+		var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_content_order + "']");
+
+		var element_arrows = $(tab_content).find(".elements .actions");
+
+		$.each(element_arrows, function(index, elem) {
+			$(elem).find(".ui.up.button").removeClass("disabled");
+			$(elem).find(".ui.down.button").removeClass("disabled");
+
+			var element_order = $(elem).attr("data-element_order");
+
+			if(element_order == 1) {
+				$(elem).find(".ui.up.button").addClass("disabled");
+			} else {
+				$(elem).find(".ui.up.button").removeClass("disabled");
+			}			
+			
+			if(element_order == menuObject.elements[tab_content_order - 1]) {
+				$(elem).find(".ui.down.button").addClass("disabled");
+			} else {
+				$(elem).find(".ui.down.button").removeClass("disabled");
+			}
+		});
+
+	}     
+}
+
+function renderTabOrderArrows() {
+    var tab_menu_arrows = $(".tab.arrows").find(".ui.icon.buttons");
+    	if(typeof active_tab != 'undefined') {
+    		if(active_tab == 1) {
+    			$(tab_menu_arrows).find(".ui.left.button").addClass("disabled");
+    		} else {
+    			$(tab_menu_arrows).find(".ui.left.button").removeClass("disabled");
+    		}
+
+    		if(active_tab == menuObject.tabs) {
+    			$(tab_menu_arrows).find(".ui.right.button").addClass("disabled");
+    		} else {
+    			$(tab_menu_arrows).find(".ui.right.button").removeClass("disabled");
+    		}
+    	} else {
+    		$(tab_menu_arrows).find(".ui.left.button").addClass("disabled");
+   			$(tab_menu_arrows).find(".ui.right.button").addClass("disabled");
+    	}       
+}
+
+// TABS order
+// left
+$(".tab.arrows .ui.left.button").on("click", function() {
+	changeTabOrder("left");
+	initTab();
+});
+// tab right
+$(".tab.arrows .ui.right.button").on("click", function() {
+	changeTabOrder("right");
+	initTab();
+});
+
+// ELEMENTS order
+// up
+$("body").on("click", ".actions .up.button", function() {
+	var element_order = $(this).parent().attr("data-element_order");
+	changeElementOrder("up", element_order);
+});
+// down
+$("body").on("click", ".actions .down.button", function() {
+	var element_order = $(this).parent().attr("data-element_order");
+	changeElementOrder("down", element_order);
+});
+
+function changeElementOrder(direction, element_order) {
+	var order;
+
+	if(direction == "up") {
+		order = parseInt(element_order) - 1;
+
+	}
+	if(direction == "down") {
+		order = parseInt(element_order) + 1;
+	}
+
+	var element_to_toggle = $(".tab.segment.active .elements").find("[data-order='"+ order +"']");
+	var current_element = $(".tab.segment.active .elements").find("[data-order='"+ element_order +"']");
+
+	$(element_to_toggle).attr("data-order", element_order);
+	$(current_element).attr("data-order", order);
+
+	$(element_to_toggle).find("[data-element_order='"+ order +"']").attr("data-element_order", element_order);
+	$(current_element).find("[data-element_order='"+ element_order +"']").attr("data-element_order", order);
+
+
+	$(current_element).find(".element_order").html(order);
+	$(element_to_toggle).find(".element_order").html(element_order);
+
+	if(direction == "up") {
+		$(element_to_toggle).before(current_element);
+	}
+	if(direction == "down") {
+		$(element_to_toggle).after(current_element);
+	}
+	renderElementsOrderArrows();
+	sortElements();
+}
+
+function changeTabOrder(direction) {
+	var order;
+
+	if(direction == "left") {
+		order = parseInt(active_tab) - 1;
+	}
+	if(direction == "right") {
+		order = parseInt(active_tab) + 1;
+	}
+
+	var element_to_toggle = $(".tabular.menu").find("[data-order='"+ order +"']");
+	var current_element = $(".tabular.menu").find("[data-order='"+ active_tab +"']");
+
+	$(element_to_toggle).attr("data-order", active_tab);
+	$(current_element).attr("data-order", order);
+
+	//change data-tab_content_order
+	var current_tab_content = $(".tabs_content").find("[data-tab_content_order='" + active_tab + "']");
+	var tab_content_to_toggle = $(".tabs_content").find("[data-tab_content_order='" + order + "']");
+
+	$(current_tab_content).attr("data-tab_content_order", order);
+	$(tab_content_to_toggle).attr("data-tab_content_order", active_tab);
+
+	// pieprzy taby
+	// $(element_to_toggle).attr("data-tab", active_tab);
+	// $(current_element).attr("data-tab", order);
+
+	$(current_element).html(order);
+	$(element_to_toggle).html(active_tab);
+
+	if(direction == "left") {
+		$(element_to_toggle).before(current_element);
+	}
+	if(direction == "right") {
+		$(element_to_toggle).after(current_element);
+	}
+	active_tab = order;
+	renderTabOrderArrows();
+}
+
+
+$(".button.save_menu").on("click", function() {
+	countTabs();
+	countElementsInEachTab();
+	var redirect_url = $(".route_to_elements_manage").attr("data-route_to_elements_manage");
+	sendMenuViaAjax(redirect_url);
+});
+
+$(".button.cancel").on("click", function() {
+	var redirect_url = $(".route_to_elements_manage").attr("data-route_to_elements_manage");
+	window.location.replace(redirect_url);
+});
+
+function sendMenuPromise(options) {
+	return new Promise(function(resolve, reject) {
+		$.ajax(options).done(resolve).fail(reject);
+	});
+}
+
+function sendMenuViaAjax(redirect_url) {
+	var form = $("#menu_form").serializeArray();
+	form.push({ name: "tabs_count", value: menuObject.tabs});
+	form.push({ name: "elements_in_tabs", value: menuObject.elements});
+	form.push({ name: "data_tabs", value: menuObject.data_tabs});
+
+	var sector_id = $(".ui.centered.header.sector_info").attr("data-setctor_id");
+	form.push({ name: "sector_id", value: sector_id});
+
+	if(!validateFormInputs(form)) {
+		toastr.error("<h2>Uzupełnij wszystkie pola.</h2>");
+		return false;
+	}
+
+	sendMenuPromise({
+		headers: {
+			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+		},
+		url: $("#menu_form").attr("action"),
+		type: "POST",
+		data: form,
+	})
+	.then(function (response) {
+		if(response === "success") {
+			window.location.replace(redirect_url);
+		} else {
+			toastr.error("Problem z zapisem.")
+		}
+	
+	})
+	.catch(function(error) {
+		console.log("ajax eero: "+ error);
+		alert("add menu ajax error: " + error);
+	});
+}
+
+function validateFormInputs(form_serialize) {
+	for(i = 0; i < form_serialize.length; i++) {
+		// console.log(form_serialize[i].value);
+		// console.log(form_serialize[i].value.length);
+		// console.log(form_serialize[i].value.length >= 1);
+		if(form_serialize[i].value.length < 1) {
+			// alert("NULL IN FORM");
+			return false;
+		}
+	}
+	// alert("FORM CORECT");
+		return true;
+}
+
+function deleteElementsIfIsNotDropdown() {
+	menuObject.elements[active_tab - 1] = 1;
+	$('.elements .fields').each(function() { 
+		var element_order = $(this).attr("data-order");
+		if(element_order > 1) {
+			element_to_remove = $(".elements").find("[data-order='" + element_order + "']");	
+			deleteElement(element_to_remove);
+		}
+	});	
+}	
+
+function showConfirmTabDeleteModal(element_to_delete) {
+	$('.ui.delete.modal')
+	.modal({
+		// detachable: false,
+		closable  : false,
+		// onHide	  : function() {
+		// 	$(this).modal("hide dimmer");
+		// },
+		onDeny    : function() {
+
+		},
+		onApprove : function() {
+			deleteElement(element_to_delete);
+			deleteTabContent();
+			sortTabs();	
+			active_tab = undefined;
+			renderTabOrderArrows();
+			countTabs();
+			countElementsInEachTab();
+		},
+	})
+	.modal('show');
+}
+
+function sortTabs() {
+	var deleted_tab = active_tab;
+
+	$('.tabular.menu').children(".item").each(function () {
+		var tab_number = $(this).attr("data-order");
+
+		if(tab_number > deleted_tab) {				
+			$(this).attr("data-order", deleted_tab);
+			$(this).html(deleted_tab);
+
+			var tab_content = $(".tabs_content").find("[data-tab_content_order='" + tab_number + "']");
+			$(tab_content).attr("data-tab_content_order", deleted_tab);
+			deleted_tab++;		
+		}	
+	});
+}
+
+function sortElements() {
+	var order = 1;
+	$('.segment.active .elements .fields').each(function() { 		
+		$(this).attr("data-order", order);
+		$(this).find(".actions").attr("data-element_order", order);
+		$(this).find(".element_order").html(order);
+
+		// sort input's name
+		var input_name = $(this).find(".five.wide.field.name input");
+		var input_url = $(this).find(".five.wide.field.url input");
+
+		$(input_name).attr('name', 'element_name_tab_'+active_tab+'_'+order);
+		$(input_url).attr('name', 'element_url_tab_'+active_tab+'_'+order);
+		order++;
+	});
+}
+
+
+function deleteElement(element) {
+	$(element).remove();
+}
+
+function deleteTabContent() {
+	$(".tabs_content .segment.active").remove();
+}
+
+function initTab() {
+	$('.menu .item').tab();
+}
+
+
+function prepareTabContent(tab_id, tab_order, elements_in_tab) {
+	var tab_draft = '<div class="ui bottom attached tab segment" data-tab='+tab_id+' data-tab_content_order='+tab_order+'>'+
+					'<div class="alert dropdown" hidden>'+
+						'<i class="warning circle icon"></i>'+
+						'Po odznaczeniu zostanie tylko 1szy element. Reszta zostanie usunięta!'+
+					'</div>'+
+					'<div class="three fields">'+
+						'<div class="inline fields">'+
+							'<div class="ui toggle checkbox">'+
+								'<input type="checkbox" class="hidden" name="is_dropdown_tab_'+tab_id+'" id="is_dropdown_tab_'+tab_id+'">'+
+								'<label>Dropdown</label>'+
+							'</div>'+
+						'</div>'+
+						'<div class="inline fields">'+
+							'<div class="field dropdown_name" style="display: none;">'+
+								'<label>Nazwa</label >'+
+								'<input type="text" placeholder="Nazwa" name="item_name_tab_'+tab_id+'" value="no checked">'+
+							'</div>'+
+						'</div>'+
+						'<div class="inline fields delete_item_div">'+
+								'<div class="ui negative button">'+
+									'Usuń'+
+								'</div>'+
+							'</div>'+
+					'</div>'+
+					'<div class="elements">'+
+						'<div class="fields" data-order='+elements_in_tab+'>'+
+							'<div class=" field">'+
+								'<div class="circular ui icon button order" disabled>'+
+								'<span class="element_order">1</span>'+
+								'</div>'+
+							'</div>'+
+							'<div class="five wide field name">'+
+								'<label>Nazwa</label>'+
+								'<input type="text" placeholder="Nazwa elementu" name="element_name_tab_'+tab_id+'_1">'+
+							'</div>'+
+							'<div class="five wide field url">'+
+								'<label>URL</label>'+
+								'<input type="text" placeholder="URL elementu" name="element_url_tab_'+tab_id+'_1">'+
+							'</div>'+
+							'<div class="field">'+
+								'<div class="ui icon buttons actions" data-element_order='+elements_in_tab+'>'+
+									'<div class="ui negative button element_delete"><i class="remove icon"></i>'+
+									'</div>'+
+									'<div class="ui up button disabled"><i class="long arrow up icon"></i>'+
+									'</div>'+
+									'<div class="ui down button disabled"><i class="long arrow down icon"></i>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+					'<div class="fourteen wide field add_new_element" hidden>'+
+						'<div class="fluid ui positive button"><i class="plus icon"></i>'+
+						'</div>'+
+					'</div>'+
+				'</div>';
+	return tab_draft;
+}
+
+function prepareElementInContent(active_tab_num, all_elements_num) {
+	var element_draft = 
+						'<div class="fields" data-order='+all_elements_num+'>'+
+							'<div class=" field">'+
+								'<div class="circular ui icon button order" disabled>'+
+								'<span class="element_order">'+all_elements_num+'</span>'+
+								'</div>'+
+							'</div>'+
+							'<div class="five wide field name">'+
+								'<label>Nazwa</label>'+
+								'<input type="text" placeholder="Nazwa elementu" name="element_name_tab_'+active_tab_num+'_'+all_elements_num+'">'+
+							'</div>'+
+							'<div class="five wide field url">'+
+								'<label>URL</label>'+
+								'<input type="text" placeholder="URL elementu" name="element_url_tab_'+active_tab_num+'_'+all_elements_num+'">'+
+							'</div>'+
+							'<div class="field">'+
+								'<div class="ui icon buttons actions" data-element_order='+all_elements_num+'>'+
+									'<div class="ui negative button element_delete"><i class="remove icon"></i>'+
+									'</div>'+
+									'<div class="ui up button"><i class="long arrow up icon"></i>'+
+									'</div>'+
+									'<div class="ui down button" ><i class="long arrow down icon"></i>'+
+									'</div>'+
+								'</div>'+
+								'</div>'+
+						'</div>';
+	return element_draft;
+}

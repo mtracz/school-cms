@@ -33,6 +33,9 @@ class CopyOldNewsSeeder extends Seeder {
 			// REPLACE <TABLE to semantic ui table class
 			$temp_row = str_replace("<table", "<table class='ui table' ", $temp_row);
 
+			
+			$temp_row = str_replace("/images", "/images_old", $temp_row);
+
 
 			if($sp9_news_row["news_end"] > 0)
 				$expire_at = date("Y-m-d H:i:s", $sp9_news_row["news_end"]);

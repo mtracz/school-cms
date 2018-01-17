@@ -120,7 +120,7 @@ class ManageAdminService {
 	}
 
 	protected function validateData() {
-		$validator = Validator::make($this->adminData, $this->getValidateRules($edit_mode), $this->errorMessages);
+		$validator = Validator::make($this->adminData, $this->getValidateRules(), $this->errorMessages);
 			if($validator->passes()) {
 				$this->isValidated = true;
 			} else {

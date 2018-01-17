@@ -48,7 +48,7 @@ class StaticPagesSeeder extends Seeder
 				</tbody>
 				</table>
 
-				<img class="align-left" src="http://sp9.legnica.pl/images/szkola.jpg" title="Szkoła Podstawowa nr 9 w Legnicy" 
+				<img class="align-left" src="http://sp9.legnica.pl/images_old/szkola.jpg" title="Szkoła Podstawowa nr 9 w Legnicy" 
 				style="width: 200px">
 
 				<iframe class="align-left" width="200" height="130" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.pl/maps?hl=pl&amp;lr=&amp;ie=UTF8&amp;q=sp+9+legnica&amp;fb=1&amp;split=1&amp;gl=pl&amp;cid=0,0,7333007650869757657&amp;ei=r_9NSuz9CpLm-Qbl6NCEBA&amp;source=embed&amp;ll=51.203562,16.14134&amp;spn=0.006295,0.006295&amp;output=embed">

@@ -1,1 +1,8 @@
-function enableEdit(t){var e=$(t).closest(".panel");$(e).find(".editMe").attr("data-editable",""),runContentTools()}
+function enableEdit(x) {
+
+	var parent = $(x).closest(".panel");
+
+	$(parent).find(".editMe").attr("data-editable","");
+
+	runContentTools();
+};

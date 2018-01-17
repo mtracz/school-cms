@@ -55,7 +55,7 @@ class FileService {
 		if($this->is_file_valid) {
 			$this->checkSlug();
 			if($this->is_slug_unique) {
-				$this->file->move(public_path($this->filePathOnServer), $this->file_name);
+				$this->file->move($this->filePathOnServer, $this->file_name);
 				$this->is_file_saved = true;
 			} else {
 				array_push($this->errors, "Istnieje już plik o takiej samej nazwie");

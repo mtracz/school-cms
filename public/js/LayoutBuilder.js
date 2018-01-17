@@ -1,1 +1,118 @@
-function LayoutBuilder(){var e=this;this.build=function(){e.toggleElementsBasedOnViewportGroup(),e.sizeContentSector()},this.sizeContentSector=function(){e.toggleSectors();var t=$(".row_container > :not(.hideElement)").length;switch(console.log("Enabled sectors: "+t),t){case 1:$("#content_sector").removeClass().addClass("sixteen wide column sector"),window.localStorage.setItem("newsWidth","sixteen");break;case 2:$("#content_sector").removeClass().addClass("thirteen wide column sector"),window.localStorage.setItem("newsWidth","thirteen");break;case 3:$("#content_sector").removeClass().addClass("ten wide column sector"),window.localStorage.setItem("newsWidth","ten")}},this.toggleSectors=function(){$(".sector").each(function(){"bottom_sector"==$(this).attr("id")?0==$(this).find(".ui.grid").children().length?$(this).addClass("hideElement"):$(this).removeClass("hideElement"):0==$(this).children().length?$(this).addClass("hideElement"):$(this).removeClass("hideElement")})},this.toggleElementsBasedOnViewportGroup=function(){var t=e.specifyCurrentViewportGroupName();e.saveToLocalStorage(t),console.log("ViewportGroupName : "+t),$(".view_marker").each(function(e){console.log("view_marker element:",$(this)),$(this).hasClass(t)?($(this).hasClass("sector")||$(this).addClass("sector"),$(this).removeClass("hideElement")):($(this).hasClass("sector")&&$(this).removeClass("sector"),$(this).addClass("hideElement"))})},this.specifyCurrentViewportGroupName=function(){var t,s=e.getViewportWidth();return viewportGroups.forEach(function(e,o){s>=e.min&&s<=e.max&&(t=e.name)}),t},this.saveToLocalStorage=function(e){window.localStorage.setItem("viewportGroupName",e)},this.getViewportWidth=function(){return $(window).width()},this.message=function(){console.log(viewportGroups)}}
+function LayoutBuilder() {
+	var _this = this;
+
+	this.build = function () {
+
+		_this.toggleElementsBasedOnViewportGroup();
+
+		_this.sizeContentSector();
+	};
+
+	this.sizeContentSector = function () {
+
+		_this.toggleSectors();
+
+		var enabledSectors = $(".row_container > :not(.hideElement)").length;
+
+		console.log("Enabled sectors: " + enabledSectors);
+
+		switch (enabledSectors) {
+			case 1:
+				$("#content_sector").removeClass().addClass("sixteen wide column sector");
+				window.localStorage.setItem("newsWidth", "sixteen");
+				break;
+
+			case 2:
+				$("#content_sector").removeClass().addClass("thirteen wide column sector");
+				window.localStorage.setItem("newsWidth", "thirteen");
+				break;
+
+			case 3:
+				$("#content_sector").removeClass().addClass("ten wide column sector");
+				window.localStorage.setItem("newsWidth", "ten");
+				break;
+		}
+	};
+
+	this.toggleSectors = function () {
+
+		$(".sector").each(function () {
+			if ($(this).attr("id") == "bottom_sector") {
+
+				if ($(this).find(".ui.grid").children().length == 0) {
+					$(this).addClass("hideElement");
+				} else {
+					$(this).removeClass("hideElement");
+				}
+			} else {
+				if ($(this).children().length == 0) {
+					$(this).addClass("hideElement");
+				} else {
+					$(this).removeClass("hideElement");
+				}
+			}
+		});
+	};
+
+	this.toggleElementsBasedOnViewportGroup = function () {
+
+		var viewportGroupName = _this.specifyCurrentViewportGroupName();
+
+		_this.saveToLocalStorage(viewportGroupName);
+
+		console.log("ViewportGroupName : " + viewportGroupName);
+
+		$(".view_marker").each(function (index) {
+
+			console.log("view_marker element:", $(this));
+
+			if ($(this).hasClass(viewportGroupName)) {
+
+				if (!$(this).hasClass("sector")) {
+					$(this).addClass("sector");
+				}
+
+				$(this).removeClass("hideElement");
+			} else {
+
+				if ($(this).hasClass("sector")) {
+					$(this).removeClass("sector");
+				}
+
+				$(this).addClass("hideElement");
+			}
+		});
+	};
+
+	this.specifyCurrentViewportGroupName = function () {
+
+		var width = _this.getViewportWidth();
+
+		var name;
+
+		viewportGroups.forEach(function (element, index) {
+
+			if (width >= element.min && width <= element.max) {
+
+				name = element.name;
+			}
+		});
+
+		return name;
+	};
+
+	this.saveToLocalStorage = function (viewportGroupName) {
+
+		window.localStorage.setItem("viewportGroupName", viewportGroupName);
+	};
+
+	this.getViewportWidth = function () {
+
+		return $(window).width();
+	};
+
+	this.message = function () {
+
+		console.log(viewportGroups);
+	};
+};

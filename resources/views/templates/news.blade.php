@@ -18,9 +18,9 @@
 
 			<div class="content editMe" data-id={{ $item->id }}>
 				{!! $item->content !!}	
+				<div class="distance"></div>
 			</div>
-
-			<div class="ui bottom right attached label fifth-color">
+			<div class="ui bottom right attached label fifth-color news_owner_date_field">
 				
 				<i class="user icon"></i>
 				{!! $item->admin->name !!}

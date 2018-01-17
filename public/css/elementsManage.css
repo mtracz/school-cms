@@ -1,1 +1,196 @@
-.air_bag{margin-top:50px}.ui.fixed.table td{overflow:visible!important}#sector_table.ui.table{min-width:100%;border-radius:0;-webkit-box-shadow:0 2px 10px -2px rgba(0,0,0,.6);-moz-box-shadow:0 2px 10px -2px rgba(0,0,0,.6);box-shadow:0 5px 20px -2px rgba(0,0,0,.6)}#sector_table.ui.table tr.order.disable td{background-color:#d1d3d6;color:#928d96}#sector_table.ui.table tr td{background-color:#a9c7d7;border-top:1px solid #282a2e}#sector_table.ui.table tr:hover td{background-color:#bad3e0}#sector_table.ui.table tr.pinned td{background-color:#83b9df;color:#fff}.ui.button.preview_toggle_button{background-color:#282a2e;color:#fff}.ui.button.preview_toggle_button:hover{background-color:#fff;color:#282a2e}#sector_table.ui.table td.actions{display:flex;justify-content:center}#sector_table.ui.table td.actions .ui.button{width:40%!important;background-color:#282a2e!important;color:#fff!important;margin:3px}#sector_table.ui.table td.actions .ui.button i{margin:0}#sector_table.ui.table td.actions .ui.edit.button:hover{background-color:#4386cb!important;color:#fff!important}#sector_table.ui.table td.actions .ui.delete.button:hover{background-color:#c93928!important;color:#fff!important}#sector_table.ui.table td.actions .ui.toggle.button:hover{background-color:#edb26a!important;color:#fff!important}#sector_table.ui.table td.actions .ui.move.button:hover{background-color:#55807e!important;color:#fff!important}.sector_header{padding:20px;background-color:#a9c7d7;font-size:18px;font-weight:700}#sector_table.ui.table td .ui.buttons .ui.button{display:flex!important;justify-content:center;background-color:#282a2e!important;color:#fff!important}#sector_table.ui.table td .ui.buttons .ui.button i{padding:0;margin:0!important}#sector_table.ui.table td .ui.buttons .ui.button:hover{background-color:#fff!important;color:#282a2e!important}button.ui.add_element.button{display:flex!important;justify-content:center;float:right;background-color:#6caa78;color:#fff}button.ui.add_element.button i{padding:0;margin:0!important}button.ui.add_element.button:hover{cursor:pointer;background-color:green}.ui.attached.segment{border:none}.ui.content.segment{border:1px solid #a9c7d7}.ui.longer.modal .content .ui.list_selector.button{background-color:#9fbfce;border-radius:0}.ui.longer.modal .content .ui.list_selector.button:hover{background-color:#474f71;color:#fff;border-radius:0}.ui.longer.modal .content .ui.list_selector.activated.button{background-color:#71bdab;border-radius:0}.pagination_container{display:block;margin:10px auto}.ui.pagination .item{color:#fff!important;background-color:#282a2e}.ui.pagination .item:hover{color:#282a2e!important;background-color:#fff!important}.ui.pagination .active.item{color:#282a2e!important;background-color:#fff!important}.ui.pagination .disabled.item{color:#fff!important;background-color:#bac9d8!important}.ui.pagination .disabled.item:hover{background-color:#bac9d8!important}
+.air_bag {
+	margin-top: 50px;
+}
+/*for show tooltip*/
+.ui.fixed.table td {
+    overflow: visible !important;
+}
+
+#sector_table.ui.table {
+
+	min-width: 100%;
+	border-radius: 0;
+
+	-webkit-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.6);
+	box-shadow: 0px 5px 20px -2px rgba(0,0,0,0.6);
+}
+
+#sector_table.ui.table tr.order.disable td {
+	background-color: #d1d3d6;
+	color: #928D96;
+}
+
+#sector_table.ui.table tr td {
+	background-color: #A9C7D7;
+	border-top: 1px solid #282A2E;
+}
+
+#sector_table.ui.table tr:hover td {
+	background-color: #bad3e0;
+}
+
+#sector_table.ui.table tr.pinned td {
+	background-color: #83B9DF;
+	color: white;
+}
+
+.ui.button.preview_toggle_button {
+	background-color: #282A2E;
+	color: white;
+}
+
+.ui.button.preview_toggle_button:hover {
+	background-color: white;
+	color: #282A2E;
+}
+
+#sector_table.ui.table td.actions {
+	display: flex;
+	justify-content: center ;
+}
+
+#sector_table.ui.table td.actions .ui.button{
+
+	width: 40% !important;
+
+	background-color: #282A2E !important;
+	color: white !important;
+	margin: 3px;
+}
+
+#sector_table.ui.table td.actions .ui.button i{
+	margin: 0;
+}
+
+#sector_table.ui.table td.actions .ui.edit.button:hover {
+	background-color: #4386CB !important;
+	color: white !important;
+}
+
+#sector_table.ui.table td.actions .ui.delete.button:hover {
+	background-color: #C93928 !important;
+	color: white !important;
+}
+
+#sector_table.ui.table td.actions .ui.toggle.button:hover {
+	background-color: #EDB26A !important;
+	color: white !important;
+}
+
+#sector_table.ui.table td.actions .ui.move.button:hover {
+	background-color: #55807E !important;
+	color: white !important;
+}
+
+.sector_header {
+	padding: 20px;
+
+	background-color: #A9C7D7;
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#sector_table.ui.table td .ui.buttons .ui.button {
+	display: flex !important;
+	justify-content: center ;
+
+	background-color: #282A2E !important;
+	color: white !important;
+}
+
+#sector_table.ui.table td .ui.buttons .ui.button i {
+	padding: 0;
+	margin: 0 !important;
+}
+
+#sector_table.ui.table td .ui.buttons .ui.button:hover {
+	background-color: white !important;
+	color: #282A2E !important;
+}
+
+button.ui.add_element.button {
+	display: flex !important;
+	justify-content: center ;
+
+	float: right;
+
+	background-color: #6CAA78;
+	color: white;
+}
+
+button.ui.add_element.button i {
+	padding: 0;
+	margin: 0 !important;
+}
+
+button.ui.add_element.button:hover {
+	cursor: pointer;
+
+	background-color: green;
+}
+
+.ui.attached.segment {
+	border: none;
+}
+
+.ui.content.segment {
+	border: 1px solid #A9C7D7;
+}
+
+.ui.longer.modal .content .ui.list_selector.button {
+	background-color: #9FBFCE;
+	border-radius: 0px;
+}
+
+.ui.longer.modal .content .ui.list_selector.button:hover {
+	background-color: #474F71;
+	color: white;
+	border-radius: 0px;
+}
+
+.ui.longer.modal .content .ui.list_selector.activated.button {
+	background-color: #71BDAB;
+	border-radius: 0px;
+}
+
+.pagination_container {
+	display: block;
+	/*overflow: auto;*/
+
+	margin: 10px auto;
+}
+
+.ui.pagination .item {
+
+	color: white !important;
+
+	background-color: #282A2E;
+}
+
+.ui.pagination .item:hover {
+
+	color: #282A2E !important;
+
+	background-color: white !important;
+}
+
+.ui.pagination .active.item {
+
+	color: #282A2E !important;
+
+	background-color: white !important;
+}
+
+.ui.pagination .disabled.item {
+
+	color: white !important;
+
+	background-color: #BAC9D8 !important;
+}
+
+.ui.pagination .disabled.item:hover {
+
+	background-color: #BAC9D8 !important;
+}

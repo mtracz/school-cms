@@ -1,1 +1,42 @@
-function ajaxPostDeletePagesPromise(e){return new Promise(function(t,o){$.ajax(e).done(t).fail(o)})}$(".actions .ui.edit.button, .ui.clear_search.button, .ui.add_admin.button").on("click",function(){window.location.href=$(this).attr("data-url")}),$(".ui.delete.button").on("click",function(){var e=$(this).attr("data-url"),t=$(this).parent().parent();$(".ui.basic.delete_aggrement.modal").modal({closable:!1,onDeny:function(){},onApprove:function(){ajaxPostDeletePagesPromise({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},method:"post",url:e}).then(function(e){"success"===e?($(t).remove(),console.log("ajaxPostDeletePagesPromise: success"),toastr.success("Usunięto")):toastr.error(e.error)}).catch(function(){console.log("ajaxPostDeletePagesPromise: fail"),toastr.error("Problem z usunięciem")})}}).modal("show")});
+
+$(".actions .ui.edit.button, .ui.clear_search.button, .ui.add_admin.button").on("click", function () {
+	window.location.href = $(this).attr("data-url");
+});
+
+$(".ui.delete.button").on("click", function () {
+	var data_url = $(this).attr("data-url");
+	var parent_row = $(this).parent().parent();
+
+	$('.ui.basic.delete_aggrement.modal').modal({
+		closable: false,
+		onDeny: function onDeny() {},
+		onApprove: function onApprove() {
+
+			ajaxPostDeletePagesPromise({
+				headers: {
+					"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+				},
+				method: "post",
+				url: data_url
+			}).then(function (response) {
+				if (response === "success") {
+					$(parent_row).remove();
+
+					console.log("ajaxPostDeletePagesPromise: success");
+					toastr.success("Usunięto");
+				} else {
+					toastr.error(response["error"]);
+				}
+			}).catch(function () {
+				console.log("ajaxPostDeletePagesPromise: fail");
+				toastr.error("Problem z usunięciem");
+			});
+		}
+	}).modal('show');
+});
+
+function ajaxPostDeletePagesPromise(options) {
+	return new Promise(function (resolve, reject) {
+		$.ajax(options).done(resolve).fail(reject);
+	});
+}

@@ -373,3 +373,7 @@
 .top_menu {
 	width: fit-content;
 }
+
+.news.panel .distance {
+	height: 15px;
+}

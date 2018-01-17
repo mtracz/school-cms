@@ -1,1 +1,29 @@
-.ui.file_background_segment{background-color:#fff}.field.choose_file{margin-right:-10px!important}.field.file_name{display:flex;justify-content:center;align-items:center}.input.alert{color:red}.field.dropdown{margin-right:-14px!important}
+/*add file css*/
+
+.field {
+	/*background-color: red !important;*/
+	/*border: solid;*/
+}
+
+.ui.file_background_segment {
+	background-color: white;
+}
+
+.field.choose_file {
+	margin-right: -10px !important;
+}
+
+.field.file_name {
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+	  
+	/*background-color: #EEE657;*/
+}
+
+.input.alert {
+	color: red;
+}
+
+.field.dropdown {
+	margin-right: -14px !important;

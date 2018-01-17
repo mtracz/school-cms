@@ -23,7 +23,8 @@ class CopyOldArticlesSeeder extends Seeder
     		$row["article_article"] = str_replace("</strong>", "</b></p>", $row["article_article"]);
     		$row["article_article"] = str_replace("<font", "<p", $row["article_article"]);
             $row["article_article"] = str_replace("</font>", "</p>", $row["article_article"]);
-    		$row["article_article"] = str_replace("<table", "<table class='ui table' ", $row["article_article"]);
+            $row["article_article"] = str_replace("<table", "<table class='ui table' ", $row["article_article"]);
+    		$row["article_article"] = str_replace("/images", "/images_old", $row["article_article"]);
     		$row["article_article"] = stripcslashes($row["article_article"]);
 
     		array_push($pages, [

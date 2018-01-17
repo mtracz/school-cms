@@ -36,7 +36,8 @@ class ImageService {
 		$this->file_name = $this->file->getClientOriginalName();
 
 		$this->storeImageInTempDir();
-		$this->setResponse($this->size, $this->file_complete_path);
+		$this->setResponse($this->size, $this->file_complete_path);		
+		var_dump(public_path());
 	}
 
 	protected function storeImageInTempDir() {

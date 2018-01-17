@@ -19,6 +19,7 @@ function updateFontSize(font_size) {
 	for(var i = 0; i < changeFont.length; i++) {
 
 		var element = document.getElementsByClassName(changeFont[i]);
+		console.log("element", element);
 
 		if(element) {
 			for(var j = 0; j < element.length; j++) {

@@ -1,1 +1,43 @@
-body{background-color:#a9c7d7!important}.ui.header{color:#3f0900}#info{color:#000}.required.info{color:#3f0900;font-size:14px;font-style:italic}.information{text-align:center;font-size:19px;color:#3f0900}.container{margin-top:20px}.errors{color:red}#create_super_admin:hover{background-color:#3f0900!important;color:#fff}#create_super_admin{background-color:#a9c7d7!important;color:#490b00;border:2px solid #490b00;border-radius:12px}
+/* Admin create blade */
+
+body {
+	background-color: #A9C7D7 !important;
+}
+
+.ui.header {
+	color: #3f0900;
+}
+
+#info {
+	color: black;
+}
+.required.info {	
+	color: #3f0900;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.information {
+	text-align: center;
+	font-size: 19px;
+	color: #3f0900;
+}
+
+.container {
+	margin-top: 20px;
+}
+
+.errors {
+	color: red;
+}
+
+#create_super_admin:hover {
+	background-color: #3f0900 !important;
+	color: white;	
+}
+#create_super_admin {
+	background-color: #A9C7D7!important;
+	color: #490b00;
+	border: 2px solid #490b00;
+	border-radius: 12px;
+}

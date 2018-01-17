@@ -1,1 +1,26 @@
-#bottom_sector .ui.grid{background-color:#406de4;padding:20px 0}#bottom_sector .copyright{color:#fff;font-size:18px}#bottom_sector .panel{background-color:#406de4;padding:0 10px;margin-bottom:40px}#bottom_sector .panel .header{border:5px solid #fff}#bottom_sector .panel .content{background-color:#fff;border:none}
+#bottom_sector .ui.grid {
+	background-color: #406DE4;
+
+	padding: 20px 0px;
+}
+
+#bottom_sector .copyright {
+	color: white;
+
+	font-size: 18px;
+}
+
+#bottom_sector .panel {
+	background-color: #406DE4;
+	padding: 0px 10px;
+	margin-bottom: 40px;
+}
+
+#bottom_sector .panel .header {
+	border: 5px solid white;
+}
+
+#bottom_sector .panel .content {
+	background-color: white;
+	border: none;
+}

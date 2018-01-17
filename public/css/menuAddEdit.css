@@ -1,1 +1,53 @@
-#menu_main_column{width:80vw;padding-top:60px!important;margin-top:20px;padding:20px!important;background-color:#a9c7d7;color:#000!important;-webkit-box-shadow:0 2px 10px -1px rgba(0,0,0,.6);-moz-box-shadow:0 2px 10px -1px rgba(0,0,0,.6);box-shadow:0 5px 20px -1px rgba(0,0,0,.6)}.ui.tabular.menu{overflow-x:auto;overflow-y:hidden}.ui.tabular.menu a{color:#000!important}.circular.ui.icon.button.order{margin-top:+14px}.ui.icon.buttons.actions{margin-top:+14px}.delete_item_div{display:flex;justify-content:flex-end}.ui.confirm.delete.modal .content{justify-content:center}.button.order{pointer-events:none}.tab.segment .alert.dropdown{color:red;margin-bottom:15px}
+/*menuAddEdit css*/
+
+#menu_main_column {
+	width: 80vw;
+    padding-top: 60px !important;
+
+	margin-top: 20px;
+	padding: 20px !important;
+	background-color: #A9C7D7;
+	color: black !important;
+
+	-webkit-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.6);
+	box-shadow: 0px 5px 20px -1px rgba(0,0,0,0.6);
+}
+
+.fields {
+	/*border: solid;*/
+}
+
+.ui.tabular.menu  {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.ui.tabular.menu a {
+	color: black !important;
+}
+
+.circular.ui.icon.button.order {
+	margin-top: +14px;
+}
+
+.ui.icon.buttons.actions {
+	margin-top: +14px;
+}
+
+.delete_item_div {
+	display: flex ;
+    justify-content: flex-end;
+}
+
+.ui.confirm.delete.modal .content{
+    justify-content: center;
+}
+.button.order {
+	pointer-events: none;
+}
+
+.tab.segment .alert.dropdown {
+	color: red;
+	margin-bottom: 15px;
+}
