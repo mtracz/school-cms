@@ -34,14 +34,15 @@ class ImageService {
 		$this->size = [$this->width, $this->height];
 
 		$this->file_name = $this->file->getClientOriginalName();
-
 		$this->storeImageInTempDir();
+
 		$this->setResponse($this->size, $this->file_complete_path);		
-		var_dump(public_path());
 	}
 
 	protected function storeImageInTempDir() {
-		$this->file_complete_path = $this->file->storeAs($this->temp_dir, $this->file_name, "public");
+		//$this->file_complete_path = $this->file->storeAs($this->temp_dir, $this->file_name, 
+		$this->file->move($this->temp_dir, $this->file_name);
+		$this->file_complete_path = $this->temp_dir . "/" . $this->file_name;
 	}
 
 	protected function setResponse($image_size, $image_url) {
@@ -69,7 +70,6 @@ class ImageService {
 
 	public function rotate($request) {		
 		$this->image_url = $this->getDirectImagePath($request["url"]);
-		// dd($this->image_url);
 		$direction = $request["direction"];
 		
 		if($direction === "CW") {
@@ -109,7 +109,7 @@ class ImageService {
 			$name = explode($this->temp_dir, $image_temp_url);
 			$name = $name[1];
 
-			File::copy($image_temp_url, $destination_dir . $name);
+			File::copy($image_temp_url, $destination_dir . "/" . $name);
 		}
 		File::cleanDirectory($this->temp_dir);
 	}
