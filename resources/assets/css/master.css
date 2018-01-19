@@ -113,8 +113,7 @@ body {
 
 .align-center-inline {
     display: inline-block !important;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+    margin: 0.5em;
 }
 
 /* Left align */
@@ -140,6 +139,8 @@ body {
     display: block !important;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .image-off-left {
@@ -171,6 +172,31 @@ body {
 		text-align: right !important;
 	}
 
+.padding-small-up {
+	padding-top: 15px !important;
+}
+
+.padding-small-down {
+	padding-bottom: 15px !important;
+}
+
+.padding-small-left {
+	padding-left: 15px !important;
+}
+
+.padding-small-right {
+	padding-right: 15px !important;
+}
+
+.padding-big-up {
+	padding-top: 70px !important;
+}
+
+.padding-big-down {
+	padding-bottom: 70px !important;
+}
+
+
 /*END CONTENTTOOLS CLASSES*/
 
 
@@ -186,4 +212,8 @@ body.noscroll
 
 .ui.accordion .title.active {
 	background-color: #3356b5;
+}
+
+img.link {
+    cursor: alias !important;
 }

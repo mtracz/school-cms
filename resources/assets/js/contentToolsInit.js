@@ -39,6 +39,16 @@ ContentTools.StylePalette.add([
     new ContentTools.Style('Tabela UI', 'ui', ['table']),
     new ContentTools.Style('Tabela (obramowanie w środku)', 'celled', ['table']),
     new ContentTools.Style('Tabela (wymagane)', 'table', ['table']),
+
+    new ContentTools.Style('Link', 'link', ['img']),
+
+    new ContentTools.Style('Mały margines góra', 'padding-small-up', ['p', 'a', 'table', 'iframe', 'img']),
+    new ContentTools.Style('Mały margines dół', 'padding-small-down', ['p', 'a', 'table', 'iframe', 'img']),
+    new ContentTools.Style('Mały margines lewo', 'padding-small-left', ['p', 'a', 'table', 'iframe', 'img']),
+    new ContentTools.Style('Mały margines prawo', 'padding-small-right', ['p', 'a', 'table', 'iframe', 'img']),
+
+    new ContentTools.Style('Duży margines góra', 'padding-big-up', ['p', 'a', 'table', 'iframe', 'img']),
+    new ContentTools.Style('Duży margines dół', 'padding-big-down', ['p', 'a', 'table', 'iframe', 'img']),
 ]);
 
 

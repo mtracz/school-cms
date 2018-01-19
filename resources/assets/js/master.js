@@ -11,7 +11,7 @@ function Theme(){
 $(document).ready(function() {
 
 	$('#content_sector').magnificPopup({
-		delegate: 'img' , 		
+		delegate: 'img:not(.link)',
 		fixedContentPos: false, 
 		type: 'image', 
 		// gallery:{
