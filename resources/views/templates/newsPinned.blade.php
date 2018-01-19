@@ -25,6 +25,7 @@
 
 				<i class="user icon"></i>
 				{!! $news_pinned->news->admin->name !!}
+				&nbsp; &nbsp; &nbsp; &nbsp;
 				<i class="calendar icon"></i>
 				{!! $news_pinned->news->published_at !!}
 
