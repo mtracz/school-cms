@@ -10,6 +10,8 @@
 	<meta name="description" content="...">
 	<meta name="keywords" content="none">
 
+	<link rel="shortcut icon" type="image/x-icon" href="/sp9_tarcza.ico">
+
 	<title></title>
 
 	{{-- Styles --}}
