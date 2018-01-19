@@ -19,6 +19,9 @@ function runContentTools() {
 	// init IMAGE UPLOADER
     ContentTools.IMAGE_UPLOADER = imageUploader;
 
+    //allow white_spaces
+    ContentEdit.TRIM_WHITESPACE = false;
+
 // własne style
 ContentTools.StylePalette.add([
     new ContentTools.Style('Wyrównaj do lewej', 'align-left', ['img', 'iframe']),
@@ -29,6 +32,8 @@ ContentTools.StylePalette.add([
 
     new ContentTools.Style('Wyśrodkuj', 'align-center', ['img', 'iframe']),
     new ContentTools.Style('Wyśrodkuj w lini', 'align-center-inline', ['img', 'iframe']),
+    
+    new ContentTools.Style('Wyjustuj tekst', 'text-justify', ['p']),
 
     new ContentTools.Style('Zaokrąglone rogi', 'border-radius', ['img', 'iframe']),
 
