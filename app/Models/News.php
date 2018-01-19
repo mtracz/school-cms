@@ -19,7 +19,7 @@ class News extends Model
 
 	public function admin() {
 
-		return $this->belongsTo(Admin::class, "created_by");
+		return $this->belongsTo(Admin::class, "created_by")->withTrashed();
 	}
 
 	public function news_pinned() {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\Admin;
@@ -11,6 +12,10 @@ use App\Models\Event;
 
 class Admin extends Authenticatable {
 	use Notifiable;
+
+	use SoftDeletes;
+
+	protected $dates = ['deleted_at'];
 
 	protected $table = "admins";
 

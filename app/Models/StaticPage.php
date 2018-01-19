@@ -12,6 +12,6 @@ class StaticPage extends Model
 
     public function admin() {
     	
-    	return $this->belongsTo(Admin::class, "created_by");
+    	return $this->belongsTo(Admin::class, "created_by")->withTrashed();
     }
 }
