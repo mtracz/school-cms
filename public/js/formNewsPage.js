@@ -79,7 +79,7 @@ function isContent() {
 
 function getImagesSrc() {	
 	var images_src = [];
-	$("#preview_content").children("img").each(function() {		
+	$("#preview_content").find("img").each(function() {		
 		images_src.push($(this).attr('src')); 
 
 	});
