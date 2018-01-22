@@ -16,12 +16,12 @@ class VisitMiddleware {
 	 */
 	public function handle($request, Closure $next)	{
 
-		$visitHelperObject = new VisitHelper();
+			$visitHelperObject = new VisitHelper();
 
-		if(! $visitHelperObject->checkUniqueVisitCookie()) {   
-			$visitHelperObject->createUniqueVisitCookie();
-			$visitHelperObject->updateUniqueVisits();
-		}
+			if(! $visitHelperObject->checkUniqueVisitCookie()) {
+				$visitHelperObject->createUniqueVisitCookie();
+				$visitHelperObject->updateUniqueVisits();
+			}		
 
 		return $next($request);
 	}
