@@ -96,6 +96,7 @@ function sendFormData() {
 			
 		},
 		error: function() {
+			toastr.error("Do logowania wymagana jest obsługa plików cookies.");
 			alert('login admin ajax error');
 		}
 	})

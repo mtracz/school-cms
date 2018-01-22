@@ -17,18 +17,30 @@ function LayoutBuilder() {
 
 		switch(enabledSectors) {
 			case 1:
-			$("#content_sector").removeClass().addClass("sixteen wide column sector");
-			window.localStorage.setItem("newsWidth","sixteen");
+				$("#content_sector").removeClass().addClass("sixteen wide column sector");
+				try {
+					window.localStorage.setItem("newsWidth","sixteen");
+				} catch(error) {
+					// toastr.error("Brak obsługi cookies. Nie można zapisać szerokości (16) newsów");
+				}
 			break;
 
 			case 2:
-			$("#content_sector").removeClass().addClass("thirteen wide column sector");
-			window.localStorage.setItem("newsWidth","thirteen");
+				$("#content_sector").removeClass().addClass("thirteen wide column sector");
+				try {
+					window.localStorage.setItem("newsWidth","thirteen");
+				} catch(error) {
+					// toastr.error("Brak obsługi cookies. Nie można zapisać szerokości (13) newsów");
+				}
 			break;
 
 			case 3:
-			$("#content_sector").removeClass().addClass("ten wide column sector");
-			window.localStorage.setItem("newsWidth","ten");
+				$("#content_sector").removeClass().addClass("ten wide column sector");
+				try {
+					window.localStorage.setItem("newsWidth","ten");
+				} catch(error) {
+					// toastr.error("Brak obsługi cookies. Nie można zapisać szerokości (10) newsów");
+				}
 			break;
 		}
 	};
@@ -103,10 +115,15 @@ function LayoutBuilder() {
 		return name;
 	};
 
+	
 	this.saveToLocalStorage = (viewportGroupName) => {
-
-		window.localStorage.setItem("viewportGroupName", viewportGroupName);
+		try {
+			window.localStorage.setItem("viewportGroupName", viewportGroupName);
+		} catch(error) {
+			// toastr.error("Brak obsługi cookies");
+		}
 	};
+		
 
 	this.getViewportWidth = () => {
 

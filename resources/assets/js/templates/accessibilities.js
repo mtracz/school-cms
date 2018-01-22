@@ -1,6 +1,10 @@
 
-localStorage.setItem("font_size", 0);
-localStorage.setItem("font_size_name", "standard");
+try {
+	localStorage.setItem("font_size", 0);
+	localStorage.setItem("font_size_name", "standard");
+} catch(error) {
+	// toastr.error("Jeżeli chcesz korzystać z ulatwień dostępu, wymagana jest obsługa plików coookies");
+}
 
 $(".accessibilities.panel").on("click","[data-action='change_font_size']", function() {
 	updateFontSize($(this).attr("data-font_size"));
@@ -33,29 +37,46 @@ function updateFontSize(font_size) {
 }
 
 function getCurrentFontSize() {
-	if(localStorage.getItem("font_size") === null) {
-		localStorage.setItem("font_size", 0);
-	}
+	try {
+		if(localStorage.getItem("font_size") === null) {
+			localStorage.setItem("font_size", 0);
+		}
 
-	return localStorage.getItem("font_size");
+		return localStorage.getItem("font_size");
+	} catch(error) {
+		toastr.error("Jeżeli chcesz korzystać z ulatwień dostępu, wymagana jest obsługa plików coookies");
+	}
 }
 
 $(".accessibilities.panel").on("click","#change_contrast", function() {
-	toggleContrast();
+	try {
+		localStorage.getItem("contrast"); //check cookies are enabled to get items from local storage
+		toggleContrast();
+	} catch(error) {
+		toastr.error("Jeżeli chcesz korzystać z ulatwień dostępu, wymagana jest obsługa plików coookies");
+	}
 });
 
-if(localStorage.getItem("contrast") == "true") {
-	toggleContrastClass();
+try {
+	if(localStorage.getItem("contrast") == "true") {
+		toggleContrastClass();
+	}
+} catch(error) {
+	// toastr.error("Jeżeli chcesz korzystać z ulatwień dostępu, wymagana jest obsługa plików coookies");
 }
 
 function toggleContrast() {
 
-	toggleContrastClass();
+	try {
+		toggleContrastClass();
 
-	if( localStorage.getItem("contrast") == "false" || localStorage.getItem("contrast") == null) {
-		localStorage.setItem("contrast", "true");
-	} else {
-		localStorage.setItem("contrast", "false");
+		if( localStorage.getItem("contrast") == "false" || localStorage.getItem("contrast") == null) {
+			localStorage.setItem("contrast", "true");
+		} else {
+			localStorage.setItem("contrast", "false");
+		}
+	} catch(error) {
+		toastr.error("Jeżeli chcesz korzystać z ulatwień dostępu, wymagana jest obsługa plików coookies");
 	}
 	
 }

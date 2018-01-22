@@ -89,9 +89,15 @@ function resizeBanner() {
 
 function scaleBanner() {
 	layoutBuilder.build();
+	
+	try {
+		localStorage.getItem("viewportGroupName");
+	
 
-	var currentViewportGroupName = localStorage.getItem("viewportGroupName");
-
+		var currentViewportGroupName = localStorage.getItem("viewportGroupName");
+} catch(error) {
+		toastr.error("Strona może wyświetlać się nieprawidłowo, jeżeli wyłączono obsługę plików cookies.");
+	}
 	switch(currentViewportGroupName) {
 
 		case "view_computer":

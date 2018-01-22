@@ -107,14 +107,23 @@ $(window).ready(function () {
 $(".cookie_info").css("display","");
 
 $(".accept_coockies").on("click", function() {
+	try {
+		window.localStorage.setItem("cookie","set");
+		$(".cookie_info").slideToggle();
+	} catch(error) {
+		toastr.error("Włącz obsługę plików cookies.");
+	}
 	
-	window.localStorage.setItem("cookie","set");
-	$(".cookie_info").slideToggle();
 });
 
-if(window.localStorage.cookie == "set"){
-	$(".cookie_info").css("display","none");
+try {
+	if(window.localStorage.cookie == "set"){
+		$(".cookie_info").css("display","none");
+	}	
+} catch(error) {
+	// toastr.error("Wykryto wyłaczoną obsługe plikow cookies");
 }
+
 
 $('.ui.accordion')
 .accordion("open", 0);
