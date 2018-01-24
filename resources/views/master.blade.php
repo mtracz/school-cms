@@ -65,6 +65,9 @@
 	{{-- Scripts --}}
 
 	{!! Html::script("js/jquery.min.js") !!}
+	<!-- Promise support Internet Explorer -->
+	{!! Html::script("js/bluebird.min.js") !!}
+	<!--  -->
 	{!! Html::script("js/semantic.min.js") !!}
 	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}
