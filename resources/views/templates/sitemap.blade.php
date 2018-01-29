@@ -16,18 +16,16 @@
 				<i class="map outline icon"></i>  Mapa strony
 			</div>
 
-			<div class="content editMe">
-
+			<div class="content editMe">				
 				<div class="ui list">
-					@foreach($menus as $menu)
-
+					@foreach($elements as $element)
 					<div class="item">
 						<i class="sidebar icon"></i>
 						<div class="content">
-							<div class="header">{{ $menu->name }}</div>
+							<div class="header">{{ $element->menu->name }}</div>
 							<div class="list">
 
-								@foreach($menu->menu_item as $item)
+								@foreach($element->menu->menu_item as $item)
 								@if($item->is_dropdown)
 
 								<div class="item">

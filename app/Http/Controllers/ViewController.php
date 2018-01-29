@@ -531,11 +531,9 @@ class ViewController extends Controller {
 	}
 
 	public function getSiteMap() {
-
-		$menus = Menu::with("menu_item.link")->get();
-
+		$elements = Element::with("menu.menu_item.link")->where("menu_id", "!=", null)->orderBy("site_sector_id", "asc")->orderBy("order", "asc")->get();
 		return view("templates.sitemap")
-		->with("menus", $menus);
+		->with("elements", $elements);
 	}
 
 	public function redirectArticle($article_id) {
