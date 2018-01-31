@@ -1,5 +1,5 @@
 .ui.settings.container {
-	background-color: #A9C7D7;
+	/*background-color: #A9C7D7;*/
 	margin-top: 50px;
 	width: 80vw;
 	padding: 10px;
@@ -7,6 +7,7 @@
 
 .ui.settings.container .wrapper {
 	padding: 30px;
+	background-color: #A9C7D7;
 }
 
 .ui.labeled.input .ui.label {
