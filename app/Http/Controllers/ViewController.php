@@ -531,7 +531,7 @@ class ViewController extends Controller {
 	}
 
 	public function getSiteMap() {
-		$elements = Element::with("menu.menu_item.link")->where("menu_id", "!=", null)->orderBy("site_sector_id", "asc")->orderBy("order", "asc")->get();
+		$elements = Element::with("menu.menu_item.link")->where("menu_id", "!=", null)->where("is_enabled", true)->orderBy("site_sector_id", "asc")->orderBy("order", "asc")->get();
 		return view("templates.sitemap")
 		->with("elements", $elements);
 	}
