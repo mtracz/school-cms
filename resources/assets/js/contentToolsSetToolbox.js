@@ -1,6 +1,8 @@
 
 DEFAULT_TOOLS= [
     [
+        'underline',
+    ], [        
         'bold',
         'italic',
         'link',

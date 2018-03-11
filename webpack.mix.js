@@ -68,6 +68,7 @@ mix.copy("node_modules/ContentTools/build/content-tools.min.js", "public/js")
 mix.scripts("resources/assets/js/contentToolsInit.js", "public/js/contentToolsInit.js");
 mix.scripts("resources/assets/js/contentToolsSetToolbox.js", "public/js/contentToolsSetToolbox.js");
 mix.scripts("resources/assets/js/contentToolsSetLanguage.js", "public/js/contentToolsSetLanguage.js");
+mix.scripts("resources/assets/js/contentToolsCustomTags.js", "public/js/contentToolsCustomTags.js");
 
 //toastr
 mix.copy("node_modules/toastr/build/toastr.min.js", "public/js")

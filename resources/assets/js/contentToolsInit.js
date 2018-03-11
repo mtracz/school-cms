@@ -1,15 +1,10 @@
 
 $(document).ready( function() {
-    
-    // alert("onload");
     runContentTools();
  }); 
 
 
 function runContentTools() {
-
-// alert("run");
-
 // CONTENT TOOLS init
 // window.addEventListener('load', function() {
 	var editor;

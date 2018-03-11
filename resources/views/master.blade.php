@@ -22,6 +22,7 @@
 	{!! Html::style("css/toastr.min.css") !!}
 	{!! Html::style("css/magnific-popup.css") !!}
 
+	
 	@yield("styles")
 
 </head>
@@ -72,6 +73,9 @@
 	{!! Html::script("js/calendar.min.js") !!}
 	{!! Html::script("js/master.js") !!}
 	{!! Html::script("js/content-tools.min.js") !!}
+	<!-- must be before init ContentTools -->
+	{!! Html::script("js/contentToolsCustomTags.js") !!}
+	<!--  -->
 	{!! Html::script("js/contentToolsSetToolbox.js") !!}
 	{!! Html::script("js/contentToolsSetLanguage.js") !!}
 	{!! Html::script("js/contentToolsInit.js") !!}
