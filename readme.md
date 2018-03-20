@@ -1,36 +1,40 @@
-# Install
+# School CMS
 
+## About
+This is a small CMS system, with CRUD, which allow manage news, static pages, files, links, moderators.
+ Dynamically layout change. \
+ Dynamically created menus. \
+ Simple and user friendly content editor.
+ Popup images in news / pages content.
 
-!!
-## SERVER CONFIG
+## Requirements
+* PHP 7.0 / 7.1 / 7.2
+* MySQL 5.7.19
+* Composer
 
-extensions:
-	openssl
-	mbstring
-	gd2
-	fileinfo
-	intl
-	mbstring
-	mysqli
-	openssl
-	pdo_mysql
-	curl
-	xsl
-
+## Installation
+1. clone repo
+2. `composer install`
+3. `php artisan key:generate`
+4. create `.env` file based on `.env.example`
+5. create MySQL database and set up in `.env`
+6. `php artisan migrate --seed`
 
 ## Used plugins:
+##### Semantic UI
+https://semantic-ui.com/
 
-# Content Tools
-`http://getcontenttools.com/getting-started`
- `npm install --save ContentTools`
+##### Content Tools:
+http://getcontenttools.com/getting-started
 
-# calendar
-`npm install --save semantic-ui-calendar`
+##### semantic calendar:
+https://github.com/mdehoog/Semantic-UI-Calendar
 
-# toastr
-`npm install --save toastr`
+##### toastr:
+https://github.com/CodeSeven/toastr
 
-#jquery-simplecolorpicker
+##### jquery-simplecolorpicker:
 https://github.com/tkrotoff/jquery-simplecolorpicker
 
-npm install --save jquery-simplecolorpicker
+##### Magnific-Popup
+https://github.com/dimsemenov/Magnific-Popup
