@@ -1,5 +1,8 @@
 version: "3.8"
 
+volumes:
+    mysql-school-cms-data:
+
 services:
     mysql:
         image: mysql:5.7
@@ -8,6 +11,7 @@ services:
         volumes:
             - .:/application
             - ./.docker/mysql/config.cnf:/etc/mysql/my.cnf
+            - mysql-school-cms-data:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=${DOCKER_DB_ROOT_PASSWORD}
             - MYSQL_DATABASE=${DOCKER_DB_DATABASE}
