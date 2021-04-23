@@ -8,17 +8,44 @@ This is a small CMS system, with CRUD, which allow manage news, static pages, fi
  Popup images in news / pages content.
 
 ## Requirements
-* PHP 7.0 / 7.1 / 7.2
-* MySQL 5.7.19
-* Composer
+- Docker
+- Docker Compose
+  
+Optionally:
+- Make (to run make commands)
 
 ## Installation
-1. clone repo
-2. `composer install`
-3. `php artisan key:generate`
-4. create `.env` file based on `.env.example`
-5. create MySQL database and set up in `.env`
-6. `php artisan migrate --seed`
+```
+make install
+```
+or
+```
+cp .env.example .env
+docker-compose up -d
+docker-compose exec php-fpm composer install
+docker-compose exec php-fpm php artisan key:generate
+docker-compose exec php-fpm php artisan migrate --seed
+```
+
+## Run
+```
+docker-compose  up -d
+```
+or
+```
+make run
+```
+
+App will be accessible on:
+```
+localhost:555
+```
+
+### Log in to the dashboard
+
+```localhost:555/login```
+- user: admin
+- pass: admin
 
 ## Used plugins:
 ##### Semantic UI
@@ -38,3 +65,10 @@ https://github.com/tkrotoff/jquery-simplecolorpicker
 
 ##### Magnific-Popup
 https://github.com/dimsemenov/Magnific-Popup
+
+# Make commands
+- make shell
+- make run
+- make build
+- make stop
+- make install

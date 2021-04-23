@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+    mysql:
+        image: mysql:5.7
+        container_name: school-cms-mysql
+        working_dir: /application
+        volumes:
+            - .:/application
+            - ./.docker/mysql/config.cnf:/etc/mysql/my.cnf
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DOCKER_DB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${DOCKER_DB_DATABASE}
+            - MYSQL_USER=${DOCKER_DB_USERNAME}
+            - MYSQL_PASSWORD=${DOCKER_DB_PASSWORD}
+        ports:
+            - ${DOCKER_DB_HOST_PORT}:3306
+
+    webserver:
+        image: nginx:alpine
+        container_name: school-cms-webserver
+        working_dir: /application
+        volumes:
+            - .:/application
+            - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - ${DOCKER_WEBSERVER_HOST_PORT}:80
+
+    php-fpm:
+        build:
+            context: ./.docker/php-fpm
+            args:
+                - INSTALL_XDEBUG=${DOCKER_INSTALL_XDEBUG}
+                - XDEBUG_CLIENT_HOST=${DOCKER_XDEBUG_CLIENT_HOST}
+                - XDEBUG_CLIENT_PORT=${DOCKER_XDEBUG_CLIENT_PORT}
+                - XDEBUG_START_WITH_REQUEST=${DOCKER_XDEBUG_START_WITH_REQUEST}
+                - XDEBUG_MODE=${DOCKER_XDEBUG_MODE}
+        container_name: school-cms-php-fpm
+        working_dir: /application
+        user: ${DOCKER_USER_UID:-1000}
+        volumes:
+            - .:/application
+            - ./.docker/conf/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
