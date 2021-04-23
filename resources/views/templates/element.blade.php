@@ -1,7 +1,7 @@
 
 @foreach($element_model as $item)
 
-@if($item->is_enabled === 1)
+@if($item->is_enabled)
 
 	@if($item->site_sector->orientation->name === "horizontal")
 		
