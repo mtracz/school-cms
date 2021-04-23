@@ -16,8 +16,8 @@ class AdminsSeeder extends Seeder
         $admins = [
     		[
     		"id" => 1, 
-    		"login" => "admin123", 
-    		"password" => bcrypt("admin123"), 
+    		"login" => "admin",
+    		"password" => bcrypt("admin"),
     		"name" => "TestAdmin", 
     		"is_super_admin" => 1, 
     		"is_active" => 1, 

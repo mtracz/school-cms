@@ -53,7 +53,7 @@
 
 		@if(isset($item->panel_id))
 
-		<tr class="order @if($item->is_enabled === 0) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-sector_name="{{ $sector->name }}" data-order={{ $item->order }} data-panel_type_id="{{ $item->panel->panel_type->id }}">
+		<tr class="order @if(!$item->is_enabled) disable " data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-id="{{ $item->id }}" data-sector_name="{{ $sector->name }}" data-order={{ $item->order }} data-panel_type_id="{{ $item->panel->panel_type->id }}">
 			<td class="center">
 				<div class="ui buttons">
 					<div class="ui up button" data-inverted="" data-tooltip="Przesuń do góry" data-position="bottom center"><i class="long arrow up icon"></i></div>
@@ -73,7 +73,7 @@
 				@if($item->panel->panel_type->name != "accessibilites")
 				<div class="ui delete button" data-inverted="" data-tooltip="Usuń element" data-position="bottom center"" data-url="{{ route("panel.delete.post", ["id" => $item->panel->id]) }}" > <i class="trash icon"></i> </div>
 				@endif
-				@if($item->is_enabled === 0)
+				@if(!$item->is_enabled)
 				<div class="ui toggle show button" data-inverted="" data-tooltip="Pokaż element" data-position="bottom center"><i class="unhide icon"></i></div>
 				@else
 				<div class="ui toggle hide button" data-inverted="" data-tooltip="Ukryj element" data-position="bottom center"><i class="hide icon"></i></div>
@@ -85,7 +85,7 @@
 
 		@else
 
-		<tr class="order @if($item->is_enabled === 0) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-sector_name="{{ $sector->name }}" data-id="{{ $item->id }}" data-order={{ $item->order }} >
+		<tr class="order @if(!$item->is_enabled) disable" data-is_enabled="0" @else" data-is_enabled="1" @endif data-sector_id="{{ $sector->id }}" data-sector_name="{{ $sector->name }}" data-id="{{ $item->id }}" data-order={{ $item->order }} >
 			<td class="center">
 				<div class="ui buttons">
 					<div class="ui up button" data-inverted="" data-tooltip="Przesuń do góry" data-position="bottom center"><i class="long arrow up icon"></i></div>
@@ -102,7 +102,7 @@
 
 				<div class="ui edit button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.edit.get", ["id" => $item->menu->id]) }}" data-inverted="" data-tooltip="Edytuj element" data-position="bottom center"> <i class="configure icon"></i> </div>
 				<div class="ui delete button" data-id="{{ $item->menu->id }}" data-url="{{ route("menu.delete.post", ["id" => $item->menu->id]) }}" data-inverted="" data-tooltip="Usuń element" data-position="bottom center"> <i class="trash icon"></i> </div>
-				@if($item->is_enabled === 0)
+				@if(!$item->is_enabled)
 				<div class="ui toggle show button" data-inverted="" data-tooltip="Pokaż element" data-position="bottom center"><i class="unhide icon"></i></div>
 				@else
 				<div class="ui toggle hide button" data-inverted="" data-tooltip="Ukryj element" data-position="bottom center"><i class="hide icon"></i></div>

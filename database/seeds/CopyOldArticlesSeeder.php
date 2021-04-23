@@ -13,7 +13,7 @@ class CopyOldArticlesSeeder extends Seeder
      */
     public function run()
     {
-    	$sp9 = File::getRequire('database\seeds\sp9_articles_array.php');
+    	$sp9 = File::getRequire('database/seeds/sp9_articles_array.php');
     	$pages = [];
 
     	foreach($sp9 as $row) {
