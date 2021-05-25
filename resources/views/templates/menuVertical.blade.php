@@ -3,7 +3,7 @@
 	{{-- @include("templates/menuItem") --}}
 	@foreach($item->menu->menu_item as $singleItem)
 
-	@if($singleItem->is_dropdown === 1)
+	@if($singleItem->is_dropdown)
 
 	<div class="ui accordion">
 		<div class="title">
